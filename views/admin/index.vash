@@ -1,0 +1,19 @@
+﻿@html.extend("layout", function(model)
+{
+	@html.block("body", function(model)
+    {
+		<h1>Admin stuff!</h1>
+
+		<ul>
+			<li>
+				<a href="/Admin/Categories/">Categories</a>
+			</li>
+			<li>
+				<a href="/admin/words/">Words</a>
+			</li>
+			<li>
+				<a href="/admin/tests/">Tests</a>
+			</li>
+		</ul>
+	});
+})

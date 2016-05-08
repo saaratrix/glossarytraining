@@ -1,0 +1,34 @@
+﻿@html.extend("layout", function(model)
+{
+	@html.block("body", function(model)
+    {
+		<h1>Words overview</h1>
+
+		<p>
+			<a href="/Admin/Words/Add">Add a word</a>
+		</p>
+		
+		<h2>Edit current words</h2>
+		<table>
+			<thead>
+				<tr>
+					<td>Finnish</td>
+					<td>English</td>
+					<td></td>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+				@model.words.forEach( function(word)
+				{				
+					<tr>
+						<td>@word.finnish</td>
+						<td>@word.english</td>
+						<td><a href="/admin/words/edit/@word.id">Edit</a></td>
+						<td><a href="/admin/words/delete/@word.id">Remove</a></td>
+					</tr>
+				})
+			</tbody>
+		</table>
+	});
+})

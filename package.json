@@ -1,0 +1,31 @@
+{
+  "name": "DictionaryTraining",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "description": "DictionaryTraining",
+  "author": {
+    "name": "haestflod",
+    "email": ""
+  },
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.0",
+    "debug": "^2.2.0",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "mocha": "^2.3.4",
+    "morgan": "^1.6.1",
+    "mysql2": "^0.15.8",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "redis": "^2.3.1",
+    "serve-favicon": "^2.3.0",
+    "stylus": "^0.42.3",
+    "validator": "^4.2.1",
+    "vash": "^0.10.0"
+  }
+}

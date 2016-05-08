@@ -1,0 +1,7 @@
+﻿@{
+	;
+}
+{
+	html:"@html.escape(html.include("exam/partials/exam"))",
+	words:@model.words
+}

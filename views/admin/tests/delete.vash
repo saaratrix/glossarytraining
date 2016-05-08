@@ -1,0 +1,32 @@
+﻿	@html.extend("layout", function(model)
+{
+	@html.block("body", function(model)
+    {
+		<h1>Remove test</h1>
+		<p>
+			<a href="/admin/tests/">Back to overview</a>
+		</p>
+		
+		@if(model.success){	
+			<p class="success">			
+				Removed the test		
+			</p>		
+		} 
+		@if(model.error){
+			<p class="error">
+				@model.error
+			</p>
+		}	
+		
+		@if(!model.hideForm){		
+			<form action="/admin/tests/delete/@model.testId" method="post">
+				<div class="form-group">
+					<p>
+					Test: @model.testName
+					</p>
+				</div>							
+				<button type="submit" class="btn btn-success">Remove test</button>
+			</form>			
+		}
+	});
+})

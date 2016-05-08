@@ -1,0 +1,102 @@
+﻿@html.extend("layout", function(model)
+{
+	@html.block("body", function(model)
+    {
+		<h1>Tests overview</h1>
+		<p>
+			<a href="/admin/tests/">Back to overview</a>
+		</p>
+		
+		@if(model.success){	
+			<p class="success">			
+				Updated the test		
+			</p>		
+		} 
+		@if(model.error){
+			<p class="error">
+				@model.error
+			</p>
+		}	
+		
+		@if(!model.hideForm){		
+			<form action="/admin/tests/edit/@model.id" method="post">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type="text" class="form-control" name="name" value="@model.name" placeholder="Test name" required>
+				</div>
+				<div class="form-group">
+					<label for="language">Language type:</label>
+					<br>
+					<select name="language" required>	
+						@if(model.language === 0){
+							<option value="0" selected>@model.prettifier.language(0)</option>
+						} else {
+							<option value="0">@model.prettifier.language(0)</option>
+						}
+						if(model.language === 1){
+							<option value="1" selected>@model.prettifier.language(1)</option>
+						} else {
+							<option value="1">@model.prettifier.language(1)</option>
+						}	
+						if(model.language === 2){
+							<option value="2" selected>@model.prettifier.language(2)</option>
+						} else {
+							<option value="2">@model.prettifier.language(2)</option>
+						}		
+					</select>
+				</div>	
+				<div class="form-group">
+					<label for="type">Test type:</label>
+					<br>
+					<select name="type" required>
+						@if(model.type === 0){
+							<option value="0" selected>@model.prettifier.type(0)</option>
+						} else {
+							<option value="0">@model.prettifier.type(0)</option>
+						}
+						if(model.type === 1){
+							<option value="1" selected>@model.prettifier.type(1)</option>
+						} else {
+							<option value="1">@model.prettifier.type(1)</option>
+						}										
+					</select>
+				</div>			
+				<button type="submit" class="btn btn-success">Update test</button>
+			</form>
+
+			<h2>Words in test: </h2>
+			<p>
+				Check the checkbox to add a word to the test. To remove uncheck it.
+			</p>
+			<!-- All words checked or not checked! -->
+			<table id="testwords" data-testid="@model.id">
+				<thead>
+					<tr>
+						<td></td>
+						<td>Finnish</td>
+						<td>English</td>
+					</tr>
+				</thead>
+				<tbody>
+					@model.words.forEach(function(word)
+					{	
+						<tr>
+							<td>		
+								@if (model.selectedWords[ word.id ]  ){
+									<input type="checkbox" name="testword" data-id="@word.id" checked>
+								} else{
+									<input type="checkbox" name="testword" data-id="@word.id">
+								}
+							</td>	
+							<td>@word.finnish</td>
+							<td>@word.english</td>
+						</tr>	
+					})
+				</tbody>
+			</table>
+
+			<script src="/js/super/addremtestwords.js" type="text/javascript"></script>
+
+		}
+	});
+})

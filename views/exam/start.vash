@@ -1,0 +1,14 @@
+﻿@html.extend("layout", function(model)
+{
+    @html.block("body", function(model)
+    {
+		<div id="examwrapper" data-state="start" >
+			@html.include("exam/partials/start", model)
+		</div>
+    });   
+
+	@html.block("scripts_body", function()
+	{
+		<script src="/js/build/compiled/exam.js" type="text/javascript"></script>
+	});
+})

@@ -1,0 +1,51 @@
+﻿@successColor: green;
+@errorColor: red;
+
+.success{
+    color: @successColor;
+    font-weight:bold;
+}
+
+.error{
+    color:@errorColor;
+    font-weight:bold;
+}
+
+.passed{
+    background-color:#BADBAD;
+}
+
+.failed{
+    background-color:lightcoral;
+}
+
+//Question-hidden
+.qhidden{
+    opacity:0 !important;
+    //To make the element "display:none;"  but since display:none; prevents transitions that is not usable.
+    height:0;
+    overflow:hidden;    
+}
+
+.answers{
+    list-style:none;
+
+    label{
+        width:100%;
+    }
+}
+
+.question-root {
+    -moz-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+
+    padding:5px;
+
+    opacity:1;
+}
+
+.question-container{
+    padding:5px 10px;    
+}

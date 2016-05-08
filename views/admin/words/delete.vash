@@ -1,0 +1,39 @@
+﻿@html.extend("layout", function(model)
+{
+	@html.block("body", function(model)
+    {
+		<h1>Add word</h1>
+		<p>
+			<a href="/admin/words/">Back to overview</a>
+		</p>
+
+		
+		@if(model.success){	
+			<p class="success">			
+				Removed the word @model.finnish - @model.english	
+			</p>		
+		} 
+		@if(model.error){
+			<p class="error">
+				@model.error
+			</p>
+		}			
+		
+		@if(!model.hideForm) {
+			<form action="/admin/words/delete/@model.id" method="post">
+				<div class="form-group">
+					<p>
+						Finnish: @model.finnish
+					</p>		
+				</div>
+				<div class="form-group">
+					<p>
+						English: @model.english
+					</p>
+				</div>		
+								
+				<button type="submit" class="btn btn-success">Remove word</button>
+			</form>
+		}
+	});
+})

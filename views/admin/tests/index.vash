@@ -1,0 +1,39 @@
+﻿@html.extend("layout", function(model)
+{
+	@html.block("body", function(model)
+    {
+		<h1>Tests overview</h1>
+
+		<p>
+			<a href="/admin/tests/add">Add a test</a>
+		</p>
+		
+		<h2>Edit current tests</h2>
+		<table>
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>Language</td>
+					<td>Type</td>					
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>		
+				@model.tests.forEach(function(test){
+					<tr>
+						<td>
+							<a href="/admin/tests/edit/@test.id">
+								@test.name
+							</a>
+						</td>
+						<td>@model.prettifier.languageShort(test.language)</td>
+						<td>@model.prettifier.typeShort(test.type)</td>						
+						<td>
+							<a href="/admin/tests/delete/@test.id">Remove</a>
+						</td>
+					</tr>
+				})		
+			</tbody>
+		</table>
+	});
+})
