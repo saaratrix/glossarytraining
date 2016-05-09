@@ -1,5 +1,171 @@
 var Exam;
 (function (Exam) {
+    var EnumConverter = (function () {
+        function EnumConverter() {
+        }
+        EnumConverter.ExamTypeFromString = function (a_value) {
+            var value = parseInt(a_value);
+            switch (value) {
+                case 0:
+                    return Exam.ExamType.SIMPLE;
+                case 1:
+                    return Exam.ExamType.MULTIPLE;
+                default:
+                    throw new Error("invalid type");
+            }
+        };
+        EnumConverter.ExamLanguageFromString = function (a_value) {
+            var value = parseInt(a_value);
+            switch (value) {
+                case 0:
+                    return Exam.ExamLanguageAnswers.UL;
+                case 1:
+                    return Exam.ExamLanguageAnswers.FI;
+                case 2:
+                    return Exam.ExamLanguageAnswers.RANDOM;
+                default:
+                    throw new Error("invalid language enum");
+            }
+        };
+        EnumConverter.ExamStateFromString = function (a_value) {
+            switch (a_value) {
+                case "start":
+                    return Exam.ExamState.START;
+                case "current":
+                    return Exam.ExamState.CURRENT;
+                default:
+                    throw new Error("Invalid state");
+            }
+        };
+        return EnumConverter;
+    }());
+    Exam.EnumConverter = EnumConverter;
+})(Exam || (Exam = {}));
+//# sourceMappingURL=EnumConverter.js.map
+var Exam;
+(function (Exam) {
+    (function (ExamState) {
+        //When choosing a test
+        ExamState[ExamState["START"] = 0] = "START";
+        //Have chosen a test
+        ExamState[ExamState["CURRENT"] = 1] = "CURRENT";
+    })(Exam.ExamState || (Exam.ExamState = {}));
+    var ExamState = Exam.ExamState;
+    (function (ExamType) {
+        //Write the answer in a text input
+        ExamType[ExamType["SIMPLE"] = 0] = "SIMPLE";
+        //Choose between 3 choices in a text input
+        ExamType[ExamType["MULTIPLE"] = 1] = "MULTIPLE";
+    })(Exam.ExamType || (Exam.ExamType = {}));
+    var ExamType = Exam.ExamType;
+    //The value is what language the answer is in.
+    (function (ExamLanguageAnswers) {
+        //Questions in Finnish,  Answsers in English e.t.c.
+        ExamLanguageAnswers[ExamLanguageAnswers["UL"] = 0] = "UL";
+        //Questions in English e.t.c.,   Answers in Finnish
+        ExamLanguageAnswers[ExamLanguageAnswers["FI"] = 1] = "FI";
+        //Random between UL & FI
+        ExamLanguageAnswers[ExamLanguageAnswers["RANDOM"] = 2] = "RANDOM";
+    })(Exam.ExamLanguageAnswers || (Exam.ExamLanguageAnswers = {}));
+    var ExamLanguageAnswers = Exam.ExamLanguageAnswers;
+    var ExamProgram = (function () {
+        function ExamProgram() {
+            this.m_startController = new Exam.StartController(this);
+            this.m_examSimpleController = new Exam.ExamSimpleController(this);
+            this.m_examMultipleController = new Exam.ExamMultipleController(this);
+        }
+        ExamProgram.prototype.getRootElement = function () {
+            return document.getElementById("examwrapper");
+        };
+        ExamProgram.prototype.run = function () {
+            var examRoot = this.getRootElement();
+            //If exam root exists!
+            if (examRoot) {
+                this.m_state = Exam.EnumConverter.ExamStateFromString(examRoot.getAttribute("data-state"));
+                switch (this.m_state) {
+                    case ExamState.START:
+                        //Do start JS
+                        this.m_startController.add(examRoot);
+                        break;
+                    case ExamState.CURRENT:
+                        //Do current JS
+                        break;
+                    default:
+                        throw new Error("State on examwrapper is missing");
+                }
+            }
+        };
+        ExamProgram.prototype.getExamState = function (a_rootElement) {
+            var stateText = a_rootElement.getAttribute("data-state");
+            switch (stateText) {
+                case "start":
+                    return ExamState.START;
+                case "current":
+                    return ExamState.CURRENT;
+                default:
+                    return ExamState.START;
+            }
+        };
+        ExamProgram.prototype.changeState = function (a_state, a_invoker, a_data) {
+            if (a_data === void 0) { a_data = {}; }
+            if (a_state !== this.m_state) {
+                this.m_state = a_state;
+                //First remove the current html code!
+                a_invoker.remove();
+                switch (a_state) {
+                    case ExamState.START:
+                        break;
+                    case ExamState.CURRENT:
+                        this.stateCurrent(a_data);
+                        break;
+                }
+            }
+        };
+        ExamProgram.prototype.stateCurrent = function (a_data) {
+            var controller;
+            switch (a_data.type) {
+                case ExamType.SIMPLE:
+                    controller = this.m_examSimpleController;
+                    break;
+                case ExamType.MULTIPLE:
+                    controller = this.m_examMultipleController;
+                    break;
+            }
+            controller.add(this.getRootElement(), a_data);
+        };
+        return ExamProgram;
+    }());
+    Exam.ExamProgram = ExamProgram;
+})(Exam || (Exam = {}));
+window.addEventListener("load", function () {
+    var examProgram = new Exam.ExamProgram();
+    examProgram.run();
+});
+//# sourceMappingURL=program.js.map
+var Exam;
+(function (Exam) {
+    var Utility = (function () {
+        function Utility() {
+        }
+        Utility.AjaxPost = function (a_url, a_data, a_callback) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.addEventListener("load", function () {
+                a_callback(JSON.parse(xmlhttp.response));
+            }, false);
+            xmlhttp.addEventListener("error", function () {
+                a_callback({ error: "XMLHttpRequest failed" }, true);
+            }, false);
+            xmlhttp.open("POST", a_url);
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(JSON.stringify(a_data));
+        };
+        return Utility;
+    }());
+    Exam.Utility = Utility;
+})(Exam || (Exam = {}));
+//# sourceMappingURL=Utility.js.map
+var Exam;
+(function (Exam) {
     var ExamMultipleController = (function () {
         function ExamMultipleController(a_program) {
             this.m_type = Exam.ExamType.MULTIPLE;
@@ -133,9 +299,10 @@ var Exam;
         };
         ExamMultipleController.WordsPerQuestion = 3;
         return ExamMultipleController;
-    })();
+    }());
     Exam.ExamMultipleController = ExamMultipleController;
 })(Exam || (Exam = {}));
+//# sourceMappingURL=ExamMultipleController.js.map
 var Exam;
 (function (Exam) {
     var ExamSimpleController = (function () {
@@ -231,9 +398,84 @@ var Exam;
             this.m_questions = [];
         };
         return ExamSimpleController;
-    })();
+    }());
     Exam.ExamSimpleController = ExamSimpleController;
 })(Exam || (Exam = {}));
+//# sourceMappingURL=ExamSimpleController.js.map
+//# sourceMappingURL=IController.js.map
+var Exam;
+(function (Exam) {
+    var StartController = (function () {
+        function StartController(a_program) {
+            this.m_program = a_program;
+        }
+        StartController.prototype.add = function (a_rootElement, a_data) {
+            if (a_data === void 0) { a_data = {}; }
+            var startWrapper = this.getControllerElement();
+            if (startWrapper != null) {
+                if (this.m_startButton == null) {
+                    this.initEvents();
+                }
+            }
+            else {
+                this.getDataFromServer(a_rootElement);
+            }
+        };
+        StartController.prototype.getControllerElement = function () {
+            return document.getElementById("startwrapper");
+        };
+        StartController.prototype.getDataFromServer = function (a_rootElement) {
+            Exam.Utility.AjaxPost("/exam/api/start", {}, function (a_response) {
+                //var response: StartResponse = a_response as StartResponse;
+                if (a_response.error) {
+                }
+                else {
+                    //Get the html text!                   
+                    var htmlText = a_response.html;
+                    var placeholderElement = document.createElement("div");
+                    placeholderElement.innerHTML = htmlText;
+                    a_rootElement.appendChild(placeholderElement.firstChild);
+                }
+            });
+        };
+        StartController.prototype.initEvents = function () {
+            var that = this;
+            this.m_startButton = document.getElementById("starttest");
+            this.m_startButton.addEventListener("click", function () {
+                var testSelector = document.getElementById("testselector");
+                if (testSelector.value != "") {
+                    var testId = parseInt(testSelector.value);
+                    var selectedElement = testSelector.options[testSelector.selectedIndex];
+                    var type = Exam.EnumConverter.ExamTypeFromString(selectedElement.getAttribute("data-type"));
+                    var language = Exam.EnumConverter.ExamLanguageFromString(selectedElement.getAttribute("data-language"));
+                    if (testId > 0) {
+                        var data = {
+                            testId: testId,
+                            language: language,
+                            type: type
+                        };
+                        //This will remove the startwrapper!
+                        that.m_program.changeState(Exam.ExamState.CURRENT, that, data);
+                    }
+                    ;
+                }
+            });
+        };
+        StartController.prototype.remove = function () {
+            var startWrapper = this.getControllerElement();
+            if (startWrapper != null) {
+                //Remove the children!
+                //startWrapper.innerHTML = "";
+                //Remove the element from parentNode (examwrapper)
+                startWrapper.parentNode.removeChild(startWrapper);
+            }
+            this.m_startButton = null;
+        };
+        return StartController;
+    }());
+    Exam.StartController = StartController;
+})(Exam || (Exam = {}));
+//# sourceMappingURL=StartController.js.map
 var Exam;
 (function (Exam) {
     var ExamMultipleView = (function () {
@@ -332,9 +574,10 @@ var Exam;
             questionELement.classList.add("passed");
         };
         return ExamMultipleView;
-    })();
+    }());
     Exam.ExamMultipleView = ExamMultipleView;
 })(Exam || (Exam = {}));
+//# sourceMappingURL=ExamMultipleView.js.map
 var Exam;
 (function (Exam) {
     var ExamSimpleView = (function () {
@@ -442,52 +685,11 @@ var Exam;
             submitButton.classList.remove("hide");
         };
         return ExamSimpleView;
-    })();
+    }());
     Exam.ExamSimpleView = ExamSimpleView;
 })(Exam || (Exam = {}));
-var Exam;
-(function (Exam) {
-    var EnumConverter = (function () {
-        function EnumConverter() {
-        }
-        EnumConverter.ExamTypeFromString = function (a_value) {
-            var value = parseInt(a_value);
-            switch (value) {
-                case 0:
-                    return Exam.ExamType.SIMPLE;
-                case 1:
-                    return Exam.ExamType.MULTIPLE;
-                default:
-                    throw new Error("invalid type");
-            }
-        };
-        EnumConverter.ExamLanguageFromString = function (a_value) {
-            var value = parseInt(a_value);
-            switch (value) {
-                case 0:
-                    return Exam.ExamLanguageAnswers.UL;
-                case 1:
-                    return Exam.ExamLanguageAnswers.FI;
-                case 2:
-                    return Exam.ExamLanguageAnswers.RANDOM;
-                default:
-                    throw new Error("invalid language enum");
-            }
-        };
-        EnumConverter.ExamStateFromString = function (a_value) {
-            switch (a_value) {
-                case "start":
-                    return Exam.ExamState.START;
-                case "current":
-                    return Exam.ExamState.CURRENT;
-                default:
-                    throw new Error("Invalid state");
-            }
-        };
-        return EnumConverter;
-    })();
-    Exam.EnumConverter = EnumConverter;
-})(Exam || (Exam = {}));
+//# sourceMappingURL=ExamSimpleView.js.map
+//# sourceMappingURL=Question.js.map
 var Exam;
 (function (Exam) {
     var QuestionMultiple = (function () {
@@ -520,9 +722,10 @@ var Exam;
             return this.m_answer >= 0;
         };
         return QuestionMultiple;
-    })();
+    }());
     Exam.QuestionMultiple = QuestionMultiple;
 })(Exam || (Exam = {}));
+//# sourceMappingURL=QuestionMultiple.js.map
 var Exam;
 (function (Exam) {
     var QuestionSimple = (function () {
@@ -548,199 +751,12 @@ var Exam;
             return this.m_answer != "";
         };
         return QuestionSimple;
-    })();
+    }());
     Exam.QuestionSimple = QuestionSimple;
 })(Exam || (Exam = {}));
-var Exam;
-(function (Exam) {
-    (function (ExamState) {
-        //When choosing a test
-        ExamState[ExamState["START"] = 0] = "START";
-        //Have chosen a test
-        ExamState[ExamState["CURRENT"] = 1] = "CURRENT";
-    })(Exam.ExamState || (Exam.ExamState = {}));
-    var ExamState = Exam.ExamState;
-    (function (ExamType) {
-        //Write the answer in a text input
-        ExamType[ExamType["SIMPLE"] = 0] = "SIMPLE";
-        //Choose between 3 choices in a text input
-        ExamType[ExamType["MULTIPLE"] = 1] = "MULTIPLE";
-    })(Exam.ExamType || (Exam.ExamType = {}));
-    var ExamType = Exam.ExamType;
-    //The value is what language the answer is in.
-    (function (ExamLanguageAnswers) {
-        //Questions in Finnish,  Answsers in English e.t.c.
-        ExamLanguageAnswers[ExamLanguageAnswers["UL"] = 0] = "UL";
-        //Questions in English e.t.c.,   Answers in Finnish
-        ExamLanguageAnswers[ExamLanguageAnswers["FI"] = 1] = "FI";
-        //Random between UL & FI
-        ExamLanguageAnswers[ExamLanguageAnswers["RANDOM"] = 2] = "RANDOM";
-    })(Exam.ExamLanguageAnswers || (Exam.ExamLanguageAnswers = {}));
-    var ExamLanguageAnswers = Exam.ExamLanguageAnswers;
-    var ExamProgram = (function () {
-        function ExamProgram() {
-            this.m_startController = new Exam.StartController(this);
-            this.m_examSimpleController = new Exam.ExamSimpleController(this);
-            this.m_examMultipleController = new Exam.ExamMultipleController(this);
-        }
-        ExamProgram.prototype.getRootElement = function () {
-            return document.getElementById("examwrapper");
-        };
-        ExamProgram.prototype.run = function () {
-            var examRoot = this.getRootElement();
-            //If exam root exists!
-            if (examRoot) {
-                this.m_state = Exam.EnumConverter.ExamStateFromString(examRoot.getAttribute("data-state"));
-                switch (this.m_state) {
-                    case ExamState.START:
-                        //Do start JS
-                        this.m_startController.add(examRoot);
-                        break;
-                    case ExamState.CURRENT:
-                        //Do current JS
-                        break;
-                    default:
-                        throw new Error("State on examwrapper is missing");
-                }
-            }
-        };
-        ExamProgram.prototype.getExamState = function (a_rootElement) {
-            var stateText = a_rootElement.getAttribute("data-state");
-            switch (stateText) {
-                case "start":
-                    return ExamState.START;
-                case "current":
-                    return ExamState.CURRENT;
-                default:
-                    return ExamState.START;
-            }
-        };
-        ExamProgram.prototype.changeState = function (a_state, a_invoker, a_data) {
-            if (a_data === void 0) { a_data = {}; }
-            if (a_state !== this.m_state) {
-                this.m_state = a_state;
-                //First remove the current html code!
-                a_invoker.remove();
-                switch (a_state) {
-                    case ExamState.START:
-                        break;
-                    case ExamState.CURRENT:
-                        this.stateCurrent(a_data);
-                        break;
-                }
-            }
-        };
-        ExamProgram.prototype.stateCurrent = function (a_data) {
-            var controller;
-            switch (a_data.type) {
-                case ExamType.SIMPLE:
-                    controller = this.m_examSimpleController;
-                    break;
-                case ExamType.MULTIPLE:
-                    controller = this.m_examMultipleController;
-                    break;
-            }
-            controller.add(this.getRootElement(), a_data);
-        };
-        return ExamProgram;
-    })();
-    Exam.ExamProgram = ExamProgram;
-})(Exam || (Exam = {}));
-window.addEventListener("load", function () {
-    var examProgram = new Exam.ExamProgram();
-    examProgram.run();
-});
-var Exam;
-(function (Exam) {
-    var StartController = (function () {
-        function StartController(a_program) {
-            this.m_program = a_program;
-        }
-        StartController.prototype.add = function (a_rootElement, a_data) {
-            if (a_data === void 0) { a_data = {}; }
-            var startWrapper = this.getControllerElement();
-            if (startWrapper != null) {
-                if (this.m_startButton == null) {
-                    this.initEvents();
-                }
-            }
-            else {
-                this.getDataFromServer(a_rootElement);
-            }
-        };
-        StartController.prototype.getControllerElement = function () {
-            return document.getElementById("startwrapper");
-        };
-        StartController.prototype.getDataFromServer = function (a_rootElement) {
-            Exam.Utility.AjaxPost("/exam/api/start", {}, function (a_response) {
-                //var response: StartResponse = a_response as StartResponse;
-                if (a_response.error) {
-                }
-                else {
-                    //Get the html text!                   
-                    var htmlText = a_response.html;
-                    var placeholderElement = document.createElement("div");
-                    placeholderElement.innerHTML = htmlText;
-                    a_rootElement.appendChild(placeholderElement.firstChild);
-                }
-            });
-        };
-        StartController.prototype.initEvents = function () {
-            var that = this;
-            this.m_startButton = document.getElementById("starttest");
-            this.m_startButton.addEventListener("click", function () {
-                var testSelector = document.getElementById("testselector");
-                if (testSelector.value != "") {
-                    var testId = parseInt(testSelector.value);
-                    var selectedElement = testSelector.options[testSelector.selectedIndex];
-                    var type = Exam.EnumConverter.ExamTypeFromString(selectedElement.getAttribute("data-type"));
-                    var language = Exam.EnumConverter.ExamLanguageFromString(selectedElement.getAttribute("data-language"));
-                    if (testId > 0) {
-                        var data = {
-                            testId: testId,
-                            language: language,
-                            type: type
-                        };
-                        //This will remove the startwrapper!
-                        that.m_program.changeState(Exam.ExamState.CURRENT, that, data);
-                    }
-                    ;
-                }
-            });
-        };
-        StartController.prototype.remove = function () {
-            var startWrapper = this.getControllerElement();
-            if (startWrapper != null) {
-                //Remove the children!
-                //startWrapper.innerHTML = "";
-                //Remove the element from parentNode (examwrapper)
-                startWrapper.parentNode.removeChild(startWrapper);
-            }
-            this.m_startButton = null;
-        };
-        return StartController;
-    })();
-    Exam.StartController = StartController;
-})(Exam || (Exam = {}));
-var Exam;
-(function (Exam) {
-    var Utility = (function () {
-        function Utility() {
-        }
-        Utility.AjaxPost = function (a_url, a_data, a_callback) {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.addEventListener("load", function () {
-                a_callback(JSON.parse(xmlhttp.response));
-            }, false);
-            xmlhttp.addEventListener("error", function () {
-                a_callback({ error: "XMLHttpRequest failed" }, true);
-            }, false);
-            xmlhttp.open("POST", a_url);
-            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xmlhttp.send(JSON.stringify(a_data));
-        };
-        return Utility;
-    })();
-    Exam.Utility = Utility;
-})(Exam || (Exam = {}));
-//# sourceMappingURL=exam.js.map
+//# sourceMappingURL=QuestionSimple.js.map
+//# sourceMappingURL=Word.js.map
+//# sourceMappingURL=StartStateData.js.map
+//# sourceMappingURL=ExamMultiResponse.js.map
+//# sourceMappingURL=ExamSimpleResponse.js.map
+//# sourceMappingURL=StartResponse.js.map

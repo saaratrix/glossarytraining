@@ -1,11 +1,11 @@
 ﻿@html.extend("layout", function(model)
 {
-    @html.block("body", function(model)
-    {
+	@html.block("body", function(model)
+	{
 		<div id="examwrapper" data-state="start" >
 			@html.include("exam/partials/start", model)
 		</div>
-    });   
+	});   
 
 	@html.block("scripts_body", function()
 	{
