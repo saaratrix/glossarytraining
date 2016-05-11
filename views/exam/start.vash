@@ -5,10 +5,11 @@
 		<div id="examwrapper" data-state="start" >
 			@html.include("exam/partials/start", model)
 		</div>
+		@html.raw("<exam-app>Loading ...</exam-app>")
 	});   
 
 	@html.block("scripts_body", function()
 	{
-		<script src="/js/build/compiled/exam.js" type="text/javascript"></script>
+		<script src="/js/build/compiled/exam.js" type="text/javascript"></script>	
 	});
 })

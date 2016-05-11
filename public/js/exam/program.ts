@@ -127,6 +127,17 @@
    
 }
 
+System.config({
+    packages: {
+        app: {
+            format: 'register',
+            defaultExtension: 'js'
+        }
+    }
+});
+System.import('app/bootstrap')
+    .then(null, console.error.bind(console));
+
 window.addEventListener("load", function ()
 {
     var examProgram = new Exam.ExamProgram();

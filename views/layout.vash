@@ -14,8 +14,32 @@
     <link href="/css/style.min.css" type="text/css" rel="stylesheet"/>
     @if(model._locals.isAdmin){
         <link href="/css/superstyle.min.css" type="text/css" rel="stylesheet"/>
-    }
+      }
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js" async=""></script>
 
+      <script src="/js/dist/lib/es6-shim.js"></script>
+       <script src="/js/dist/lib/system-polyfills.js"></script>
+      
+    <script src="/js/dist/lib/system.src.js"></script>    
+    <script src="/js/dist/lib/angular2-polyfills.js"></script>
+    <script src="/js/dist/lib/Rx.js"></script>
+    <script src="/js/dist/lib/angular2.dev.js"></script>
+      
+    <script>
+		    System.config({
+				packages: {
+					app: {
+						format: 'register',
+						defaultExtension: 'js'
+					}
+				}
+			});
+			System.import('app/js/main').then(null, console.error.bind(console));
+		</script>
+           
+      
       @html.block("scripts_head")
 </head>
 <body>
@@ -68,10 +92,11 @@
             <br>
           </p>
         </footer>
-    </div>
+    </div>    
+   
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js" async=""></script>
-    @html.block("scripts_body")
+  @html.block("scripts_body")
+
+
 </body>
 </html>

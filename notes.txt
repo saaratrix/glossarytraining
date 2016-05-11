@@ -1,0 +1,7 @@
+Useful links:
+
+For installing
+http://blog.edenmsg.com/angular2-typescript-gulp-and-expressjs/
+
+For first app
+https://github.com/johnpapa/angular2-tour-of-heroes/
