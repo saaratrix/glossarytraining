@@ -1,5 +1,6 @@
 # Custom
 *.njsproj
+notes.txt
 
 
 ## Ignore Visual Studio temporary files, build results, and

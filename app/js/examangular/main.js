@@ -15,7 +15,6 @@ System.register(["angular2/platform/browser", "./components/app"], function(expo
                 app_1 = app_1_1;
             }],
         execute: function() {
-            console.log("moo");
             browser_1.bootstrap(app_1.AppComponent);
         }
     }

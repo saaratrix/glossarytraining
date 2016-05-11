@@ -3,8 +3,6 @@
 /// <reference path="../../../node_modules/angular2/typings/browser.d.ts" />
 ////// <reference path="../../../node_modules/angular2/src/common/directives/ng_class.d.ts" />
 
-console.log("moo");
-
 import {bootstrap} from "angular2/platform/browser";
 import {AppComponent} from "./components/app";
 

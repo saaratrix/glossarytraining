@@ -26,6 +26,7 @@
     <script src="/js/dist/lib/angular2-polyfills.js"></script>
     <script src="/js/dist/lib/Rx.js"></script>
     <script src="/js/dist/lib/angular2.dev.js"></script>
+      <script src="/js/dist/lib/router.dev.js"></script>
       
     <script>
 		    System.config({
