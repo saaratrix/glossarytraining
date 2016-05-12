@@ -9,13 +9,5 @@
             "public/js/exam/models/statedata/*.js",
             "public/js/exam/models/xhrresponses/*.js"
         ]
-    },
-    {
-        "outputFileName": "public/js/build/compiled/examangular.js",
-        "inputFiles": [
-            "public/js/examangular/*.js",
-            "public/js/examangular/components/*.js",
-            "public/js/examangular/components/exam/*.js"
-        ]
-    }    
+    }   
 ]
