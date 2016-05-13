@@ -17,6 +17,7 @@ gulp.task('copy:libs', ['clean'], function () {
         "node_modules/zone.js/dist/zone.js",
         'node_modules/angular2/bundles/angular2.dev.js',
         'node_modules/angular2/bundles/router.dev.js',
+        'node_modules/angular2/bundles/http.js',
         "node_modules/angular2/bundles/angular2-all.umd.dev.js"
     ])
     .pipe(gulp.dest('public/js/dist/lib'))

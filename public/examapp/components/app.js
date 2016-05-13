@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/router", "./exam/exam"], function(exports_1, context_1) {
+System.register(["angular2/core", "angular2/router", "./../enums/examstate", "./selection/selection"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,8 +10,8 @@ System.register(["angular2/core", "angular2/router", "./exam/exam"], function(ex
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, exam_1;
-    var AppComponent;
+    var core_1, router_1, examstate_1, selection_1;
+    var examStateKey, AppComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -20,31 +20,30 @@ System.register(["angular2/core", "angular2/router", "./exam/exam"], function(ex
             function (router_1_1) {
                 router_1 = router_1_1;
             },
-            function (exam_1_1) {
-                exam_1 = exam_1_1;
+            function (examstate_1_1) {
+                examstate_1 = examstate_1_1;
+            },
+            function (selection_1_1) {
+                selection_1 = selection_1_1;
             }],
         execute: function() {
+            examStateKey = "examstate";
             AppComponent = (function () {
                 function AppComponent() {
-                    this.title = "Hello world!";
+                    // Tell the view template what the enum values are
+                    this.examStates = examstate_1.ExamState;
+                    var state = sessionStorage.getItem(examStateKey);
+                    this.currentState = state !== null ? parseInt(state, 10) : examstate_1.ExamState.Selection;
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: "exam-app",
-                        template: "<h1>Hello world</h1>",
-                        directives: [router_1.ROUTER_DIRECTIVES],
+                        templateUrl: "/examapp/components/app.html",
+                        directives: [router_1.ROUTER_DIRECTIVES, selection_1.ExamSelectionComponent],
                         providers: [
                             router_1.ROUTER_PROVIDERS
                         ]
-                    }),
-                    router_1.RouteConfig([
-                        {
-                            path: "/exam",
-                            name: "Exam",
-                            component: exam_1.ExamComponent,
-                            useAsDefault: true
-                        }
-                    ]), 
+                    }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
                 return AppComponent;

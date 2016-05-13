@@ -63,8 +63,24 @@ function exam(req, res)
     res.send(response);
 }
 
+/**
+ * Get all available tests
+ */
+function getTests(req, res){    
+    _testHandler.getAll(function (a_tests) {
+        
+        var response = {};
+        
+        response.tests = a_tests || [];
 
+        res.send(response);
+    });
+}
+
+// The API routes
 module.exports = function (app, passport, isLoggedInAPI)
-{    
+{
+    // Why /exam/api/exam? ... :)
     app.post("/exam/api/exam", isLoggedInAPI, exam);
+    app.get("/api/exam/tests", isLoggedInAPI, getTests);
 }
