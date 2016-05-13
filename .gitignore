@@ -1,6 +1,8 @@
 # Custom
 *.njsproj
 notes.txt
+*.js.map
+public/**/*.js
 
 
 ## Ignore Visual Studio temporary files, build results, and
