@@ -22,6 +22,15 @@ gulp.task('copy:libs', ['clean'], function () {
     ])
     .pipe(gulp.dest('public/js/dist/lib'))
 });
+// Copy the html files to output
+// Although this is completly unneccesary at the moment I thought it was neccesary but I just had an empty html file :)
+// When relative template urls comes though then its probably good!
+gulp.task("build:angular", function () {
+    return gulp.src([
+        "public/examapp/**/*.html"
+    ])
+    .pipe(gulp.dest('public/js/examapp'));
+});
 
-gulp.task('default', ['copy:libs']);
+gulp.task('default', ['copy:libs', "build:angular"]);
 

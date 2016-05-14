@@ -28,13 +28,13 @@
 			System.config({          
           
 					packages: {
-						examapp: {          
+						js: {          
 							format: 'register',
 				defaultExtension: "js"
 						}
 					}
 			});
-			System.import('examapp/main').then(null, console.error.bind(console));
+			System.import('js/examapp/main').then(null, console.error.bind(console));
 		</script>
 
 	});

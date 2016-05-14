@@ -1,1 +1,3 @@
-﻿<exam-selection *ngIf="currentState === examStates.Selection"></exam-selection>
+﻿<exam-selection *ngIf="currentState === examStates.Selection" (onselected)="onselected($event)"></exam-selection>
+
+<exam-test *ngIf="currentState === examStates.Started" [test]="currentTest"></exam-test>
