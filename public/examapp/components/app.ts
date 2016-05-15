@@ -6,6 +6,7 @@ import { ITest} from "./../models/itest";
 
 import {ExamSelectionComponent} from "./selection/selection";
 import {ExamTestComponent} from "./test/test";
+import {ReviewService} from "./../services/review/review";
 
 const examStateKey = "examstate";
 const examTestKey = "examtest";
@@ -13,7 +14,8 @@ const examTestKey = "examtest";
 @Component({
     selector: "exam-app",
     templateUrl: "/examapp/components/app.html",    
-    directives: [ExamSelectionComponent, ExamTestComponent]    
+    directives: [ExamSelectionComponent, ExamTestComponent],
+    providers: [ReviewService]   
 })
 export class AppComponent
 {    

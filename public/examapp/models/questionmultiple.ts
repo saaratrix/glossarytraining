@@ -52,7 +52,7 @@ export class QuestionMultiple
 
     public isCorrect(): boolean
     {
-        return this.m_answer === this.m_correctAnswer;
+        return this.hasAnswer() && this.m_answer === this.m_correctAnswer;
     }
 
     public hasAnswer(): boolean

@@ -6,12 +6,15 @@ import { IWord} from "./../../models/iword";
 import { QuestionMultiple } from "./../../models/questionmultiple";
 import { QuestionComponent} from "./../question/question";
 
+import {ReviewService} from "./../../services/review/review";
+
 const wordsPerQuestion = 3;
 
 @Component({
     selector: "exam-multiple",      
     templateUrl: "examapp/components/multipletest/multipletest.html",
-    directives:[ QuestionComponent] 
+    directives: [QuestionComponent]   
+
 })
 export class ExamMultipleComponent
 {
@@ -23,9 +26,8 @@ export class ExamMultipleComponent
 
     private answeredCount: number = 0;
     
-    constructor()
-    { 
-        
+    constructor(private reviewService : ReviewService)
+    {         
     }   
 
     ngOnInit()
@@ -66,36 +68,11 @@ export class ExamMultipleComponent
     }
 
     public reviewTest()
-    {        
-        let valid = true;
-
-        for (let i = 0; i < this.questions.length; ++i)
+    {  
+        if (this.reviewService.reviewTest(this.test, this.questions))
         {
-            var question = this.questions[i];
-
-            if (!question.hasAnswer() || !question.isCorrect())
-            {
-                //this.m_view.questionFailed(question);
-                valid = false;
-
-            }
-            else
-            {
-                //this.m_view.questionPassed(question);
-            }
-        }
-
-        if (valid)
-        {
-            //All questions were ok!
-            //this.m_view.examPassed();
-            //Finish test?
-            //Tell server 
-        }
-        else
-        {
-            //this.m_view.examFailed();
-        }            
+            console.log("Congratulations, you beat the test!");
+        }      
     }
 
     private generateQuestion(a_index: number): QuestionMultiple

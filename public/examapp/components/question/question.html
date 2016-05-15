@@ -1,4 +1,4 @@
-﻿<div class="question-container">
+﻿<div class="question-container" [class.passed]="isReviewed && isCorrect" [class.failed]="isReviewed && !isCorrect">
     <span class="id">{{questionIndex}}</span>:
     <span class="question">{{question.m_question}}</span>
     <br>                
