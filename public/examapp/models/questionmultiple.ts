@@ -12,12 +12,15 @@ export class QuestionMultiple
     m_correctAnswer: number;
     //Which wordId it has been answered
     m_answer: number;
+    // If the question is visible to the user or not
+    public m_visible: boolean;
 
     constructor(a_id: number, a_words: IWord[], a_wordsPerQueston: number, a_language: ExamLanguageAnswer)
     {
         this.m_id = a_id;
         this.m_words = [];        
         this.m_answer = -1;
+        this.m_visible = false;
 
         let answers : IWord[] = this.generateAnswers(a_id, a_words, a_wordsPerQueston);
 

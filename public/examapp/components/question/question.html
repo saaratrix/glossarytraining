@@ -1,0 +1,14 @@
+﻿<div class="question-container">
+    <span class="id">{{questionIndex}}</span>:
+    <span class="question">{{question.m_question}}</span>
+    <br>                
+    <ul class="answers">
+        <li class="answer" *ngFor="let word of question.m_words; let wordIndex = index;">
+            <label >                            
+                <input type="radio" name="{{'question_' + questionIndex}}" value="{{wordIndex}}" (change)="questionAnswered(wordIndex)">
+                <span class="answer-text">{{word}}</span>
+            </label>
+        </li>
+    </ul>
+</div>
+        

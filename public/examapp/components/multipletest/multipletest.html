@@ -1,24 +1,12 @@
 ﻿<div>
     <h1>Test - {{test.name}}</h1>    
     <ul class="list-inline">
-        <li class="question-root col-lg-6 col-md-6 col-sm-6 col-xs-12" [class.qhidden]="qindex !== 0"  *ngFor="let question of questions; let qindex = index">
-            <div class="question-container">
-                <span class="id">{{qindex}}</span>:
-                <span class="question">{{question.m_question}}</span>
-                <br>                
-                <ul class="answers">
-                    <li class="answer" *ngFor="let word of question.m_words; let windex = index;">
-                        <label >                            
-                            <input type="radio" name="{{'question_' + qindex}}" value="{{windex}}" (change)="questionAnswered(qindex)">
-                            <span class="answer-text">{{word}}</span>
-                        </label>
-                    </li>
-                </ul>
-            </div>
+        <li class="question-root col-lg-6 col-md-6 col-sm-6 col-xs-12" [class.qhidden]="!question.m_visible" *ngFor="let question of questions; let i = index">
+            <question [question]="question" [questionIndex]="i" (answered)="questionAnswered()"></question>
         </li>
     </ul>
     <div class="clearfix"></div>
     <br>
-    <button id="submit" class="submit hide">Correct test</button>    
+    <button id="submit" class="submit btn" [class.hide]="answeredCount !== questions.length" (click)="reviewTest()">Correct test</button>    
 </div>
 

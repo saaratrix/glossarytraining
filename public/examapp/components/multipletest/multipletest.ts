@@ -4,12 +4,14 @@
 import { ITest} from "./../../models/itest";
 import { IWord} from "./../../models/iword";
 import { QuestionMultiple } from "./../../models/questionmultiple";
+import { QuestionComponent} from "./../question/question";
 
 const wordsPerQuestion = 3;
 
 @Component({
     selector: "exam-multiple",      
-    templateUrl: "examapp/components/multipletest/multipletest.html"    
+    templateUrl: "examapp/components/multipletest/multipletest.html",
+    directives:[ QuestionComponent] 
 })
 export class ExamMultipleComponent
 {
@@ -18,6 +20,8 @@ export class ExamMultipleComponent
     @Input() test: ITest; 
 
     public questions: QuestionMultiple[] = [];
+
+    private answeredCount: number = 0;
     
     constructor()
     { 
@@ -46,12 +50,52 @@ export class ExamMultipleComponent
 
             this.questions[randomId] = this.questions[i];
             this.questions[i] = temp;
-        }       
+        }   
+
+        this.questions[0].m_visible = true;
     }
 
-    public questionAnswered(a_index: number)
-    {
-        console.log(a_index);
+    public questionAnswered()
+    {       
+        this.answeredCount++;
+
+        if (this.answeredCount < this.questions.length)
+        {
+            this.questions[this.answeredCount].m_visible = true;
+        }   
+    }
+
+    public reviewTest()
+    {        
+        let valid = true;
+
+        for (let i = 0; i < this.questions.length; ++i)
+        {
+            var question = this.questions[i];
+
+            if (!question.hasAnswer() || !question.isCorrect())
+            {
+                //this.m_view.questionFailed(question);
+                valid = false;
+
+            }
+            else
+            {
+                //this.m_view.questionPassed(question);
+            }
+        }
+
+        if (valid)
+        {
+            //All questions were ok!
+            //this.m_view.examPassed();
+            //Finish test?
+            //Tell server 
+        }
+        else
+        {
+            //this.m_view.examFailed();
+        }            
     }
 
     private generateQuestion(a_index: number): QuestionMultiple
