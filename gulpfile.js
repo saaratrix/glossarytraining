@@ -20,7 +20,7 @@ gulp.task('copy:libs', ['clean'], function () {
         'node_modules/angular2/bundles/http.js',
         "node_modules/angular2/bundles/angular2-all.umd.dev.js"
     ])
-    .pipe(gulp.dest('public/js/dist/lib'))
+    .pipe(gulp.dest('public/js/dist/lib'));
 });
 // Copy the html files to output
 // Although this is completly unneccesary at the moment I thought it was neccesary but I just had an empty html file :)

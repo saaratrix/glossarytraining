@@ -1,8 +1,8 @@
 ﻿import { Component} from "angular2/core";
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from "angular2/router";
+//import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from "angular2/router";
 
 import {ExamState} from "./../enums/examstate";
-import { ITest} from "./../models/interfaces/itest";
+import { ITest} from "./../models/itest";
 
 import {ExamSelectionComponent} from "./selection/selection";
 import {ExamTestComponent} from "./test/test";
@@ -13,10 +13,7 @@ const examTestKey = "examtest";
 @Component({
     selector: "exam-app",
     templateUrl: "/examapp/components/app.html",    
-    directives: [ROUTER_DIRECTIVES, ExamSelectionComponent, ExamTestComponent],
-    providers: [
-        ROUTER_PROVIDERS
-    ]
+    directives: [ExamSelectionComponent, ExamTestComponent]    
 })
 export class AppComponent
 {    

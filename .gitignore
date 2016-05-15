@@ -3,6 +3,9 @@
 notes.txt
 *.js.map
 public/js/examapp/**/*
+# Since tsconfig output dir will also include the old code
+public/js/exam/**/*
+public/js/js/**/*
 
 
 ## Ignore Visual Studio temporary files, build results, and

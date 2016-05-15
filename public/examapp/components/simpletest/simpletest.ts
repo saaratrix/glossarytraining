@@ -7,7 +7,7 @@ import { ITest} from "./../../models/itest";
     selector: "exam-simple",      
     templateUrl: "examapp/components/simpletest/simpletest.html"    
 })
-export class ExamTestComponent
+export class ExamSimpleComponent
 {
     //@Input() examapp: AppComponent
     @Input() words: Object;  

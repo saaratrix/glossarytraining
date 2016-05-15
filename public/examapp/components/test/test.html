@@ -1,1 +1,3 @@
-﻿The test !!!
+﻿<exam-simple *ngIf="words.length > 0 && test.type === examTypes.Simple" [words]="words" [test]="test" ></exam-simple>
+
+<exam-multiple *ngIf="words.length > 0 && test.type === examTypes.Multiple" [words]="words" [test]="test"></exam-multiple>

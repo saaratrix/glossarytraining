@@ -11,6 +11,8 @@ function exam(req, res)
     var response = {};
 
     var testId = parseInt(req.body.testId);
+    
+    console.log(req.body);
 
     if (testId > 0)
     {
@@ -21,7 +23,7 @@ function exam(req, res)
                 //Get the correct viewfile
                 var viewFile = a_test.type== 0 ? "exam_simple.vash" : "exam_multiple.vash";
                          
-                _fs.readFile(rootPath + "views/exam/partials/" + viewFile, "utf8", function (err, a_text)
+                /*_fs.readFile(rootPath + "views/exam/partials/" + viewFile, "utf8", function (err, a_text)
                 {
                     if (err)
                     {
@@ -40,8 +42,10 @@ function exam(req, res)
                     }
 
                     res.send(response);
-                });
+                });*/
 
+                response.words = a_test.words;
+                res.send(response);
                 //var htmlText = 
                 //response.
                 //response.html = "";
@@ -79,8 +83,8 @@ function getTests(req, res){
 
 // The API routes
 module.exports = function (app, passport, isLoggedInAPI)
-{
-    // Why /exam/api/exam? ... :)
-    app.post("/exam/api/exam", isLoggedInAPI, exam);
+{    
+    // TODO: Change to get
+    app.post("/api/exam/words", isLoggedInAPI, exam);
     app.get("/api/exam/tests", isLoggedInAPI, getTests);
 }

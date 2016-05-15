@@ -12,7 +12,7 @@ import { ITest} from "./../../models/itest";
 export class ExamSelectionComponent
 {    
     public tests: ITest[];
-    public selectedIndex: Number;
+    public selectedIndex: number;
 
     //@Input() examapp: AppComponent
     @Output() onselected: EventEmitter<ITest> = new EventEmitter();
@@ -41,8 +41,7 @@ export class ExamSelectionComponent
         var testItem: ITest = this.tests[this.selectedIndex];
                
         // Tell the parent component (exam app) that an item has been selected and which one it was.
-        this.onselected.emit(testItem);
-        
+        this.onselected.emit(testItem);        
     }
 
     private getTests()
