@@ -1,7 +1,8 @@
 ﻿import {IWord} from "./iword";
 import {ExamLanguageAnswer} from "./../enums/examlanguageanswer";
+import {IQuestion} from "./iquestion";
 
-export class QuestionMultiple
+export class QuestionMultiple implements IQuestion
 {
     m_id: number;
     m_question: string;
@@ -11,7 +12,7 @@ export class QuestionMultiple
     //The questions & answers would have to be generated on the server then aswell!
     m_correctAnswer: number;
     //Which wordId it has been answered
-    m_answer: number;
+    m_selectedAnswer: number;
     // If the question is visible to the user or not
     public m_visible: boolean;
 
@@ -19,7 +20,7 @@ export class QuestionMultiple
     {
         this.m_id = a_id;
         this.m_words = [];        
-        this.m_answer = -1;
+        this.m_selectedAnswer = -1;
         this.m_visible = false;
 
         let answers : IWord[] = this.generateAnswers(a_id, a_words, a_wordsPerQueston);
@@ -52,12 +53,12 @@ export class QuestionMultiple
 
     public isCorrect(): boolean
     {
-        return this.hasAnswer() && this.m_answer === this.m_correctAnswer;
+        return this.hasAnswer() && this.m_selectedAnswer === this.m_correctAnswer;
     }
 
     public hasAnswer(): boolean
     {
-        return this.m_answer >= 0;
+        return this.m_selectedAnswer >= 0;
     }
 
     private generateAnswers(a_id: number, a_words: IWord[], a_wordsPerQuestion:number) : IWord[]

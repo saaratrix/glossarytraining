@@ -4,7 +4,7 @@
 import { ITest} from "./../../models/itest";
 import { IWord} from "./../../models/iword";
 import { QuestionMultiple } from "./../../models/questionmultiple";
-import { QuestionComponent} from "./../question/question";
+import { QuestionMultipleComponent} from "./../questionmultiple/questionmultiple";
 
 import {ReviewService} from "./../../services/review/review";
 
@@ -13,7 +13,7 @@ const wordsPerQuestion = 3;
 @Component({
     selector: "exam-multiple",      
     templateUrl: "examapp/components/multipletest/multipletest.html",
-    directives: [QuestionComponent]   
+    directives: [QuestionMultipleComponent]   
 
 })
 export class ExamMultipleComponent

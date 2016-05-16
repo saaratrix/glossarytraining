@@ -3,20 +3,20 @@
 
 import { ITest} from "./../../models/itest";
 import { IWord} from "./../../models/iword";
-import { QuestionMultiple } from "./../../models/questionmultiple";
+import { QuestionSimple } from "./../../models/questionsimple";
 
 import {ReviewService} from "./../../services/review/review";
 
 const wordsPerQuestion = 3;
 
 @Component({
-    selector: "question",      
-    templateUrl: "examapp/components/question/question.html"   
+    selector: "question-simple",      
+    templateUrl: "examapp/components/questionsimple/questionsimple.html"   
 })
-export class QuestionComponent
+export class QuestionSimpleComponent
 {
     //@Input() examapp: AppComponent
-    @Input() question: QuestionMultiple;  
+    @Input() question: QuestionSimple;  
     @Input() questionIndex: number;
     
     @Output() answered: EventEmitter<any> = new EventEmitter();
@@ -35,11 +35,9 @@ export class QuestionComponent
         this.isCorrect = false;
         this.isReviewed = false;
     }  
-
-    public questionAnswered(a_answerId : number)
-    {        
-        this.question.m_answer = a_answerId;
-
+   
+    public questionAnswered()
+    {       
         if (!this.hasEmitted)
         {
             this.hasEmitted = true;
