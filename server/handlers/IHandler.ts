@@ -39,5 +39,5 @@ export interface IHandler<T> {
    * @param {T} a_entity
    * @return {boolean}
    */
-  isEntityValid(a_entity: T): boolean;
+  isEntityValid(a_entity: T, validateId: boolean): boolean;
 }

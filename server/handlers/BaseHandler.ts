@@ -42,5 +42,5 @@ export class BaseHandler<T extends BaseEntity> implements IHandler<T> {
   // Unimplemented functions
   public async add(a_entity: T): Promise<boolean> { return false; }
   public async update(a_entity: T): Promise<boolean> { return false; }
-  public isEntityValid(a_entity: T): boolean { return false; }
+  public isEntityValid(a_entity: T, validateId: boolean): boolean { return false; }
 }

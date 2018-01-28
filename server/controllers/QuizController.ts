@@ -10,39 +10,39 @@ export class QuizController {
   }
 
   public async getAll(req: Request, res: Response): Promise<void> {
-    const items = await this.m_quizHandler.all();
+    const quizzes = await this.m_quizHandler.all();
 
     res.json({
-      quizzes: items
+      quizzes: quizzes
     });
   }
 
   public async getOne(req: Request, res: Response): Promise<void> {
     const id = parseInt(req.params.id, 10);
 
-    const item = await this.m_quizHandler.get(id);
+    const quiz = await this.m_quizHandler.get(id);
 
     res.json({
-      quiz: item
+      quiz: quiz
     });
   }
 
   public async addQuiz(req: Request, res: Response): Promise<void> {
-    const name: string = req.body.name || "";
-    const type: QuizType = parseInt(req.body.type, 10);
+    let quiz = this.getQuizFromBody(req.body);
 
     let error = "";
-    let quiz = new Quiz(-1, name, type);
+
     // Validate the quiz
-    if (this.m_quizHandler.isEntityValid(quiz)) {
+    if (this.m_quizHandler.isEntityValid(quiz, false)) {
       const success = await this.m_quizHandler.add(quiz);
 
       if (!success) {
         quiz = null;
-        error = "Failed add to database";
+        error = "Failed add quiz to database.";
       }
-    } else {
-      error = "Invalid data";
+    }
+    else {
+      error = "Invalid data.";
       quiz = null;
     }
 
@@ -53,11 +53,54 @@ export class QuizController {
   }
 
   public async updateQuiz(req: Request, res: Response): Promise<void> {
-    res.json({});
+    const quiz: Quiz = this.getQuizFromBody(req.body);
+    let error = "";
+    let success = false;
+
+    if (this.m_quizHandler.isEntityValid(quiz, true)) {
+      success = await this.m_quizHandler.update(quiz);
+
+      if (!success) {
+        error = "Failed to update quiz in database.";
+      }
+    }
+    else {
+      error = "Invalid data.";
+    }
+
+    res.json({
+      error: error,
+      success: success
+    });
   }
 
   public async removeQuiz(req: Request, res: Response): Promise<void> {
-    res.json({});
+    const quiz = this.getQuizFromBody(req.body);
+    let success = false;
+    let error = "";
+
+    if (Number.isInteger(quiz.id) ) {
+      success = await this.m_quizHandler.remove(quiz);
+      if (!success) {
+        error = "Failed to remove quiz from database.";
+      }
+    } else {
+      error = "Invalid quiz id.";
+    }
+
+    res.json({
+      error: error,
+      success: success
+    });
+  }
+
+  private getQuizFromBody( a_body: any ) {
+    const id = typeof a_body.id !== "undefined" ? parseInt(a_body.id, 10) : -1;
+    // TODO: Sanitize?
+    const name: string = a_body.body.name || "";
+    const type: QuizType = parseInt(a_body.body.type, 10);
+
+    return new Quiz(id, name, type);
   }
 }
 

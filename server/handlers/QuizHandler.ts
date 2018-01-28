@@ -31,9 +31,15 @@ export class QuizHandler extends BaseHandler<Quiz>{
     return !sqlResult.error && sqlResult.changedRows > 0;
   }
 
-  public isEntityValid(a_entity: Quiz): boolean {
+  public isEntityValid(a_entity: Quiz, validateId: boolean): boolean {
     if (!a_entity) {
       return false;
+    }
+
+    if (validateId) {
+      if (!Number.isInteger(a_entity.id) || a_entity.id <= 0) {
+        return false;
+      }
     }
 
     if (!a_entity.name || a_entity.name === "") {

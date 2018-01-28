@@ -1,0 +1,9 @@
+<h1>Quizzes</h1>
+<a [routerLink]="['quiz-detail', -1]"></a>
+<ul>
+  <li *ngFor="let quiz of quizzes">
+    <strong>{{quiz.id}} - {{quiz.name}}</strong>
+    <a [routerLink]="['../quiz-detail', quiz.id]" class="edit-btn">edit</a>
+    <button (click)="removeQuiz(quiz)">remove</button>
+  </li>
+</ul>

@@ -1,0 +1,7 @@
+<div *ngIf="quiz; then quizBlock else loadingBlock"></div>
+<ng-template #quizBlock>
+  {{quiz.name}}
+</ng-template>
+<ng-template #loadingBlock>
+  loading...
+</ng-template>

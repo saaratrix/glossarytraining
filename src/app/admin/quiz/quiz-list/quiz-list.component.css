@@ -1,0 +1,10 @@
+app-admin-quiz-list ul {
+  padding: 0 0 0 10px;
+  list-style: none;
+}
+app-admin-quiz-list li {
+  padding: 5px;
+}
+app-admin-quiz-list .edit-btn {
+  margin: 0 5px;
+}

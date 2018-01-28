@@ -5,12 +5,10 @@ const http = require("http");
 const app = express();
 
 let routes = require("./server/routes");
-require("./server/polyfill/object");
-
 
 // Parsers
 app.use(bodyParser.urlencoded({ extended: false}));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 app.disable('x-powered-by');
 
