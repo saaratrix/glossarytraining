@@ -27,7 +27,7 @@ export class QuizController {
     });
   }
 
-  public async addQuiz(req: Request, res: Response): Promise<void> {
+  public async createQuiz(req: Request, res: Response): Promise<void> {
     let quiz = this.getQuizFromBody(req.body);
 
     let error = "";
@@ -97,8 +97,8 @@ export class QuizController {
   private getQuizFromBody( a_body: any ) {
     const id = typeof a_body.id !== "undefined" ? parseInt(a_body.id, 10) : -1;
     // TODO: Sanitize?
-    const name: string = a_body.body.name || "";
-    const type: QuizType = parseInt(a_body.body.type, 10);
+    const name: string = a_body.name || "";
+    const type: QuizType = parseInt(a_body.type, 10);
 
     return new Quiz(id, name, type);
   }
@@ -115,8 +115,8 @@ module.exports = function (a_baseUrl: string, a_expressApp: Application) {
     quizController.getOne(req, res);
   });
 
-  a_expressApp.post(a_baseUrl + "quiz/add", async (req, res) => {
-    quizController.addQuiz(req, res);
+  a_expressApp.post(a_baseUrl + "quiz/create", async (req, res) => {
+    quizController.createQuiz(req, res);
   });
 
   a_expressApp.post(a_baseUrl + "quiz/update", async (req, res) => {

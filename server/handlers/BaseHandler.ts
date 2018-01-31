@@ -36,7 +36,7 @@ export class BaseHandler<T extends BaseEntity> implements IHandler<T> {
   public async remove(a_entity: T): Promise<boolean> {
     const sql = `delete from ${this.m_table} where id = ?;`;
     const sqlResult = await query(sql, [a_entity.id]);
-    return !sqlResult.error && sqlResult.changedRows > 0;
+    return (!sqlResult.error && sqlResult.changedRows > 0);
   }
 
   // Unimplemented functions

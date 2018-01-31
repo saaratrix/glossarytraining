@@ -35,7 +35,7 @@ export class ApiService {
         console.log("api post", result);
         res(result);
       });
-    })
+    });
 
     return promise;
   }

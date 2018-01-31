@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 
 import { AdminComponent } from './admin.component';
 import { QuizListComponent } from './quiz/quiz-list/quiz-list.component';
@@ -27,6 +28,7 @@ const adminRouting = RouterModule.forChild([
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     adminRouting
   ],
   declarations: [

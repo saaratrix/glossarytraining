@@ -1,0 +1,13 @@
+app-admin-quiz-detail form {
+  width: 100%;
+  max-width: 500px;
+}
+app-admin-quiz-detail label {
+  display: inline-block;
+  min-width: 100px;
+}
+app-admin-quiz-detail .form-group input,
+app-admin-quiz-detail .form-group select {
+  width: 100%;
+  max-width: 300px;
+}

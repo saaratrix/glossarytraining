@@ -42,6 +42,9 @@ testem.log
 .DS_Store
 Thumbs.db
 
+#style files
+/src/**/*.css
+
 #server files
 !/server/routes.js
 !/server/polyfill/*.js

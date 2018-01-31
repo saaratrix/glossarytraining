@@ -1,6 +1,30 @@
-<div *ngIf="quiz; then quizBlock else loadingBlock"></div>
+<div *ngIf="quiz; then quizBlock else loadingBlock;"></div>
 <ng-template #quizBlock>
-  {{quiz.name}}
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+    <div class="form-group">
+      <label for="name">Quiz name:</label>
+      <input type="text" id="name" name="name" required [(ngModel)]="quiz.name">
+    </div>
+    <div class="form-group">
+      <label for="type">Quiz type:</label>
+      <select id="type" name="type" required [(ngModel)]="quiz.type">
+        <option *ngFor="let key of keys" [value]="key">{{quizTypes[key]}}</option>
+      </select>
+    </div>
+    <br>
+    <input type="submit" [value]="isNew ? 'Create Quiz' : 'Update Quiz'">
+
+    <div *ngIf="isWaitingForServer">
+      Processing server request ...
+    </div>
+    <div *ngIf="error" class="form-error">
+      {{error}}
+    </div>
+
+    <!-- Add words editing component-->
+    
+
+  </form>
 </ng-template>
 <ng-template #loadingBlock>
   loading...

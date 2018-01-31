@@ -28,7 +28,7 @@ export class QuizHandler extends BaseHandler<Quiz>{
 
     const sqlResult = await query(sql, [a_entity.name, a_entity.type, a_entity.id]);
 
-    return !sqlResult.error && sqlResult.changedRows > 0;
+    return (!sqlResult.error && sqlResult.affectedRows > 0);
   }
 
   public isEntityValid(a_entity: Quiz, validateId: boolean): boolean {
