@@ -10,6 +10,8 @@ import { QuizType } from "../../../shared/enums/quiz-type.enum";
 import { QuizPostUpdateResponse } from "../../../shared/models/httpresponses/quiz-post-update-response";
 import { QuizPostCreateResponse } from "../../../shared/models/httpresponses/quiz-post-create-response";
 
+import { PhrasesQuizSelectionComponent } from "../../phrases/phrases-quiz-selection/phrases-quiz-selection.component";
+
 
 @Component({
   selector: 'app-admin-quiz-detail',
@@ -47,7 +49,8 @@ export class QuizDetailComponent implements OnInit {
         this.quiz = {
           id: -1,
           name: "",
-          type: QuizType.MultipleChoices
+          type: QuizType.MultipleChoices,
+          phrases: []
         };
         this.isNew = true;
       } else {
@@ -105,8 +108,8 @@ export class QuizDetailComponent implements OnInit {
       });
   }
 
-  public onSubmit(a_form: NgForm) {
-    if (a_form.valid) {
+  public onSubmit(form: NgForm) {
+    if (form.valid) {
       if (this.isNew) {
         this.createQuiz();
       }

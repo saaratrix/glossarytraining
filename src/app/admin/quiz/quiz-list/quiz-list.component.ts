@@ -4,6 +4,7 @@ import { Quiz } from "../../../shared/models/quiz.model";
 import {QuizGetResponse} from "../../../shared/models/httpresponses/quiz-get-response";
 
 import { ApiService } from "../../../shared/services/api.service";
+import { QuizPostUpdateResponse } from "../../../shared/models/httpresponses/quiz-post-update-response";
 
 
 @Component({
@@ -25,7 +26,15 @@ export class QuizListComponent implements OnInit {
     });
   }
 
-  public removeQuiz(a_quiz: Quiz) {
-    console.log("removing quiz!");
+  public removeQuiz(quiz: Quiz) {
+    this.apiService.post("quiz/remove", quiz)
+      .then((result: QuizPostUpdateResponse) => {
+        if (result.success) {
+          const index = this.quizzes.indexOf(quiz);
+          if (index !== -1) {
+           this.quizzes.splice(index, 1);
+          }
+        }
+      });
   }
 }

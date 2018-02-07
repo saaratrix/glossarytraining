@@ -14,6 +14,7 @@ export interface MySQLResults {
   affectedRows?: number;
   changedRows?: number;
   error?: string; // Won't be an error but it's so typescript compiler doesn't complain on type
+  length: number;
   [key: number]: MySQLRow;
 }
 
@@ -38,7 +39,8 @@ export const query = function (sql: string, parameters: Array<any>): Promise<MyS
           error: error.message,
           insertId: -1,
           changedRows: 0,
-          affectedRows: 0
+          affectedRows: 0,
+          length: 0
         };
 
         res(resultError);

@@ -6,6 +6,11 @@ import { FormsModule } from "@angular/forms";
 import { AdminComponent } from './admin.component';
 import { QuizListComponent } from './quiz/quiz-list/quiz-list.component';
 import { QuizDetailComponent } from './quiz/quiz-detail/quiz-detail.component';
+import { PhrasesListComponent } from './phrases/phrases-list/phrases-list.component';
+import { PhrasesDetailComponent } from './phrases/phrases-detail/phrases-detail.component';
+import { PhrasesQuizSelectionComponent } from './phrases/phrases-quiz-selection/phrases-quiz-selection.component';
+import { CategoryListComponent } from './category/category-list/category-list.component';
+import { CategoryDetailComponent } from './category/category-detail/category-detail.component';
 
 const adminRouting = RouterModule.forChild([
   {
@@ -17,8 +22,24 @@ const adminRouting = RouterModule.forChild([
         component: QuizListComponent
       },
       {
-        path: "quiz-detail/:id",
+        path: "quiz/:id",
         component: QuizDetailComponent
+      },
+      {
+        path: "phrases",
+        component: PhrasesListComponent
+      },
+      {
+        path: "phrase/:id",
+        component: QuizDetailComponent
+      },
+      {
+        path: "categories",
+        component: CategoryListComponent
+      },
+      {
+        path: "category/:id",
+        component: CategoryDetailComponent
       }
     ]
   },
@@ -34,7 +55,12 @@ const adminRouting = RouterModule.forChild([
   declarations: [
     AdminComponent,
     QuizListComponent,
-    QuizDetailComponent
+    QuizDetailComponent,
+    PhrasesListComponent,
+    PhrasesDetailComponent,
+    PhrasesQuizSelectionComponent,
+    CategoryListComponent,
+    CategoryDetailComponent
   ]
 })
 export class AdminModule { }

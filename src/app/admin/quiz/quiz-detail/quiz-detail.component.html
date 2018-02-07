@@ -21,11 +21,11 @@
       {{error}}
     </div>
 
-    <!-- Add words editing component-->
-    
+    <!-- Add phrases editing component-->
+    <app-admin-phrases-quiz-selection *ngIf="!isNew"></app-admin-phrases-quiz-selection>
 
   </form>
 </ng-template>
 <ng-template #loadingBlock>
-  loading...
+  fetching quiz ...
 </ng-template>
