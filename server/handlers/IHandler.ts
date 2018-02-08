@@ -37,6 +37,7 @@ export interface IHandler<T> {
   /**
    * Validate the entity
    * @param {T} entity
+   * @param {boolean} validateId The id might be invalid if creating the entity so no need to always check it.
    * @return {boolean}
    */
   isEntityValid(entity: T, validateId: boolean): boolean;

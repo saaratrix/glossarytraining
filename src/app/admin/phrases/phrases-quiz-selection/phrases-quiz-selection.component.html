@@ -1,3 +1,4 @@
-<p>
-  phrases-quiz-selection works!
-</p>
+<h2>Selected phrases:</h2>
+<app-phrases-selection [phrases]="selectedPhrases" (phraseClick)="removePhraseFromQuiz($event)"></app-phrases-selection>
+<h2>All phrases:</h2>
+<app-phrases-selection [phrases]="unselectedPhrases" (phraseClick)="addPhraseToQuiz($event)"></app-phrases-selection>

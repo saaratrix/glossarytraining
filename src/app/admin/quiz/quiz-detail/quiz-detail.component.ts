@@ -6,7 +6,6 @@ import { NgForm } from "@angular/forms";
 
 import { ApiService } from "../../../shared/services/api.service";
 import { QuizGetDetailResponse } from "../../../shared/models/httpresponses/quiz-get-detail-response";
-import { QuizType } from "../../../shared/enums/quiz-type.enum";
 import { QuizPostUpdateResponse } from "../../../shared/models/httpresponses/quiz-post-update-response";
 import { QuizPostCreateResponse } from "../../../shared/models/httpresponses/quiz-post-create-response";
 
@@ -25,20 +24,12 @@ export class QuizDetailComponent implements OnInit {
   public isWaitingForServer: boolean;
   public error: string;
 
-  public keys: any[];
-  public quizTypes = QuizType;
-
   constructor(private route: ActivatedRoute, private router: Router, private apiService: ApiService) {
     this.quiz = null;
     this.isNew = false;
 
     this.isWaitingForServer = false;
     this.error = null;
-
-    this.keys = Object.keys(QuizType).filter((key => {
-      const parsedkey = parseInt(key, 10);
-      return Number.isInteger(parsedkey);
-    }));
   }
 
   ngOnInit() {
@@ -49,11 +40,11 @@ export class QuizDetailComponent implements OnInit {
         this.quiz = {
           id: -1,
           name: "",
-          type: QuizType.MultipleChoices,
           phrases: []
         };
         this.isNew = true;
-      } else {
+      }
+      else {
         this.apiService.get("quiz/get/" + id).then((result: QuizGetDetailResponse) => {
           this.quiz = result.quiz;
           // If invalid quiz then route back to quiz list

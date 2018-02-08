@@ -1,6 +1,6 @@
 import { query, MySQLResults } from "../database/mysql-connection";
 import { BaseHandler } from './BaseHandler';
-import { Quiz, QuizType } from "../models/Quiz";
+import { Quiz } from "../models/Quiz";
 import { PhraseHandler } from "./PhraseHandler";
 
 export class QuizHandler extends BaseHandler<Quiz>{
@@ -23,10 +23,10 @@ export class QuizHandler extends BaseHandler<Quiz>{
   }
 
   public async add(entity: Quiz): Promise<boolean> {
-    const sql = `insert into ${this.m_table}(name, type) 
-                 values (?, ?);`;
+    const sql = `insert into ${this.m_table}(name) 
+                 values (?);`;
 
-    const sqlResult = await query(sql, [entity.name, entity.type]);
+    const sqlResult = await query(sql, [entity.name]);
     if (!sqlResult.error) {
       entity.id = sqlResult.insertId;
       return true;
@@ -36,10 +36,10 @@ export class QuizHandler extends BaseHandler<Quiz>{
   }
 
   public async update(entity: Quiz): Promise<boolean> {
-    const sql = `update ${this.m_table} set name=?, type=?
+    const sql = `update ${this.m_table} set name=?
                 where id = ?;`;
 
-    const sqlResult = await query(sql, [entity.name, entity.type, entity.id]);
+    const sqlResult = await query(sql, [entity.name, entity.id]);
 
     return (!sqlResult.error && sqlResult.affectedRows > 0);
   }
@@ -56,10 +56,6 @@ export class QuizHandler extends BaseHandler<Quiz>{
     }
 
     if (!entity.name || entity.name === "") {
-      return false;
-    }
-
-    if (!(entity.type in QuizType)) {
       return false;
     }
 

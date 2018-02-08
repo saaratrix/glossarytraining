@@ -11,6 +11,7 @@ export class QuizPhrasesHandler {
   constructor (quizHandler: QuizHandler, phraseHandler: PhraseHandler) {
     this.m_quizHandler = quizHandler;
     this.m_phraseHandler = phraseHandler;
+
   }
 
   public async addPhraseToQuiz(quizId: number, phraseId: number): Promise<boolean> {
@@ -18,8 +19,8 @@ export class QuizPhrasesHandler {
       return false;
     }
 
-    const sql = "inser into quizphrases(quizId, phraseId) values(?, ?);";
-    const sqlResult = await query(sql, [quizId, phraseId]);
+    const sql = "insert into quizphrases(quizId, phraseId) values(?, ?);";
+    const sqlResult: MySQLResults = await query(sql, [quizId, phraseId]);
 
     return (!sqlResult.error && sqlResult.affectedRows > 0);
   }
@@ -34,5 +35,12 @@ export class QuizPhrasesHandler {
     const phrase = await this.m_phraseHandler.get(phraseId);
 
     return phrase != null;
+  }
+
+  public async removePhraseFromQuiz(quizId: number, phraseId: number): Promise<boolean> {
+    const sql = "delete from quizphrases where quizId = ? and phraseId = ?";
+    const sqlResult: MySQLResults = await query(sql, [quizId, phraseId]);
+
+    return (!sqlResult.error && sqlResult.affectedRows > 0);
   }
 }
