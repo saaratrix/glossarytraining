@@ -6,10 +6,10 @@ import { NgForm } from "@angular/forms";
 
 import { ApiService } from "../../../shared/services/api.service";
 import { QuizGetDetailResponse } from "../../../shared/models/httpresponses/quiz-get-detail-response";
-import { QuizPostUpdateResponse } from "../../../shared/models/httpresponses/quiz-post-update-response";
 import { QuizPostCreateResponse } from "../../../shared/models/httpresponses/quiz-post-create-response";
-
+import { DefaultSuccessResponse } from "../../../shared/models/httpresponses/default-success-response";
 import { PhrasesQuizSelectionComponent } from "../../phrases/phrases-quiz-selection/phrases-quiz-selection.component";
+
 
 
 @Component({
@@ -87,7 +87,7 @@ export class QuizDetailComponent implements OnInit {
     this.error = null;
 
     this.apiService.post("quiz/update", this.quiz)
-      .then((result: QuizPostUpdateResponse ) => {
+      .then((result: DefaultSuccessResponse ) => {
         if (result.success) {
 
         }

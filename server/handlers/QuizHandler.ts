@@ -26,7 +26,7 @@ export class QuizHandler extends BaseHandler<Quiz>{
     const sql = `insert into ${this.m_table}(name) 
                  values (?);`;
 
-    const sqlResult = await query(sql, [entity.name]);
+    const sqlResult: MySQLResults = await query(sql, [entity.name]);
     if (!sqlResult.error) {
       entity.id = sqlResult.insertId;
       return true;
@@ -39,7 +39,7 @@ export class QuizHandler extends BaseHandler<Quiz>{
     const sql = `update ${this.m_table} set name=?
                 where id = ?;`;
 
-    const sqlResult = await query(sql, [entity.name, entity.id]);
+    const sqlResult: MySQLResults = await query(sql, [entity.name, entity.id]);
 
     return (!sqlResult.error && sqlResult.affectedRows > 0);
   }

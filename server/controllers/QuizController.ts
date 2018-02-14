@@ -43,7 +43,7 @@ export class QuizController {
 
       if (!success) {
         quiz = null;
-        error = "Failed to add quiz to database.";
+        error = "Failed to add the quiz to database.";
       }
     }
     else {
@@ -66,7 +66,7 @@ export class QuizController {
       success = await this.m_quizHandler.update(quiz);
 
       if (!success) {
-        error = "Failed to update quiz in database.";
+        error = "Failed to update the quiz in database.";
       }
     }
     else {
@@ -84,7 +84,7 @@ export class QuizController {
     let success = false;
     let error = "";
 
-    if (Number.isInteger(quiz.id) ) {
+    if (Number.isInteger(quiz.id) && quiz.id > 0) {
       success = await this.m_quizHandler.remove(quiz);
       if (!success) {
         error = "Failed to remove quiz from database.";
@@ -110,7 +110,7 @@ export class QuizController {
     if (Number.isInteger(quizId) && Number.isInteger(phraseId)) {
       success = await this.m_quizPhraseHandler.addPhraseToQuiz(quizId, phraseId);
       if (!success) {
-        error = "Failed to add phrase to the quiz.";
+        error = "Failed to add phrase to database for the quiz.";
       }
     }
     else {
@@ -133,7 +133,7 @@ export class QuizController {
     if (Number.isInteger(quizId) && Number.isInteger(phraseId)) {
       success = await this.m_quizPhraseHandler.removePhraseFromQuiz(quizId, phraseId);
       if (!success) {
-        error = "Failed to remove phrase from the quiz.";
+        error = "Failed to remove phrase in the database from the quiz.";
       }
     }
     else {
@@ -151,7 +151,7 @@ export class QuizController {
    * @param body
    * @return {Quiz}
    */
-  private getQuizFromBody(body: any) {
+  private getQuizFromBody (body: any): Quiz {
     const id = typeof body.id !== "undefined" ? parseInt(body.id, 10) : -1;
     // TODO: Sanitize?
     const name: string = body.name || "";

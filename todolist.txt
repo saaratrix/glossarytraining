@@ -1,0 +1,28 @@
+* Implement phrases-quiz-selection component
+  - Add phrase to quiz
+  - Remove phrase from quiz
+
+* Add Category CRUD functionality
+* Add Phrase CRUD functionality
+* Add authenthication for the CRUD functionality (CUD) !
+  - Since at the moment anyone can do it...  which isn't a problem for this particular app at the moment.
+
+* Add frontend for selecting a quiz
+  - QuizSelection component
+    - A quiz
+    - A category
+    - Selected words?
+        You can select phrases from all the total phrases and make a quiz from that.
+
+  - QuizTester component
+      The selected quiz and now it needs to be tested
+    - Takes a list of the phrases and runs the quiz based off that.
+
+  - MultiQuiz component ( old one )
+  - Correct answer component ( old one )
+    - Improve so that he/she can be answered either by he or she for example.
+
+* Find out how to properly use LESS files, without having to @import "style.less" ...
+
+Maybe:
+* Add fixed wrong answers to a phrase for so there can be a quiz about grammar with close looking words.

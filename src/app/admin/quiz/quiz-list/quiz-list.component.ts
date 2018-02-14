@@ -4,7 +4,7 @@ import { Quiz } from "../../../shared/models/quiz.model";
 import {QuizGetResponse} from "../../../shared/models/httpresponses/quiz-get-response";
 
 import { ApiService } from "../../../shared/services/api.service";
-import { QuizPostUpdateResponse } from "../../../shared/models/httpresponses/quiz-post-update-response";
+import { DefaultSuccessResponse } from "../../../shared/models/httpresponses/default-success-response";
 
 
 @Component({
@@ -28,7 +28,7 @@ export class QuizListComponent implements OnInit {
 
   public removeQuiz(quiz: Quiz) {
     this.apiService.post("quiz/remove", quiz)
-      .then((result: QuizPostUpdateResponse) => {
+      .then((result: DefaultSuccessResponse) => {
         if (result.success) {
           const index = this.quizzes.indexOf(quiz);
           if (index !== -1) {

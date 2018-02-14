@@ -1,6 +1,7 @@
 <div *ngIf="quiz; then quizBlock else loadingBlock;"></div>
 <ng-template #quizBlock>
   <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+    <h1>Quiz - {{quiz.name}}</h1>
     <div class="form-group">
       <label for="name">Quiz name:</label>
       <input type="text" id="name" name="name" required [(ngModel)]="quiz.name">
@@ -16,7 +17,7 @@
     </div>
 
     <!-- Add phrases editing component-->
-    <app-admin-phrases-quiz-selection *ngIf="!isNew" [selectedPhrases]="quiz.phrases"></app-admin-phrases-quiz-selection>
+    <app-admin-phrases-quiz-selection *ngIf="!isNew" [selectedPhrases]="quiz.phrases" [quizId]="quiz.id" ></app-admin-phrases-quiz-selection>
 
   </form>
 </ng-template>

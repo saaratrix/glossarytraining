@@ -3,6 +3,7 @@ import { BaseHandler } from "./BaseHandler";
 import { Phrase } from "../models/Phrase";
 import { CategoryHandler } from "./CategoryHandler";
 import { Category } from "../models/Category";
+import { Request, Response } from "express";
 
 export class PhraseHandler extends BaseHandler<Phrase>{
   private m_categoryHandler: CategoryHandler;
@@ -22,7 +23,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
     const result: Phrase[] = new Array(sqlResult.length);
 
     // Generate the models from the sql result
-    for (let i = 0; i < sqlResult.length; ++i) {
+    for (let i = 0; i < sqlResult.length; i++) {
       const row = sqlResult[i];
       const category = new Category(row.categoryId, row.categoryName);
 
@@ -66,7 +67,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
 
     const sqlResult = await query(sql, [id]);
     if (!sqlResult.error) {
-      for (let i = 0; i < sqlResult.length; ++i) {
+      for (let i = 0; i < sqlResult.length; i++) {
         const row = sqlResult[i];
 
         const category: Category = new Category(row.categoryId, row.categoryName);
@@ -74,7 +75,70 @@ export class PhraseHandler extends BaseHandler<Phrase>{
       }
     }
 
-
     return result;
+  }
+
+  public async add(entity: Phrase): Promise<boolean> {
+    // First check if category exists
+    const category = await this.m_categoryHandler.get(entity.category.id);
+
+    if (!category) {
+      return false;
+    }
+
+    const sql = `insert into ${this.m_table}(finnish, english, categoryId) 
+                 values (?, ?, ?);`;
+
+    const sqlResult: MySQLResults = await query(sql, [entity.finnish, entity.english, category.id]);
+    if (!sqlResult.error) {
+      entity.id = sqlResult.insertId;
+      return true;
+    }
+
+    return false;
+  }
+
+  public async update(entity: Phrase): Promise<boolean> {
+    // First check if category exists
+    const category = await this.m_categoryHandler.get(entity.category.id);
+
+    if (!category) {
+      return false;
+    }
+
+    const sql = `update ${this.m_table} set finnish = ?, english = ?, categoryId = ?
+                where id = ?;`;
+
+    const sqlResult: MySQLResults = await query(sql, [entity.finnish, entity.english, category.id]);
+
+    return (!sqlResult.error && sqlResult.affectedRows > 0);
+  }
+
+  public isEntityValid(entity: Phrase, validateId: boolean): boolean {
+    if (!entity) {
+      return false;
+    }
+
+    if (validateId) {
+      if (!Number.isInteger(entity.id) || entity.id <= 0) {
+        return false;
+      }
+    }
+
+    if (!entity.finnish || entity.finnish.length <= 0) {
+      return false;
+    }
+
+    if (!entity.english || entity.english.length <= 0) {
+      return false;
+    }
+
+    // Validate category
+    if (!this.m_categoryHandler.isEntityValid(entity.category, true)) {
+      return false;
+    }
+
+
+    return true;
   }
 }
