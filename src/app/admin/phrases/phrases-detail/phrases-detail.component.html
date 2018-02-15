@@ -15,7 +15,6 @@
       <select id="category" name="category" [(ngModel)]="item.category">
         <option *ngFor="let category of categories"
                 [ngValue]="category"
-                [selected]="category.id == item.category.id"
         >{{category.name}}</option>
       </select>
     </div>
