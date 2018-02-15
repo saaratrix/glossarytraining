@@ -1,3 +1,13 @@
 app-admin nav {
   margin-bottom: 15px;
 }
+ul.item-list {
+  padding: 0 0 0 10px;
+  list-style: none;
+}
+ul.item-list li {
+  padding: 5px;
+}
+ul.item-list .edit-btn {
+  margin: 0 5px;
+}

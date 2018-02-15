@@ -1,3 +1,9 @@
-<p>
-  phrases-list works!
-</p>
+<h1>Phrases</h1>
+<a [routerLink]="['../phrase', -1]">Create new phrase</a>
+<ul class="item-list">
+  <li *ngFor="let item of items">
+    <strong title="{{item.english}}">{{item.finnish}}</strong>
+    <a [routerLink]="['../phrase', item.id]" class="edit-btn">edit</a>
+    <button (click)="removeItem(item)">remove</button>
+  </li>
+</ul>

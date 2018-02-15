@@ -1,3 +1,9 @@
-<p>
-  category-list works!
-</p>
+<h1>Categories</h1>
+<a [routerLink]="['../category', -1]">Create new category</a>
+<ul class="item-list">
+  <li *ngFor="let item of items">
+    <strong>{{item.name}}</strong>
+    <a [routerLink]="['../category', item.id]" class="edit-btn">edit</a>
+    <button (click)="removeItem(item)" *ngIf="item.id !== 1">remove</button>
+  </li>
+</ul>

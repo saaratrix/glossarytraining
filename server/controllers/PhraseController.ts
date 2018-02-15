@@ -4,6 +4,8 @@ import { PhraseHandler } from "../handlers/PhraseHandler";
 import { Phrase } from "../models/Phrase";
 import { Category } from "../models/Category";
 
+import { isAuthenticatedApiMiddleware } from "../authentication/IsAuthenticated";
+
 export class PhraseController {
   private m_phraseHandler: PhraseHandler;
 
@@ -22,7 +24,11 @@ export class PhraseController {
   public async getOne(req: Request, res: Response): Promise<void> {
     const id = parseInt(req.params.id, 10);
 
-    const phrase = await this.m_phraseHandler.get(id);
+    let phrase: Phrase = null;
+
+    if (Number.isInteger(id) && id > 0) {
+      phrase = await this.m_phraseHandler.get(id);
+    }
 
     res.json({
       phrase: phrase
@@ -128,15 +134,15 @@ module.exports = function (baseUrl: string, expressApp: Application) {
     phraseController.getOne(req, res);
   });
 
-  expressApp.post(baseUrl + "phrase/create", async (req, res) => {
+  expressApp.post(baseUrl + "phrase/create", isAuthenticatedApiMiddleware, async (req, res) => {
     phraseController.createPhrase(req, res);
   });
 
-  expressApp.post(baseUrl + "phrase/update", async (req, res) => {
+  expressApp.post(baseUrl + "phrase/update", isAuthenticatedApiMiddleware, async (req, res) => {
     phraseController.updatePhrase(req, res);
   });
 
-  expressApp.post(baseUrl + "phrase/remove", async (req, res) => {
+  expressApp.post(baseUrl + "phrase/remove", isAuthenticatedApiMiddleware, async (req, res) => {
     phraseController.removePhrase(req, res);
   });
 };

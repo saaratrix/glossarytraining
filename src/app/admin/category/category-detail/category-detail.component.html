@@ -1,3 +1,21 @@
-<p>
-  category-detail works!
-</p>
+<div *ngIf="item; then itemBlock else loadingBlock;"></div>
+<ng-template #itemBlock>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+    <h1>Category - {{item.name}}</h1>
+    <div class="form-group">
+      <label for="name">Category name:</label>
+      <input type="text" id="name" name="name" required [(ngModel)]="item.name">
+    </div>
+    <br>
+    <input type="submit" [value]="isNew ? 'Create Category' : 'Update Category'">
+    <div *ngIf="isWaitingForServer">
+      Processing server request ...
+    </div>
+    <div *ngIf="error" class="form-error">
+      {{error}}
+    </div>
+  </form>
+</ng-template>
+<ng-template #loadingBlock>
+  fetching category ...
+</ng-template>

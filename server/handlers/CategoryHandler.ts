@@ -62,6 +62,6 @@ export class CategoryHandler extends BaseHandler<Category>{
       return false;
     }
 
-    return false;
+    return true;
   }
 }

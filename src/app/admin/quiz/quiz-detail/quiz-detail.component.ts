@@ -5,12 +5,8 @@ import { Quiz } from "../../../shared/models/quiz.model";
 import { NgForm } from "@angular/forms";
 
 import { ApiService } from "../../../shared/services/api.service";
-import { QuizGetDetailResponse } from "../../../shared/models/httpresponses/quiz-get-detail-response";
-import { QuizPostCreateResponse } from "../../../shared/models/httpresponses/quiz-post-create-response";
-import { DefaultSuccessResponse } from "../../../shared/models/httpresponses/default-success-response";
+import { QuizGetDetailResponse, QuizPostCreateResponse, DefaultSuccessResponse } from "../../../shared/models/httpresponses";
 import { PhrasesQuizSelectionComponent } from "../../phrases/phrases-quiz-selection/phrases-quiz-selection.component";
-
-
 
 @Component({
   selector: 'app-admin-quiz-detail',
@@ -70,7 +66,7 @@ export class QuizDetailComponent implements OnInit {
           this.quiz.id = result.quiz.id;
           // If success show that it was updated?
           this.isNew = false;
-          this.router.navigate(['/admin/quiz-detail/' + result.quiz.id]);
+          this.router.navigate(['/admin/quiz/' + result.quiz.id]);
         }
         else {
           this.error = result.error;

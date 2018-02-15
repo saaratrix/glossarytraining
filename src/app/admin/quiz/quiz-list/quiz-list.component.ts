@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Quiz } from "../../../shared/models/quiz.model";
-import {QuizGetResponse} from "../../../shared/models/httpresponses/quiz-get-response";
+import { QuizGetResponse, DefaultSuccessResponse } from "../../../shared/models/httpresponses";
 
 import { ApiService } from "../../../shared/services/api.service";
-import { DefaultSuccessResponse } from "../../../shared/models/httpresponses/default-success-response";
 
 
 @Component({

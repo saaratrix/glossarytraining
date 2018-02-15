@@ -2,10 +2,8 @@
   - Add phrase to quiz
   - Remove phrase from quiz
 
-* Add Category CRUD functionality
+* Add Category CRUD functionality  (technically CRUR!!,  Create, Read, Update, Remove)
 * Add Phrase CRUD functionality
-* Add authenthication for the CRUD functionality (CUD) !
-  - Since at the moment anyone can do it...  which isn't a problem for this particular app at the moment.
 
 * Add frontend for selecting a quiz
   - QuizSelection component
@@ -25,4 +23,6 @@
 * Find out how to properly use LESS files, without having to @import "style.less" ...
 
 Maybe:
+* Create a custom component to select category instead of 1 massive dropdown list when creating a phrase.
+  - Can be used when selecting a category to test aswell.
 * Add fixed wrong answers to a phrase for so there can be a quiz about grammar with close looking words.

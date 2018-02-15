@@ -109,7 +109,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
     const sql = `update ${this.m_table} set finnish = ?, english = ?, categoryId = ?
                 where id = ?;`;
 
-    const sqlResult: MySQLResults = await query(sql, [entity.finnish, entity.english, category.id]);
+    const sqlResult: MySQLResults = await query(sql, [entity.finnish, entity.english, category.id, entity.id]);
 
     return (!sqlResult.error && sqlResult.affectedRows > 0);
   }

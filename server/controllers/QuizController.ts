@@ -5,6 +5,8 @@ import { QuizPhrasesHandler } from "../handlers/QuizPhrasesHandler";
 import { Quiz } from "../models/Quiz";
 import { Application, Request, Response } from "express";
 
+import { isAuthenticatedApiMiddleware } from "../authentication/IsAuthenticated";
+
 export class QuizController {
   private m_quizHandler: QuizHandler;
   private m_quizPhraseHandler: QuizPhrasesHandler;
@@ -24,8 +26,10 @@ export class QuizController {
 
   public async getOne(req: Request, res: Response): Promise<void> {
     const id = parseInt(req.params.id, 10);
-
-    const quiz = await this.m_quizHandler.getWithPhrases(id);
+    let quiz: Quiz = null;
+    if (Number.isInteger(id) && id > 0) {
+      quiz = await this.m_quizHandler.getWithPhrases(id);
+    }
 
     res.json({
       quiz: quiz
@@ -176,23 +180,23 @@ module.exports = function (baseUrl: string, expressApp: Application) {
     quizController.getOne(req, res);
   });
 
-  expressApp.post(baseUrl + "quiz/create", async (req, res) => {
+  expressApp.post(baseUrl + "quiz/create", isAuthenticatedApiMiddleware, async (req, res) => {
     quizController.createQuiz(req, res);
   });
 
-  expressApp.post(baseUrl + "quiz/update", async (req, res) => {
+  expressApp.post(baseUrl + "quiz/update", isAuthenticatedApiMiddleware, async (req, res) => {
     quizController.updateQuiz(req, res);
   });
 
-  expressApp.post(baseUrl + "quiz/remove", async (req, res) => {
+  expressApp.post(baseUrl + "quiz/remove", isAuthenticatedApiMiddleware, async (req, res) => {
     quizController.removeQuiz(req, res);
   });
 
-  expressApp.post(baseUrl + "quiz/addphrase", async(req, res) => {
+  expressApp.post(baseUrl + "quiz/addphrase", isAuthenticatedApiMiddleware, async(req, res) => {
     quizController.addPhraseToQuiz(req, res);
   });
 
-  expressApp.post(baseUrl + "quiz/removephrase", async(req, res) => {
+  expressApp.post(baseUrl + "quiz/removephrase", isAuthenticatedApiMiddleware, async(req, res) => {
     quizController.removePhraseFromQuiz(req, res);
   });
 };

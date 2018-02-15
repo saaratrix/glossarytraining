@@ -1,3 +1,34 @@
-<p>
-  phrases-detail works!
-</p>
+<div *ngIf="item && categories.length > 0; then itemBlock else loadingBlock;"></div>
+<ng-template #itemBlock>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+    <h1>Phrase - {{item.finnish}}</h1>
+    <div class="form-group">
+      <label for="finnish">Finnish:</label>
+      <input type="text" id="finnish" name="finnish" required [(ngModel)]="item.finnish">
+    </div>
+    <div class="form-group">
+      <label for="english">English:</label>
+      <input type="text" id="english" name="english" required [(ngModel)]="item.english">
+    </div>
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select id="category" name="category" [(ngModel)]="item.category">
+        <option *ngFor="let category of categories"
+                [ngValue]="category"
+                [selected]="category.id == item.category.id"
+        >{{category.name}}</option>
+      </select>
+    </div>
+    <br>
+    <input type="submit" [value]="isNew ? 'Create Phrase' : 'Update Phrase'">
+    <div *ngIf="isWaitingForServer">
+      Processing server request ...
+    </div>
+    <div *ngIf="error" class="form-error">
+      {{error}}
+    </div>
+  </form>
+</ng-template>
+<ng-template #loadingBlock>
+  fetching phrase ...
+</ng-template>

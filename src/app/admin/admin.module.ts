@@ -32,7 +32,7 @@ const adminRouting = RouterModule.forChild([
       },
       {
         path: "phrase/:id",
-        component: QuizDetailComponent
+        component: PhrasesDetailComponent
       },
       {
         path: "categories",
