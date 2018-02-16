@@ -1,11 +1,7 @@
 import { Component, Input, Output, OnInit, EventEmitter, IterableDiffers, IterableDiffer } from "@angular/core";
 import { Phrase } from "../../shared/models/phrase.model";
-import { Category } from "../../shared/models/category.model";
+import { PhrasesByCategory } from "../../shared/models/phrases-by-category.model";
 
-interface IPhrasesByCategory {
-  category: Category;
-  phrases: Phrase[];
-}
 
 @Component({
   selector: 'app-phrases-selection',
@@ -20,7 +16,7 @@ export class PhrasesSelectionComponent implements OnInit {
   public emptySelection: string;
 
   // All phrases grouped by the category.
-  public phrasesByCategory: IPhrasesByCategory[];
+  public phrasesByCategory: PhrasesByCategory[];
 
   @Output()
   public phraseClick: EventEmitter<Phrase>;
@@ -65,7 +61,7 @@ export class PhrasesSelectionComponent implements OnInit {
    * @param {Phrase} phrase
    */
   private addPhraseToCategoryList(phrase: Phrase) {
-    let phraseByCategory: IPhrasesByCategory = this.phrasesByCategory.find((item: IPhrasesByCategory) => {
+    let phraseByCategory: PhrasesByCategory = this.phrasesByCategory.find((item: PhrasesByCategory) => {
       return item.category.id === phrase.category.id;
     });
 
@@ -86,7 +82,7 @@ export class PhrasesSelectionComponent implements OnInit {
    * @param {Phrase} phrase
    */
   private removePhraseFromCategoryList(phrase: Phrase) {
-    const phraseByCategory: IPhrasesByCategory = this.phrasesByCategory.find((item: IPhrasesByCategory) => {
+    const phraseByCategory: PhrasesByCategory = this.phrasesByCategory.find((item: PhrasesByCategory) => {
       return item.category.id === phrase.category.id;
     });
 
@@ -111,13 +107,16 @@ export class PhrasesSelectionComponent implements OnInit {
    */
   private sortPhrasesByCategory () {
     // Sort based off category name
-    this.phrasesByCategory.sort((a: IPhrasesByCategory, b: IPhrasesByCategory): number => {
-      if (a.category.name < b.category.name) { return -1; }
-      if (a.category.name > b.category.name) { return 1; }
+    this.phrasesByCategory.sort((a: PhrasesByCategory, b: PhrasesByCategory): number => {
+      const aName = a.category.name.toLowerCase();
+      const bName = b.category.name.toLowerCase();
+
+      if (aName < bName) { return -1; }
+      if (aName > bName) { return 1; }
       return 0;
     });
 
-    this.phrasesByCategory.forEach((categoryList: IPhrasesByCategory) => {
+    this.phrasesByCategory.forEach((categoryList: PhrasesByCategory) => {
       categoryList.phrases.sort((a: Phrase, b: Phrase) => {
         const aName = a.finnish.toLowerCase();
         const bName = b.finnish.toLowerCase();

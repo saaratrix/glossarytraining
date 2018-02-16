@@ -58,7 +58,7 @@ export class CategoryController {
   public async update(req: Request, res: Response): Promise<void> {
     let success = false;
     let error = "";
-    const category: Category = this.getCategoryFromBody(req);
+    const category: Category = this.getCategoryFromBody(req.body);
 
     if (this.m_categoryHandler.isEntityValid(category, true)) {
       success = await this.m_categoryHandler.update(category);
@@ -82,7 +82,7 @@ export class CategoryController {
     let error = "";
     const category: Category = this.getCategoryFromBody(req.body);
 
-    if (Number.isInteger(category.id) && category.id > 0) {
+    if (Number.isInteger(category.id) && category.id > 1) {
       success = await this.m_categoryHandler.remove(category);
 
       if (!success) {
@@ -92,6 +92,11 @@ export class CategoryController {
     else {
       error = "Invalid category.";
     }
+
+    res.json({
+      success: success,
+      error: error
+    });
   }
 
   /**
@@ -101,7 +106,7 @@ export class CategoryController {
    */
   private getCategoryFromBody (body: any): Category {
     const id = typeof body.id !== "undefined" ? parseInt(body.id, 10) : -1;
-    const name = body.categoryName || "";
+    const name = body.name || "";
 
     return new Category(id, name);
   }

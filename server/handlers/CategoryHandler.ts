@@ -34,7 +34,7 @@ export class CategoryHandler extends BaseHandler<Category>{
       return false;
     }
     // Update all phrases categoryIds to the "Uncategorised" category!
-    const sql = `update ${this.m_table} set categoryId = 1
+    const sql = `update phrases set categoryId = 1
                 where categoryId = ?;`;
 
     const sqlResult: MySQLResults = await query(sql, [entity.id]);

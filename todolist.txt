@@ -1,9 +1,4 @@
-* Implement phrases-quiz-selection component
-  - Add phrase to quiz
-  - Remove phrase from quiz
-
-* Add Category CRUD functionality  (technically CRUR!!,  Create, Read, Update, Remove)
-* Add Phrase CRUD functionality
+* Update the API functions to use PUT, DELETE as http functions for the update & delete functionality instead of post.
 
 * Add frontend for selecting a quiz
   - QuizSelection component
