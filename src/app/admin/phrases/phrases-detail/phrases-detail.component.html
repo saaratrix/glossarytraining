@@ -30,4 +30,7 @@
 </ng-template>
 <ng-template #loadingBlock>
   fetching phrase ...
+  <div *ngIf="error" class="form-error">
+    {{error}}
+  </div>
 </ng-template>

@@ -13,15 +13,17 @@ export interface DefaultSuccessResponse {
 
 export interface CategoryGetResponse {
   categories: Category[];
+  error?: string;
 }
 
 export interface CategoryGetDetailResponse {
   category: Category;
+  error?: string;
 }
 
 export interface CategoryPostCreateResponse {
   category: Category;
-  error: string;
+  error?: string;
 }
 
 
@@ -31,16 +33,18 @@ export interface CategoryPostCreateResponse {
 
 export interface PhraseGetResponse {
   phrases: Phrase[];
+  error?: string;
 }
 
 
 export interface PhraseGetDetailResponse {
   phrase: Phrase;
+  error?: string;
 }
 
 export interface PhrasePostCreateResponse {
   phrase: Phrase;
-  error: string;
+  error?: string;
 }
 
 
@@ -50,10 +54,12 @@ export interface PhrasePostCreateResponse {
  */
 export interface QuizGetDetailResponse {
   quiz: Quiz;
+  error?: string;
 }
 
 export interface QuizGetResponse {
   quizzes: Quiz[];
+  error?: string;
 }
 
 export interface QuizPostCreateResponse {

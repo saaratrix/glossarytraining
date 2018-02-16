@@ -18,7 +18,7 @@ export class CategoryListComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.get("category/get").then((response: CategoryGetResponse) => {
-      this.items = response.categories;
+      this.items = response.categories || [];
     });
   }
 

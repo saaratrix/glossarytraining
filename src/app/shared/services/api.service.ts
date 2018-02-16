@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams  } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from "@angular/common/http";
 
 import { environment } from '../../../environments/environment';
 
@@ -19,6 +19,12 @@ export class ApiService {
       }).subscribe((result: any) => {
         console.log("api get", result);
         res(result);
+      },
+      (error: HttpErrorResponse) => {
+        console.log("HttpClient error, ", error);
+        res({
+          error: error.message
+        });
       });
     });
 
@@ -34,6 +40,11 @@ export class ApiService {
       }).subscribe((result: any) => {
         console.log("api post", result);
         res(result);
+      },
+      (error: HttpErrorResponse) => {
+        res({
+          error: error.message
+        });
       });
     });
 

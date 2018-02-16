@@ -21,7 +21,7 @@ export class QuizListComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.get("quiz/get").then((result: QuizGetResponse) => {
-      this.quizzes = result.quizzes;
+      this.quizzes = result.quizzes || [];
     });
   }
 

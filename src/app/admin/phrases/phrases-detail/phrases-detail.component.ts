@@ -4,8 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Category } from "../../../shared/models/category.model";
 import { Phrase } from "../../../shared/models/phrase.model";
 import {
-  CategoryGetResponse,
-  CategoryPostCreateResponse, DefaultSuccessResponse,
+  CategoryGetResponse, DefaultSuccessResponse,
   PhraseGetDetailResponse, PhrasePostCreateResponse
 } from "../../../shared/models/httpresponses";
 import { NgForm } from "@angular/forms";
@@ -48,7 +47,15 @@ export class PhrasesDetailComponent implements OnInit {
 
     // Get all categories
     this.apiService.get("category/get").then((result: CategoryGetResponse) => {
-      this.categories = result.categories;
+
+      // If server would return faulty
+      if (!result.categories || result.categories.length <= 0) {
+        this.error = "Failed to load categories.";
+      }
+      else {
+        this.categories = result.categories;
+      }
+
       trySetCategory();
     });
 
@@ -60,6 +67,7 @@ export class PhrasesDetailComponent implements OnInit {
           id: -1,
           finnish: "",
           english: "",
+          // This category will be replaced as soon as trySetCategory() is finished
           category: {
             id: 1, // The uncategorised Id is 1
             name: ""

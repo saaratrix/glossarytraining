@@ -18,7 +18,7 @@ export class PhrasesListComponent implements OnInit {
 
   ngOnInit () {
     this.apiService.get("phrase/get").then((response: PhraseGetResponse) => {
-      this.items = response.phrases;
+      this.items = response.phrases || [];
     });
   }
 

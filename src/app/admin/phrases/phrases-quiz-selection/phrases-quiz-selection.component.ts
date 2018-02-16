@@ -41,8 +41,10 @@ export class PhrasesQuizSelectionComponent implements OnInit {
   ngOnInit () {
     // Get all phrases from server so we can remove the selected ones from the list
     this.apiService.get("phrase/get").then((result: PhraseGetResponse) => {
+      const phrases = result.phrases || [];
+
       // Filter out selected ones
-      this.unselectedPhrases = result.phrases.filter((phrase: Phrase) => {
+      this.unselectedPhrases = phrases.filter((phrase: Phrase) => {
         // Check if selectedPhrases contains one item with the same id
         const isSelected = this.selectedPhrases.find((selectedPhrase: Phrase) => {
           return selectedPhrase.id === phrase.id;
