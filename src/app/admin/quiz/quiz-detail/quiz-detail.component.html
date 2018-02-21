@@ -3,8 +3,12 @@
   <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
     <h1>Quiz - {{quiz.name}}</h1>
     <div class="form-group">
-      <label for="name">Quiz name:</label>
+      <label for="name">Name:</label>
       <input type="text" id="name" name="name" required [(ngModel)]="quiz.name">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" id="description" name="description" required [(ngModel)]="quiz.description" >
     </div>
     <br>
     <input type="submit" [value]="isNew ? 'Create Quiz' : 'Update Quiz'">
@@ -18,7 +22,6 @@
 
     <!-- Add phrases editing component-->
     <app-admin-phrases-quiz-selection *ngIf="!isNew" [selectedPhrases]="quiz.phrases" [quizId]="quiz.id" ></app-admin-phrases-quiz-selection>
-
   </form>
 </ng-template>
 <ng-template #loadingBlock>

@@ -4,6 +4,8 @@ import { Phrase } from "../../../shared/models/phrase.model";
 import { DefaultSuccessResponse, PhraseGetResponse } from "../../../shared/models/httpresponses";
 import { PhrasesByCategory } from "../../../shared/models/phrases-by-category.model";
 
+import { EntityListComponent } from "../../shared/entity-list/entity-list.component";
+
 @Component({
   selector: 'app-admin-phrases-list',
   templateUrl: './phrases-list.component.html',
@@ -41,8 +43,6 @@ export class PhrasesListComponent implements OnInit {
       }
 
       this.sortPhrasesByCategory();
-
-      console.log(this.phrasesByCategories);
     });
   }
 
@@ -50,25 +50,21 @@ export class PhrasesListComponent implements OnInit {
    * Remove the phrase from the PhrasesByCategories list
    * @param {Phrase} phrase
    */
-  public removeItem (phrase: Phrase) {
-    this.apiService.post("phrase/remove", phrase)
-      .then((result: DefaultSuccessResponse) => {
-        if (result.success) {
-          const phrasesByCategory = this.phrasesByCategories.find((item: PhrasesByCategory) => {
-            return item.category.id === phrase.category.id;
-          });
+  public removedPhrase (phrase: Phrase) {
+    const phrasesByCategory = this.phrasesByCategories.find((item: PhrasesByCategory) => {
+      return item.category.id === phrase.category.id;
+    });
 
-          const index = phrasesByCategory.phrases.indexOf(phrase);
-          if (index !== -1) {
-           phrasesByCategory.phrases.splice(index, 1);
-          }
+    const index = phrasesByCategory.phrases.indexOf(phrase);
+    console.log("removed index: ", index);
+    if (index !== -1) {
+     phrasesByCategory.phrases.splice(index, 1);
+    }
 
-          if ( phrasesByCategory.phrases.length <= 0 ) {
-            const categoryListIndex = this.phrasesByCategories.indexOf(phrasesByCategory);
-            this.phrasesByCategories.splice(categoryListIndex, 1);
-          }
-        }
-      });
+    if ( phrasesByCategory.phrases.length <= 0 ) {
+      const categoryListIndex = this.phrasesByCategories.indexOf(phrasesByCategory);
+      this.phrasesByCategories.splice(categoryListIndex, 1);
+    }
   }
 
   /**

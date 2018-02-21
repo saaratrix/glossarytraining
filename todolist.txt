@@ -1,4 +1,7 @@
-* Update the API functions to use PUT, DELETE as http functions for the update & delete functionality instead of post.
+
+* Add validation such as phrase.finnish.length < 512 on backend
+  - And maxlength for the <input>
+
 
 * Add frontend for selecting a quiz
   - QuizSelection component
@@ -21,3 +24,8 @@ Maybe:
 * Create a custom component to select category instead of 1 massive dropdown list when creating a phrase.
   - Can be used when selecting a category to test aswell.
 * Add fixed wrong answers to a phrase for so there can be a quiz about grammar with close looking words.
+* Update the API functions to use PUT, DELETE as http functions for the update & delete functionality instead of post.
+   -- On hold for now, would need to properly rewrite routing.
+      So that the id is in the url for example for delete `quiz/1` instead of `quiz/remove`
+
+* Tests, add some tests to refamiliarise with protractor

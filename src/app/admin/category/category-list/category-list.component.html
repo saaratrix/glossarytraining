@@ -1,9 +1,11 @@
 <h1>Categories</h1>
 <a [routerLink]="['../category', -1]">Create new category</a>
-<ul class="item-list">
-  <li *ngFor="let item of items">
-    <strong>{{item.name}}</strong>
-    <a [routerLink]="['../category', item.id]" class="edit-btn">edit</a>
-    <button (click)="removeItem(item)" *ngIf="item.id !== 1">remove</button>
-  </li>
-</ul>
+
+<app-admin-entity-list
+  [entities]="items"
+  [keys]="['name']"
+  [keysPretty]="{ 'name': 'Category Name' }"
+  [editUrl]="'../category'"
+  [removeUrl]="'category/remove'"
+>
+</app-admin-entity-list>

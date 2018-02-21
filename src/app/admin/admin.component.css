@@ -1,12 +1,45 @@
+app-admin-entity-list table {
+  width: 100%;
+  text-align: left;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+app-admin-entity-list thead {
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: silver;
+}
+app-admin-entity-list td {
+  padding: 5px;
+}
+app-admin-entity-list td:first-child {
+  font-weight: bold;
+}
+app-admin-entity-list tbody tr:hover {
+  background-color: aquamarine !important;
+}
+app-admin-entity-list tbody tr:nth-child(even) {
+  background-color: #badbad;
+}
+app-admin-entity-list tbody tr:nth-child(odd) {
+  background-color: #E6E6FA;
+}
+app-admin-entity-list .actions {
+  width: 135px;
+}
 app-admin nav {
   margin-bottom: 15px;
 }
 ul.item-list {
-  padding: 0 0 0 10px;
+  padding: 0 0 0 0px;
   list-style: none;
 }
+ul.item-list .item-flex {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
 ul.item-list li {
-  padding: 5px;
+  padding: 0 5px;
 }
 ul.item-list .edit-btn {
   margin: 0 5px;

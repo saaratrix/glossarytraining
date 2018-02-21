@@ -23,10 +23,10 @@ export class QuizHandler extends BaseHandler<Quiz>{
   }
 
   public async add(entity: Quiz): Promise<boolean> {
-    const sql = `insert into ${this.m_table}(name) 
-                 values (?);`;
+    const sql = `insert into ${this.m_table}(name, description) 
+                 values (?, ?);`;
 
-    const sqlResult: MySQLResults = await query(sql, [entity.name]);
+    const sqlResult: MySQLResults = await query(sql, [entity.name, entity.description]);
     if (!sqlResult.error) {
       entity.id = sqlResult.insertId;
       return true;
@@ -36,10 +36,10 @@ export class QuizHandler extends BaseHandler<Quiz>{
   }
 
   public async update(entity: Quiz): Promise<boolean> {
-    const sql = `update ${this.m_table} set name=?
+    const sql = `update ${this.m_table} set name = ?, description = ?
                 where id = ?;`;
 
-    const sqlResult: MySQLResults = await query(sql, [entity.name, entity.id]);
+    const sqlResult: MySQLResults = await query(sql, [entity.name, entity.description, entity.id]);
 
     return (!sqlResult.error && sqlResult.affectedRows > 0);
   }
@@ -55,7 +55,11 @@ export class QuizHandler extends BaseHandler<Quiz>{
       }
     }
 
-    if (!entity.name || entity.name === "") {
+    if (!entity.name || entity.name.length === 0) {
+      return false;
+    }
+
+    if (!entity.description || entity.description.length === 0) {
       return false;
     }
 

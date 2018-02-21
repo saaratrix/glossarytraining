@@ -3,12 +3,23 @@
 <ul class="item-list">
   <li *ngFor="let phrasesByCategory of phrasesByCategories">
     <h2>{{phrasesByCategory.category.name}}</h2>
-    <ul class="item-list">
-      <li *ngFor="let phrase of phrasesByCategory.phrases">
-        <strong title="{{phrase.english}}">{{phrase.finnish}}</strong>
-        <a [routerLink]="['../phrase', phrase.id]" class="edit-btn">edit</a>
-        <button (click)="removeItem(phrase)">remove</button>
-      </li>
-    </ul>
+
+    <app-admin-entity-list
+       [entities]="phrasesByCategory.phrases"
+       [editUrl]="'../phrase'"
+       [removeUrl]="'phrase/remove'"
+       [keys]="['finnish']"
+       [titles]="{ 'finnish': 'english' }"
+       [keysPretty]="{ 'finnish': 'Finnish' }"
+       (removed)="removedPhrase($event)"
+    >
+    </app-admin-entity-list>
+    <!--<ul class="item-list">-->
+      <!--<li *ngFor="let phrase of phrasesByCategory.phrases">-->
+        <!--<strong title="{{phrase.english}}">{{phrase.finnish}}</strong>-->
+        <!--<a [routerLink]="['../phrase', phrase.id]" class="edit-btn">edit</a>-->
+        <!--<button (click)="removeItem(phrase)">remove</button>-->
+      <!--</li>-->
+    <!--</ul>-->
   </li>
 </ul>

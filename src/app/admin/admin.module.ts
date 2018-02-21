@@ -13,6 +13,8 @@ import { PhrasesQuizSelectionComponent } from './phrases/phrases-quiz-selection/
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail/category-detail.component';
 
+import { SharedModule as SharedAdminModule } from "./shared/shared.module";
+
 const adminRouting = RouterModule.forChild([
   {
     path: "admin",
@@ -52,6 +54,7 @@ const adminRouting = RouterModule.forChild([
     CommonModule,
     FormsModule,
     PhraseModule,
+    SharedAdminModule,
     adminRouting
   ],
   declarations: [
@@ -62,7 +65,7 @@ const adminRouting = RouterModule.forChild([
     PhrasesDetailComponent,
     PhrasesQuizSelectionComponent,
     CategoryListComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
   ]
 })
 export class AdminModule { }

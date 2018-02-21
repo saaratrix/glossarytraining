@@ -159,8 +159,9 @@ export class QuizController {
     const id = typeof body.id !== "undefined" ? parseInt(body.id, 10) : -1;
     // TODO: Sanitize?
     const name: string = body.name || "";
+    const description: string = body.description || "";
 
-    return new Quiz(id, name, []);
+    return new Quiz(id, name, description, []);
   }
 }
 

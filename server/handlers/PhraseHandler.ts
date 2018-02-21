@@ -125,11 +125,11 @@ export class PhraseHandler extends BaseHandler<Phrase>{
       }
     }
 
-    if (!entity.finnish || entity.finnish.length <= 0) {
+    if (!entity.finnish || entity.finnish.length === 0) {
       return false;
     }
 
-    if (!entity.english || entity.english.length <= 0) {
+    if (!entity.english || entity.english.length === 0) {
       return false;
     }
 

@@ -58,7 +58,7 @@ export class CategoryHandler extends BaseHandler<Category>{
       }
     }
 
-    if (!entity.name || entity.name.length <= 0) {
+    if (!entity.name || entity.name.length === 0) {
       return false;
     }
 

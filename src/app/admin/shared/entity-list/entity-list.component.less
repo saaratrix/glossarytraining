@@ -1,0 +1,41 @@
+app-admin-entity-list {
+  table {
+    width: 100%;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  thead {
+    font-size: 14px;
+    text-transform: uppercase;
+    background-color: silver;
+  }
+
+  td {
+    &:first-child {
+      font-weight: bold;
+    }
+
+    padding: 5px;
+  }
+
+  tbody {
+    tr {
+      &:hover {
+        background-color: aquamarine !important;
+      }
+
+      &:nth-child(even) {
+        background-color: #badbad;
+      }
+
+      &:nth-child(odd) {
+        background-color: #E6E6FA;
+      }
+    }
+  }
+
+  .actions {
+    width: 135px;
+  }
+}

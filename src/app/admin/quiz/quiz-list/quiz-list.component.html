@@ -1,9 +1,11 @@
 <h1>Quizzes</h1>
 <a [routerLink]="['../quiz', -1]">Create new quiz</a>
-<ul class="item-list">
-  <li *ngFor="let quiz of quizzes">
-    <strong>{{quiz.name}}</strong>
-    <a [routerLink]="['../quiz', quiz.id]" class="edit-btn">edit</a>
-    <button (click)="removeQuiz(quiz)">remove</button>
-  </li>
-</ul>
+
+<app-admin-entity-list
+  [entities]="quizzes"
+  [editUrl]="'../quiz'"
+  [removeUrl]="'quiz/remove'"
+  [keys]="['name', 'description']"
+  [keysPretty]="{ 'name': 'Quiz Name', 'description': 'Description' }"
+  >
+</app-admin-entity-list>

@@ -1,3 +1,5 @@
+@import "./shared/entity-list/entity-list.component.less";
+
 app-admin {
   nav {
     margin-bottom: 15px;
@@ -5,15 +7,22 @@ app-admin {
 }
 
 ul.item-list {
-  padding:0 0 0 10px;
+  padding:0 0 0 0px;
   list-style: none;
 
+  .item-flex {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
   li {
-    padding:5px;
+    padding:0 5px;
   }
 
   .edit-btn {
     margin: 0 5px;
   }
 }
+
 

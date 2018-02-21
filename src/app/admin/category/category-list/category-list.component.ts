@@ -30,17 +30,4 @@ export class CategoryListComponent implements OnInit {
       });
     });
   }
-
-  public removeItem (item: Category) {
-    this.apiService.post("category/remove", item)
-      .then((result: DefaultSuccessResponse) => {
-        if (result.success) {
-          const index = this.items.indexOf(item);
-          if (index !== -1) {
-           this.items.splice(index, 1);
-          }
-        }
-      });
-  }
-
 }

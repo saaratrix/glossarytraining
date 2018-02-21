@@ -36,6 +36,7 @@ export class QuizDetailComponent implements OnInit {
         this.quiz = {
           id: -1,
           name: "",
+          description: "",
           phrases: []
         };
         this.isNew = true;
