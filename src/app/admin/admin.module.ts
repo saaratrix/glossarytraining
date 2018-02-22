@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
@@ -15,7 +15,7 @@ import { CategoryDetailComponent } from './category/category-detail/category-det
 
 import { SharedModule as SharedAdminModule } from "./shared/shared.module";
 
-const adminRouting = RouterModule.forChild([
+const adminRouting: ModuleWithProviders = RouterModule.forChild([
   {
     path: "admin",
     component: AdminComponent,

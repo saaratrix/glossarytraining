@@ -1,0 +1,33 @@
+<p>
+  Choose between a quiz with already selected phrases.
+  Or all phrases in a category.
+  Or select between all available phrases.
+</p>
+<h1>Quizzes</h1>
+<app-quiz-selection [items]="quizzes" (selected)="quizSelected($event)"></app-quiz-selection>
+
+<h1>Test a category</h1>
+<app-quiz-selection  [items]="categories" (selected)="categorySelected($event)"></app-quiz-selection>
+
+<h1>Select between all phrases</h1>
+<button>Click me!!</button>
+
+<hr>
+<div *ngIf="selectedQuiz; then selectedBlock else needSelectionBlock;"></div>
+<ng-template #selectedBlock>
+  <h2>Quiz - {{selectedQuiz.name}}</h2>
+  <p>
+    {{selectedQuiz.description}}
+    <br>
+    <button>Start quiz</button>
+  </p>
+</ng-template>
+<ng-template #needSelectionBlock>
+  <p>
+    You need to select a quiz before you can continue.
+  </p>
+</ng-template>
+
+
+
+
