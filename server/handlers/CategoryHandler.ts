@@ -7,7 +7,25 @@ export class CategoryHandler extends BaseHandler<Category>{
     super("categories");
   }
 
-  public async add(entity: Category): Promise<boolean> {
+  /**
+   * Returns all Categories that have at least 1 phrase
+   * @return {Promise<Category[]>}
+   */
+  public async allHasPhrases (): Promise<Category[]> {
+    let result: Category[] = [];
+    const sql = `select distinct c.id, c.name
+                from ${this.m_table} as c
+                join phrases as p on p.categoryId = c.id;`;
+
+    const sqlResult: MySQLResults = await query(sql, []);
+    if (sqlResult.length > 0) {
+      result = sqlResult as Category[];
+    }
+
+    return result;
+  }
+
+  public async add (entity: Category): Promise<boolean> {
     const sql = `insert into ${this.m_table}(name) 
                  values (?);`;
 
@@ -19,7 +37,7 @@ export class CategoryHandler extends BaseHandler<Category>{
 
     return false;
   }
-  public async update(entity: Category): Promise<boolean> {
+  public async update (entity: Category): Promise<boolean> {
     const sql = `update ${this.m_table} set name = ?
                 where id = ?;`;
 
@@ -28,7 +46,7 @@ export class CategoryHandler extends BaseHandler<Category>{
     return (!sqlResult.error && sqlResult.affectedRows > 0);
   }
 
-  public async remove(entity: Category): Promise<boolean> {
+  public async remove (entity: Category): Promise<boolean> {
     // Can't delete default id
     if (entity.id <= 1) {
       return false;
@@ -46,7 +64,7 @@ export class CategoryHandler extends BaseHandler<Category>{
     return await super.remove(entity);
   }
 
-  public isEntityValid(entity: Category, validateId: boolean): boolean {
+  public isEntityValid (entity: Category, validateId: boolean): boolean {
 
     if (!entity) {
       return false;

@@ -17,6 +17,6 @@
     ]
   },
   "exclude": [
-	"server/**/*.ts"
+	  "server/**/*.ts"
   ]
 }

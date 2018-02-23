@@ -1,6 +1,8 @@
 <p>
   Choose between a quiz with already selected phrases.
+  <br>
   Or all phrases in a category.
+  <br>
   Or select between all available phrases.
 </p>
 <h1>Quizzes</h1>
@@ -10,20 +12,29 @@
 <app-quiz-selection  [items]="categories" (selected)="categorySelected($event)"></app-quiz-selection>
 
 <h1>Select between all phrases</h1>
-<button>Click me!!</button>
-
+<button>Click me!!, I do nothing</button>
 <hr>
-<div *ngIf="selectedQuiz; then selectedBlock else needSelectionBlock;"></div>
+<ng-container *ngIf="selectedQuiz; then selectedBlock else needSelectionBlock;"></ng-container>
 <ng-template #selectedBlock>
-  <h2>Quiz - {{selectedQuiz.name}}</h2>
-  <p>
-    {{selectedQuiz.description}}
-    <br>
-    <button>Start quiz</button>
-  </p>
+  <div>
+    <h2>Quiz - {{selectedQuiz.name}}</h2>
+    <p>
+      {{selectedQuiz.description}}
+      <br>
+      Phrases count: {{selectedQuiz.phrases.length}}
+      <br>
+      <button (click)="startQuiz()">Start quiz</button>
+    </p>
+  </div>
 </ng-template>
 <ng-template #needSelectionBlock>
-  <p>
+  <p *ngIf="isFetchingQuiz">
+    Loading quiz...
+  </p>
+  <p *ngIf="error.length > 0" class="form-error">
+    {{error}}
+  </p>
+  <p *ngIf="!isFetchingQuiz && error.length === 0">
     You need to select a quiz before you can continue.
   </p>
 </ng-template>

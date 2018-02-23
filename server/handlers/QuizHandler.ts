@@ -6,13 +6,33 @@ import { PhraseHandler } from "./PhraseHandler";
 export class QuizHandler extends BaseHandler<Quiz>{
   private m_phraseHandler: PhraseHandler;
 
-  constructor(phraseHandler: PhraseHandler) {
+  constructor (phraseHandler: PhraseHandler) {
     super("quizzes");
 
     this.m_phraseHandler = phraseHandler;
   }
 
-  public async getWithPhrases(id: number): Promise<Quiz> {
+  /**
+   * Returns only quizzes that has an entry in the quizphrases table.
+   * Meaning they have 1 phrase attached!
+   * @return {Promise<Quiz[]>}
+   */
+  public async allHasPhrases (): Promise<Quiz[]> {
+    let result: Quiz[] = [];
+    const sql = `select distinct q.id, q.name, q.description
+                from ${this.m_table} as q
+                join quizphrases as qp on qp.quizId = q.id;`;
+
+    const sqlResult: MySQLResults = await query(sql, []);
+
+    if (sqlResult.length > 0) {
+      result = sqlResult as Quiz[];
+    }
+
+    return result;
+  }
+
+  public async getWithPhrases (id: number): Promise<Quiz> {
     const quiz = await this.get(id);
 
     if (quiz ) {
@@ -22,7 +42,7 @@ export class QuizHandler extends BaseHandler<Quiz>{
     return quiz;
   }
 
-  public async add(entity: Quiz): Promise<boolean> {
+  public async add (entity: Quiz): Promise<boolean> {
     const sql = `insert into ${this.m_table}(name, description) 
                  values (?, ?);`;
 
@@ -35,7 +55,7 @@ export class QuizHandler extends BaseHandler<Quiz>{
     return false;
   }
 
-  public async update(entity: Quiz): Promise<boolean> {
+  public async update (entity: Quiz): Promise<boolean> {
     const sql = `update ${this.m_table} set name = ?, description = ?
                 where id = ?;`;
 
@@ -44,7 +64,7 @@ export class QuizHandler extends BaseHandler<Quiz>{
     return (!sqlResult.error && sqlResult.affectedRows > 0);
   }
 
-  public isEntityValid(entity: Quiz, validateId: boolean): boolean {
+  public isEntityValid (entity: Quiz, validateId: boolean): boolean {
     if (!entity) {
       return false;
     }

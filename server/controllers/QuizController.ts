@@ -16,7 +16,7 @@ export class QuizController {
     this.m_quizPhraseHandler = quizPhraseHandler;
   }
 
-  public async getAll(req: Request, res: Response): Promise<void> {
+  public async getAll (req: Request, res: Response): Promise<void> {
     const quizzes = await this.m_quizHandler.all();
 
     res.json({
@@ -24,7 +24,15 @@ export class QuizController {
     });
   }
 
-  public async getOne(req: Request, res: Response): Promise<void> {
+  public async getAllHasPhrases (req: Request, res: Response): Promise<void> {
+    const quizzes = await this.m_quizHandler.allHasPhrases();
+
+    res.json({
+      quizzes: quizzes
+    });
+  }
+
+  public async getOne (req: Request, res: Response): Promise<void> {
     const id = parseInt(req.params.id, 10);
     let quiz: Quiz = null;
     if (Number.isInteger(id) && id > 0) {
@@ -36,7 +44,7 @@ export class QuizController {
     });
   }
 
-  public async createQuiz(req: Request, res: Response): Promise<void> {
+  public async createQuiz (req: Request, res: Response): Promise<void> {
     let quiz = this.getQuizFromBody(req.body);
 
     let error = "";
@@ -61,7 +69,7 @@ export class QuizController {
     });
   }
 
-  public async updateQuiz(req: Request, res: Response): Promise<void> {
+  public async updateQuiz (req: Request, res: Response): Promise<void> {
     const quiz: Quiz = this.getQuizFromBody(req.body);
     let error = "";
     let success = false;
@@ -83,7 +91,7 @@ export class QuizController {
     });
   }
 
-  public async removeQuiz(req: Request, res: Response): Promise<void> {
+  public async removeQuiz (req: Request, res: Response): Promise<void> {
     const quiz = this.getQuizFromBody(req.body);
     let success = false;
     let error = "";
@@ -104,7 +112,7 @@ export class QuizController {
     });
   }
 
-  public async addPhraseToQuiz(req: Request, res: Response): Promise<void> {
+  public async addPhraseToQuiz (req: Request, res: Response): Promise<void> {
     const quizId = parseInt(req.body.quizId, 10);
     const phraseId = parseInt(req.body.phraseId, 10);
 
@@ -127,7 +135,7 @@ export class QuizController {
     });
   }
 
-  public async removePhraseFromQuiz(req: Request, res: Response): Promise<void> {
+  public async removePhraseFromQuiz (req: Request, res: Response): Promise<void> {
     const quizId = parseInt(req.body.quizId, 10);
     const phraseId = parseInt(req.body.phraseId, 10);
 
@@ -193,11 +201,15 @@ module.exports = function (baseUrl: string, expressApp: Application) {
     quizController.removeQuiz(req, res);
   });
 
-  expressApp.post(baseUrl + "quiz/addphrase", isAuthenticatedApiMiddleware, async(req, res) => {
+  expressApp.get(baseUrl + "quiz/hasphrases", async (req, res) => {
+    quizController.getAllHasPhrases(req, res);
+  });
+
+  expressApp.post(baseUrl + "quiz/addphrase", isAuthenticatedApiMiddleware, async (req, res) => {
     quizController.addPhraseToQuiz(req, res);
   });
 
-  expressApp.post(baseUrl + "quiz/removephrase", isAuthenticatedApiMiddleware, async(req, res) => {
+  expressApp.post(baseUrl + "quiz/removephrase", isAuthenticatedApiMiddleware, async (req, res) => {
     quizController.removePhraseFromQuiz(req, res);
   });
 };

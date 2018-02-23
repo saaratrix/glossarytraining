@@ -13,7 +13,7 @@ export class PhraseController {
     this.m_phraseHandler = phraseHandler;
   }
 
-  public async getAll(req: Request, res: Response): Promise<void> {
+  public async getAll (req: Request, res: Response): Promise<void> {
     const phrases: Phrase[] = await this.m_phraseHandler.all();
 
     res.json({
@@ -21,7 +21,7 @@ export class PhraseController {
     });
   }
 
-  public async getOne(req: Request, res: Response): Promise<void> {
+  public async getOne (req: Request, res: Response): Promise<void> {
     const id = parseInt(req.params.id, 10);
 
     let phrase: Phrase = null;
@@ -35,7 +35,7 @@ export class PhraseController {
     });
   }
 
-  public async createPhrase(req: Request, res: Response): Promise<void> {
+  public async createPhrase (req: Request, res: Response): Promise<void> {
     let phrase: Phrase = this.getPhraseFromBody(req.body);
     let error = "";
 
@@ -57,7 +57,7 @@ export class PhraseController {
     });
   }
 
-  public async updatePhrase(req: Request, res: Response): Promise<void> {
+  public async updatePhrase (req: Request, res: Response): Promise<void> {
     let success = false;
     let error = "";
 
@@ -80,7 +80,7 @@ export class PhraseController {
     });
   }
 
-  public async removePhrase(req: Request, res: Response): Promise<void> {
+  public async removePhrase (req: Request, res: Response): Promise<void> {
     const phrase = this.getPhraseFromBody(req.body);
     let success = false;
     let error = "";
@@ -99,6 +99,19 @@ export class PhraseController {
     res.json({
       success: success,
       error: error
+    });
+  }
+
+  public async getPhrasesForCategory (req: Request, res: Response): Promise<void> {
+    let phrases: Phrase[] = [];
+
+    const categoryId = parseInt(req.params.id, 10);
+    if (Number.isInteger(categoryId) && categoryId > 0) {
+      phrases = await this.m_phraseHandler.findPhrasesForCategory(categoryId);
+    }
+
+    res.json({
+      phrases: phrases
     });
   }
 
@@ -144,5 +157,9 @@ module.exports = function (baseUrl: string, expressApp: Application) {
 
   expressApp.post(baseUrl + "phrase/remove", isAuthenticatedApiMiddleware, async (req, res) => {
     phraseController.removePhrase(req, res);
+  });
+
+  expressApp.get(baseUrl + "phrase/category/:id", async (req, res) => {
+    phraseController.getPhrasesForCategory(req, res);
   });
 };

@@ -7,11 +7,11 @@ import { isAuthenticatedApiMiddleware } from "../authentication/IsAuthenticated"
 export class CategoryController {
   private m_categoryHandler: CategoryHandler;
 
-  constructor(categoryHandler: CategoryHandler) {
+  constructor (categoryHandler: CategoryHandler) {
     this.m_categoryHandler = categoryHandler;
   }
 
-  public async getAll(req: Request, res: Response): Promise<void> {
+  public async getAll (req: Request, res: Response): Promise<void> {
     const categories: Category[] = await this.m_categoryHandler.all();
 
     res.json({
@@ -19,7 +19,15 @@ export class CategoryController {
     });
   }
 
-  public async getOne(req: Request, res: Response): Promise<void> {
+  public async allHasPhrases (req: Request, res: Response): Promise<void> {
+    const categories: Category[] = await this.m_categoryHandler.allHasPhrases();
+
+    res.json({
+      categories: categories
+    });
+  }
+
+  public async getOne (req: Request, res: Response): Promise<void> {
     const id = parseInt(req.params.id, 10);
     let category: Category = null;
 
@@ -32,7 +40,7 @@ export class CategoryController {
     });
   }
 
-  public async create(req: Request, res: Response): Promise<void> {
+  public async create (req: Request, res: Response): Promise<void> {
     let category: Category = this.getCategoryFromBody(req.body);
     let error = "";
 
@@ -55,7 +63,7 @@ export class CategoryController {
     });
   }
 
-  public async update(req: Request, res: Response): Promise<void> {
+  public async update (req: Request, res: Response): Promise<void> {
     let success = false;
     let error = "";
     const category: Category = this.getCategoryFromBody(req.body);
@@ -77,7 +85,7 @@ export class CategoryController {
     });
   }
 
-  public async remove(req: Request, res: Response): Promise<void> {
+  public async remove (req: Request, res: Response): Promise<void> {
     let success = false;
     let error = "";
     const category: Category = this.getCategoryFromBody(req.body);
@@ -135,5 +143,9 @@ module.exports = function (baseUrl: string, expressApp: Application) {
 
   expressApp.post(baseUrl + "category/remove", isAuthenticatedApiMiddleware, async (req, res) => {
     categoryController.remove(req, res);
+  });
+
+  expressApp.get(baseUrl + "category/hasphrases", async (req, res) => {
+    categoryController.allHasPhrases(req, res);
   });
 };

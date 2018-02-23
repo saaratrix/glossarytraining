@@ -9,11 +9,11 @@ export class BaseHandler<T extends BaseEntity> implements IHandler<T> {
 
   protected readonly m_table: string;
 
-  constructor(table: string) {
+  constructor (table: string) {
     this.m_table = table;
   }
 
-  public async all(): Promise<T[]> {
+  public async all (): Promise<T[]> {
     const sql = `select * from ${this.m_table};`;
     const sqlResult = await query(sql, []);
     let items: T[] = [];
@@ -25,7 +25,7 @@ export class BaseHandler<T extends BaseEntity> implements IHandler<T> {
     return items;
   }
 
-  public async get(id: number | string): Promise<T> {
+  public async get (id: number | string): Promise<T> {
     const sql = `select * from ${this.m_table} where id = ?;`;
     const sqlResult = await query(sql, [id]);
 
@@ -37,14 +37,14 @@ export class BaseHandler<T extends BaseEntity> implements IHandler<T> {
     return item;
   }
 
-  public async remove(entity: T): Promise<boolean> {
+  public async remove (entity: T): Promise<boolean> {
     const sql = `delete from ${this.m_table} where id = ?;`;
     const sqlResult = await query(sql, [entity.id]);
     return (!sqlResult.error && sqlResult.affectedRows > 0);
   }
 
   // Unimplemented functions
-  public async add(entity: T): Promise<boolean> { return false; }
-  public async update(entity: T): Promise<boolean> { return false; }
-  public isEntityValid(entity: T, validateId: boolean): boolean { return false; }
+  public async add (entity: T): Promise<boolean> { return false; }
+  public async update (entity: T): Promise<boolean> { return false; }
+  public isEntityValid (entity: T, validateId: boolean): boolean { return false; }
 }

@@ -8,13 +8,13 @@ import { Request, Response } from "express";
 export class PhraseHandler extends BaseHandler<Phrase>{
   private m_categoryHandler: CategoryHandler;
 
-  constructor(categoryHandler: CategoryHandler) {
+  constructor (categoryHandler: CategoryHandler) {
     super("phrases");
 
     this.m_categoryHandler = categoryHandler;
   }
 
-  public async all(): Promise<Phrase[]> {
+  public async all (): Promise<Phrase[]> {
     const sql = `select p.id, p.finnish, p.english, p.categoryId, c.name as categoryName
                 from phrases as p
                 join categories as c on c.id = p.categoryId;`;
@@ -33,7 +33,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
     return result;
   }
 
-  public async get(id: number ): Promise<Phrase> {
+  public async get (id: number ): Promise<Phrase> {
     const sql = `select p.id, p.finnish, p.english, p.categoryId, c.name as categoryName
                 from phrases as p
                 join categories as c on c.id = p.categoryId
@@ -56,8 +56,8 @@ export class PhraseHandler extends BaseHandler<Phrase>{
    * @param {number} id The quiz id
    * @return {Promise<Phrase[]>}
    */
-  public async findPhrasesForQuiz(id: number): Promise<Phrase[]> {
-    const result = [];
+  public async findPhrasesForQuiz (id: number): Promise<Phrase[]> {
+    const result: Phrase[] = [];
 
     const sql =  `select p.id, p.finnish, p.english, c.id as categoryId, c.name as categoryName
                   from quizphrases as qp
@@ -78,7 +78,32 @@ export class PhraseHandler extends BaseHandler<Phrase>{
     return result;
   }
 
-  public async add(entity: Phrase): Promise<boolean> {
+  /**
+   * Find all phrases for a category
+   * @param {number} categoryId
+   * @return {Promise<Phrase[]>}
+   */
+  public async findPhrasesForCategory (categoryId: number): Promise<Phrase[]> {
+    const result: Phrase[] = [];
+    const sql = `select p.id, p.finnish, p.english, p.categoryId, c.name as categoryName
+                from phrases as p
+                join categories as c on c.id = p.categoryId
+                where c.id = ?;`;
+
+    const sqlResult = await query(sql, [categoryId]);
+    if (sqlResult.length > 0) {
+      for (let i = 0; i < sqlResult.length; i++) {
+        const row = sqlResult[i];
+
+        const category: Category = new Category(row.categoryId, row.categoryName);
+        result.push(new Phrase(row.id, row.finnish, row.english, category));
+      }
+    }
+
+    return result;
+  }
+
+  public async add (entity: Phrase): Promise<boolean> {
     // First check if category exists
     const category = await this.m_categoryHandler.get(entity.category.id);
 
@@ -98,7 +123,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
     return false;
   }
 
-  public async update(entity: Phrase): Promise<boolean> {
+  public async update (entity: Phrase): Promise<boolean> {
     // First check if category exists
     const category = await this.m_categoryHandler.get(entity.category.id);
 
@@ -114,7 +139,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
     return (!sqlResult.error && sqlResult.affectedRows > 0);
   }
 
-  public isEntityValid(entity: Phrase, validateId: boolean): boolean {
+  public isEntityValid (entity: Phrase, validateId: boolean): boolean {
     if (!entity) {
       return false;
     }
