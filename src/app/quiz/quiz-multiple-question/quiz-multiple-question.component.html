@@ -1,0 +1,8 @@
+<ul class="answers">
+    <li class="answer" *ngFor="let option of question.options; let i = index;">
+        <label >
+            <input type="radio" name="{{'question_' + question.index}}" value="{{i}}" (change)="questionAnswered(i)">
+            <span class="answer-text">{{option}}</span>
+        </label>
+    </li>
+</ul>

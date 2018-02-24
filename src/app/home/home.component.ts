@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from "@angular/forms";
 import { ApiService } from "../shared/services/api.service";
 import { Quiz } from "../shared/models/quiz.model";
 import { Category } from "../shared/models/category.model";
 import { CategoryGetResponse, PhraseGetResponse, QuizGetDetailResponse, QuizGetResponse } from "../shared/models/httpresponses";
 import { QuizService } from "../quiz/quiz.service";
 import { Router } from "@angular/router";
+import { QuizType } from "../shared/enums/quiz-type.enum";
 
 @Component({
   selector: 'app-home',
@@ -15,6 +17,9 @@ export class HomeComponent implements OnInit {
 
   public quizzes: Quiz[];
   public categories: Category[];
+  public quizType: QuizType;
+  public QuizTypeKeys: any[];
+  public QuizTypes = QuizType;
 
   public selectedQuiz: Quiz;
 
@@ -24,10 +29,16 @@ export class HomeComponent implements OnInit {
   constructor (private quizService: QuizService,  private apiService: ApiService, private router: Router) {
     this.quizzes = [];
     this.categories = [];
+    // Maintain the quizType from last quiz.
+    this.quizType = this.quizService.quizType;
 
     this.selectedQuiz = null;
     this.isFetchingQuiz = false;
     this.error = "";
+
+    this.QuizTypeKeys = Object.keys(this.QuizTypes).filter(key => !isNaN(Number(key)) );
+
+    console.log(this.QuizTypes, this.QuizTypeKeys);
   }
 
   ngOnInit () {
@@ -68,9 +79,9 @@ export class HomeComponent implements OnInit {
     this.apiService.get("quiz/get/" + quiz.id).then((result: QuizGetDetailResponse) => {
       this.isFetchingQuiz = false;
 
-      if (!result.error) {
+      if (result.quiz) {
         if (result.quiz.phrases.length > 0) {
-          this.selectedQuiz = result.quiz;
+          this.setSelectedQuiz(result.quiz);
         }
         else {
           this.error = "There are no phrases for that quiz.";
@@ -99,7 +110,7 @@ export class HomeComponent implements OnInit {
           phrases: result.phrases
         };
 
-        this.selectedQuiz = quiz;
+        this.setSelectedQuiz(quiz);
       }
       else {
         this.error = "No phrases found for that category";
@@ -110,10 +121,36 @@ export class HomeComponent implements OnInit {
   }
 
   public startQuiz (): void {
-    if (this.selectedQuiz && this.selectedQuiz.phrases.length > 0) {
-      this.quizService.quiz = this.selectedQuiz;
-      this.router.navigate(['quiz']);
+    if (!this.validateQuiz()) {
+      return;
     }
+
+    this.quizService.quiz = this.selectedQuiz;
+    // quizType.Text = '0' instead of 0 causing issues
+    this.quizService.quizType = parseInt("" + this.quizType, 10);
+    this.router.navigate(['quiz']);
   }
 
+  private setSelectedQuiz (quiz: Quiz) {
+    this.selectedQuiz = quiz;
+
+    // TODO: If phrases.length < phrasesPerQuestion then auto select text and maybe even make multiple questions choice invalid
+  }
+
+  private validateQuiz (): boolean {
+    // Make sure quiz is selected
+    if (!this.selectedQuiz || this.selectedQuiz.phrases.length <= 0) {
+      return false;
+    }
+    // Make sure quizType is a valid type
+    if (!QuizType[this.quizType]) {
+      return false;
+    }
+    // Make sure the quiz has enough phrases if multiple choices is selected
+    if (this.quizType === QuizType.MultipleChoices && this.selectedQuiz.phrases.length < this.quizService.phrasesPerQuestion) {
+      return false;
+    }
+
+    return true;
+  }
 }

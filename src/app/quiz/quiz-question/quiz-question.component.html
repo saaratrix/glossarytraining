@@ -1,0 +1,22 @@
+<div [ngClass]="{ 'question-passed': (isReviewed && question.isCorrect()), 'question-failed': (isReviewed && !question.isCorrect()) }">
+  <strong class="index">{{question.index + 1}}</strong>:
+  <strong class="question">{{question.question}}</strong>
+  <br>
+  <div class="question-answers">
+    <app-quiz-text-question
+    *ngIf="type === QuizTypes.Text"
+    [question]="question"
+    (answered)="questionAnswered($event)"
+    ></app-quiz-text-question>
+    <app-quiz-multiple-question
+      *ngIf="type === QuizTypes.MultipleChoices"
+      [question]="question"
+      (answered)="questionAnswered($event)"
+    ></app-quiz-multiple-question>
+    <p *ngIf="error.length > 0" class="form-error">
+      {{error}};
+    </p>
+  </div>
+</div>
+
+

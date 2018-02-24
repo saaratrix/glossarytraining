@@ -1,3 +1,24 @@
-<p>
-  quiz works!
-</p>
+<ul>
+  <li *ngFor="let question of questions;" [ngClass]="{ 'question-hidden': !question.visible, 'question-item': true }">
+    <app-quiz-question [question]="question" [isReviewed]="isReviewed" (answered)="questionAnswered($event)"></app-quiz-question>
+  </li>
+</ul>
+<div *ngIf="answeredQuestionsCount === questions.length">
+  <ng-container *ngIf="correctQuestions !== questions.length; then incorrectBlock else correctBlock;"></ng-container>
+  <ng-template #incorrectBlock>
+    <p *ngIf="isReviewed">
+      Your score: {{correctQuestions}} of {{questions.length}}
+    </p>
+    <p *ngIf="!isReviewed">
+      Review test to find out your score!
+    </p>
+    <button (click)="reviewQuiz()">Review quiz</button>
+  </ng-template>
+  <ng-template #correctBlock>
+    You did it!
+    <br>
+    You nailed the quiz!
+    <br>
+    <button (click)="doNewQuiz()">Do another quiz!</button>
+  </ng-template>
+</div>

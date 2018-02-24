@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { QuizModule } from "../quiz/quiz.module";
+import { FormsModule } from "@angular/forms";
 
 const homeRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -14,6 +15,7 @@ const homeRouting: ModuleWithProviders = RouterModule.forChild([
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     QuizModule,
     homeRouting
   ],
