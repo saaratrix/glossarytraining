@@ -1,4 +1,4 @@
-<div [ngClass]="{ 'question-passed': (isReviewed && question.isCorrect()), 'question-failed': (isReviewed && !question.isCorrect()) }">
+<div [ngClass]="{ 'question-passed': (isReviewed && question.isCorrect), 'question-failed': (isReviewed && !question.isCorrect), 'question-container': true }">
   <strong class="index">{{question.index + 1}}</strong>:
   <strong class="question">{{question.question}}</strong>
   <br>

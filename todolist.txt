@@ -2,29 +2,17 @@
 * Add validation such as phrase.finnish.length < 512 on backend
   - And maxlength for the <input>
 
+* Add a description to a test for example, "you", "you" (plural)
 
 * Add frontend for selecting a quiz
   - QuizSelection component
     - Selected words?
         You can select phrases from all the total phrases and make a quiz from that.
 
-  - Correct answer component ( old one )
-    - Improve so that he/she can be answered either by he or she for example.
-
-* Improve CSS
-
 * Find out how to properly use LESS files, without having to @import "style.less" ...
 
 * Clean up console.logs()
   - ApiService for example
-
-Bugs:
-* Changing a quiz automatically updates the state between passed & failed without having to click review.
-    - You still need to click review test to complete it
-    - To solve change isCorrect() to a property and a function ( checkAnswer() ) to set the property.
-
-
-
 
 Maybe:
 * Improve error handling for quiz

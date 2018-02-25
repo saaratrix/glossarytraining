@@ -94,7 +94,7 @@ export class QuizComponent implements OnInit {
   public reviewQuiz (): void {
     this.correctQuestions = 0;
     for (let i = 0; i < this.questions.length; i++) {
-      if (this.questions[i].isCorrect()) {
+      if (this.questions[i].checkAnswer()) {
         this.correctQuestions++;
       }
     }
@@ -137,7 +137,7 @@ export class QuizComponent implements OnInit {
       return text.trim().toLowerCase();
     });
 
-    return new TextQuestion(index, question, answers);
+    return new TextQuestion(index, question, answers, questionKeys.question === "finnish");
   }
 
   /**

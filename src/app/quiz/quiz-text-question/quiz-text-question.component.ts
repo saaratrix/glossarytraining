@@ -21,4 +21,17 @@ export class QuizTextQuestionComponent implements OnInit {
   ngOnInit () {
   }
 
+  public questionAnswered () {
+    this.answered.emit(this.question);
+  }
+
+  public getPlaceholderText () {
+    if (this.question.isFinnish) {
+      return `Käännä "${this.question.question}" englanniksi`;
+    }
+    else {
+      return `Käännä "${this.question.question}" suomeksi`;
+    }
+  }
+
 }

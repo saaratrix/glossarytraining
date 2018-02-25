@@ -1,9 +1,9 @@
-<ul>
-  <li *ngFor="let question of questions;" [ngClass]="{ 'question-hidden': !question.visible, 'question-item': true }">
+<div class="questions-list">
+  <div *ngFor="let question of questions;" [ngClass]="{ 'question-hidden': !question.visible, 'question-item': true }">
     <app-quiz-question [question]="question" [isReviewed]="isReviewed" (answered)="questionAnswered($event)"></app-quiz-question>
-  </li>
-</ul>
-<div *ngIf="answeredQuestionsCount === questions.length">
+  </div>
+</div>
+<div *ngIf="answeredQuestionsCount === questions.length" class="review-container">
   <ng-container *ngIf="correctQuestions !== questions.length; then incorrectBlock else correctBlock;"></ng-container>
   <ng-template #incorrectBlock>
     <p *ngIf="isReviewed">

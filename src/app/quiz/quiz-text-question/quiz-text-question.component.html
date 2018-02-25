@@ -1,3 +1,4 @@
-<p>
-  quiz-text-question works!
-</p>
+<div class="answers">
+  <input [(ngModel)]="question.answer" (change)="questionAnswered()" [placeholder]="getPlaceholderText()">
+</div>
+

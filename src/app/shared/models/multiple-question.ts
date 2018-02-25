@@ -4,6 +4,7 @@ export class MultipleQuestion implements Question {
   public visible: boolean;
   public index: number;
   public question: string;
+  public isCorrect: boolean;
 
   public answer: number;
   public options: string[];
@@ -14,14 +15,17 @@ export class MultipleQuestion implements Question {
     this.visible = false;
     this.index = index;
     this.question = question;
+    this.isCorrect = false;
     this.options = options;
     this.answer = -1;
 
     this.correctAnswer = correctAnswer;
   }
 
-  public isCorrect (): boolean {
-    return this.correctAnswer === this.answer;
+  public checkAnswer (): boolean {
+    this.isCorrect = this.correctAnswer === this.answer;
+
+    return this.isCorrect;
   }
 
   public hasAnswer (): boolean {
