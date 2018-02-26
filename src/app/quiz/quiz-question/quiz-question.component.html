@@ -1,6 +1,7 @@
 <div [ngClass]="{ 'question-passed': (isReviewed && question.isCorrect), 'question-failed': (isReviewed && !question.isCorrect), 'question-container': true }">
-  <strong class="index">{{question.index + 1}}</strong>:
-  <strong class="question">{{question.question}}</strong>
+  <strong class="question-index">{{question.index + 1}}:</strong>
+  <strong class="question-question">{{question.question}}</strong>
+  <span class="question-note" *ngIf="question.note.length > 0"> - ( {{question.note}} )</span>
   <br>
   <div class="question-answers">
     <app-quiz-text-question

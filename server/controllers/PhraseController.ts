@@ -125,11 +125,12 @@ export class PhraseController {
     // TODO: Sanitize?
     const finnish: string = body.finnish || "";
     const english: string = body.english || "";
+    const note: string = body.note || "";
 
     const categoryId = typeof body.categoryId !== "undefined" ? parseInt(body.categoryId, 10) : -1;
     const categoryName = body.categoryName || "";
 
-    return new Phrase(id, finnish, english, new Category(categoryId, categoryName));
+    return new Phrase(id, finnish, english, note, new Category(categoryId, categoryName));
   }
 }
 

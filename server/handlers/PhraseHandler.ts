@@ -15,7 +15,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
   }
 
   public async all (): Promise<Phrase[]> {
-    const sql = `select p.id, p.finnish, p.english, p.categoryId, c.name as categoryName
+    const sql = `select p.id, p.finnish, p.english, p.note, p.categoryId, c.name as categoryName
                 from phrases as p
                 join categories as c on c.id = p.categoryId;`;
 
@@ -27,14 +27,14 @@ export class PhraseHandler extends BaseHandler<Phrase>{
       const row = sqlResult[i];
       const category = new Category(row.categoryId, row.categoryName);
 
-      result[i] = new Phrase(row.id, row.finnish, row.english, category);
+      result[i] = new Phrase(row.id, row.finnish, row.english, row.note, category);
     }
 
     return result;
   }
 
   public async get (id: number ): Promise<Phrase> {
-    const sql = `select p.id, p.finnish, p.english, p.categoryId, c.name as categoryName
+    const sql = `select p.id, p.finnish, p.english, p.note, p.categoryId, c.name as categoryName
                 from phrases as p
                 join categories as c on c.id = p.categoryId
                 where p.id = ?;`;
@@ -45,7 +45,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
     if (sqlResult.length > 0) {
       const row = sqlResult[0];
       const category = new Category(row.categoryId, row.categoryName);
-      result = new Phrase(row.id, row.finnish, row.english, category);
+      result = new Phrase(row.id, row.finnish, row.english, row.note, category);
     }
 
     return result;
@@ -59,7 +59,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
   public async findPhrasesForQuiz (id: number): Promise<Phrase[]> {
     const result: Phrase[] = [];
 
-    const sql =  `select p.id, p.finnish, p.english, c.id as categoryId, c.name as categoryName
+    const sql =  `select p.id, p.finnish, p.english, p.note, c.id as categoryId, c.name as categoryName
                   from quizphrases as qp
                   join phrases as p on qp.phraseId = p.id
                   join categories as c on c.id = p.categoryId
@@ -71,7 +71,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
         const row = sqlResult[i];
 
         const category: Category = new Category(row.categoryId, row.categoryName);
-        result.push(new Phrase(row.id, row.finnish, row.english, category));
+        result.push(new Phrase(row.id, row.finnish, row.english, row.note, category));
       }
     }
 
@@ -85,7 +85,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
    */
   public async findPhrasesForCategory (categoryId: number): Promise<Phrase[]> {
     const result: Phrase[] = [];
-    const sql = `select p.id, p.finnish, p.english, p.categoryId, c.name as categoryName
+    const sql = `select p.id, p.finnish, p.english, p.note, p.categoryId, c.name as categoryName
                 from phrases as p
                 join categories as c on c.id = p.categoryId
                 where c.id = ?;`;
@@ -96,7 +96,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
         const row = sqlResult[i];
 
         const category: Category = new Category(row.categoryId, row.categoryName);
-        result.push(new Phrase(row.id, row.finnish, row.english, category));
+        result.push(new Phrase(row.id, row.finnish, row.english, row.note, category));
       }
     }
 
@@ -111,10 +111,10 @@ export class PhraseHandler extends BaseHandler<Phrase>{
       return false;
     }
 
-    const sql = `insert into ${this.m_table}(finnish, english, categoryId) 
-                 values (?, ?, ?);`;
+    const sql = `insert into ${this.m_table}(finnish, english, note, categoryId) 
+                 values (?, ?, ?, ?);`;
 
-    const sqlResult: MySQLResults = await query(sql, [entity.finnish, entity.english, category.id]);
+    const sqlResult: MySQLResults = await query(sql, [entity.finnish, entity.english, entity.note, category.id]);
     if (!sqlResult.error) {
       entity.id = sqlResult.insertId;
       return true;
@@ -131,10 +131,10 @@ export class PhraseHandler extends BaseHandler<Phrase>{
       return false;
     }
 
-    const sql = `update ${this.m_table} set finnish = ?, english = ?, categoryId = ?
+    const sql = `update ${this.m_table} set finnish = ?, english = ?, note = ?, categoryId = ?
                 where id = ?;`;
 
-    const sqlResult: MySQLResults = await query(sql, [entity.finnish, entity.english, category.id, entity.id]);
+    const sqlResult: MySQLResults = await query(sql, [entity.finnish, entity.english, entity.note, category.id, entity.id]);
 
     return (!sqlResult.error && sqlResult.affectedRows > 0);
   }

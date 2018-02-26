@@ -2,7 +2,8 @@
     <li class="answer" *ngFor="let option of question.options; let i = index;">
         <label >
             <input type="radio" name="{{'question_' + question.index}}" value="{{i}}" (change)="questionAnswered(i)">
-            <span class="answer-text">{{option}}</span>
+            <span class="answer-text">{{option.value}}</span>
+            <span *ngIf="showNote && option.note.length > 0"> - ( {{option.note}} )</span>
         </label>
     </li>
 </ul>

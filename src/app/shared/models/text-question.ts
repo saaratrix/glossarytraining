@@ -4,16 +4,18 @@ export class TextQuestion implements Question {
   public visible: boolean;
   public index: number;
   public question: string;
+  public note: string;
   public answer: string;
   public isCorrect: boolean;
   public isFinnish: boolean;
 
   private correctAnswers: string[];
 
-  constructor (index: number, question: string, correctAnswers: string[], isFinnish: boolean) {
+  constructor (index: number, question: string, note: string, correctAnswers: string[], isFinnish: boolean) {
     this.visible = false;
     this.index = index;
     this.question = question;
+    this.note = note;
     this.isCorrect = false;
 
     this.correctAnswers = correctAnswers;

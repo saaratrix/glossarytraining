@@ -6,7 +6,7 @@ import { QuizType } from "../shared/enums/quiz-type.enum";
 import { Phrase } from "../shared/models/phrase.model";
 import { Question } from "../shared/models/question";
 import { TextQuestion } from "../shared/models/text-question";
-import { MultipleQuestion } from "../shared/models/multiple-question";
+import { IMultipleOption, MultipleQuestion } from "../shared/models/multiple-question";
 
 interface IQuestionKeys {
   question: string;
@@ -137,7 +137,7 @@ export class QuizComponent implements OnInit {
       return text.trim().toLowerCase();
     });
 
-    return new TextQuestion(index, question, answers, questionKeys.question === "finnish");
+    return new TextQuestion(index, question, phrase.note, answers, questionKeys.question === "finnish");
   }
 
   /**
@@ -171,7 +171,7 @@ export class QuizComponent implements OnInit {
     this.shuffleArray(indices);
 
     let correctAnswer = 0;
-    const options: string[] = [];
+    const options: IMultipleOption[] = [];
 
     for (let i = 0; i < indices.length; i++) {
       const phrase = phrases[indices[i]];
@@ -180,10 +180,15 @@ export class QuizComponent implements OnInit {
         correctAnswer = i;
       }
 
-      options.push(phrase[questionKeys.answer]);
+      const option: IMultipleOption = {
+        value: phrase[questionKeys.answer],
+        note: phrase.note
+      };
+
+      options.push(option);
     }
 
-    return new MultipleQuestion(index, question, options, correctAnswer);
+    return new MultipleQuestion(index, question, correctPhrase.note, options, correctAnswer);
   }
 
   /**

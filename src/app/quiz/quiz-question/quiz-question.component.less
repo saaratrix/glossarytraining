@@ -1,7 +1,19 @@
 app-quiz-question {
   .question-container {
     padding: 5px;
+    // Give same height incase the containers are different heights because of long phrases
+    height: 100%;
   }
+
+  .question-question {
+    text-transform: capitalize;
+  }
+
+  .question-note {
+    font-weight: lighter;
+    font-style: italic;
+  }
+
   .question-passed {
     background-color: #badbad;
   }

@@ -2,8 +2,6 @@
 * Add validation such as phrase.finnish.length < 512 on backend
   - And maxlength for the <input>
 
-* Add a description to a test for example, "you", "you" (plural)
-
 * Add frontend for selecting a quiz
   - QuizSelection component
     - Selected words?

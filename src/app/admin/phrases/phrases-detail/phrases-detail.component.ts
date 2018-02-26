@@ -31,7 +31,7 @@ export class PhrasesDetailComponent implements OnInit {
     this.error = null;
   }
 
-  ngOnInit() {
+  ngOnInit () {
     /**
      * Try and set the actual category reference so ngModel works properly.
      */
@@ -67,6 +67,7 @@ export class PhrasesDetailComponent implements OnInit {
           id: -1,
           finnish: "",
           english: "",
+          note: "",
           // This category will be replaced as soon as trySetCategory() is finished
           category: {
             id: 1, // The uncategorised Id is 1
@@ -99,6 +100,7 @@ export class PhrasesDetailComponent implements OnInit {
       id: this.item.id,
       finnish: this.item.finnish,
       english: this.item.english,
+      note: this.item.note,
       categoryId: this.item.category.id,
       categoryName: this.item.category.name
     })
@@ -125,6 +127,7 @@ export class PhrasesDetailComponent implements OnInit {
       id: this.item.id,
       finnish: this.item.finnish,
       english: this.item.english,
+      note: this.item.note,
       categoryId: this.item.category.id,
       categoryName: this.item.category.name
     })
