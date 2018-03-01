@@ -22,6 +22,14 @@ export class TextQuestion implements Question {
     this.isFinnish = isFinnish;
   }
 
+  /**
+   * Get the correct answers array
+   * @return {string[]}
+   */
+  public getCorrectAnswers (): string[] {
+    return this.correctAnswers;
+  }
+
   public checkAnswer (): boolean {
     // Make answer lowercase and trim whitespace
     const answer = this.answer.trim().toLowerCase();

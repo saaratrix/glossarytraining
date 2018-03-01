@@ -14,22 +14,13 @@ export class QuizListComponent implements OnInit {
 
   public quizzes: Quiz[];
 
-  constructor(private apiService: ApiService) {
+  constructor (private apiService: ApiService) {
     this.quizzes = [];
   }
 
   ngOnInit () {
     this.apiService.get("quiz/get").then((result: QuizGetResponse) => {
       this.quizzes = result.quizzes || [];
-
-      this.quizzes.sort((a: Quiz, b: Quiz) => {
-        const aName = a.name.toLowerCase();
-        const bName = b.name.toLowerCase();
-
-        if (aName < bName) { return -1; }
-        if (aName > bName) { return 1; }
-        return 0;
-      });
     });
   }
 }

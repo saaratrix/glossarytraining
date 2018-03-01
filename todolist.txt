@@ -1,4 +1,7 @@
 
+* Add focus next question
+  - For example when you press enter or tab it will autofocus the next question.
+
 * Add validation such as phrase.finnish.length < 512 on backend
   - And maxlength for the <input>
 
@@ -8,6 +11,7 @@
         You can select phrases from all the total phrases and make a quiz from that.
 
 * Find out how to properly use LESS files, without having to @import "style.less" ...
+
 
 * Clean up console.logs()
   - ApiService for example
@@ -20,8 +24,7 @@ Maybe:
 * Could cache the quizzes & categories on selection if a user will change between A -> B -> A ...
   - Which could be solved by using a service to handle all that logic!
 * Create a custom component to select category instead of 1 massive dropdown list when creating a phrase.
-  - Can be used when selecting a category to test aswell.
-* Add fixed wrong answers to a phrase for so there can be a quiz about grammar with close looking words.
+* Add fixed options to a phrase for so there can be a quiz about grammar with close looking words.
 * Update the API functions to use PUT, DELETE as http functions for the update & delete functionality instead of post.
    - On hold for now, would need to properly rewrite routing.
       So that the id is in the url for example for delete `quiz/1` instead of `quiz/remove`

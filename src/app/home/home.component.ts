@@ -37,37 +37,15 @@ export class HomeComponent implements OnInit {
     this.error = "";
 
     this.QuizTypeKeys = Object.keys(this.QuizTypes).filter(key => !isNaN(Number(key)) );
-
-    console.log(this.QuizTypes, this.QuizTypeKeys);
   }
 
   ngOnInit () {
     this.apiService.get("quiz/hasphrases").then((result: QuizGetResponse) => {
       this.quizzes = result.quizzes || [];
-
-      // Sort based off quiz.name
-      this.quizzes.sort((a: Quiz, b: Quiz) => {
-        const aName = a.name.toLowerCase();
-        const bName = b.name.toLowerCase();
-
-        if (aName < bName) { return -1; }
-        if (aName > bName) { return 1; }
-        return 0;
-      });
     });
 
     this.apiService.get("category/hasphrases").then((result: CategoryGetResponse) => {
       this.categories = result.categories || [];
-
-      // Sort based off category.name
-      this.categories.sort((a: Category, b: Category) => {
-        const aName = a.name.toLowerCase();
-        const bName = b.name.toLowerCase();
-
-        if (aName < bName) { return -1; }
-        if (aName > bName) { return 1; }
-        return 0;
-      });
     });
   }
 

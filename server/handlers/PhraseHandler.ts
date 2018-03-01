@@ -9,7 +9,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
   private m_categoryHandler: CategoryHandler;
 
   constructor (categoryHandler: CategoryHandler) {
-    super("phrases");
+    super("phrases", "");
 
     this.m_categoryHandler = categoryHandler;
   }
@@ -17,7 +17,8 @@ export class PhraseHandler extends BaseHandler<Phrase>{
   public async all (): Promise<Phrase[]> {
     const sql = `select p.id, p.finnish, p.english, p.note, p.categoryId, c.name as categoryName
                 from phrases as p
-                join categories as c on c.id = p.categoryId;`;
+                join categories as c on c.id = p.categoryId
+                order by c.name, p.finnish;`;
 
     const sqlResult: MySQLResults = await query(sql, []);
     const result: Phrase[] = new Array(sqlResult.length);
@@ -63,7 +64,8 @@ export class PhraseHandler extends BaseHandler<Phrase>{
                   from quizphrases as qp
                   join phrases as p on qp.phraseId = p.id
                   join categories as c on c.id = p.categoryId
-                  where qp.quizId = ?;`;
+                  where qp.quizId = ?
+                  order by c.name, p.finnish;`;
 
     const sqlResult = await query(sql, [id]);
     if (!sqlResult.error) {
@@ -88,7 +90,8 @@ export class PhraseHandler extends BaseHandler<Phrase>{
     const sql = `select p.id, p.finnish, p.english, p.note, p.categoryId, c.name as categoryName
                 from phrases as p
                 join categories as c on c.id = p.categoryId
-                where c.id = ?;`;
+                where c.id = ?
+                order by p.finnish;`;
 
     const sqlResult = await query(sql, [categoryId]);
     if (sqlResult.length > 0) {

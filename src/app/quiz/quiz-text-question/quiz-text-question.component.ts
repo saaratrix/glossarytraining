@@ -10,12 +10,18 @@ export class QuizTextQuestionComponent implements OnInit {
 
   @Input()
   public question: TextQuestion;
+  @Input()
+  public isReviewed: boolean;
   @Output()
   public answered: EventEmitter<TextQuestion>;
 
+  public revealAnswers: boolean;
+
   constructor () {
     this.question = null;
+    this.isReviewed = false;
     this.answered = new EventEmitter<TextQuestion>();
+    this.revealAnswers = false;
   }
 
   ngOnInit () {

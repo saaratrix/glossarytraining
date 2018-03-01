@@ -8,13 +8,15 @@ interface BaseEntity {
 export class BaseHandler<T extends BaseEntity> implements IHandler<T> {
 
   protected readonly m_table: string;
+  protected readonly m_orderByAll: string;
 
-  constructor (table: string) {
+  constructor (table: string, orderByAll: string = "") {
     this.m_table = table;
+    this.m_orderByAll = orderByAll;
   }
 
   public async all (): Promise<T[]> {
-    const sql = `select * from ${this.m_table};`;
+    const sql = `select * from ${this.m_table}${this.m_orderByAll};`;
     const sqlResult = await query(sql, []);
     let items: T[] = [];
 

@@ -24,7 +24,7 @@ export class PhrasesSelectionComponent implements OnInit {
   // An IterableDiffer that listens to the changes of the "phrases" input array.
   private m_phrasesDiffer: IterableDiffer<Phrase>;
 
-  constructor(private _iterableDiffers: IterableDiffers) {
+  constructor (private _iterableDiffers: IterableDiffers) {
     this.phrases = [];
     this.phraseClick = new EventEmitter<Phrase>();
 
@@ -60,7 +60,7 @@ export class PhrasesSelectionComponent implements OnInit {
    * Add a phrase to the phrases by category list.
    * @param {Phrase} phrase
    */
-  private addPhraseToCategoryList(phrase: Phrase) {
+  private addPhraseToCategoryList (phrase: Phrase) {
     let phraseByCategory: PhrasesByCategory = this.phrasesByCategory.find((item: PhrasesByCategory) => {
       return item.category.id === phrase.category.id;
     });
@@ -81,7 +81,7 @@ export class PhrasesSelectionComponent implements OnInit {
    * Remove a phrase from phrases by category list.
    * @param {Phrase} phrase
    */
-  private removePhraseFromCategoryList(phrase: Phrase) {
+  private removePhraseFromCategoryList (phrase: Phrase) {
     const phraseByCategory: PhrasesByCategory = this.phrasesByCategory.find((item: PhrasesByCategory) => {
       return item.category.id === phrase.category.id;
     });

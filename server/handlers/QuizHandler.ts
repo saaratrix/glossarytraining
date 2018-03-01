@@ -7,7 +7,7 @@ export class QuizHandler extends BaseHandler<Quiz>{
   private m_phraseHandler: PhraseHandler;
 
   constructor (phraseHandler: PhraseHandler) {
-    super("quizzes");
+    super("quizzes", " order by name");
 
     this.m_phraseHandler = phraseHandler;
   }
@@ -21,7 +21,8 @@ export class QuizHandler extends BaseHandler<Quiz>{
     let result: Quiz[] = [];
     const sql = `select distinct q.id, q.name, q.description
                 from ${this.m_table} as q
-                join quizphrases as qp on qp.quizId = q.id;`;
+                join quizphrases as qp on qp.quizId = q.id
+                order by q.name;`;
 
     const sqlResult: MySQLResults = await query(sql, []);
 

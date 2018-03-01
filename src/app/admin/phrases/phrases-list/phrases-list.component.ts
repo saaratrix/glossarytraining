@@ -42,7 +42,6 @@ export class PhrasesListComponent implements OnInit {
         phraseByCategory.phrases.push(phrase);
       }
 
-      this.sortPhrasesByCategory();
     });
   }
 
@@ -56,7 +55,6 @@ export class PhrasesListComponent implements OnInit {
     });
 
     const index = phrasesByCategory.phrases.indexOf(phrase);
-    console.log("removed index: ", index);
     if (index !== -1) {
      phrasesByCategory.phrases.splice(index, 1);
     }
@@ -65,32 +63,5 @@ export class PhrasesListComponent implements OnInit {
       const categoryListIndex = this.phrasesByCategories.indexOf(phrasesByCategory);
       this.phrasesByCategories.splice(categoryListIndex, 1);
     }
-  }
-
-  /**
-   * Sort the phrases by category list by category name
-   * Also sorts the phrases inside each category list by the phrase name.
-   */
-  private sortPhrasesByCategory () {
-    // Sort based off category name
-    this.phrasesByCategories.sort((a: PhrasesByCategory, b: PhrasesByCategory): number => {
-      const aName = a.category.name.toLowerCase();
-      const bName = b.category.name.toLowerCase();
-
-      if (aName < bName) { return -1; }
-      if (aName > bName) { return 1; }
-      return 0;
-    });
-
-    this.phrasesByCategories.forEach((categoryList: PhrasesByCategory) => {
-      categoryList.phrases.sort((a: Phrase, b: Phrase) => {
-        const aName = a.finnish.toLowerCase();
-        const bName = b.finnish.toLowerCase();
-
-        if (aName < bName) { return -1; }
-        if (aName > bName) { return 1; }
-        return 0;
-      });
-    });
   }
 }

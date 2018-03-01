@@ -4,7 +4,7 @@ import { query, MySQLResults } from "../database/mysql-connection";
 
 export class CategoryHandler extends BaseHandler<Category>{
   constructor () {
-    super("categories");
+    super("categories", " order by name");
   }
 
   /**
@@ -15,7 +15,8 @@ export class CategoryHandler extends BaseHandler<Category>{
     let result: Category[] = [];
     const sql = `select distinct c.id, c.name
                 from ${this.m_table} as c
-                join phrases as p on p.categoryId = c.id;`;
+                join phrases as p on p.categoryId = c.id
+                order by c.name;`;
 
     const sqlResult: MySQLResults = await query(sql, []);
     if (sqlResult.length > 0) {

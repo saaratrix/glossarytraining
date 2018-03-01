@@ -7,6 +7,7 @@
     <app-quiz-text-question
     *ngIf="type === QuizTypes.Text"
     [question]="question"
+    [isReviewed]="isReviewed"
     (answered)="questionAnswered($event)"
     ></app-quiz-text-question>
     <app-quiz-multiple-question

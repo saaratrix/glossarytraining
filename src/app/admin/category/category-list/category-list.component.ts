@@ -12,22 +12,13 @@ export class CategoryListComponent implements OnInit {
 
   public items: Category[];
 
-  constructor(private apiService: ApiService) {
+  constructor (private apiService: ApiService) {
     this.items = [];
   }
 
-  ngOnInit() {
+  ngOnInit () {
     this.apiService.get("category/get").then((response: CategoryGetResponse) => {
       this.items = response.categories || [];
-
-      this.items.sort((a: Category, b: Category) => {
-        const aName = a.name.toLowerCase();
-        const bName = b.name.toLowerCase();
-
-        if (aName < bName) { return -1; }
-        if (aName > bName) { return 1; }
-        return 0;
-      });
     });
   }
 }
