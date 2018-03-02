@@ -1,6 +1,9 @@
 <div class="answers">
-  <input [(ngModel)]="question.answer"
+  <input #questionInput
+         class="answer-text-input"
+         [(ngModel)]="question.answer"
          (change)="questionAnswered()"
+         (keyup)="tryFocusNext($event)"
          [placeholder]="getPlaceholderText()"
          [tabindex]="question.isCorrect ? -1 : 0"
          [readonly]="question.isCorrect"

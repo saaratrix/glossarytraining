@@ -10,11 +10,13 @@
     [isReviewed]="isReviewed"
     (answered)="questionAnswered($event)"
     ></app-quiz-text-question>
+
     <app-quiz-multiple-question
       *ngIf="type === QuizTypes.MultipleChoices"
       [question]="question"
       (answered)="questionAnswered($event)"
     ></app-quiz-multiple-question>
+
     <p *ngIf="error.length > 0" class="form-error">
       {{error}};
     </p>

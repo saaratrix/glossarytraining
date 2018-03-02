@@ -1,7 +1,3 @@
-
-* Add focus next question
-  - For example when you press enter or tab it will autofocus the next question.
-
 * Add validation such as phrase.finnish.length < 512 on backend
   - And maxlength for the <input>
 
@@ -11,7 +7,6 @@
         You can select phrases from all the total phrases and make a quiz from that.
 
 * Find out how to properly use LESS files, without having to @import "style.less" ...
-
 
 * Clean up console.logs()
   - ApiService for example
