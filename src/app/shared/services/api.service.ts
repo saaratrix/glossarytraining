@@ -17,11 +17,9 @@ export class ApiService {
       headers: this.getRequestHeaders(),
       params: parameters
       }).subscribe((result: any) => {
-        console.log("api get", result);
         res(result);
       },
       (error: HttpErrorResponse) => {
-        console.log("HttpClient error, ", error);
         res({
           error: error.message
         });
@@ -38,7 +36,6 @@ export class ApiService {
       this.httpClient.post(apiUrl, JSON.stringify(parameters), {
         headers: this.getRequestHeaders()
       }).subscribe((result: any) => {
-        console.log("api post", result);
         res(result);
       },
       (error: HttpErrorResponse) => {
@@ -51,7 +48,7 @@ export class ApiService {
     return promise;
   }
 
-  private getRequestHeaders(): HttpHeaders {
+  private getRequestHeaders (): HttpHeaders {
     return new HttpHeaders({
       "Content-Type": "application/json",
       "Accept": "application/json"

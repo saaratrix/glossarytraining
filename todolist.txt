@@ -1,15 +1,6 @@
-* Add validation such as phrase.finnish.length < 512 on backend
-  - And maxlength for the <input>
-
-* Add frontend for selecting a quiz
-  - QuizSelection component
-    - Selected words?
-        You can select phrases from all the total phrases and make a quiz from that.
-
 * Find out how to properly use LESS files, without having to @import "style.less" ...
 
-* Clean up console.logs()
-  - ApiService for example
+* Tests, add some tests to refamiliarise with protractor
 
 Maybe:
 * Improve error handling for quiz
@@ -24,4 +15,13 @@ Maybe:
    - On hold for now, would need to properly rewrite routing.
       So that the id is in the url for example for delete `quiz/1` instead of `quiz/remove`
 
-* Tests, add some tests to refamiliarise with protractor
+
+* Add validation such as phrase.finnish.length < 512 on backend
+  - And maxlength for the <input>
+
+* Add frontend for selecting a quiz
+  - QuizSelection component
+    - Selected words?
+        You can select phrases from all the total phrases and make a quiz from that.
+
+
