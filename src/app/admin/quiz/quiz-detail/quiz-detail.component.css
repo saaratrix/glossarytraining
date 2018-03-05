@@ -1,12 +1,12 @@
-app-admin-quiz-detail form {
+form {
   width: 100%;
 }
-app-admin-quiz-detail label {
+label {
   display: inline-block;
   min-width: 100px;
 }
-app-admin-quiz-detail .form-group input,
-app-admin-quiz-detail .form-group select {
+.form-group input,
+.form-group select {
   width: 100%;
   max-width: 300px;
 }

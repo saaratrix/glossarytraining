@@ -1,20 +1,17 @@
+form {
+  width: 100%;
+}
 
+label {
+  // otherwise the min-width doesn't work
+  display: inline-block;
+  min-width: 100px;
+}
 
-app-admin-quiz-detail {
-  form {
+.form-group {
+  input, select {
     width: 100%;
-  }
-
-  label {
-    // otherwise the min-width doesn't work
-    display: inline-block;
-    min-width: 100px;
-  }
-
-  .form-group {
-    input, select {
-      width: 100%;
-      max-width: 300px;
-    }
+    max-width: 300px;
   }
 }
+

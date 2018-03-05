@@ -1,41 +1,44 @@
-app-admin-entity-list {
-  table {
-    width: 100%;
-    text-align: left;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+table {
+  width: 100%;
+  text-align: left;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+thead {
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: silver;
+}
+
+td {
+  &:first-child {
+    font-weight: bold;
   }
 
-  thead {
-    font-size: 14px;
-    text-transform: uppercase;
-    background-color: silver;
-  }
+  padding: 5px;
+}
 
-  td {
-    &:first-child {
-      font-weight: bold;
+tbody {
+  tr {
+    &:hover {
+      background-color: aquamarine !important;
     }
 
-    padding: 5px;
-  }
-
-  tbody {
-    tr {
-      &:hover {
-        background-color: aquamarine !important;
-      }
-
-      &:nth-child(even) {
-        background-color: #badbad;
-      }
-
-      &:nth-child(odd) {
-        background-color: #E6E6FA;
-      }
+    &:nth-child(even) {
+      background-color: #badbad;
     }
-  }
 
-  .actions {
-    width: 135px;
+    &:nth-child(odd) {
+      background-color: #E6E6FA;
+    }
   }
 }
+
+.edit-btn {
+  margin: 0 5px;
+}
+
+.actions {
+  width: 135px;
+}
+

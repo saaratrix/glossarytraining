@@ -1,37 +1,35 @@
-app-quiz {
+.questions-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 8px;
+  margin-bottom: 5px;
+}
+
+.question-hidden {
+  visibility: collapse;
+}
+
+.question-item {
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+}
+
+.review-container {
+  margin-top: 10px;
+
+  p {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 800px) {
   .questions-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 8px;
-    margin-bottom: 5px;
+    grid-template-columns: 1fr 1fr;
   }
+}
 
-  .question-hidden {
-    visibility: collapse;
-  }
-
-  .question-item {
-    display: inline-block;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
-  }
-
-  .review-container {
-    margin-top: 10px;
-
-    p {
-      margin: 0;
-    }
-  }
-
-  @media screen and (max-width: 800px) {
-    .questions-list {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  @media screen and (max-width: 500px) {
-    .questions-list {
-      grid-template-columns: 1fr;
-    }
+@media screen and (max-width: 500px) {
+  .questions-list {
+    grid-template-columns: 1fr;
   }
 }
