@@ -134,7 +134,7 @@ export class PhraseController {
   }
 }
 
-module.exports = function (baseUrl: string, expressApp: Application) {
+export var setupPhraseRoutes = function (baseUrl: string, expressApp: Application) {
   const categoryHandler = new CategoryHandler();
   const phraseHandler = new PhraseHandler(categoryHandler);
 

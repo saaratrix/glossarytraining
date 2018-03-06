@@ -120,7 +120,7 @@ export class CategoryController {
   }
 }
 
-module.exports = function (baseUrl: string, expressApp: Application) {
+export var setupCategoryRoutes = function (baseUrl: string, expressApp: Application) {
   const categoryHandler = new CategoryHandler();
 
   const categoryController = new CategoryController(categoryHandler);

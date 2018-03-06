@@ -173,7 +173,7 @@ export class QuizController {
   }
 }
 
-module.exports = function (baseUrl: string, expressApp: Application) {
+export var setupQuizRoutes = function (baseUrl: string, expressApp: Application) {
   const categoryHandler = new CategoryHandler();
   const phraseHandler = new PhraseHandler(categoryHandler);
   const quizHandler = new QuizHandler(phraseHandler);
