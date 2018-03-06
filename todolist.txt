@@ -1,5 +1,10 @@
 * Tests, add some tests to refamiliarise with protractor
 
+* Make phrases, quiz and category editable on the spot instead of having to click edit
+  - Update the entity list component
+* Creating a phrase, category and quiz takes you back to `/phrases` e.t.c.
+* Verb trainer
+
 Maybe:
 * Improve error handling for quiz
   - For example if phrases.length < phrasesPerQuestion

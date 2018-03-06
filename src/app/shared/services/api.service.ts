@@ -7,9 +7,9 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class ApiService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor (private httpClient: HttpClient) { }
 
-  public get(url: string, parameters: HttpParams = new HttpParams()): Promise<any> {
+  public get (url: string, parameters: HttpParams = new HttpParams()): Promise<any> {
     const apiUrl: string = environment.api_url + url;
 
     const promise = new Promise<any>(res => {
@@ -29,7 +29,7 @@ export class ApiService {
     return promise;
   }
 
-  public post(url: string, parameters: any = {}): Promise<any> {
+  public post (url: string, parameters: any = {}): Promise<any> {
     const apiUrl: string = environment.api_url + url;
 
     const promise = new Promise<any>(res => {
