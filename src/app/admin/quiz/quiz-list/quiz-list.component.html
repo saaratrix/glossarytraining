@@ -1,0 +1,11 @@
+<h1>Quizzes</h1>
+<a [routerLink]="['../quiz', -1]">Create new quiz</a>
+
+<app-admin-entity-list
+  [entities]="quizzes"
+  [editUrl]="'../quiz'"
+  [removeUrl]="'quiz/remove'"
+  [keys]="['name', 'description']"
+  [keysPretty]="{ 'name': 'Quiz Name', 'description': 'Description' }"
+  >
+</app-admin-entity-list>

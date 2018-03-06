@@ -1,0 +1,17 @@
+<div class="phrases-by-category-list">
+  <div *ngFor="let item of phrasesByCategory">
+    <div *ngIf="item.phrases.length > 0" class="phrases-by-category-item">
+      <h3>{{item.category.name}}</h3>
+      <ul class="phrases-list">
+        <li *ngFor="let phrase of item.phrases" class="phrase-item" title="{{phrase.english}}" (click)="onPhraseClicked(phrase)">
+          {{phrase.finnish}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="phrases.length === 0">
+    <p>
+      {{emptySelection}}
+    </p>
+  </div>
+</div>

@@ -1,7 +1,5 @@
-﻿This is a simple webapp I wrote in node to practice new technologies. The projects frontend has been rewritten to use angular2 from just using typescript & dom manipulation. 
+This is a webapp I wrote to practice angular5. 
+The app itself is a way to practice finnish language by practising phrases.
 
-The idea behind the project itself though was to practice words from 1 language to another. Which it does well in its current iteration but some quality improvements could be made!
-
-For gh-pages I abstracted out the backend calls so you can test the frontend directly:
-http://haestflod.github.io/glossarytraining/public/exam.html
-
+It uses many features from angular such as services, components and routing.
+The backend is an express app that handles api calls to manipulate the database data.  

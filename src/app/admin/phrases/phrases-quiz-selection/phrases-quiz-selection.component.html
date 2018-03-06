@@ -1,0 +1,17 @@
+<div class="selected-phrases phrases">
+  <h2>Selected Phrases for quiz:</h2>
+  <p *ngIf="selectedError !== ''" class="form-error">
+    {{selectedError}}
+  </p>
+  <app-phrases-selection [phrases]="selectedPhrases" [emptySelection]="'No phrases selected for quiz'" (phraseClick)="removePhraseFromQuiz($event, true)"></app-phrases-selection>
+</div>
+<hr>
+<div class="unselected-phrases phrases">
+  <h2>All unselected phrases:</h2>
+  <p *ngIf="unselectedError !== ''" class="form-error">
+    {{unselectedError}}
+  </p>
+  <app-phrases-selection [phrases]="unselectedPhrases" [emptySelection]="'No phrases left to add to quiz'" (phraseClick)="addPhraseToQuiz($event, true)"></app-phrases-selection>
+</div>
+
+

@@ -1,0 +1,11 @@
+<h1>Categories</h1>
+<a [routerLink]="['../category', -1]">Create new category</a>
+
+<app-admin-entity-list
+  [entities]="items"
+  [keys]="['name']"
+  [keysPretty]="{ 'name': 'Category Name' }"
+  [editUrl]="'../category'"
+  [removeUrl]="'category/remove'"
+>
+</app-admin-entity-list>

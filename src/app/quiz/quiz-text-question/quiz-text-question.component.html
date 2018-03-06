@@ -1,0 +1,18 @@
+<div class="answers">
+  <input #questionInput
+         class="answer-text-input"
+         [(ngModel)]="question.answer"
+         (change)="questionAnswered()"
+         (keyup)="tryFocusNext($event)"
+         [placeholder]="getPlaceholderText()"
+         [tabindex]="question.isCorrect ? -1 : 0"
+         [readonly]="question.isCorrect"
+  >
+  <button *ngIf="isReviewed && !question.isCorrect && !revealAnswers"
+          (click)="revealAnswers = true;"
+          class="reveal"
+          tabindex="-1"
+  >Reveal Answer</button>
+  <sub *ngIf="revealAnswers && !question.isCorrect" class="reveal"> {{ question.getCorrectAnswers().join('/') }} </sub>
+</div>
+

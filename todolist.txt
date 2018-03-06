@@ -1,0 +1,36 @@
+* Tests, add some tests to refamiliarise with protractor
+
+* Make phrases, quiz and category editable on the spot instead of having to click edit
+  - Update the entity list component
+* Creating a phrase, category and quiz takes you back to `/phrases` e.t.c.
+* Verb trainer
+
+Maybe:
+* Improve error handling for quiz
+  - For example if phrases.length < phrasesPerQuestion
+
+* getter/setter for quizService properties so it's always an integer for quizType e.t.c.
+
+* Refactor "hasphrases" to some other name like "allthathasphrases"
+
+* Could cache the quizzes & categories on selection if a user will change between A -> B -> A ...
+  - Which could be solved by using a service to handle all that logic!
+
+* Create a custom component to select category instead of 1 massive dropdown list when creating a phrase.
+
+* Add fixed options to a phrase for so there can be a quiz about grammar with close looking words.
+
+* Update the API functions to use PUT, DELETE as http functions for the update & delete functionality instead of post.
+   - On hold for now, would need to properly rewrite routing.
+      So that the id is in the url for example for delete `quiz/1` instead of `quiz/remove`
+
+
+* Add validation such as phrase.finnish.length < 512 on backend
+  - And maxlength for the <input>
+
+* Add frontend for selecting a quiz
+  - QuizSelection component
+    - Selected words?
+        You can select phrases from all the total phrases and make a quiz from that.
+
+
