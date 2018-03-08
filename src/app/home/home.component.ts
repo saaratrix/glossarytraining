@@ -26,6 +26,8 @@ export class HomeComponent implements OnInit {
   public isFetchingQuiz: boolean;
   public error: string;
 
+  private _testQuiz: Quiz;
+
   constructor (private quizService: QuizService,  private apiService: ApiService, private router: Router) {
     this.quizzes = [];
     this.categories = [];
@@ -40,37 +42,91 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit () {
-    this.apiService.get("quiz/hasphrases").then((result: QuizGetResponse) => {
-      this.quizzes = result.quizzes || [];
-    });
+    // this.apiService.get("quiz/hasphrases").then((result: QuizGetResponse) => {
+    //   this.quizzes = result.quizzes || [];
+    // });
 
-    this.apiService.get("category/hasphrases").then((result: CategoryGetResponse) => {
-      this.categories = result.categories || [];
-    });
+    const fruitCategory: Category = {
+      id: 1,
+      name: "Fruit"
+    };
+
+    this._testQuiz = {
+      id: -1,
+      name: "Fruit Quiz",
+      description: "Fruits!",
+      phrases: [
+        {
+          category: fruitCategory,
+          english: "apple",
+          finnish: "omena",
+          id: 1,
+          note: ""
+        },
+        {
+          category: fruitCategory,
+          english: "banana",
+          finnish: "banaani",
+          id: 2,
+          note: ""
+        },
+        {
+          category: fruitCategory,
+          english: "orange",
+          finnish: "appelsiini",
+          id: 3,
+          note: ""
+        },
+        {
+          category: fruitCategory,
+          english: "strawberry",
+          finnish: "mansikka",
+          id: 4,
+          note: ""
+        },
+        {
+          category: fruitCategory,
+          english: "blueberry",
+          finnish: "mustikka",
+          id: 5,
+          note: ""
+        }
+      ]
+    };
+
+    this.quizzes.push(this._testQuiz);
+
+    this.categories.push( fruitCategory );
+
+    // this.apiService.get("category/hasphrases").then((result: CategoryGetResponse) => {
+    //   this.categories = result.categories || [];
+    // });
   }
 
   public quizSelected (quiz: Quiz): void {
-    this.isFetchingQuiz = true;
-    this.selectedQuiz = null;
-    this.error = "";
+    this.setSelectedQuiz(quiz);
 
-    this.apiService.get("quiz/get/" + quiz.id).then((result: QuizGetDetailResponse) => {
-      this.isFetchingQuiz = false;
-
-      if (result.quiz) {
-        if (result.quiz.phrases.length > 0) {
-          this.setSelectedQuiz(result.quiz);
-        }
-        else {
-          this.error = "There are no phrases for that quiz.";
-          const index = this.quizzes.indexOf(quiz);
-          this.quizzes.splice(index, 1);
-        }
-      }
-      else {
-        this.error = result.error;
-      }
-    });
+    // this.isFetchingQuiz = true;
+    // this.selectedQuiz = null;
+    // this.error = "";
+    //
+    // this.apiService.get("quiz/get/" + quiz.id).then((result: QuizGetDetailResponse) => {
+    //   this.isFetchingQuiz = false;
+    //
+    //   if (result.quiz) {
+    //     if (result.quiz.phrases.length > 0) {
+    //       this.setSelectedQuiz(result.quiz);
+    //     }
+    //     else {
+    //       this.error = "There are no phrases for that quiz.";
+    //       const index = this.quizzes.indexOf(quiz);
+    //       this.quizzes.splice(index, 1);
+    //     }
+    //   }
+    //   else {
+    //     this.error = result.error;
+    //   }
+    // });
   }
 
   public categorySelected (category: Category): void {
@@ -78,24 +134,26 @@ export class HomeComponent implements OnInit {
     this.selectedQuiz = null;
     this.error = "";
 
-    this.apiService.get("phrase/category/" + category.id).then((result: PhraseGetResponse) => {
-      this.isFetchingQuiz = false;
-      if (result.phrases.length > 0) {
-        const quiz: Quiz = {
-          id: -1,
-          description: "A quiz for the category " + category.name,
-          name: category.name,
-          phrases: result.phrases
-        };
+    // this.apiService.get("phrase/category/" + category.id).then((result: PhraseGetResponse) => {
+    //   this.isFetchingQuiz = false;
+    //   if (result.phrases.length > 0) {
+    //     const quiz: Quiz = {
+    //       id: -1,
+    //       description: "A quiz for the category " + category.name,
+    //       name: category.name,
+    //       phrases: result.phrases
+    //     };
+    //
+    //     this.setSelectedQuiz(quiz);
+    //   }
+    //   else {
+    //     this.error = "No phrases found for that category";
+    //     const index = this.categories.indexOf(category);
+    //     this.categories.splice(index, 1);
+    //   }
+    // });
 
-        this.setSelectedQuiz(quiz);
-      }
-      else {
-        this.error = "No phrases found for that category";
-        const index = this.categories.indexOf(category);
-        this.categories.splice(index, 1);
-      }
-    });
+    this.setSelectedQuiz(this._testQuiz);
   }
 
   public startQuiz (): void {
