@@ -1,4 +1,4 @@
-This is a webapp I wrote to practice angular5. 
+This is a web app I wrote to practice angular5. 
 The app itself is a way to practice finnish language by practising phrases.
 
 It uses many features from angular such as services, components and routing.
