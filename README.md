@@ -3,5 +3,6 @@
 The idea behind the project itself though was to practice words from 1 language to another. Which it does well in its current iteration but some quality improvements could be made!
 
 For gh-pages I abstracted out the backend calls so you can test the frontend directly:
-http://haestflod.github.io/glossarytraining/public/exam.html
+Note: The version for Angular 2 is no longer available instead this is for Angular 5
+https://haestflod.github.io/glossarytraining/dist/
 
