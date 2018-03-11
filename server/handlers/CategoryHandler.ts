@@ -2,7 +2,7 @@ import { BaseHandler } from "./BaseHandler";
 import { Category } from "../models/Category";
 import { query, MySQLResults } from "../database/mysql-connection";
 
-export class CategoryHandler extends BaseHandler<Category>{
+export class CategoryHandler extends BaseHandler<Category> {
   constructor () {
     super("categories", " order by name");
   }
@@ -38,6 +38,7 @@ export class CategoryHandler extends BaseHandler<Category>{
 
     return false;
   }
+
   public async update (entity: Category): Promise<boolean> {
     const sql = `update ${this.m_table} set name = ?
                 where id = ?;`;

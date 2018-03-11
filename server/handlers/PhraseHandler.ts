@@ -166,7 +166,6 @@ export class PhraseHandler extends BaseHandler<Phrase>{
       return false;
     }
 
-
     return true;
   }
 }

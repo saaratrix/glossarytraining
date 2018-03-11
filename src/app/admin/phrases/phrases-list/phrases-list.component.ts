@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { ApiService } from "../../../shared/services/api.service";
 import { Phrase } from "../../../shared/models/phrase.model";
 import { DefaultSuccessResponse, PhraseGetResponse } from "../../../shared/models/httpresponses";
@@ -7,9 +7,9 @@ import { PhrasesByCategory } from "../../../shared/models/phrases-by-category.mo
 import { EntityListComponent } from "../../shared/entity-list/entity-list.component";
 
 @Component({
-  selector: 'app-admin-phrases-list',
-  templateUrl: './phrases-list.component.html',
-  styleUrls: ['./phrases-list.component.less']
+  selector: "app-admin-phrases-list",
+  templateUrl: "./phrases-list.component.html",
+  styleUrls: ["./phrases-list.component.less"]
 })
 export class PhrasesListComponent implements OnInit {
 

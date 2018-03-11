@@ -7,6 +7,7 @@ interface BaseEntity {
 
 export class BaseHandler<T extends BaseEntity> implements IHandler<T> {
 
+  // The database table to handle data to/from
   protected readonly m_table: string;
   protected readonly m_orderByAll: string;
 
@@ -15,6 +16,10 @@ export class BaseHandler<T extends BaseEntity> implements IHandler<T> {
     this.m_orderByAll = orderByAll;
   }
 
+  /**
+   * Get all entities.
+   * @return {Promise<T[]>}
+   */
   public async all (): Promise<T[]> {
     const sql = `select * from ${this.m_table}${this.m_orderByAll};`;
     const sqlResult = await query(sql, []);
@@ -27,6 +32,11 @@ export class BaseHandler<T extends BaseEntity> implements IHandler<T> {
     return items;
   }
 
+  /**
+   * Get one entity from id.
+   * @param {number | string} id
+   * @return {Promise<T extends BaseEntity>}
+   */
   public async get (id: number | string): Promise<T> {
     const sql = `select * from ${this.m_table} where id = ?;`;
     const sqlResult = await query(sql, [id]);
@@ -39,6 +49,11 @@ export class BaseHandler<T extends BaseEntity> implements IHandler<T> {
     return item;
   }
 
+  /**
+   * Remove the input entity.
+   * @param {T} entity
+   * @return {Promise<boolean>}
+   */
   public async remove (entity: T): Promise<boolean> {
     const sql = `delete from ${this.m_table} where id = ?;`;
     const sqlResult = await query(sql, [entity.id]);

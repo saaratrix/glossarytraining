@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ApiService } from "../shared/services/api.service";
 import { Quiz } from "../shared/models/quiz.model";
@@ -9,9 +9,9 @@ import { Router } from "@angular/router";
 import { QuizType } from "../shared/enums/quiz-type.enum";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less']
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.less"]
 })
 export class HomeComponent implements OnInit {
 
@@ -106,7 +106,7 @@ export class HomeComponent implements OnInit {
     this.quizService.quiz = this.selectedQuiz;
     // quizType.Text = '0' instead of 0 causing issues
     this.quizService.quizType = parseInt("" + this.quizType, 10);
-    this.router.navigate(['quiz']);
+    this.router.navigate(["quiz"]);
   }
 
   private setSelectedQuiz (quiz: Quiz) {

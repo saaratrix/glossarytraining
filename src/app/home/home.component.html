@@ -25,7 +25,7 @@
       <br>
       <label for="quiztype">Select type of quiz</label>
       <select id="quiztype" name="quiztype" [(ngModel)]="quizType" >
-        <option *ngFor="let key of QuizTypeKeys" [value]="key" [label]="QuizTypes[key]" ></option>
+        <option *ngFor="let key of QuizTypeKeys" [value]="key" >{{QuizTypes[key]}}</option>
       </select>
       <br>
       <button (click)="startQuiz()">Start quiz</button>

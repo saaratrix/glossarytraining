@@ -94,7 +94,7 @@
       "allow-null-check"
     ],
     "quotemark": [
-      false,
+      true,
       "double"
     ],
     "typedef-whitespace": [

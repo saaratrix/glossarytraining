@@ -1,0 +1,57 @@
+<div *ngIf="verb; then itemBlock else loadingBlock;"></div>
+<ng-template #itemBlock>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+    <h1>Verb - {{verb.finnish}}</h1>
+    <div class="form-group">
+      <label for="finnish">Finnish:</label>
+      <input type="text" id="finnish" name="finnish" required [(ngModel)]="verb.finnish">
+    </div>
+    <div class="form-group">
+      <label for="english">English:</label>
+      <input type="text" id="english" name="english" required [(ngModel)]="verb.english" >
+    </div>
+    <div class="form-group">
+      <label for="note">Note:</label>
+      <input type="text" id="note" name="note" [(ngModel)]="verb.note" >
+    </div>
+    <div class="form-group">
+      <label for="mina">Minä</label>
+      <input type="text" id="mina" name="mina" required [(ngModel)]="verb.mina" >
+    </div>
+    <div class="form-group">
+      <label for="sina">Sinä</label>
+      <input type="text" id="sina" name="sina" required [(ngModel)]="verb.sina" >
+    </div>
+    <div class="form-group">
+      <label for="han">Hän</label>
+      <input type="text" id="han" name="han" required [(ngModel)]="verb.han" >
+    </div>
+    <div class="form-group">
+      <label for="me">Me</label>
+      <input type="text" id="me" name="me" required [(ngModel)]="verb.me" >
+    </div>
+    <div class="form-group">
+      <label for="te">Te</label>
+      <input type="text" id="te" name="te" required [(ngModel)]="verb.te" >
+    </div>
+    <div class="form-group">
+      <label for="he">He</label>
+      <input type="text" id="he" name="he" required [(ngModel)]="verb.he" >
+    </div>
+    <div class="form-group">
+      <label for="ei">Ei</label>
+      <input type="text" id="ei" name="ei" required [(ngModel)]="verb.ei" >
+    </div>
+    <br>
+    <input type="submit" [value]="isNew ? 'Create Verb' : 'Update Verb'">
+    <div *ngIf="isWaitingForServer">
+      Processing server request ...
+    </div>
+    <div *ngIf="error" class="form-error">
+      {{error}}
+    </div>
+  </form>
+</ng-template>
+<ng-template #loadingBlock>
+  fetching verb ...
+</ng-template>

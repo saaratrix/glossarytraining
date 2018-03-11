@@ -1,0 +1,24 @@
+form {
+  width: 100%;
+}
+
+label {
+  // otherwise the min-width doesn't work
+  display: inline-block;
+  min-width: 100px;
+}
+
+.form-group {
+  input, select {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  &:nth-child(even) {
+    background-color: #badbad;
+  }
+
+  &:nth-child(odd) {
+    background-color: #E6E6FA;
+  }
+}

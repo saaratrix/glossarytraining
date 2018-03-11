@@ -2,8 +2,13 @@
 
 * Make phrases, quiz and category editable on the spot instead of having to click edit
   - Update the entity list component
+    - Ideally it'd be nice if you click edit it creates a dropdown effect instead of going to a new route I think.
+    - Error handling
+
+* Style entity-list component better, equal width
+
 * Creating a phrase, category and quiz takes you back to `/phrases` e.t.c.
-* Verb trainer
+* Verb quizzes
 
 Maybe:
 * Improve error handling for quiz

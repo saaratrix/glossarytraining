@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { Quiz } from "../../../shared/models/quiz.model";
 import { QuizGetResponse } from "../../../shared/models/httpresponses";
 import { ApiService } from "../../../shared/services/api.service";
-
-import { EntityListComponent } from "../../shared/entity-list/entity-list.component";
 
 @Component({
   selector: "app-admin-quiz-list",

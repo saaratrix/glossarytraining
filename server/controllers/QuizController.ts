@@ -24,6 +24,13 @@ export class QuizController {
     });
   }
 
+  /**
+   * Return all quizzes that has at least one phrase.
+   * This is so the list user can select a quiz from only has quizzes with phrases!
+   * @param {e.Request} req
+   * @param {e.Response} res
+   * @return {Promise<void>}
+   */
   public async getAllHasPhrases (req: Request, res: Response): Promise<void> {
     const quizzes = await this.m_quizHandler.allHasPhrases();
 

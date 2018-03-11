@@ -2,9 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { MultipleQuestion } from "../../shared/models/multiple-question";
 
 @Component({
-  selector: 'app-quiz-multiple-question',
-  templateUrl: './quiz-multiple-question.component.html',
-  styleUrls: ['./quiz-multiple-question.component.less']
+  selector: "app-quiz-multiple-question",
+  templateUrl: "./quiz-multiple-question.component.html",
+  styleUrls: ["./quiz-multiple-question.component.less"]
 })
 export class QuizMultipleQuestionComponent implements OnInit {
 
@@ -39,7 +39,7 @@ export class QuizMultipleQuestionComponent implements OnInit {
    */
   private checkIdenticalOptions (): boolean {
     for (let a  = 0; a < this.question.options.length; a++) {
-      const optionsA: string[] = this.question.options[a].value.split('/').map(value => {
+      const optionsA: string[] = this.question.options[a].value.split("/").map(value => {
         return value.trim().toLowerCase();
       });
 
@@ -48,7 +48,7 @@ export class QuizMultipleQuestionComponent implements OnInit {
           continue;
         }
 
-        const optionsB: string[] = this.question.options[b].value.split('/').map(value => {
+        const optionsB: string[] = this.question.options[b].value.split("/").map(value => {
           return value.trim().toLowerCase();
         });
 

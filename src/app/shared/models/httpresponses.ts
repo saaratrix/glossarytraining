@@ -1,6 +1,7 @@
 import { Category } from "./category.model";
 import { Phrase } from "./phrase.model";
 import { Quiz } from "./quiz.model";
+import { Verb } from "./verb.model";
 
 export interface DefaultSuccessResponse {
   error: string;
@@ -64,6 +65,24 @@ export interface QuizGetResponse {
 
 export interface QuizPostCreateResponse {
   quiz: Quiz;
+  error: string;
+}
+
+/**
+ * Verb responses
+ */
+export interface VerbGetResponse {
+  verbs: Verb[];
+  error?: string;
+}
+
+export interface VerbGetDetailResponse {
+  verb: Verb;
+  error?: string;
+}
+
+export interface VerbPostCreateResponse {
+  verb: Verb;
   error: string;
 }
 

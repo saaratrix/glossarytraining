@@ -14,9 +14,9 @@ interface IQuestionKeys {
 }
 
 @Component({
-  selector: 'app-quiz',
-  templateUrl: './quiz.component.html',
-  styleUrls: ['./quiz.component.less']
+  selector: "app-quiz",
+  templateUrl: "./quiz.component.html",
+  styleUrls: ["./quiz.component.less"]
 })
 export class QuizComponent implements OnInit {
 
@@ -47,7 +47,7 @@ export class QuizComponent implements OnInit {
     this.type = this.quizService.quizType;
 
     if (!this.quiz) {
-      this.router.navigate(['']);
+      this.router.navigate([""]);
       return;
     }
     // Copy value by value
@@ -72,7 +72,7 @@ export class QuizComponent implements OnInit {
    */
   public doNewQuiz (): void {
     this.quizService.quiz = null;
-    this.router.navigate(['']);
+    this.router.navigate([""]);
   }
 
   /**

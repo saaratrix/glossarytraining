@@ -1,0 +1,13 @@
+<h1>Verbs</h1>
+<a [routerLink]="['../verb', -1]">Create new verb</a>
+
+<app-admin-entity-list
+  [entities]="verbs"
+  [editUrl]="'../verb'"
+  [updateUrl]="'verb/update'"
+  [removeUrl]="'verb/remove'"
+  [keys]="['finnish', 'note']"
+  [keysData]="{ 'finnish': { header: 'Verb', editable: true }, 'note': { header: 'Note', editable: true } }"
+  [titles]="{ 'finnish': 'english' }"
+  >
+</app-admin-entity-list>

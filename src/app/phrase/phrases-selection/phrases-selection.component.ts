@@ -1,14 +1,17 @@
-import { Component, Input, Output, OnInit, EventEmitter, IterableDiffers, IterableDiffer } from "@angular/core";
+import {
+  Component, Input, Output, OnInit, EventEmitter, IterableDiffers, IterableDiffer,
+  DoCheck
+} from "@angular/core";
 import { Phrase } from "../../shared/models/phrase.model";
 import { PhrasesByCategory } from "../../shared/models/phrases-by-category.model";
 
 
 @Component({
-  selector: 'app-phrases-selection',
-  templateUrl: './phrases-selection.component.html',
-  styleUrls: ['./phrases-selection.component.less']
+  selector: "app-phrases-selection",
+  templateUrl: "./phrases-selection.component.html",
+  styleUrls: ["./phrases-selection.component.less"]
 })
-export class PhrasesSelectionComponent implements OnInit {
+export class PhrasesSelectionComponent implements OnInit, DoCheck {
 
   @Input()
   public phrases: Phrase[];

@@ -4,8 +4,9 @@
 <app-admin-entity-list
   [entities]="items"
   [keys]="['name']"
-  [keysPretty]="{ 'name': 'Category Name' }"
+  [keysData]="{ 'name': { header: 'Category Name', editable: true } }"
   [editUrl]="'../category'"
+  [updateUrl]="'category/update'"
   [removeUrl]="'category/remove'"
 >
 </app-admin-entity-list>

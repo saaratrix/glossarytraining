@@ -6,10 +6,14 @@
     <app-admin-entity-list
        [entities]="phrasesByCategory.phrases"
        [editUrl]="'../phrase'"
+       [updateUrl]="'phrase/update'"
        [removeUrl]="'phrase/remove'"
-       [keys]="['finnish']"
+       [keys]="['finnish', 'note']"
        [titles]="{ 'finnish': 'english' }"
-       [keysPretty]="{ 'finnish': 'Finnish' }"
+       [keysData]="{
+                      'finnish': { header: 'Finnish', editable: true },
+                      'note': { header: 'Note', editable: true }
+                    }"
        (removed)="removedPhrase($event)"
     >
     </app-admin-entity-list>

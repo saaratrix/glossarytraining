@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Quiz } from "../../../shared/models/quiz.model";
 
@@ -9,9 +9,9 @@ import { QuizGetDetailResponse, QuizPostCreateResponse, DefaultSuccessResponse }
 import { PhrasesQuizSelectionComponent } from "../../phrases/phrases-quiz-selection/phrases-quiz-selection.component";
 
 @Component({
-  selector: 'app-admin-quiz-detail',
-  templateUrl: './quiz-detail.component.html',
-  styleUrls: ['./quiz-detail.component.less']
+  selector: "app-admin-quiz-detail",
+  templateUrl: "./quiz-detail.component.html",
+  styleUrls: ["./quiz-detail.component.less"]
 })
 export class QuizDetailComponent implements OnInit {
 
@@ -20,7 +20,7 @@ export class QuizDetailComponent implements OnInit {
   public isWaitingForServer: boolean;
   public error: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private apiService: ApiService) {
+  constructor (private route: ActivatedRoute, private router: Router, private apiService: ApiService) {
     this.quiz = null;
     this.isNew = false;
 
@@ -28,7 +28,7 @@ export class QuizDetailComponent implements OnInit {
     this.error = null;
   }
 
-  ngOnInit() {
+  ngOnInit () {
     this.route.params.subscribe((params) => {
       const id = parseInt(params.id, 10);
 
@@ -46,7 +46,7 @@ export class QuizDetailComponent implements OnInit {
           this.quiz = result.quiz;
           // If invalid quiz then route back to quiz list
           if (!this.quiz) {
-            this.router.navigate(['/admin/quizzes']);
+            this.router.navigate(["/admin/quizzes"]);
           }
         });
       }
@@ -56,18 +56,18 @@ export class QuizDetailComponent implements OnInit {
   /**
    * Create the Quiz in database and navigate to the new quiz url.
    */
-  public createQuiz(): void {
+  public createQuiz (): void {
     this.isWaitingForServer = true;
     this.error = null;
 
     this.apiService.post("quiz/create", this.quiz)
       .then((result: QuizPostCreateResponse) => {
-        // If quiz isn't null
+        // If quiz isn't null then set id so update works
         if (result.quiz) {
           this.quiz.id = result.quiz.id;
           // If success show that it was updated?
           this.isNew = false;
-          this.router.navigate(['/admin/quiz/' + result.quiz.id]);
+          this.router.navigate(["/admin/quiz/" + result.quiz.id]);
         }
         else {
           this.error = result.error;
@@ -79,7 +79,7 @@ export class QuizDetailComponent implements OnInit {
   /**
    * Update the quiz data
    */
-  public updateQuiz(): void {
+  public updateQuiz (): void {
     this.isWaitingForServer = true;
     this.error = null;
 
@@ -96,7 +96,7 @@ export class QuizDetailComponent implements OnInit {
       });
   }
 
-  public onSubmit(form: NgForm) {
+  public onSubmit (form: NgForm) {
     if (form.valid) {
       if (this.isNew) {
         this.createQuiz();

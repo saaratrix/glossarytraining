@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 @Component({
-  selector: 'app-quiz-selection',
-  templateUrl: './quiz-selection.component.html',
-  styleUrls: ['./quiz-selection.component.less']
+  selector: "app-quiz-selection",
+  templateUrl: "./quiz-selection.component.html",
+  styleUrls: ["./quiz-selection.component.less"]
 })
 export class QuizSelectionComponent implements OnInit {
 
@@ -12,16 +12,16 @@ export class QuizSelectionComponent implements OnInit {
   @Output()
   public selected: EventEmitter<any>;
 
-  constructor() {
+  constructor () {
     this.items = [];
     this.selected = new EventEmitter<any>();
   }
 
-  ngOnInit() {
+  ngOnInit () {
 
   }
 
-  public itemClicked(item: any) {
+  public itemClicked (item: any) {
     this.selected.emit(item);
   }
 

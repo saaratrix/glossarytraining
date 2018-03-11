@@ -127,6 +127,11 @@ export class PhraseController {
     const english: string = body.english || "";
     const note: string = body.note || "";
 
+    if (body.category) {
+      body.categoryId = body.category.id;
+      body.categoryName = body.category.name;
+    }
+
     const categoryId = typeof body.categoryId !== "undefined" ? parseInt(body.categoryId, 10) : -1;
     const categoryName = body.categoryName || "";
 
