@@ -8,8 +8,8 @@ import { Verb as VerbClient } from "./../../src/app/shared/models/verb.model";
 export class VerbController {
   private m_verbHandler: VerbHandler;
 
-  constructor(categoryHandler: VerbHandler) {
-    this.m_verbHandler = categoryHandler;
+  constructor(verbHandler: VerbHandler) {
+    this.m_verbHandler = verbHandler;
   }
 
   public async getAll (req: Request, res: Response): Promise<void> {
@@ -109,6 +109,12 @@ export class VerbController {
     return new Verb(id, finnish, english, note, minä, sinä, hän, me, te, he, ei);
   }
 
+  // Could just use mina, sina, han on server too but would need to update the database!!
+  /**
+   * Convert a verb model to the model used on client side (without äää)
+   * @param {Verb} verb
+   * @return {VerbClient}
+   */
   private getClientVerb (verb: Verb): VerbClient {
     if (!verb) {
       return null;
@@ -129,8 +135,13 @@ export class VerbController {
     };
   }
 
+  /**
+   * Convert an array of verb models to the model used on client side.
+   * @param {Verb[]} verbs
+   * @return {VerbClient[]}
+   */
   private getClientVerbs (verbs: Verb[]): VerbClient[] {
-    const result = [];
+    const result: VerbClient[] = [];
 
     for (let i = 0; i < verbs.length; i++) {
       result.push(this.getClientVerb(verbs[i]));
