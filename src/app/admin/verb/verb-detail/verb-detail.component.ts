@@ -51,7 +51,7 @@ export class VerbDetailComponent implements OnInit {
         this.apiService.get("verb/get/" + id).then((result: VerbGetDetailResponse) => {
           this.verb = result.verb;
           // If invalid quiz then route back to quiz list
-          if (!this.verb) {
+          if (this.verb) {
             this.router.navigate(["/admin/verbs"]);
           }
         });

@@ -54,9 +54,6 @@ export class CategoryDetailComponent implements OnInit {
     this.apiService.post("category/create", this.item)
       .then((result: CategoryPostCreateResponse) => {
         if (result.category) {
-          this.item.id = result.category.id;
-          // If success show that it was updated?
-          this.isNew = false;
           this.router.navigate(["/admin/categories"]);
         }
         else {

@@ -112,6 +112,7 @@ export class PhrasesDetailComponent implements OnInit {
         this.item.finnish = "";
         this.item.english = "";
         this.item.note = "";
+        // Specifically isn't changing category because it could be likely you're adding 2 phrases to the same category in a row
       }
       else {
         this.error = result.error;

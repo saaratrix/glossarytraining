@@ -10,6 +10,7 @@ import { SharedModule } from "./shared/shared.module";
 import { HomeModule } from "./home/home.module";
 import { PhraseModule } from "./phrase/phrase.module";
 import { QuizModule } from "./quiz/quiz.module";
+import { VerbModule } from "./verb/verb.module";
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([]);
 
@@ -24,6 +25,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([]);
     HomeModule,
     PhraseModule,
     QuizModule,
+    VerbModule,
     AdminModule,
     rootRouting
   ],

@@ -1,3 +1,17 @@
-<p>
-  verb-selection works!
-</p>
+<button (click)="selectAll()">Select all</button>
+
+<ng-container *ngIf="selectedVerbs.length > 0; then selectedBlock else needSelectionBlock;"></ng-container>
+<ng-template #selectedBlock>
+  <button (click)="start()">Start verb training</button>
+</ng-template>
+<ng-template #needSelectionBlock>
+  <p *ngIf="isFetchingItems">
+    Loading verbs...
+  </p>
+  <p *ngIf="error.length > 0" class="form-error">
+    {{error}}
+  </p>
+  <p *ngIf="!isFetchingItems && error.length === 0">
+    You need to select verbs before you can continue.
+  </p>
+</ng-template>
