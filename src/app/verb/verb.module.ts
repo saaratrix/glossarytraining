@@ -3,6 +3,8 @@ import { CommonModule } from "@angular/common";
 import { VerbSelectionComponent } from "./verb-selection/verb-selection.component";
 import { RouterModule } from "@angular/router";
 import { VerbTrainingComponent } from './verb-training/verb-training.component';
+import { VerbService } from "./verb.service";
+import { FormsModule } from "@angular/forms";
 
 const verbRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -20,7 +22,11 @@ const verbRouting: ModuleWithProviders = RouterModule.forChild([
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     verbRouting
+  ],
+  providers: [
+    VerbService
   ],
   declarations: [
     VerbSelectionComponent,

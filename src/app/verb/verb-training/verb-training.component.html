@@ -1,1 +1,44 @@
-<p>Verb training works!</p>
+<ul>
+  <li>
+    <div class="row">
+      <div></div>
+      <div>Minä</div>
+      <div>Sinä</div>
+      <div>Hän</div>
+      <div>Me</div>
+      <div>Te</div>
+      <div>He</div>
+      <div>Ei</div>
+    </div>
+  </li>
+  <li *ngFor="let verb of verbs">
+    <div class="row">
+      <div [title]="verb.english">{{verb.finnish}}</div>
+      <div>
+        <input type="text" [(ngModel)]="verb.mina">
+      </div>
+      <div>
+        <input type="text" [(ngModel)]="verb.sina">
+      </div>
+      <div>
+        <input type="text" [(ngModel)]="verb.han">
+      </div>
+      <div>
+        <input type="text" [(ngModel)]="verb.me">
+      </div>
+      <div>
+        <input type="text" [(ngModel)]="verb.te">
+      </div>
+      <div>
+        <input type="text" [(ngModel)]="verb.he">
+      </div>
+      <div>
+        <input type="text" [(ngModel)]="verb.ei">
+      </div>
+    </div>
+  </li>
+</ul>
+<div *ngIf="true">
+  <button (click)="review()">Review verbs</button>
+</div>
+

@@ -3,6 +3,7 @@ import { Verb } from "../../shared/models/verb.model";
 import { ApiService } from "../../shared/services/api.service";
 import { VerbGetResponse } from "../../shared/models/httpresponses";
 import { Router } from "@angular/router";
+import { VerbService } from "../verb.service";
 
 @Component({
   selector: "app-verb-selection",
@@ -17,7 +18,7 @@ export class VerbSelectionComponent implements OnInit {
   public isFetchingItems: boolean;
   public error: string;
 
-  constructor (private apiService: ApiService, private router: Router) {
+  constructor (private verbService: VerbService, private apiService: ApiService, private router: Router) {
     this.verbs = [];
     this.selectedVerbs = [];
 
@@ -35,9 +36,7 @@ export class VerbSelectionComponent implements OnInit {
         this.error = result.error;
       }
 
-      setTimeout(() => {
-        this.isFetchingItems = false;
-      }, 2500);
+      this.isFetchingItems = false;
     });
   }
 
@@ -46,7 +45,21 @@ export class VerbSelectionComponent implements OnInit {
   }
 
   public start () {
-    console.log("STARTING!!", this.selectedVerbs);
+    // Shuffle the verbs
+    this.shuffleArray(this.selectedVerbs);
+    this.verbService.verbs = this.selectedVerbs;
+
     this.router.navigate(["verb-training"]);
+  }
+
+  private shuffleArray (arr: any[]) {
+    for (let i = 0; i < arr.length; ++i) {
+      // Get a random number between 0 and length
+      const randomId: number = Math.floor(Math.random() * arr.length);
+      const temp: any = arr[randomId];
+
+      arr[randomId] = arr[i];
+      arr[i] = temp;
+    }
   }
 }

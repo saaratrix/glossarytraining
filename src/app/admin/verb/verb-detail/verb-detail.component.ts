@@ -51,7 +51,7 @@ export class VerbDetailComponent implements OnInit {
         this.apiService.get("verb/get/" + id).then((result: VerbGetDetailResponse) => {
           this.verb = result.verb;
           // If invalid quiz then route back to quiz list
-          if (this.verb) {
+          if (!result.verb) {
             this.router.navigate(["/admin/verbs"]);
           }
         });
@@ -78,9 +78,7 @@ export class VerbDetailComponent implements OnInit {
     })
     .then((result: VerbPostCreateResponse) => {
       if (result.verb) {
-        this.verb.id = result.verb.id;
-        // If success show that it was updated?
-        this.isNew = true;
+        this.router.navigate(["/admin/verbs"]);
       }
       else {
         this.error = result.error;
