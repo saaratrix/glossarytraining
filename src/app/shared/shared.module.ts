@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { ApiService } from "./services/api.service";
+import { QuizCreateHelperService } from "./services/quiz-create-helper.service";
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { ApiService } from "./services/api.service";
     RouterModule,
   ],
   providers: [
-    ApiService
+    ApiService,
+    QuizCreateHelperService
   ],
   declarations: [],
 })

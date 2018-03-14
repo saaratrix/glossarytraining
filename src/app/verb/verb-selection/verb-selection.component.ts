@@ -4,6 +4,7 @@ import { ApiService } from "../../shared/services/api.service";
 import { VerbGetResponse } from "../../shared/models/httpresponses";
 import { Router } from "@angular/router";
 import { VerbService } from "../verb.service";
+import { VerbItem } from "../../shared/models/verb-item.model";
 
 @Component({
   selector: "app-verb-selection",
@@ -45,21 +46,8 @@ export class VerbSelectionComponent implements OnInit {
   }
 
   public start () {
-    // Shuffle the verbs
-    this.shuffleArray(this.selectedVerbs);
     this.verbService.verbs = this.selectedVerbs;
 
     this.router.navigate(["verb-training"]);
-  }
-
-  private shuffleArray (arr: any[]) {
-    for (let i = 0; i < arr.length; ++i) {
-      // Get a random number between 0 and length
-      const randomId: number = Math.floor(Math.random() * arr.length);
-      const temp: any = arr[randomId];
-
-      arr[randomId] = arr[i];
-      arr[i] = temp;
-    }
   }
 }

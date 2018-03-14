@@ -1,5 +1,5 @@
 <div class="questions-list">
-  <div *ngFor="let question of questions;" [ngClass]="{ 'question-hidden': !question.visible, 'question-item': true }">
+  <div *ngFor="let question of questions;" [ngClass]="{ 'question-hidden': !question.isVisible, 'question-item': true }">
     <app-quiz-question [question]="question" [isReviewed]="isReviewed" (answered)="questionAnswered($event)"></app-quiz-question>
   </div>
 </div>

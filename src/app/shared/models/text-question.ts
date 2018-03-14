@@ -1,7 +1,7 @@
 import { Question } from "./question";
 
 export class TextQuestion implements Question {
-  public visible: boolean;
+  public isVisible: boolean;
   public index: number;
   public question: string;
   public note: string;
@@ -12,7 +12,7 @@ export class TextQuestion implements Question {
   private correctAnswers: string[];
 
   constructor (index: number, question: string, note: string, correctAnswers: string[], isFinnish: boolean) {
-    this.visible = false;
+    this.isVisible = false;
     this.index = index;
     this.question = question;
     this.note = note;

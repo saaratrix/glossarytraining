@@ -5,6 +5,7 @@ import { RouterModule } from "@angular/router";
 import { VerbTrainingComponent } from './verb-training/verb-training.component';
 import { VerbService } from "./verb.service";
 import { FormsModule } from "@angular/forms";
+import { VerbItemComponent } from './verb-item/verb-item.component';
 
 const verbRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -30,7 +31,8 @@ const verbRouting: ModuleWithProviders = RouterModule.forChild([
   ],
   declarations: [
     VerbSelectionComponent,
-    VerbTrainingComponent
+    VerbTrainingComponent,
+    VerbItemComponent
   ]
 })
 export class VerbModule { }
