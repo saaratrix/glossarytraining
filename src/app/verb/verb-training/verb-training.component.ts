@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VerbService } from "../verb.service";
 import { Router } from "@angular/router";
-import { QuizCreateHelperService } from "../../shared/services/quiz-create-helper.service";
+import { QuizCreateHelperService, LanguageMode } from "../../shared/services/quiz-create-helper.service";
 import { VerbItem } from "../../shared/models/verb-item.model";
 import { Verb } from "../../shared/models/verb.model";
 import { VerbItemQuestion } from "../../shared/models/verb-item-question.model";
@@ -13,12 +13,14 @@ import { VerbItemQuestion } from "../../shared/models/verb-item-question.model";
 })
 export class VerbTrainingComponent implements OnInit {
   public verbs: Verb[];
-
   public verbItems: VerbItem[];
+
+  public isReviewed: boolean;
 
   constructor (private quizCreateHelperService: QuizCreateHelperService, private verbService: VerbService, private router: Router) {
     this.verbs = [];
     this.verbItems = [];
+    this.isReviewed = false;
   }
 
   ngOnInit () {
@@ -53,7 +55,7 @@ export class VerbTrainingComponent implements OnInit {
 
   private createVerbItem(verb: Verb, index: number): VerbItem {
 
-    const questionKeys = this.quizCreateHelperService.getQuestionKeys("finnish", "english");
+    const questionKeys = this.quizCreateHelperService.getQuestionKeys("finnish", "english", LanguageMode.Finnish);
     const name = verb[questionKeys.question];
     const isFinnish = questionKeys.question === "finnish";
 

@@ -1,4 +1,5 @@
 * Tests, add some tests to refamiliarise with protractor
+* Move interfaces & enums in quizcreatehealper to their own files.
 
 * Make phrases, quiz and category editable on the spot instead of having to click edit
   - Update the entity list component

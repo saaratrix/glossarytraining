@@ -2,17 +2,17 @@
   <li>
     <div class="verb-row">
       <div></div>
-      <div>Basic</div>
-      <div>Minä</div>
-      <div>Sinä</div>
-      <div>Hän</div>
-      <div>Me</div>
-      <div>Te</div>
-      <div>He</div>
-      <div>Ei</div>
+      <div><strong>Basic</strong></div>
+      <div><strong>Minä</strong></div>
+      <div><strong>Sinä</strong></div>
+      <div><strong>Hän</strong></div>
+      <div><strong>Me</strong></div>
+      <div><strong>Te</strong></div>
+      <div><strong>He</strong></div>
+      <div><strong>Ei</strong></div>
     </div>
   </li>
-  <li *ngFor="let item of verbItems">
+  <li *ngFor="let item of verbItems" [class.passed]="isReviewed && item.isCorrect" [class.failed]="isReviewed && !item.isCorrect">
     <app-verb-item [item]="item" ></app-verb-item>
   </li>
 </ul>

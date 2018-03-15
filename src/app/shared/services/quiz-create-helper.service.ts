@@ -5,6 +5,15 @@ export interface IQuestionKeys {
   answer: string;
 }
 
+export enum LanguageMode {
+  // Questions in finnish, answers in english
+  Finnish,
+  // Questions in english, answers in english
+  English,
+  // Random!
+  Random
+}
+
 @Injectable()
 export class QuizCreateHelperService {
 
@@ -15,19 +24,33 @@ export class QuizCreateHelperService {
    * For example if the quiz should randomize between finnish & english it randomizes the property keys.
    * @return {IQuestionKeys}
    */
-  public getQuestionKeys (finnish: string, english: string): IQuestionKeys {
-    // + 0.5 is equivalent of * 2
-    if (Math.floor(Math.random() + 0.5) === 0) {
+  public getQuestionKeys (finnish: string, english: string, languages: LanguageMode = LanguageMode.Random): IQuestionKeys {
+    if (languages == LanguageMode.Finnish) {
       return {
         question: finnish,
         answer: english
       };
     }
-    else {
+    else if (languages == LanguageMode.English) {
       return {
         question: english,
         answer: finnish
       };
+    }
+    else {
+      // + 0.5 is equivalent of * 2
+      if (Math.floor(Math.random() + 0.5) === 0) {
+        return {
+          question: finnish,
+          answer: english
+        };
+      }
+      else {
+        return {
+          question: english,
+          answer: finnish
+        };
+      }
     }
   }
 

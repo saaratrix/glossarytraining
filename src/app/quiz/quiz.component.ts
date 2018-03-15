@@ -7,7 +7,7 @@ import { Phrase } from "../shared/models/phrase.model";
 import { Question } from "../shared/models/question";
 import { TextQuestion } from "../shared/models/text-question";
 import { IMultipleOption, MultipleQuestion } from "../shared/models/multiple-question";
-import { QuizCreateHelperService } from "../shared/services/quiz-create-helper.service";
+import { QuizCreateHelperService, LanguageMode } from "../shared/services/quiz-create-helper.service";
 
 
 
@@ -29,6 +29,8 @@ export class QuizComponent implements OnInit {
   public answeredQuestionsCount: number;
   private answeredQuestions: Question[];
 
+  private languageMode: LanguageMode;
+
   constructor (private quizCreateHelperService: QuizCreateHelperService, private quizService: QuizService, private router: Router) {
     this.quiz = null;
     this.type = QuizType.MultipleChoices;
@@ -38,6 +40,8 @@ export class QuizComponent implements OnInit {
 
     this.answeredQuestionsCount = 0;
     this.answeredQuestions = [];
+
+    this.languageMode = LanguageMode.Random;
   }
 
   ngOnInit () {
@@ -127,7 +131,7 @@ export class QuizComponent implements OnInit {
   private createTextQuestion (index: number, phrases: Phrase[]): TextQuestion {
     const phrase = phrases[index];
 
-    const questionKeys = this.quizCreateHelperService.getQuestionKeys("finnish", "english");
+    const questionKeys = this.quizCreateHelperService.getQuestionKeys("finnish", "english", this.languageMode);
     const question = phrase[questionKeys.question];
     const answer = phrase[questionKeys.answer];
 
@@ -151,7 +155,7 @@ export class QuizComponent implements OnInit {
 
     const correctPhrase: Phrase = phrases[index];
 
-    const questionKeys = this.quizCreateHelperService.getQuestionKeys("finnish", "english");
+    const questionKeys = this.quizCreateHelperService.getQuestionKeys("finnish", "english", this.languageMode);
     const question = correctPhrase[questionKeys.question];
 
     const indices: number[] = [ index ];
