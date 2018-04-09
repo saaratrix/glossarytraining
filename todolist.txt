@@ -1,6 +1,18 @@
 * Tests, add some tests to refamiliarise with protractor
 * Move interfaces & enums in quizcreatehealper to their own files.
 
+* Test multiple categories
+* Test all categories ( all words )
+  - That's going to be fun when there are 500 words :p
+    - Add maybe up to X amount of words so it doesn't test EVERYTHING
+
+* Error handling when adding phrases quizzes e.t.c.
+  - For example when forgetting to fill in english field
+
+* Add for phrases to store last selected category instead of default to Kategoroimaton
+
+* Ignore commas and exclamation marks when answering for a text quiz
+
 * Make phrases, quiz and category editable on the spot instead of having to click edit
   - Update the entity list component
     - Ideally it'd be nice if you click edit it creates a dropdown effect instead of going to a new route I think.
