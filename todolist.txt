@@ -23,6 +23,9 @@
 * Creating a phrase, category and quiz takes you back to `/phrases` e.t.c.
 * Verb quizzes
 
+* Add a (+) or (-) as a way to show/hide a category
+  - So that you can toggle visibility of a category since they can get pretty long!
+
 Maybe:
 * Improve error handling for quiz
   - For example if phrases.length < phrasesPerQuestion
