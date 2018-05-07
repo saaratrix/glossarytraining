@@ -1,8 +1,9 @@
 * Tests, add some tests to refamiliarise with protractor
+
 * Move interfaces & enums in quizcreatehealper to their own files.
 
-* Test multiple categories
-* Test all categories ( all words )
+* Add quizzes for multiple categories
+* quiz for all categories ( all words )
   - That's going to be fun when there are 500 words :p
     - Add maybe up to X amount of words so it doesn't test EVERYTHING
 
@@ -26,6 +27,11 @@
 * Add a (+) or (-) as a way to show/hide a category
   - So that you can toggle visibility of a category since they can get pretty long!
 
+* Add so it can have duplicates but for the other language.
+  - Päivää
+  - Good day
+
+-------------------
 Maybe:
 * Improve error handling for quiz
   - For example if phrases.length < phrasesPerQuestion
