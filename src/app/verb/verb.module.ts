@@ -6,6 +6,7 @@ import { VerbTrainingComponent } from './verb-training/verb-training.component';
 import { VerbService } from "./verb.service";
 import { FormsModule } from "@angular/forms";
 import { VerbItemComponent } from './verb-item/verb-item.component';
+import { SharedModule } from "../shared/shared.module";
 
 const verbRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -24,6 +25,7 @@ const verbRouting: ModuleWithProviders = RouterModule.forChild([
   imports: [
     CommonModule,
     FormsModule,
+    SharedModule,
     verbRouting
   ],
   providers: [

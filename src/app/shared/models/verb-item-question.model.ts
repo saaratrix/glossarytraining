@@ -2,7 +2,7 @@ export class VerbItemQuestion {
   public answer: string;
   public isCorrect: boolean;
 
-  private correctAnswer: string;
+  private readonly correctAnswer: string;
 
   constructor (correctAnswer: string) {
     this.answer = "";
@@ -20,7 +20,22 @@ export class VerbItemQuestion {
 
   public checkAnswer (): boolean {
     const answer = this.answer.trim().toLowerCase();
-    this.isCorrect = answer === this.correctAnswer;
+
+    if (this.correctAnswer.indexOf("/") === -1 ) {
+      this.isCorrect = answer === this.correctAnswer;
+    }
+    else {
+      let answers = answer.split("/");
+      let correctAnswers = this.correctAnswer.split("/");
+      this.isCorrect = false;
+
+      for (let i = 0; i < answers.length; i++) {
+        if ( correctAnswers.indexOf( answers[i] ) !== -1 ) {
+          this.isCorrect = true;
+          break;
+        }
+      }
+    }
 
     return this.isCorrect;
   }

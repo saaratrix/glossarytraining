@@ -49,8 +49,22 @@ export class VerbTrainingComponent implements OnInit {
     this.router.navigate(["verb-selection"]);
   }
 
+  public hasAnswers () {
+    for (let i = 0; i < this.verbItems.length; i++) {
+      if (!this.verbItems[i].hasAnswers()) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   public review () {
-    console.log("woo!");
+    for (let i = 0; i < this.verbItems.length; i++) {
+      this.verbItems[i].checkAnswers();
+    }
+
+    this.isReviewed = true;
   }
 
   private createVerbItem(verb: Verb, index: number): VerbItem {

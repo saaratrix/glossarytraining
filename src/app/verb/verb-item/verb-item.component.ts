@@ -10,12 +10,19 @@ export class VerbItemComponent implements OnInit {
   @Input()
   public item: VerbItem;
 
+  @Input()
+  public isReviewed: boolean;
+
+  @Input()
+  public isOdd: boolean;
+
   constructor() {
     this.item = null;
+    this.isReviewed = false;
+    this.isOdd = false;
   }
 
   ngOnInit() {
-
+    console.log(this.isOdd);
   }
-
 }

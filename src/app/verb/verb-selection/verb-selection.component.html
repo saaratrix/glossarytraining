@@ -1,17 +1,13 @@
-<button (click)="selectAll()">Select all</button>
-
-<ng-container *ngIf="selectedVerbs.length > 0; then selectedBlock else needSelectionBlock;"></ng-container>
+<ng-container *ngIf="!isFetchingItems; then selectedBlock else needSelectionBlock;"></ng-container>
 <ng-template #selectedBlock>
-  <button (click)="start()">Start verb training</button>
+  <p *ngIf="error.length > 0" class="form-error">
+    {{error}}
+  </p>
+  <app-item-toggle-selector [items]="verbs" [nameKey]="'finnish'" [titleKey]="'english'" [startSelected]="true" (itemClicked)="onItemToggled($event)" ></app-item-toggle-selector>
+  <button (click)="start()" class="start-verb-training" [disabled]="selectedVerbs.length === 0">Start verb training</button>
 </ng-template>
 <ng-template #needSelectionBlock>
   <p *ngIf="isFetchingItems">
     Loading verbs...
-  </p>
-  <p *ngIf="error.length > 0" class="form-error">
-    {{error}}
-  </p>
-  <p *ngIf="!isFetchingItems && error.length === 0">
-    You need to select verbs before you can continue.
   </p>
 </ng-template>

@@ -1,5 +1,7 @@
 * Tests, add some tests to refamiliarise with protractor
 
+* Pressing tab
+
 * Move interfaces & enums in quizcreatehealper to their own files.
 
 * Add quizzes for multiple categories
@@ -27,9 +29,16 @@
 * Add a (+) or (-) as a way to show/hide a category
   - So that you can toggle visibility of a category since they can get pretty long!
 
+* Add a way to sort A-Ö instead of by category for app-phrases-selection component
+
 * Add so it can have duplicates but for the other language.
   - Päivää
   - Good day
+
+* Add so middle mouse button takes you to the phrase for app-phrases-selection?
+  - If there is a need to edit a phrase you can just middle mouse button click it.
+
+
 
 -------------------
 Maybe:

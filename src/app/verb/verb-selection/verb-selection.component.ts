@@ -6,6 +6,11 @@ import { Router } from "@angular/router";
 import { VerbService } from "../verb.service";
 import { VerbItem } from "../../shared/models/verb-item.model";
 
+import {
+  ItemToggledEvent,
+  ItemToggleSelectorComponent
+} from "../../shared/components/item-toggle-selector/item-toggle-selector.component";
+
 @Component({
   selector: "app-verb-selection",
   templateUrl: "./verb-selection.component.html",
@@ -36,7 +41,8 @@ export class VerbSelectionComponent implements OnInit {
       if (result.error) {
         this.error = result.error;
       }
-
+      // Start with all verbs selected
+      this.selectedVerbs.push( ...this.verbs );
       this.isFetchingItems = false;
     });
   }
@@ -49,5 +55,19 @@ export class VerbSelectionComponent implements OnInit {
     this.verbService.verbs = this.selectedVerbs;
 
     this.router.navigate(["verb-training"]);
+  }
+
+  public onItemToggled (event: ItemToggledEvent) {
+    if (event.selected) {
+      this.selectedVerbs.push(event.item);
+    }
+    else {
+      const index = this.selectedVerbs.indexOf(event.item);
+      if (index !== -1) {
+        this.selectedVerbs.splice(index, 1);
+      }
+    }
+
+    console.log("item toggled", this.selectedVerbs);
   }
 }

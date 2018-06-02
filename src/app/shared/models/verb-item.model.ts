@@ -1,4 +1,5 @@
 import { VerbItemQuestion } from "./verb-item-question.model";
+import { getDefaultSchematicCollection } from "@angular/cli/utilities/config";
 // Ideally this would just be called Verb but that's already taken!
 export class VerbItem {
 
@@ -27,12 +28,33 @@ export class VerbItem {
     this.isCorrect = false;
   }
 
-  public checkAnswer (): boolean {
+  /**
+   * Check the VerbItem's questions if they are correct or not.
+   * @return {boolean}
+   */
+  public checkAnswers (): boolean {
+    this.isCorrect = true;
+    for (let i = 0; i < this.questions.length; i++) {
+      if (!this.questions[i].checkAnswer()) {
+        this.isCorrect = false;
+      }
+    }
+
     // Check the questions if they are correct and if so then the verb item is correct
-    return false;
+    return this.isCorrect;
   };
 
-  public hasAnswer (): boolean {
+  /**
+   * Check if the VerbItem's questions have answers.
+   * @return {boolean}
+   */
+  public hasAnswers (): boolean {
+    for (let i = 0; i < this.questions.length; i++) {
+      if (!this.questions[i].hasAnswer()) {
+        return false;
+      }
+    }
+
     return true;
   };
 }
