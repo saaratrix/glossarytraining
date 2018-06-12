@@ -1,43 +1,54 @@
 * Tests, add some tests to refamiliarise with protractor
 
-* Pressing tab
-
+### Quizzes:
 * Move interfaces & enums in quizcreatehealper to their own files.
+  -- app/shared/services/quizcreatehelper
 
 * Add quizzes for multiple categories
+
 * quiz for all categories ( all words )
   - That's going to be fun when there are 500 words :p
     - Add maybe up to X amount of words so it doesn't test EVERYTHING
+* Ignore commas and exclamation marks when answering for a text quiz
+
+* Add so it can have duplicates but for the other language.
+  - Päivää
+  - Good day
+
+* Pressing tab   -- or enter?
+
+### Admin:
+* Clicking Edit on admin should open the view inline instead of its own route.
 
 * Error handling when adding phrases quizzes e.t.c.
   - For example when forgetting to fill in english field
 
 * Add for phrases to store last selected category instead of default to Kategoroimaton
 
-* Ignore commas and exclamation marks when answering for a text quiz
-
 * Make phrases, quiz and category editable on the spot instead of having to click edit
   - Update the entity list component
     - Ideally it'd be nice if you click edit it creates a dropdown effect instead of going to a new route I think.
     - Error handling
 
-* Style entity-list component better, equal width
-
 * Creating a phrase, category and quiz takes you back to `/phrases` e.t.c.
-* Verb quizzes
 
 * Add a (+) or (-) as a way to show/hide a category
   - So that you can toggle visibility of a category since they can get pretty long!
 
-* Add a way to sort A-Ö instead of by category for app-phrases-selection component
-
-* Add so it can have duplicates but for the other language.
-  - Päivää
-  - Good day
+* Style entity-list component better, equal width
 
 * Add so middle mouse button takes you to the phrase for app-phrases-selection?
   - If there is a need to edit a phrase you can just middle mouse button click it.
 
+* Create a custom component to select category instead of 1 massive dropdown list when creating a phrase.
+
+### Backend:
+
+
+
+### Unknown:
+* Clicking edit creates a new list
+* Add a way to sort A-Ö instead of by category for app-phrases-selection component
 
 
 -------------------
@@ -52,14 +63,11 @@ Maybe:
 * Could cache the quizzes & categories on selection if a user will change between A -> B -> A ...
   - Which could be solved by using a service to handle all that logic!
 
-* Create a custom component to select category instead of 1 massive dropdown list when creating a phrase.
-
 * Add fixed options to a phrase for so there can be a quiz about grammar with close looking words.
 
 * Update the API functions to use PUT, DELETE as http functions for the update & delete functionality instead of post.
    - On hold for now, would need to properly rewrite routing.
       So that the id is in the url for example for delete `quiz/1` instead of `quiz/remove`
-
 
 * Add validation such as phrase.finnish.length < 512 on backend
   - And maxlength for the <input>

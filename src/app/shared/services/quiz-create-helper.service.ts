@@ -17,7 +17,7 @@ export enum LanguageMode {
 @Injectable()
 export class QuizCreateHelperService {
 
-  constructor() { }
+  constructor () { }
 
   /**
    * Based on the quiz language return the phrase property keys.
@@ -25,13 +25,13 @@ export class QuizCreateHelperService {
    * @return {IQuestionKeys}
    */
   public getQuestionKeys (finnish: string, english: string, languages: LanguageMode = LanguageMode.Random): IQuestionKeys {
-    if (languages == LanguageMode.Finnish) {
+    if (languages === LanguageMode.Finnish) {
       return {
         question: finnish,
         answer: english
       };
     }
-    else if (languages == LanguageMode.English) {
+    else if (languages === LanguageMode.English) {
       return {
         question: english,
         answer: finnish

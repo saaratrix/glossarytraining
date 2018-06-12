@@ -16,11 +16,13 @@ export class VerbTrainingComponent implements OnInit {
   public verbItems: VerbItem[];
 
   public isReviewed: boolean;
+  public isAllCorrect: boolean;
 
   constructor (private quizCreateHelperService: QuizCreateHelperService, private verbService: VerbService, private router: Router) {
     this.verbs = [];
     this.verbItems = [];
     this.isReviewed = false;
+    this.isAllCorrect = false;
   }
 
   ngOnInit () {
@@ -60,8 +62,13 @@ export class VerbTrainingComponent implements OnInit {
   }
 
   public review () {
+
+    this.isAllCorrect = true;
+
     for (let i = 0; i < this.verbItems.length; i++) {
-      this.verbItems[i].checkAnswers();
+      if (!this.verbItems[i].checkAnswers()) {
+        this.isAllCorrect = false;
+      }
     }
 
     this.isReviewed = true;

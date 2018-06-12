@@ -14,7 +14,7 @@ export class QuizPhrasesHandler {
 
   }
 
-  public async addPhraseToQuiz(quizId: number, phraseId: number): Promise<boolean> {
+  public async addPhraseToQuiz (quizId: number, phraseId: number): Promise<boolean> {
     if (!await this.canAddPhraseToQuiz(quizId, phraseId)) {
       return false;
     }
@@ -25,7 +25,7 @@ export class QuizPhrasesHandler {
     return (!sqlResult.error && sqlResult.affectedRows > 0);
   }
 
-  public async canAddPhraseToQuiz(quizId: number, phraseId: number): Promise<boolean> {
+  public async canAddPhraseToQuiz (quizId: number, phraseId: number): Promise<boolean> {
     // 1. Check quiz exists
     const quiz = await this.m_quizHandler.get(quizId);
     if (!quiz) {
@@ -34,10 +34,10 @@ export class QuizPhrasesHandler {
     // 2. Check phrase exists
     const phrase = await this.m_phraseHandler.get(phraseId);
 
-    return phrase != null;
+    return phrase !== null;
   }
 
-  public async removePhraseFromQuiz(quizId: number, phraseId: number): Promise<boolean> {
+  public async removePhraseFromQuiz (quizId: number, phraseId: number): Promise<boolean> {
     const sql = "delete from quizphrases where quizId = ? and phraseId = ?";
     const sqlResult: MySQLResults = await query(sql, [quizId, phraseId]);
 
