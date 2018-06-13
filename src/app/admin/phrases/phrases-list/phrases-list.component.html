@@ -2,19 +2,23 @@
 <a [routerLink]="['../phrase', -1]">Create new phrase</a>
 <ul class="item-list">
   <li *ngFor="let phrasesByCategory of phrasesByCategories">
-    <h2>{{phrasesByCategory.category.name}}</h2>
+    <h2 (click)="toggleList(phrasesByCategory)" >{{phrasesByCategory.category.name}}
+      <span class="toggle-visibility" [title]="getToggleTooltip(phrasesByCategory)">{{getToggleListText(phrasesByCategory.isVisible)}}</span>
+    </h2>
     <app-admin-entity-list
-       [entities]="phrasesByCategory.phrases"
-       [editUrl]="'../phrase'"
-       [updateUrl]="'phrase/update'"
-       [removeUrl]="'phrase/remove'"
-       [keys]="['finnish', 'note']"
-       [titles]="{ 'finnish': 'english' }"
-       [keysData]="{
-                      'finnish': { header: 'Finnish', editable: true },
-                      'note': { header: 'Note', editable: true }
-                    }"
-       (removed)="removedPhrase($event)"
+
+      [entities]="phrasesByCategory.phrases"
+      [editUrl]="'../phrase'"
+      [updateUrl]="'phrase/update'"
+      [removeUrl]="'phrase/remove'"
+      [keys]="['finnish', 'note']"
+      [titles]="{ 'finnish': 'english' }"
+      [keysData]="{
+                    'finnish': { header: 'Finnish', editable: true },
+                    'note': { header: 'Note', editable: true }
+                  }"
+      (removed)="removedPhrase($event)"
+      *ngIf="phrasesByCategory.isVisible"
     >
     </app-admin-entity-list>
   </li>

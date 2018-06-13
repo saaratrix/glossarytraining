@@ -71,7 +71,8 @@ export class PhrasesSelectionComponent implements OnInit, DoCheck {
     if (!phraseByCategory) {
       phraseByCategory = {
         category: phrase.category,
-        phrases: []
+        phrases: [],
+        isVisible: true
       };
 
       this.phrasesByCategory.push(phraseByCategory);

@@ -33,7 +33,8 @@ export class PhrasesListComponent implements OnInit {
         if (!phraseByCategory) {
           phraseByCategory = {
             category: phrase.category,
-            phrases: []
+            phrases: [],
+            isVisible: true
           };
 
           this.phrasesByCategories.push(phraseByCategory);
@@ -43,6 +44,33 @@ export class PhrasesListComponent implements OnInit {
       }
 
     });
+  }
+
+  public getToggleListText (isVisible: boolean): string {
+    if (isVisible) {
+      return "⯆";
+    }
+    else {
+      return "⯈";
+    }
+  }
+
+  public getToggleTooltip (phrasesByCategory: PhrasesByCategory): string {
+    if (phrasesByCategory.isVisible) {
+      return "Click to hide " + phrasesByCategory.category.name;
+    }
+    else {
+      return "Click to show " + phrasesByCategory.category.name;
+    }
+  }
+
+  public toggleList (phrasesByCategory: PhrasesByCategory): void {
+    if (phrasesByCategory.isVisible) {
+      phrasesByCategory.isVisible = false;
+    }
+    else {
+      phrasesByCategory.isVisible = true;
+    }
   }
 
   /**

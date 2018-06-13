@@ -2,17 +2,21 @@
 
 ### Quizzes:
 * Add quizzes for multiple categories
+  - Update UI to use the verb selection interface with green/gray depending on selected or not?
+  - Could even combine quiz + category tests and then filter out duplicates.
 
 * quiz for all categories ( all words )
   - That's going to be fun when there are 500 words :p
     - Add maybe up to X amount of words so it doesn't test EVERYTHING
+
 * Ignore commas and exclamation marks when answering for a text quiz
 
 * Add so it can have duplicates but for the other language.
   - Päivää
   - Good day
 
-* Pressing tab   -- or enter?
+* Pressing tab -- or enter for verb training
+  - Should ignore correct ones
 
 ### Admin:
 * Clicking Edit on admin should open the view inline instead of its own route.
@@ -29,8 +33,7 @@
 
 * Creating a phrase, category and quiz takes you back to `/phrases` e.t.c.
 
-* Add a (+) or (-) as a way to show/hide a category
-  - So that you can toggle visibility of a category since they can get pretty long!
+* Add animation for the ⯆, ⯈ buttons instead of just instantly hiding/showing
 
 * Style entity-list component better, equal width
 
