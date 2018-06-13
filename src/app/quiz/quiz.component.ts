@@ -7,7 +7,8 @@ import { Phrase } from "../shared/models/phrase.model";
 import { Question } from "../shared/models/question";
 import { TextQuestion } from "../shared/models/text-question";
 import { IMultipleOption, MultipleQuestion } from "../shared/models/multiple-question";
-import { QuizCreateHelperService, LanguageMode } from "../shared/services/quiz-create-helper.service";
+import { QuizCreateHelperService } from "../shared/services/quiz-create-helper.service";
+import { LanguageMode } from "../shared/enums/language-mode.enum";
 
 
 

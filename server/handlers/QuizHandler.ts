@@ -1,5 +1,5 @@
 import { query, MySQLResults } from "../database/mysql-connection";
-import { BaseHandler } from './BaseHandler';
+import { BaseHandler } from "./BaseHandler";
 import { Quiz } from "../models/Quiz";
 import { PhraseHandler } from "./PhraseHandler";
 

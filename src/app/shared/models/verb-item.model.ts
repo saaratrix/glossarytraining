@@ -42,7 +42,7 @@ export class VerbItem {
 
     // Check the questions if they are correct and if so then the verb item is correct
     return this.isCorrect;
-  };
+  }
 
   /**
    * Check if the VerbItem's questions have answers.
@@ -56,5 +56,5 @@ export class VerbItem {
     }
 
     return true;
-  };
+  }
 }

@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { VerbService } from "../verb.service";
 import { Router } from "@angular/router";
-import { QuizCreateHelperService, LanguageMode } from "../../shared/services/quiz-create-helper.service";
+import { QuizCreateHelperService } from "../../shared/services/quiz-create-helper.service";
 import { VerbItem } from "../../shared/models/verb-item.model";
 import { Verb } from "../../shared/models/verb.model";
 import { VerbItemQuestion } from "../../shared/models/verb-item-question.model";
+import { LanguageMode } from "../../shared/enums/language-mode.enum";
 
 @Component({
-  selector: 'app-verb-training',
-  templateUrl: './verb-training.component.html',
-  styleUrls: ['./verb-training.component.less']
+  selector: "app-verb-training",
+  templateUrl: "./verb-training.component.html",
+  styleUrls: ["./verb-training.component.less"]
 })
 export class VerbTrainingComponent implements OnInit {
   public verbs: Verb[];
@@ -74,7 +75,7 @@ export class VerbTrainingComponent implements OnInit {
     this.isReviewed = true;
   }
 
-  private createVerbItem(verb: Verb, index: number): VerbItem {
+  private createVerbItem (verb: Verb, index: number): VerbItem {
 
     const questionKeys = this.quizCreateHelperService.getQuestionKeys("finnish", "english", LanguageMode.Finnish);
     const name = verb[questionKeys.question];

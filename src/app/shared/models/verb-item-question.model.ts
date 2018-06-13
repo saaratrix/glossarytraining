@@ -25,8 +25,8 @@ export class VerbItemQuestion {
       this.isCorrect = answer === this.correctAnswer;
     }
     else {
-      let answers = answer.split("/");
-      let correctAnswers = this.correctAnswer.split("/");
+      const answers = answer.split("/");
+      const correctAnswers = this.correctAnswer.split("/");
       this.isCorrect = false;
 
       for (let i = 0; i < answers.length; i++) {

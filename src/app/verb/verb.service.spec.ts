@@ -1,15 +1,15 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject } from "@angular/core/testing";
 
-import { VerbService } from './verb.service';
+import { VerbService } from "./verb.service";
 
-describe('VerbService', () => {
+describe("VerbService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [VerbService]
     });
   });
 
-  it('should be created', inject([VerbService], (service: VerbService) => {
+  it("should be created", inject([VerbService], (service: VerbService) => {
     expect(service).toBeTruthy();
   }));
 });

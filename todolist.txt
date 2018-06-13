@@ -1,9 +1,6 @@
 * Tests, add some tests to refamiliarise with protractor
 
 ### Quizzes:
-* Move interfaces & enums in quizcreatehealper to their own files.
-  -- app/shared/services/quizcreatehelper
-
 * Add quizzes for multiple categories
 
 * quiz for all categories ( all words )

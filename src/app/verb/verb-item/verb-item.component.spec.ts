@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { VerbItemComponent } from './verb-item.component';
+import { VerbItemComponent } from "./verb-item.component";
 
-describe('VerbItemComponent', () => {
+describe("VerbItemComponent", () => {
   let component: VerbItemComponent;
   let fixture: ComponentFixture<VerbItemComponent>;
 
@@ -19,7 +19,7 @@ describe('VerbItemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

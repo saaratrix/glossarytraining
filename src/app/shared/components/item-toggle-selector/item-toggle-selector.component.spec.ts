@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ItemToggleSelectorComponent } from './item-toggle-selector.component';
+import { ItemToggleSelectorComponent } from "./item-toggle-selector.component";
 
-describe('ItemToggleSelectorComponent', () => {
+describe("ItemToggleSelectorComponent", () => {
   let component: ItemToggleSelectorComponent;
   let fixture: ComponentFixture<ItemToggleSelectorComponent>;
 
@@ -19,7 +19,7 @@ describe('ItemToggleSelectorComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

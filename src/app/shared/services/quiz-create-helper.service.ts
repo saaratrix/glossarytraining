@@ -1,18 +1,6 @@
-import { Injectable } from '@angular/core';
-
-export interface IQuestionKeys {
-  question: string;
-  answer: string;
-}
-
-export enum LanguageMode {
-  // Questions in finnish, answers in english
-  Finnish,
-  // Questions in english, answers in english
-  English,
-  // Random!
-  Random
-}
+import { Injectable } from "@angular/core";
+import { QuestionKeys } from "../models/question-keys";
+import { LanguageMode } from "../enums/language-mode.enum";
 
 @Injectable()
 export class QuizCreateHelperService {
@@ -22,9 +10,9 @@ export class QuizCreateHelperService {
   /**
    * Based on the quiz language return the phrase property keys.
    * For example if the quiz should randomize between finnish & english it randomizes the property keys.
-   * @return {IQuestionKeys}
+   * @return {QuestionKeys}
    */
-  public getQuestionKeys (finnish: string, english: string, languages: LanguageMode = LanguageMode.Random): IQuestionKeys {
+  public getQuestionKeys (finnish: string, english: string, languages: LanguageMode = LanguageMode.Random): QuestionKeys {
     if (languages === LanguageMode.Finnish) {
       return {
         question: finnish,

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 export interface ItemToggledEvent {
   item: any;
@@ -6,9 +6,9 @@ export interface ItemToggledEvent {
 }
 
 @Component({
-  selector: 'app-item-toggle-selector',
-  templateUrl: './item-toggle-selector.component.html',
-  styleUrls: ['./item-toggle-selector.component.less']
+  selector: "app-item-toggle-selector",
+  templateUrl: "./item-toggle-selector.component.html",
+  styleUrls: ["./item-toggle-selector.component.less"]
 })
 export class ItemToggleSelectorComponent implements OnInit {
 
@@ -19,7 +19,7 @@ export class ItemToggleSelectorComponent implements OnInit {
   @Input()
   public titleKey: string;
   @Input()
-  public startSelected: boolean = true;
+  public startSelected: boolean;
 
   @Output()
   public itemClicked: EventEmitter<ItemToggledEvent>;
@@ -29,6 +29,7 @@ export class ItemToggleSelectorComponent implements OnInit {
   constructor () {
     this.items = [];
     this.selectedItems = {};
+    this.startSelected = true;
     this.itemClicked = new EventEmitter<ItemToggledEvent>();
   }
 
