@@ -25,6 +25,7 @@
   - For example when forgetting to fill in english field
 
 * Add for phrases to store last selected category instead of default to Kategoroimaton
+  - Store in a service?
 
 * Make phrases, quiz and category editable on the spot instead of having to click edit
   - Update the entity list component
