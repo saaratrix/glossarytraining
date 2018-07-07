@@ -13,6 +13,8 @@ export interface ItemToggledEvent {
 export class ItemToggleSelectorComponent implements OnInit {
 
   @Input()
+  public initialItem: any;
+  @Input()
   public items: any[];
   @Input()
   public nameKey: string;
@@ -20,6 +22,8 @@ export class ItemToggleSelectorComponent implements OnInit {
   public titleKey: string;
   @Input()
   public startSelected: boolean;
+  @Input()
+  public allowOnlyOne: boolean;
 
   @Output()
   public itemClicked: EventEmitter<ItemToggledEvent>;
@@ -30,6 +34,7 @@ export class ItemToggleSelectorComponent implements OnInit {
     this.items = [];
     this.selectedItems = {};
     this.startSelected = true;
+    this.allowOnlyOne = false;
     this.itemClicked = new EventEmitter<ItemToggledEvent>();
   }
 
@@ -38,6 +43,11 @@ export class ItemToggleSelectorComponent implements OnInit {
       for (let i = 0; i < this.items.length; i++) {
         const item = this.items[i];
         this.selectedItems[item.id] = item;
+      }
+    }
+    else {
+      if (this.initialItem) {
+
       }
     }
   }

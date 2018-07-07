@@ -8,19 +8,26 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let entity of entities" class="item-tiled">
-      <td *ngFor="let key of keys"
-          [title]="getTitle(entity, key)"
-          [attr.contenteditable]="isEditable(key)"
-          (keydown)="columnKeyDown($event)"
-          (keyup)="columnKeyUp($event)"
-          (blur)="columnBlurred(entity, key, $event)"
-        >{{entity[key]}}
-      </td>
-      <td class="actions">
-        <a [routerLink]="[editUrl, entity.id]" class="edit-btn">edit</a>
-        <button (click)="remove(entity)">remove</button>
-      </td>
-    </tr>
+    <ng-container *ngFor="let entity of entities">
+      <tr class="item-tiled">
+        <td *ngFor="let key of keys"
+            [title]="getTitle(entity, key)"
+            [attr.contenteditable]="isEditable(key)"
+            (keydown)="columnKeyDown($event)"
+            (keyup)="columnKeyUp($event)"
+            (blur)="columnBlurred(entity, key, $event)"
+          >{{entity[key]}}
+        </td>
+        <td class="actions">
+          <!-- [routerLink]="[editUrl, entity.id]" -->
+          <a (click)="showEdit(entity)" class="edit-btn">edit</a>
+          <button (click)="remove(entity)">remove</button>
+        </td>
+      </tr>
+      <div *ngIf="isEntityCurrentlyEdited(entity)">
+        <!-- admin-entity- -->
+        <app-admin-entity-edit [entity]="selectedEntity" [fields]="editFields"></app-admin-entity-edit>
+      </div>
+    </ng-container>
   </tbody>
 </table>

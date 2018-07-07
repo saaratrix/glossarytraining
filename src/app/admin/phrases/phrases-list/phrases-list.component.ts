@@ -5,6 +5,7 @@ import { DefaultSuccessResponse, PhraseGetResponse } from "../../../shared/model
 import { PhrasesByCategory } from "../../../shared/models/phrases-by-category.model";
 
 import { EntityListComponent } from "../../shared/entity-list/entity-list.component";
+import { EditFieldType } from "../../../shared/enums/edit-field-type.enum";
 
 @Component({
   selector: "app-admin-phrases-list",
@@ -14,9 +15,11 @@ import { EntityListComponent } from "../../shared/entity-list/entity-list.compon
 export class PhrasesListComponent implements OnInit {
 
   public phrasesByCategories: PhrasesByCategory[];
+  public EditFieldTypes: any;
 
   constructor (private apiService: ApiService) {
     this.phrasesByCategories = [];
+    this.EditFieldTypes = EditFieldType;
   }
 
   ngOnInit () {

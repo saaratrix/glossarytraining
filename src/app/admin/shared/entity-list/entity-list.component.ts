@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { ApiService } from "../../../shared/services/api.service";
 import { DefaultSuccessResponse } from "../../../shared/models/httpresponses";
+import { EditField } from "../../../shared/models/edit-field";
 
 interface IKeyData {
   header: string;
@@ -20,6 +21,8 @@ export class EntityListComponent implements OnInit {
   public keys: string[];
   @Input()
   public keysData: { [key: string]: IKeyData };
+  @Input()
+  public editFields: EditField[];
   // The edit url for <>
   @Input()
   public editUrl: string;
@@ -35,14 +38,19 @@ export class EntityListComponent implements OnInit {
   @Output()
   public removed: EventEmitter<any>;
 
+  public selectedEntity: any;
+
   constructor (private apiService: ApiService) {
     this.entities = [];
     this.keys = [];
     this.keysData = {};
+    this.editFields = [];
     this.editUrl = "";
     this.updateUrl = "";
     this.removeUrl = "";
     this.titles = {};
+
+    this.selectedEntity = null;
 
     this.removed = new EventEmitter<any>();
   }
@@ -142,6 +150,19 @@ export class EntityListComponent implements OnInit {
         }
       }
     });
+  }
+
+  public showEdit (entity: any): void {
+    if (this.selectedEntity !== entity) {
+      this.selectedEntity = entity;
+    }
+    else {
+      this.selectedEntity = null;
+    }
+  }
+
+  public isEntityCurrentlyEdited (entity): boolean {
+    return this.selectedEntity === entity;
   }
 
 }

@@ -17,6 +17,14 @@
                     'finnish': { header: 'Finnish', editable: true },
                     'note': { header: 'Note', editable: true }
                   }"
+      [editFields]="[
+        {
+          'label': 'Finnish',
+          'key': 'finnish',
+          'required': true,
+          'type': EditFieldTypes.Text
+          }
+      ]"
       (removed)="removedPhrase($event)"
       *ngIf="phrasesByCategory.isVisible"
     >

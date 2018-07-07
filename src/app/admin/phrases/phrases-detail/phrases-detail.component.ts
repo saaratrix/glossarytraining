@@ -92,6 +92,10 @@ export class PhrasesDetailComponent implements OnInit {
     });
   }
 
+  onCategoryToggled (category: Category) {
+
+  }
+
   public createItem (): void {
     this.isWaitingForServer = true;
     this.error = null;
