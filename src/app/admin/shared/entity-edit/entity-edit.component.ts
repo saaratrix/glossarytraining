@@ -1,7 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { EditField } from "../../../shared/models/edit-field";
 import { EditFieldType } from "../../../shared/enums/edit-field-type.enum";
+
+export interface  EntityEditUpdateEvent {
+  entity: any;
+  index: number;
+}
 
 @Component({
   selector: 'app-admin-entity-edit',
@@ -12,9 +17,13 @@ export class EntityEditComponent implements OnInit {
 
   @Input()
   public entity: any;
-
   @Input()
   public fields: EditField[];
+  @Input()
+  public listId: number;
+
+  @Output()
+  public onupdate: EventEmitter<EntityEditUpdateEvent>;
 
   public EditFieldTypes: any;
 
@@ -23,11 +32,17 @@ export class EntityEditComponent implements OnInit {
     this.fields = [];
 
     this.EditFieldTypes = EditFieldType;
+    this.onupdate = new EventEmitter();
   }
 
-  ngOnInit() {
-    console.log(this.entity);
-    console.log(this.fields);
+  ngOnInit () {
+  }
+
+  public updateItem () {
+    this.onupdate.emit({
+      entity: this.entity,
+      index: this.listId
+    });
   }
 
 }

@@ -1,7 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from "@angular/core";
 import { ApiService } from "../../../shared/services/api.service";
 import { DefaultSuccessResponse } from "../../../shared/models/httpresponses";
 import { EditField } from "../../../shared/models/edit-field";
+import { Phrase } from "../../../shared/models/phrase.model";
+import { EntityUpdateErrorEvent, EntityUpdateSuccessEvent } from "../../phrases/phrases-list/phrases-list.component";
 
 interface IKeyData {
   header: string;
@@ -15,6 +17,8 @@ interface IKeyData {
 })
 export class EntityListComponent implements OnInit {
 
+  @Input()
+  public listId: number;
   @Input()
   public entities: any[];
   @Input()
@@ -35,8 +39,22 @@ export class EntityListComponent implements OnInit {
   @Input()
   public titles: { [key: string]: string };
 
+  @Input()
+  public onstartEvent: EventEmitter<number>;
+  @Input()
+  public onsuccessEvent: EventEmitter<EntityUpdateSuccessEvent>;
+  @Input()
+  public onerrorEvent: EventEmitter<EntityUpdateErrorEvent>;
+
+
   @Output()
   public removed: EventEmitter<any>;
+  @Output()
+  public updateItem: EventEmitter<any>;
+
+  public successSubscription: any;
+  public errorSubscription: any;
+  public startSubscription: any;
 
   public selectedEntity: any;
 
@@ -53,9 +71,52 @@ export class EntityListComponent implements OnInit {
     this.selectedEntity = null;
 
     this.removed = new EventEmitter<any>();
+    this.updateItem = new EventEmitter<any>();
   }
 
   ngOnInit () {
+    if (this.onstartEvent) {
+      this.startSubscription = this.onstartEvent.subscribe((index: number) => {
+        if (this.listId !== index) {
+          return;
+        }
+
+        console.log("started", index);
+      });
+    }
+    if (this.onsuccessEvent) {
+      this.successSubscription = this.onsuccessEvent.subscribe((event: EntityUpdateSuccessEvent) => {
+        if (this.listId !== event.index) {
+          return;
+        }
+
+        console.log("success", event);
+      });
+    }
+    if (this.onerrorEvent) {
+      this.errorSubscription = this.onerrorEvent.subscribe((event: EntityUpdateErrorEvent) => {
+        if (this.listId !== event.index) {
+          return;
+        }
+
+        console.log("error", event);
+      });
+    }
+
+    console.log(this.startSubscription, this.successSubscription, this.errorSubscription);
+  }
+
+  ngOnDestroy () {
+    if (this.startSubscription) {
+      this.startSubscription.unsubscribe();
+    }
+    if (this.successSubscription) {
+      this.successSubscription.unsubscribe();
+    }
+    if (this.errorSubscription) {
+      this.errorSubscription.unsubscribe();
+    }
+
   }
 
   /**
@@ -128,15 +189,7 @@ export class EntityListComponent implements OnInit {
    * @param entity
    */
   public update (entity: any) {
-    this.apiService.post(this.updateUrl, entity)
-    .then((result: DefaultSuccessResponse) => {
-      if (result.success) {
-
-      }
-      else {
-
-      }
-    });
+    this.updateItem.emit(entity);
   }
 
   public remove (entity: any) {
@@ -161,8 +214,16 @@ export class EntityListComponent implements OnInit {
     }
   }
 
-  public isEntityCurrentlyEdited (entity): boolean {
-    return this.selectedEntity === entity;
+  public getEditText (entity: any): string {
+    if (this.isEntityCurrentlyEdited(entity)) {
+      return "hide";
+    }
+    else {
+      return "edit";
+    }
   }
 
+  public isEntityCurrentlyEdited (entity: any): boolean {
+    return this.selectedEntity === entity;
+  }
 }

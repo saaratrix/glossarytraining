@@ -45,6 +45,10 @@ Thumbs.db
 #style files
 /src/**/*.css
 
+#app files
+/src/app/**/*.js
+/src/app/**/*.map
+
 #server files
 !/server/routes.js
 !/server/polyfill/*.js

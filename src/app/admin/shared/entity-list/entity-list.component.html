@@ -19,14 +19,19 @@
           >{{entity[key]}}
         </td>
         <td class="actions">
-          <!-- [routerLink]="[editUrl, entity.id]" -->
-          <a (click)="showEdit(entity)" class="edit-btn">edit</a>
+          <!--<a [routerLink]="[editUrl, entity.id]" class="edit-btn">edit</a>-->
+          <a (click)="showEdit(entity)" class="edit-btn">{{getEditText(entity)}}</a>
           <button (click)="remove(entity)">remove</button>
         </td>
       </tr>
       <div *ngIf="isEntityCurrentlyEdited(entity)">
         <!-- admin-entity- -->
-        <app-admin-entity-edit [entity]="selectedEntity" [fields]="editFields"></app-admin-entity-edit>
+        <app-admin-entity-edit
+          [listId]="listId"
+          [entity]="selectedEntity"
+          [fields]="editFields"
+          (onupdate)="update($event)">
+        </app-admin-entity-edit>
       </div>
     </ng-container>
   </tbody>
