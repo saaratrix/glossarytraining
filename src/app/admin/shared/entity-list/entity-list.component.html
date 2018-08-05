@@ -30,6 +30,9 @@
           [listId]="listId"
           [entity]="selectedEntity"
           [fields]="editFields"
+          [error]="error"
+          [isWaitingForServer]="isWaitingForServer"
+          [isFinished]="isFinished"
           (onupdate)="update($event)">
         </app-admin-entity-edit>
       </div>

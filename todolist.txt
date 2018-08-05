@@ -3,6 +3,7 @@
 Tasks:
 * Make phrases, quiz and category editable on the spot instead of having to click edit
 * Create a custom component to select category instead of 1 massive dropdown list when creating a phrase.
+* Fix "undefined" issue when mouseover category for quizzes.
 
 ### Quizzes:
 * Add quizzes for multiple categories

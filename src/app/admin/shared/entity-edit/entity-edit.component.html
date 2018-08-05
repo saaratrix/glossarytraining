@@ -1,6 +1,12 @@
 <!--suppress XmlDuplicatedId -->
-<p>
-  entity-edit works!
+<p *ngIf="error" class="form-error">
+  {{error}}
+</p>
+<p *ngIf="isWaitingForServer">
+  updating ...
+</p>
+<p *ngIf="isFinished" class="form-success">
+  Succesfully updated!
 </p>
 <div *ngFor="let field of fields" class="form-group">
   <label for="{{field.key}}">{{field.label}}:</label>

@@ -22,6 +22,13 @@ export class EntityEditComponent implements OnInit {
   @Input()
   public listId: number;
 
+  @Input()
+  public error: string;
+  @Input()
+  public isWaitingForServer: boolean;
+  @Input()
+  public isFinished: boolean;
+
   @Output()
   public onupdate: EventEmitter<EntityEditUpdateEvent>;
 
@@ -31,11 +38,16 @@ export class EntityEditComponent implements OnInit {
     this.entity = null;
     this.fields = [];
 
+    this.error = "";
+    this.isWaitingForServer = false;
+    this.isFinished = false;
+
     this.EditFieldTypes = EditFieldType;
     this.onupdate = new EventEmitter();
   }
 
   ngOnInit () {
+    console.log("init!!");
   }
 
   public updateItem () {

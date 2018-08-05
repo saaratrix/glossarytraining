@@ -58,6 +58,15 @@ export class EntityListComponent implements OnInit {
 
   public selectedEntity: any;
 
+  // Event data for entity-edit component
+  public error: string;
+  public isWaitingForServer: boolean;
+  public isFinished: boolean;
+
+  private isDestroyed: boolean;
+
+
+
   constructor (private apiService: ApiService) {
     this.entities = [];
     this.keys = [];
@@ -72,14 +81,30 @@ export class EntityListComponent implements OnInit {
 
     this.removed = new EventEmitter<any>();
     this.updateItem = new EventEmitter<any>();
+
+    this.error = "";
+    this.isWaitingForServer = false;
+    this.isFinished = false;
+
+    this.isDestroyed = false;
   }
 
   ngOnInit () {
+
+    // TODO: Investigate if there is a timing issue where for example:
+    // 1. Update item A
+    // 2. Change to item B
+    // 3. item A finishes talking to server.
+    // 4. Will item A's data affect item B?
     if (this.onstartEvent) {
       this.startSubscription = this.onstartEvent.subscribe((index: number) => {
         if (this.listId !== index) {
           return;
         }
+
+        this.isWaitingForServer = true;
+        this.isFinished = false;
+        this.error = "";
 
         console.log("started", index);
       });
@@ -90,6 +115,10 @@ export class EntityListComponent implements OnInit {
           return;
         }
 
+        this.isWaitingForServer = false;
+        this.isFinished = true;
+        this.error = "";
+
         console.log("success", event);
       });
     }
@@ -99,6 +128,10 @@ export class EntityListComponent implements OnInit {
           return;
         }
 
+        this.isWaitingForServer = false;
+        this.isFinished = false;
+        this.error = event.error;
+
         console.log("error", event);
       });
     }
@@ -107,6 +140,8 @@ export class EntityListComponent implements OnInit {
   }
 
   ngOnDestroy () {
+    this.isDestroyed = true;
+
     if (this.startSubscription) {
       this.startSubscription.unsubscribe();
     }
@@ -116,7 +151,6 @@ export class EntityListComponent implements OnInit {
     if (this.errorSubscription) {
       this.errorSubscription.unsubscribe();
     }
-
   }
 
   /**
@@ -207,6 +241,11 @@ export class EntityListComponent implements OnInit {
 
   public showEdit (entity: any): void {
     if (this.selectedEntity !== entity) {
+
+      this.isWaitingForServer = false;
+      this.isFinished = false;
+      this.error = "";
+
       this.selectedEntity = entity;
     }
     else {
