@@ -2,6 +2,7 @@
 <a [routerLink]="['../quiz', -1]">Create new quiz</a>
 
 <app-admin-entity-list
+  [listId]="0"
   [entities]="quizzes"
   [editUrl]="'../quiz'"
   [updateUrl]="'quiz/update'"

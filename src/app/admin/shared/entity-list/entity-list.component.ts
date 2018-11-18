@@ -65,8 +65,6 @@ export class EntityListComponent implements OnInit {
 
   private isDestroyed: boolean;
 
-
-
   constructor (private apiService: ApiService) {
     this.entities = [];
     this.keys = [];
