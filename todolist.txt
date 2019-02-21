@@ -1,7 +1,6 @@
 * Tests, add some tests to refamiliarise with protractor
 
 Tasks:
-* Make phrases, quiz and category editable on the spot instead of having to click edit
 * Create a custom component to select category instead of 1 massive dropdown list when creating a phrase.
 * Fix "undefined" issue when mouseover category for quizzes.
 
@@ -24,18 +23,9 @@ Tasks:
   - Should ignore correct ones
 
 ### Admin:
-* Clicking Edit on admin should open the view inline instead of its own route.
 
 * Error handling when adding phrases quizzes e.t.c.
   - For example when forgetting to fill in english field
-
-* Add for phrases to store last selected category instead of default to Kategoroimaton
-  - Store in a service?
-
-* Make phrases, quiz and category editable on the spot instead of having to click edit
-  - Update the entity list component
-    - Ideally it'd be nice if you click edit it creates a dropdown effect instead of going to a new route I think.
-    - Error handling
 
 * Creating a phrase, category and quiz takes you back to `/phrases` e.t.c.
 
@@ -70,10 +60,6 @@ Maybe:
   - Which could be solved by using a service to handle all that logic!
 
 * Add fixed options to a phrase for so there can be a quiz about grammar with close looking words.
-
-* Update the API functions to use PUT, DELETE as http functions for the update & delete functionality instead of post.
-   - On hold for now, would need to properly rewrite routing.
-      So that the id is in the url for example for delete `quiz/1` instead of `quiz/remove`
 
 * Add validation such as phrase.finnish.length < 512 on backend
   - And maxlength for the <input>

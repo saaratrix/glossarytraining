@@ -21,9 +21,11 @@ export class VerbItemQuestion {
   public checkAnswer (): boolean {
     const answer = this.answer.trim().toLowerCase();
 
+    // If the answer doesn't have / in it, then treat it as 1 single answer
     if (this.correctAnswer.indexOf("/") === -1 ) {
       this.isCorrect = answer === this.correctAnswer;
     }
+    // Otherwise if the answer has / then separate it and check each answer.
     else {
       const answers = answer.split("/");
       const correctAnswers = this.correctAnswer.split("/");
