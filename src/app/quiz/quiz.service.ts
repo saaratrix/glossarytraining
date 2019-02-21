@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { Quiz } from "../shared/models/quiz.model";
 import { QuizType } from "../shared/enums/quiz-type.enum";
 

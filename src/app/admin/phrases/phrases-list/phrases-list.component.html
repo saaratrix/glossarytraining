@@ -1,16 +1,57 @@
 <h1>Phrases</h1>
 <a [routerLink]="['../phrase', -1]">Create new phrase</a>
 <ul class="item-list">
-  <li *ngFor="let phrasesByCategory of phrasesByCategories">
-    <h2>{{phrasesByCategory.category.name}}</h2>
+  <li *ngFor="let phrasesByCategory of phrasesByCategories; let i = index;">
+    <h2 (click)="toggleList(phrasesByCategory)" >{{phrasesByCategory.category.name}}
+      <span class="toggle-visibility" [title]="getToggleTooltip(phrasesByCategory)">{{getToggleListText(phrasesByCategory.isVisible)}}</span>
+    </h2>
     <app-admin-entity-list
-       [entities]="phrasesByCategory.phrases"
-       [editUrl]="'../phrase'"
-       [removeUrl]="'phrase/remove'"
-       [keys]="['finnish']"
-       [titles]="{ 'finnish': 'english' }"
-       [keysPretty]="{ 'finnish': 'Finnish' }"
-       (removed)="removedPhrase($event)"
+      [listId]="i"
+      [doInlineEdit]="true"
+      [entities]="phrasesByCategory.phrases"
+      [editUrl]="'../phrase'"
+      [updateUrl]="'phrase/update'"
+      [removeUrl]="'phrase/remove'"
+      [keys]="['finnish', 'note']"
+      [titles]="{ 'finnish': 'english' }"
+      [keysData]="{
+                    'finnish': { header: 'Finnish', editable: true },
+                    'note': { header: 'Note', editable: true }
+                  }"
+      [editFields]="[
+        {
+          'label': 'Finnish',
+          'key': 'finnish',
+          'required': true,
+          'type': EditFieldTypes.Text
+        },
+        {
+          'label': 'English',
+          'key': 'english',
+          'required': true,
+          'type': EditFieldTypes.Text
+        },
+        {
+          'label': 'Note',
+          'key': 'note',
+          'required': true,
+          'type': EditFieldTypes.Text
+        },
+        {
+          'label': 'Category',
+          'key': 'category',
+          'required': true,
+          'type': EditFieldTypes.Select,
+          'list': categories,
+          'listKey': 'name'
+        }
+      ]"
+      [onstartEvent]="onstartEvent"
+      [onsuccessEvent]="onsuccessEvent"
+      [onerrorEvent]="onerrorEvent"
+      (removed)="removedPhrase($event)"
+      (updateItem)="updatePhrase($event)"
+      *ngIf="phrasesByCategory.isVisible"
     >
     </app-admin-entity-list>
   </li>

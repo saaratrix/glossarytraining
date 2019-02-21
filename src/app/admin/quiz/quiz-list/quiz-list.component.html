@@ -2,10 +2,13 @@
 <a [routerLink]="['../quiz', -1]">Create new quiz</a>
 
 <app-admin-entity-list
+  [listId]="0"
+  [doInlineEdit]="false"
   [entities]="quizzes"
   [editUrl]="'../quiz'"
+  [updateUrl]="'quiz/update'"
   [removeUrl]="'quiz/remove'"
   [keys]="['name', 'description']"
-  [keysPretty]="{ 'name': 'Quiz Name', 'description': 'Description' }"
+  [keysData]="{ 'name': { header: 'Quiz Name', editable: true }, 'description': { header: 'Description', editable: true } }"
   >
 </app-admin-entity-list>

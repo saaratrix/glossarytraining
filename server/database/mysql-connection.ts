@@ -1,10 +1,10 @@
 import * as mysql from "mysql";
 
 export const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'glossarytraining'
+  host     : "localhost",
+  user     : "root",
+  password : "",
+  database : "glossarytraining"
 });
 // It's better to use a pool of connections but there's only 1 user
 connection.connect();

@@ -1,0 +1,25 @@
+<!--suppress XmlDuplicatedId -->
+<p *ngIf="error" class="form-error">
+  {{error}}
+</p>
+<p *ngIf="isWaitingForServer">
+  updating ...
+</p>
+<p *ngIf="isFinished" class="form-success">
+  Succesfully updated!
+</p>
+<div *ngFor="let field of fields" class="form-group">
+  <label for="{{field.key}}">{{field.label}}:</label>
+  <ng-container *ngIf="field.type === EditFieldTypes.Text">
+    <input type="text" id="{{field.key}}" name="{{field.key}}" [(ngModel)]="entity[field.key]" [required]="field.required">
+  </ng-container>
+  <ng-container *ngIf="field.type === EditFieldTypes.Select">
+    <select id="{{field.key}}" name="{{field.key}}" [(ngModel)]="entity[field.key]" [required]="field.required">
+      <option *ngFor="let listItem of field.list"
+              [ngValue]="listItem"
+      >{{listItem[field.listKey]}}</option>
+    </select>
+  </ng-container>
+</div>
+
+<button (click)="updateItem()">Update</button>

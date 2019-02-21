@@ -2,9 +2,9 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { TextQuestion } from "../../shared/models/text-question";
 
 @Component({
-  selector: 'app-quiz-text-question',
-  templateUrl: './quiz-text-question.component.html',
-  styleUrls: ['./quiz-text-question.component.less']
+  selector: "app-quiz-text-question",
+  templateUrl: "./quiz-text-question.component.html",
+  styleUrls: ["./quiz-text-question.component.less"]
 })
 export class QuizTextQuestionComponent implements OnInit {
 
@@ -15,7 +15,7 @@ export class QuizTextQuestionComponent implements OnInit {
   @Output()
   public answered: EventEmitter<TextQuestion>;
 
-  @ViewChild('questionInput')
+  @ViewChild("questionInput")
   private inputElement: ElementRef;
 
   public revealAnswers: boolean;
@@ -47,7 +47,7 @@ export class QuizTextQuestionComponent implements OnInit {
 
   public tryFocusNext (event: KeyboardEvent) {
     // 13 == Enter
-    if (event.which === 13) {
+    if (event.key === "Enter") {
       const currentInput = this.inputElement.nativeElement as HTMLInputElement;
 
       const nodeList: NodeList = document.querySelectorAll(".answer-text-input");
@@ -76,7 +76,8 @@ export class QuizTextQuestionComponent implements OnInit {
           break;
         }
 
-        // If null set nextInput as first found so if there are no elements after the inputElement it'll go circle back to the first elements.
+        // If null then set nextInput as the found inputElement.
+        // so if there are no elements after the inputElement it'll circle back to the first elements.
         if (!nextInput) {
           nextInput = inputElement;
         }

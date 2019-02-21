@@ -6,7 +6,7 @@ export interface IMultipleOption {
 }
 
 export class MultipleQuestion implements Question {
-  public visible: boolean;
+  public isVisible: boolean;
   public index: number;
   public question: string;
   public note: string;
@@ -18,7 +18,7 @@ export class MultipleQuestion implements Question {
   private correctAnswer: number;
 
   constructor (index: number, question: string, note: string, options: IMultipleOption[], correctAnswer: number) {
-    this.visible = false;
+    this.isVisible = false;
     this.index = index;
     this.question = question;
     this.note = note;

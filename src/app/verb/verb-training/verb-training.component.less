@@ -1,0 +1,30 @@
+ul {
+  list-style: none;
+  padding: 0;
+
+  li {
+    &:nth-child(even) {
+      background-color: hsl(240, 67%, 94%);
+    }
+
+    &:nth-child(odd) {
+      background-color: hsl(240, 67%, 89%);
+    }
+
+    &.passed:nth-child(even) {
+      background-color: hsl(103, 39%, 67%);
+    }
+
+    &.passed:nth-child(odd) {
+      background-color: hsl(103, 39%, 62%);
+    }
+
+    &.failed:nth-child(even) {
+      background-color: hsl(0, 79%, 72%);
+    }
+
+    &.failed:nth-child(odd) {
+      background-color: hsl(0, 79%, 67%);
+    }
+  }
+}

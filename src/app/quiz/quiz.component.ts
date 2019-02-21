@@ -7,16 +7,15 @@ import { Phrase } from "../shared/models/phrase.model";
 import { Question } from "../shared/models/question";
 import { TextQuestion } from "../shared/models/text-question";
 import { IMultipleOption, MultipleQuestion } from "../shared/models/multiple-question";
+import { QuizCreateHelperService } from "../shared/services/quiz-create-helper.service";
+import { LanguageMode } from "../shared/enums/language-mode.enum";
 
-interface IQuestionKeys {
-  question: string;
-  answer: string;
-}
+
 
 @Component({
-  selector: 'app-quiz',
-  templateUrl: './quiz.component.html',
-  styleUrls: ['./quiz.component.less']
+  selector: "app-quiz",
+  templateUrl: "./quiz.component.html",
+  styleUrls: ["./quiz.component.less"]
 })
 export class QuizComponent implements OnInit {
 
@@ -31,7 +30,9 @@ export class QuizComponent implements OnInit {
   public answeredQuestionsCount: number;
   private answeredQuestions: Question[];
 
-  constructor (private quizService: QuizService, private router: Router) {
+  private languageMode: LanguageMode;
+
+  constructor (private quizCreateHelperService: QuizCreateHelperService, private quizService: QuizService, private router: Router) {
     this.quiz = null;
     this.type = QuizType.MultipleChoices;
     this. questions = [];
@@ -40,6 +41,8 @@ export class QuizComponent implements OnInit {
 
     this.answeredQuestionsCount = 0;
     this.answeredQuestions = [];
+
+    this.languageMode = LanguageMode.Random;
   }
 
   ngOnInit () {
@@ -47,14 +50,14 @@ export class QuizComponent implements OnInit {
     this.type = this.quizService.quizType;
 
     if (!this.quiz) {
-      this.router.navigate(['']);
+      this.router.navigate([""]);
       return;
     }
     // Copy value by value
     const phrases = this.quiz.phrases.slice();
 
     // Shuffle phrases
-    this.shuffleArray(phrases);
+    this.quizCreateHelperService.shuffleArray(phrases);
 
     // Generate questions
     for (let i = 0; i < phrases.length; ++i) {
@@ -64,7 +67,7 @@ export class QuizComponent implements OnInit {
     }
 
     // First one is visible!
-    this.questions[0].visible = true;
+    this.questions[0].isVisible = true;
   }
 
   /**
@@ -72,7 +75,7 @@ export class QuizComponent implements OnInit {
    */
   public doNewQuiz (): void {
     this.quizService.quiz = null;
-    this.router.navigate(['']);
+    this.router.navigate([""]);
   }
 
   /**
@@ -81,8 +84,8 @@ export class QuizComponent implements OnInit {
    */
   public questionAnswered (question: Question): void {
     const nextIndex = question.index + 1;
-    if (nextIndex < this.questions.length && !this.questions[nextIndex].visible) {
-      this.questions[nextIndex].visible = true;
+    if (nextIndex < this.questions.length && !this.questions[nextIndex].isVisible) {
+      this.questions[nextIndex].isVisible = true;
     }
 
     if (this.answeredQuestions.indexOf(question) === -1) {
@@ -129,7 +132,7 @@ export class QuizComponent implements OnInit {
   private createTextQuestion (index: number, phrases: Phrase[]): TextQuestion {
     const phrase = phrases[index];
 
-    const questionKeys = this.getQuestionKeys();
+    const questionKeys = this.quizCreateHelperService.getQuestionKeys("finnish", "english", this.languageMode);
     const question = phrase[questionKeys.question];
     const answer = phrase[questionKeys.answer];
 
@@ -153,7 +156,7 @@ export class QuizComponent implements OnInit {
 
     const correctPhrase: Phrase = phrases[index];
 
-    const questionKeys = this.getQuestionKeys();
+    const questionKeys = this.quizCreateHelperService.getQuestionKeys("finnish", "english", this.languageMode);
     const question = correctPhrase[questionKeys.question];
 
     const indices: number[] = [ index ];
@@ -168,7 +171,7 @@ export class QuizComponent implements OnInit {
     }
 
     // Shuffle
-    this.shuffleArray(indices);
+    this.quizCreateHelperService.shuffleArray(indices);
 
     let correctAnswer = 0;
     const options: IMultipleOption[] = [];
@@ -190,41 +193,4 @@ export class QuizComponent implements OnInit {
 
     return new MultipleQuestion(index, question, correctPhrase.note, options, correctAnswer);
   }
-
-  /**
-   * Based on the quiz language return the phrase property keys.
-   * For example if the quiz should randomize between finnish & english it randomizes the property keys.
-   * @return {IQuestionKeys}
-   */
-  private getQuestionKeys (): IQuestionKeys {
-    // + 0.5 is equivalent of * 2
-    if (Math.floor(Math.random() + 0.5) === 0) {
-      return {
-        question: "finnish",
-        answer: "english"
-      };
-    }
-    else {
-      return {
-        question: "english",
-        answer: "finnish"
-      };
-    }
-  }
-
-  /**
-   * A simple shuffle array where it goes through each index and randomly changes position with any other index
-   * @param {any[]} arr
-   */
-  private shuffleArray (arr: any[]) {
-    for (let i = 0; i < arr.length; ++i) {
-      // Get a random number between 0 and length
-      const randomId: number = Math.floor(Math.random() * arr.length);
-      const temp: any = arr[randomId];
-
-      arr[randomId] = arr[i];
-      arr[i] = temp;
-    }
-  }
-
 }

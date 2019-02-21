@@ -1,0 +1,14 @@
+<div class="selection">
+  <button (click)="selectAll()" class="select">
+    Select All
+  </button>
+  <button (click)="unselectAll()" class="unselect">
+    Unselect all
+  </button>
+</div>
+
+<ul class="items-list">
+  <li *ngFor="let item of items" class="item" [title]="item[titleKey]" [class.selected]="selectedItems[item.id]" (click)="onItemClicked(item)">
+    {{item[nameKey]}}
+  </li>
+</ul>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { ApiService } from "../../../shared/services/api.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Category } from "../../../shared/models/category.model";
@@ -10,9 +10,9 @@ import {
 import { NgForm } from "@angular/forms";
 
 @Component({
-  selector: 'app-admin-phrases-detail',
-  templateUrl: './phrases-detail.component.html',
-  styleUrls: ['./phrases-detail.component.less']
+  selector: "app-admin-phrases-detail",
+  templateUrl: "./phrases-detail.component.html",
+  styleUrls: ["./phrases-detail.component.less"]
 })
 export class PhrasesDetailComponent implements OnInit {
   public categories: Category[];
@@ -82,7 +82,7 @@ export class PhrasesDetailComponent implements OnInit {
           this.item = result.phrase;
           // If invalid quiz then route back to quiz list
           if (!this.item) {
-            this.router.navigate(['/admin/phrases']);
+            this.router.navigate(["/admin/phrases"]);
             return;
           }
 
@@ -90,6 +90,10 @@ export class PhrasesDetailComponent implements OnInit {
         });
       }
     });
+  }
+
+  onCategoryToggled (category: Category) {
+
   }
 
   public createItem (): void {
@@ -105,12 +109,14 @@ export class PhrasesDetailComponent implements OnInit {
       categoryName: this.item.category.name
     })
     .then((result: PhrasePostCreateResponse) => {
-      // If quiz isn't null
       if (result.phrase) {
-        this.item.id = result.phrase.id;
         // If success show that it was updated?
-        this.isNew = false;
-        this.router.navigate(['/admin/phrase/' + result.phrase.id]);
+        this.router.navigate(["/admin/phrase/-1"]);
+        this.item.id = -1;
+        this.item.finnish = "";
+        this.item.english = "";
+        this.item.note = "";
+        // Specifically isn't changing category because it could be likely you're adding 2 phrases to the same category in a row
       }
       else {
         this.error = result.error;

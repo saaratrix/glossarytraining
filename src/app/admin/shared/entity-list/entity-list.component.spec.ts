@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { EntityListComponent } from './entity-list.component';
+import { EntityListComponent } from "./entity-list.component";
 
-describe('EntityListComponent', () => {
+describe("EntityListComponent", () => {
   let component: EntityListComponent;
   let fixture: ComponentFixture<EntityListComponent>;
 
@@ -19,7 +19,7 @@ describe('EntityListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

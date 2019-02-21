@@ -1,0 +1,23 @@
+<ul>
+  <li>
+    <div class="verb-row">
+      <div></div>
+      <div><strong>Verbi</strong></div>
+      <div><strong>Minä</strong></div>
+      <div><strong>Sinä</strong></div>
+      <div><strong>Hän</strong></div>
+      <div><strong>Me</strong></div>
+      <div><strong>Te</strong></div>
+      <div><strong>He</strong></div>
+      <div><strong>Ei</strong></div>
+    </div>
+  </li>
+  <li *ngFor="let item of verbItems; let i = index;" [class.passed]="isReviewed && item.isCorrect" [class.failed]="isReviewed && !item.isCorrect">
+    <app-verb-item [item]="item" [isReviewed]="isReviewed" [isOdd]="i % 2 === 0" ></app-verb-item>
+  </li>
+</ul>
+<div >
+  <button (click)="review()" [disabled]="!hasAnswers()" *ngIf="!isAllCorrect">Review verbs</button>
+  <button (click)="doNewVerbTraining()" *ngIf="isAllCorrect">Train more verbs!</button>
+</div>
+

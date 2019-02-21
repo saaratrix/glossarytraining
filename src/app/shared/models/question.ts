@@ -1,5 +1,5 @@
 export interface Question {
-  visible: boolean;
+  isVisible: boolean;
   index: number;
   question: string;
   note: string;

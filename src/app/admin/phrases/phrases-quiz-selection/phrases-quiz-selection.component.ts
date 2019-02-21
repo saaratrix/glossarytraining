@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { ApiService } from "../../../shared/services/api.service";
 import { Phrase } from "../../../shared/models/phrase.model";
 import { Input } from "@angular/core";
@@ -7,9 +7,9 @@ import { PhraseGetResponse, DefaultSuccessResponse } from "../../../shared/model
 import { PhrasesSelectionComponent } from "../../../phrase/phrases-selection/phrases-selection.component";
 
 @Component({
-  selector: 'app-admin-phrases-quiz-selection',
-  templateUrl: './phrases-quiz-selection.component.html',
-  styleUrls: ['./phrases-quiz-selection.component.less']
+  selector: "app-admin-phrases-quiz-selection",
+  templateUrl: "./phrases-quiz-selection.component.html",
+  styleUrls: ["./phrases-quiz-selection.component.less"]
 })
 export class PhrasesQuizSelectionComponent implements OnInit {
 

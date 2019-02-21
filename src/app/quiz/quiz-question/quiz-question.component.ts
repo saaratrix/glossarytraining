@@ -5,9 +5,9 @@ import { TextQuestion } from "../../shared/models/text-question";
 import { MultipleQuestion } from "../../shared/models/multiple-question";
 
 @Component({
-  selector: 'app-quiz-question',
-  templateUrl: './quiz-question.component.html',
-  styleUrls: ['./quiz-question.component.less']
+  selector: "app-quiz-question",
+  templateUrl: "./quiz-question.component.html",
+  styleUrls: ["./quiz-question.component.less"]
 })
 export class QuizQuestionComponent implements OnInit {
   @Input()

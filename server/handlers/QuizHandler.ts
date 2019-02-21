@@ -1,5 +1,5 @@
 import { query, MySQLResults } from "../database/mysql-connection";
-import { BaseHandler } from './BaseHandler';
+import { BaseHandler } from "./BaseHandler";
 import { Quiz } from "../models/Quiz";
 import { PhraseHandler } from "./PhraseHandler";
 
@@ -33,6 +33,11 @@ export class QuizHandler extends BaseHandler<Quiz>{
     return result;
   }
 
+  /**
+   * Get a quiz with the phrases aswell.
+   * @param {number} id
+   * @return {Promise<Quiz>}
+   */
   public async getWithPhrases (id: number): Promise<Quiz> {
     const quiz = await this.get(id);
 

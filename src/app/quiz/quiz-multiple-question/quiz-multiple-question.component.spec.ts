@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { QuizMultipleQuestionComponent } from './quiz-multiple-question.component';
+import { QuizMultipleQuestionComponent } from "./quiz-multiple-question.component";
 
-describe('QuizMultipleQuestionComponent', () => {
+describe("QuizMultipleQuestionComponent", () => {
   let component: QuizMultipleQuestionComponent;
   let fixture: ComponentFixture<QuizMultipleQuestionComponent>;
 
@@ -19,7 +19,7 @@ describe('QuizMultipleQuestionComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

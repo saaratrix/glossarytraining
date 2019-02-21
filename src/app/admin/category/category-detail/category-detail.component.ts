@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { ApiService } from "../../../shared/services/api.service";
 import { Category } from "../../../shared/models/category.model";
 import { CategoryGetDetailResponse, CategoryPostCreateResponse, DefaultSuccessResponse } from "../../../shared/models/httpresponses";
@@ -6,9 +6,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 
 @Component({
-  selector: 'app-admin-category-detail',
-  templateUrl: './category-detail.component.html',
-  styleUrls: ['./category-detail.component.less']
+  selector: "app-admin-category-detail",
+  templateUrl: "./category-detail.component.html",
+  styleUrls: ["./category-detail.component.less"]
 })
 export class CategoryDetailComponent implements OnInit {
   public item: Category;
@@ -40,7 +40,7 @@ export class CategoryDetailComponent implements OnInit {
           this.item = result.category;
           // If invalid quiz then route back to quiz list
           if (!this.item) {
-            this.router.navigate(['/admin/categories']);
+            this.router.navigate(["/admin/categories"]);
           }
         });
       }
@@ -53,12 +53,8 @@ export class CategoryDetailComponent implements OnInit {
 
     this.apiService.post("category/create", this.item)
       .then((result: CategoryPostCreateResponse) => {
-        // If quiz isn't null
         if (result.category) {
-          this.item.id = result.category.id;
-          // If success show that it was updated?
-          this.isNew = false;
-          this.router.navigate(['/admin/category/' + result.category.id]);
+          this.router.navigate(["/admin/categories"]);
         }
         else {
           this.error = result.error;
