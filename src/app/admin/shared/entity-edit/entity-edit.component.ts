@@ -47,7 +47,6 @@ export class EntityEditComponent implements OnInit {
   }
 
   ngOnInit () {
-    console.log("init!!");
   }
 
   public updateItem () {

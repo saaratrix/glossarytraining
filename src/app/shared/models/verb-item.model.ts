@@ -1,5 +1,4 @@
 import { VerbItemQuestion } from "./verb-item-question.model";
-import { getDefaultSchematicCollection } from "@angular/cli/utilities/config";
 // Ideally this would just be called Verb but that's already taken!
 export class VerbItem {
 

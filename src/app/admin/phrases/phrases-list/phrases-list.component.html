@@ -7,6 +7,7 @@
     </h2>
     <app-admin-entity-list
       [listId]="i"
+      [doInlineEdit]="true"
       [entities]="phrasesByCategory.phrases"
       [editUrl]="'../phrase'"
       [updateUrl]="'phrase/update'"

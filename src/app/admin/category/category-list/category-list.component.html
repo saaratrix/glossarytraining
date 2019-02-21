@@ -2,11 +2,26 @@
 <a [routerLink]="['../category', -1]">Create new category</a>
 
 <app-admin-entity-list
+  [listId]="0"
+  [doInlineEdit]="true"
   [entities]="items"
   [keys]="['name']"
   [keysData]="{ 'name': { header: 'Category Name', editable: true } }"
   [editUrl]="'../category'"
   [updateUrl]="'category/update'"
   [removeUrl]="'category/remove'"
+  [editFields]="[
+    {
+      'label': 'Name',
+      'key': 'name',
+      'required': true,
+      type: EditFieldTypes.Text
+    }
+  ]"
+  [onstartEvent]="onstartEvent"
+  [onsuccessEvent]="onsuccessEvent"
+  [onerrorEvent]="onerrorEvent"
+  (removed)="removedItem($event)"
+  (updateItem)="updateItem($event)"
 >
 </app-admin-entity-list>

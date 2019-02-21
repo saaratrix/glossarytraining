@@ -2,12 +2,16 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from "@angu
 import { ApiService } from "../../../shared/services/api.service";
 import { DefaultSuccessResponse } from "../../../shared/models/httpresponses";
 import { EditField } from "../../../shared/models/edit-field";
-import { Phrase } from "../../../shared/models/phrase.model";
 import { EntityUpdateErrorEvent, EntityUpdateSuccessEvent } from "../../phrases/phrases-list/phrases-list.component";
 
 interface IKeyData {
   header: string;
   editable: boolean;
+}
+
+interface IEntityUpdate {
+  index: number,
+  entity: any,
 }
 
 @Component({
@@ -19,6 +23,8 @@ export class EntityListComponent implements OnInit {
 
   @Input()
   public listId: number;
+  @Input()
+  public doInlineEdit: boolean;
   @Input()
   public entities: any[];
   @Input()
@@ -103,8 +109,6 @@ export class EntityListComponent implements OnInit {
         this.isWaitingForServer = true;
         this.isFinished = false;
         this.error = "";
-
-        console.log("started", index);
       });
     }
     if (this.onsuccessEvent) {
@@ -116,8 +120,6 @@ export class EntityListComponent implements OnInit {
         this.isWaitingForServer = false;
         this.isFinished = true;
         this.error = "";
-
-        console.log("success", event);
       });
     }
     if (this.onerrorEvent) {
@@ -129,12 +131,8 @@ export class EntityListComponent implements OnInit {
         this.isWaitingForServer = false;
         this.isFinished = false;
         this.error = event.error;
-
-        console.log("error", event);
       });
     }
-
-    console.log(this.startSubscription, this.successSubscription, this.errorSubscription);
   }
 
   ngOnDestroy () {
@@ -161,7 +159,11 @@ export class EntityListComponent implements OnInit {
 
     if (value !== entity[key]) {
       entity[key] = value;
-      this.update(entity);
+
+      this.update({
+        entity: entity,
+        index: this.listId
+      });
     }
   }
 
@@ -171,7 +173,7 @@ export class EntityListComponent implements OnInit {
    */
   public columnKeyDown (event: KeyboardEvent) {
     // 13 == Enter
-    if (event.which === 13) {
+    if (event.key === "Enter") {
       event.preventDefault();
     }
   }
@@ -182,7 +184,7 @@ export class EntityListComponent implements OnInit {
    */
   public columnKeyUp (event: KeyboardEvent) {
     // 13 == Enter
-    if (event.which === 13) {
+    if (event.key === "Enter") {
       (event.target as HTMLElement).blur();
       event.preventDefault();
     }
@@ -220,7 +222,7 @@ export class EntityListComponent implements OnInit {
    * Update the entity by using the api
    * @param entity
    */
-  public update (entity: any) {
+  public update (entity: IEntityUpdate) {
     this.updateItem.emit(entity);
   }
 

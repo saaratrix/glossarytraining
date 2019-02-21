@@ -23,6 +23,5 @@ export class VerbItemComponent implements OnInit {
   }
 
   ngOnInit () {
-    console.log(this.isOdd);
   }
 }

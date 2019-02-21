@@ -67,7 +67,5 @@ export class VerbSelectionComponent implements OnInit {
         this.selectedVerbs.splice(index, 1);
       }
     }
-
-    console.log("item toggled", this.selectedVerbs);
   }
 }

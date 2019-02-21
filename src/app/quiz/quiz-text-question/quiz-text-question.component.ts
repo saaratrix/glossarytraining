@@ -47,7 +47,7 @@ export class QuizTextQuestionComponent implements OnInit {
 
   public tryFocusNext (event: KeyboardEvent) {
     // 13 == Enter
-    if (event.which === 13) {
+    if (event.key === "Enter") {
       const currentInput = this.inputElement.nativeElement as HTMLInputElement;
 
       const nodeList: NodeList = document.querySelectorAll(".answer-text-input");
