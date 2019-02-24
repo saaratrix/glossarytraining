@@ -2,7 +2,7 @@
   Loading ...
 </p>
 <ul class="items-list">
-  <li *ngFor="let item of items" [title]="item.description" (click)="itemClicked(item)" class="item-item" >
+  <li *ngFor="let item of items" [title]="getDescription(item)" (click)="itemClicked(item)" class="item-item" >
     {{item.name}}
   </li>
 </ul>

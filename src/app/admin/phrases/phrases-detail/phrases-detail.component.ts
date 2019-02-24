@@ -8,6 +8,8 @@ import {
   PhraseGetDetailResponse, PhrasePostCreateResponse
 } from "../../../shared/models/httpresponses";
 import { NgForm } from "@angular/forms";
+import { ItemSelectorComponent } from "../../../shared/components/item-selector/item-selector.component";
+import { ItemToggledEvent } from "../../../shared/components/item-toggle-selector/item-toggle-selector.component";
 
 @Component({
   selector: "app-admin-phrases-detail",
@@ -92,8 +94,8 @@ export class PhrasesDetailComponent implements OnInit {
     });
   }
 
-  onCategoryToggled (category: Category) {
-
+  onCategoryToggled (itemClicked: ItemToggledEvent) {
+    this.item.category = itemClicked.item as Category;
   }
 
   public createItem (): void {

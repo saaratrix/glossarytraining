@@ -41,9 +41,10 @@
           'label': 'Category',
           'key': 'category',
           'required': true,
-          'type': EditFieldTypes.Select,
+          'type': EditFieldTypes.ItemSelect,
           'list': categories,
-          'listKey': 'name'
+          'listName': 'name',
+          'listTitle': 'name'
         }
       ]"
       [onstartEvent]="onstartEvent"

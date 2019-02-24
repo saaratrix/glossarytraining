@@ -21,6 +21,10 @@ export class QuizSelectionComponent implements OnInit {
 
   }
 
+  public getDescription(item) {
+    return item.description || item.name;
+  }
+
   public itemClicked (item: any) {
     this.selected.emit(item);
   }

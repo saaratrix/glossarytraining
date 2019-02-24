@@ -12,10 +12,11 @@ import { PhrasesDetailComponent } from "./phrases/phrases-detail/phrases-detail.
 import { PhrasesQuizSelectionComponent } from "./phrases/phrases-quiz-selection/phrases-quiz-selection.component";
 import { CategoryListComponent } from "./category/category-list/category-list.component";
 import { CategoryDetailComponent } from "./category/category-detail/category-detail.component";
-
-import { SharedModule as SharedAdminModule } from "./shared/shared.module";
 import { VerbListComponent } from "./verb/verb-list/verb-list.component";
 import { VerbDetailComponent } from "./verb/verb-detail/verb-detail.component";
+
+import { SharedModule as SharedAdminModule } from "./shared/shared.module";
+import { SharedModule as SharedCommonModule } from "../shared/shared.module";
 
 const adminRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -64,6 +65,7 @@ const adminRouting: ModuleWithProviders = RouterModule.forChild([
     CommonModule,
     FormsModule,
     PhraseModule,
+    SharedCommonModule,
     SharedAdminModule,
     adminRouting
   ],

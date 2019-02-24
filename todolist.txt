@@ -1,8 +1,6 @@
 * Tests, add some tests to refamiliarise with protractor
 
 Tasks:
-* Create a custom component to select category instead of 1 massive dropdown list when creating a phrase.
-* Fix "undefined" issue when mouseover category for quizzes.
 
 ### Quizzes:
 * Add quizzes for multiple categories
