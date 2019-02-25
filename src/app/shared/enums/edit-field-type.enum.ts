@@ -1,4 +1,5 @@
 export enum EditFieldType {
   Text,
-  Select
+  Select,
+  ItemSelect
 }

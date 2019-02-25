@@ -6,6 +6,7 @@ import { PhrasesByCategory } from "../../../shared/models/phrases-by-category.mo
 import { EditFieldType } from "../../../shared/enums/edit-field-type.enum";
 import { Category } from "../../../shared/models/category.model";
 import { EntityEditUpdateEvent } from "../../shared/entity-edit/entity-edit.component";
+import { ItemToggledEvent } from "../../../shared/components/item-toggle-selector/item-toggle-selector.component";
 
 export interface EntityUpdateStartEvent {
   index: number;
@@ -34,6 +35,8 @@ export class PhrasesListComponent implements OnInit {
 
   public EditFieldTypes: any;
 
+  public onListUpdate: Function;
+
   public onstartEvent: EventEmitter<number>;
   public onsuccessEvent: EventEmitter<EntityUpdateSuccessEvent>;
   public onerrorEvent: EventEmitter<EntityUpdateErrorEvent>;
@@ -46,6 +49,8 @@ export class PhrasesListComponent implements OnInit {
     this.onstartEvent = new EventEmitter<number>();
     this.onsuccessEvent = new EventEmitter<EntityUpdateSuccessEvent>();
     this.onerrorEvent = new EventEmitter<EntityUpdateErrorEvent>();
+
+    this.onListUpdate = this.onCategoryToggled.bind(this);
   }
 
   ngOnInit () {
@@ -95,6 +100,12 @@ export class PhrasesListComponent implements OnInit {
       });
 
     });
+  }
+
+  private onCategoryToggled (itemClicked: ItemToggledEvent) {
+    let changedPhrase = itemClicked.item as Phrase;
+
+
   }
 
   public getToggleListText (isVisible: boolean): string {

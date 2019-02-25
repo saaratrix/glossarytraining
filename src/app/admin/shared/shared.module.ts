@@ -5,13 +5,15 @@ import { RouterModule } from "@angular/router";
 import { EntityListComponent } from "./entity-list/entity-list.component";
 import { EntityEditComponent } from './entity-edit/entity-edit.component';
 import { FormsModule } from "@angular/forms";
+import { SharedModule as SharedCommonModule } from "../../shared/shared.module";
 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    SharedCommonModule
   ],
   declarations: [
     EntityListComponent,

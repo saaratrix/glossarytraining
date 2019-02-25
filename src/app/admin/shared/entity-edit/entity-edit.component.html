@@ -20,6 +20,13 @@
       >{{listItem[field.listKey]}}</option>
     </select>
   </ng-container>
+  <ng-container *ngIf="field.type === EditFieldTypes.ItemSelect">
+    <app-item-selector [items]="field.list"
+                       [nameKey]="field.listName"
+                       [titleKey]="field.listTitle"
+                       [initialItem]="entity[field.key]"
+                       (itemClicked)="onItemSelectUpdate($event, field.key)" ></app-item-selector>
+  </ng-container>
 </div>
 
 <button (click)="updateItem()">Update</button>

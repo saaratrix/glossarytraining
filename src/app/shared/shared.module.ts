@@ -5,6 +5,7 @@ import { RouterModule } from "@angular/router";
 import { ApiService } from "./services/api.service";
 import { QuizCreateHelperService } from "./services/quiz-create-helper.service";
 import { ItemToggleSelectorComponent } from "./components/item-toggle-selector/item-toggle-selector.component";
+import { ItemSelectorComponent } from './components/item-selector/item-selector.component';
 
 @NgModule({
   imports: [
@@ -17,10 +18,12 @@ import { ItemToggleSelectorComponent } from "./components/item-toggle-selector/i
     QuizCreateHelperService
   ],
   declarations: [
-    ItemToggleSelectorComponent
+    ItemToggleSelectorComponent,
+    ItemSelectorComponent
   ],
   exports: [
-    ItemToggleSelectorComponent
+    ItemToggleSelectorComponent,
+    ItemSelectorComponent
   ]
 })
 export class SharedModule { }

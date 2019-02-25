@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { EditField } from "../../../shared/models/edit-field";
 import { EditFieldType } from "../../../shared/enums/edit-field-type.enum";
+import { ItemSelectorComponent } from "../../../shared/components/item-selector/item-selector.component";
+import { ItemToggledEvent } from "../../../shared/components/item-toggle-selector/item-toggle-selector.component";
 
 export interface  EntityEditUpdateEvent {
   entity: any;
@@ -47,6 +49,11 @@ export class EntityEditComponent implements OnInit {
   }
 
   ngOnInit () {
+  }
+
+  onItemSelectUpdate (itemClicked: ItemToggledEvent, key: string) {
+    let item = itemClicked.item;
+    this.entity[key] = item;
   }
 
   public updateItem () {
