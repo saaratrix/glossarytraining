@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Verb } from "../../../shared/models/verb.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ApiService } from "../../../shared/services/api.service";
@@ -46,6 +46,7 @@ export class VerbDetailComponent implements OnInit {
           ei: ""
         };
         this.isNew = true;
+        this.focusFirstInputElement();
       }
       else {
         this.apiService.get("verb/get/" + id).then((result: VerbGetDetailResponse) => {
@@ -54,9 +55,21 @@ export class VerbDetailComponent implements OnInit {
           if (!result.verb) {
             this.router.navigate(["/admin/verbs"]);
           }
+          else {
+            this.focusFirstInputElement();
+          }
         });
       }
     });
+  }
+
+  focusFirstInputElement (): void {
+    setTimeout(() => {
+      const inputElement = document.getElementById("finnish") as HTMLInputElement;
+
+      inputElement.focus();
+      inputElement.select();
+    },1);
   }
 
   public createItem (): void {

@@ -1,6 +1,8 @@
 * Tests, add some tests to refamiliarise with protractor
 
 Tasks:
+* Add a reveal button for verb training. To reveal the answer in the placeholder text.
+
 
 ### Quizzes:
 * Add quizzes for multiple categories
