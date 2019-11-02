@@ -7,14 +7,6 @@
       <input type="text" id="finnish" name="finnish" required [(ngModel)]="verb.finnish">
     </div>
     <div class="form-group">
-      <label for="english">English:</label>
-      <input type="text" id="english" name="english" required [(ngModel)]="verb.english" >
-    </div>
-    <div class="form-group">
-      <label for="note">Note:</label>
-      <input type="text" id="note" name="note" [(ngModel)]="verb.note" >
-    </div>
-    <div class="form-group">
       <label for="mina">Minä</label>
       <input type="text" id="mina" name="mina" required [(ngModel)]="verb.mina" >
     </div>
@@ -41,6 +33,14 @@
     <div class="form-group">
       <label for="ei">Ei</label>
       <input type="text" id="ei" name="ei" required [(ngModel)]="verb.ei" >
+    </div>
+    <div class="form-group">
+      <label for="english">English:</label>
+      <input type="text" id="english" name="english" required [(ngModel)]="verb.english" >
+    </div>
+    <div class="form-group">
+      <label for="note">Note:</label>
+      <input type="text" id="note" name="note" [(ngModel)]="verb.note" >
     </div>
     <br>
     <input type="submit" [value]="isNew ? 'Create Verb' : 'Update Verb'">

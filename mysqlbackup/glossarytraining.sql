@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2018 at 12:26 AM
--- Server version: 5.7.11
--- PHP Version: 5.6.19
+-- Generation Time: Nov 02, 2019 at 09:02 AM
+-- Server version: 5.7.17
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -239,7 +241,41 @@ CREATE TABLE `verbs` (
 INSERT INTO `verbs` (`id`, `finnish`, `english`, `note`, `minä`, `sinä`, `hän`, `me`, `te`, `he`, `ei`) VALUES
 (1, 'olla', 'am', '', 'olen', 'olet', 'on', 'olemme', 'olette', 'ovat', 'ole'),
 (2, 'aikoa', 'going to/intend to', 'I am going to do something ...', 'aion', 'aiot', 'aikoo', 'aiomme', 'aiotte', 'aikovat', 'aio'),
-(3, 'soittaa', 'call', '', 'soitan', 'soitat', 'soittaa', 'soitamme', 'soitatte', 'soittavat', 'soita');
+(3, 'soittaa', 'call', '', 'soitan', 'soitat', 'soittaa', 'soitamme', 'soitatte', 'soittavat', 'soita'),
+(4, 'ajatella', 'think', '', 'ajattelen', 'ajattelet', 'ajattelee', 'ajattelemme', 'ajattelette', 'ajattelevat', 'unknown'),
+(5, 'antaa', 'give', '', 'annan', 'annat', 'antaa', 'annamme', 'annatte', 'antavat', 'unknown'),
+(6, 'asua', 'live', 'Like living somewhere', 'asun', 'asut', 'asuu', 'asumme', 'asutte', 'asuvat', 'unknown'),
+(7, 'auttaa', 'help', '', 'autan', 'autat', 'auttaa', 'autamme', 'autatte', 'auttavat', 'unknown'),
+(8, 'avata', 'open', '', 'avaan', 'avaat', 'avaa', 'avaamme', 'avaatte', 'avaavat', 'unknown'),
+(9, 'ehdottaa', 'suggest', '', 'ehdotan', 'ehdotat', 'ehdottaa', 'ehdotamme', 'ehdotatte', 'ehdottavat', 'unknown'),
+(10, 'ehtiä', 'make it', 'like make it on time.', 'ehdin', 'ehdit', 'ehtii', 'ehdimme', 'ehditte', 'ehtivät', 'unknown'),
+(11, 'hakea', 'fetch', '', 'haen', 'haet', 'hakee', 'haemme', 'haette', 'hakevat', 'unknown'),
+(12, 'haluta', 'want', '', 'haluan', 'haluat', 'haluaa', 'haluamme', 'haluatte', 'haluavat', 'unknown'),
+(13, 'harjoitella', 'practice/train', '', 'harjoittelen', 'harjoittelet', 'harjoittelee', 'harjoittelemme', 'harjoittelette', 'harjoittelevat', 'unknown'),
+(14, 'herätä', 'wake up', '', 'herään', 'heräät', 'herää', 'heräämme', 'heräätte', 'heräävät', 'unknown'),
+(15, 'huutaa', 'scream', '', 'huudaan', 'huudat', 'huutaa', 'huudamme', 'huudatte', 'huutavat', 'unknown'),
+(16, 'hypätä', 'jump', '', 'hyppään', 'hyppäät', 'hyppää', 'hyppäämme', 'hyppäätte', 'hyppäävät', 'unknown'),
+(17, 'ihmetellä', 'wonder', '', 'ihmettelen', 'ihmettelet', 'ihmettelee', 'ihmettelemme', 'ihmettelette', 'ihmettelevät', 'unknown'),
+(18, 'istua', 'sit', '', 'istun', 'istut', 'istuu', 'istumme', 'istutte', 'istuvat', 'unknown'),
+(19, 'juoda', 'drink', '', 'juon', 'juot', 'juo', 'juomme', 'juotte', 'juovat', 'unknown'),
+(20, 'juosta', 'run', '', 'juoksen', 'juokset', 'juoksee', 'juoksemme', 'juoksette', 'juoksevat', 'unknown'),
+(21, 'jutella', 'chit chat', '', 'juttelen', 'juttelet', 'juttelee', 'juttelemme', 'juttelette', 'juttelevat', 'unknown'),
+(22, 'karata', 'escape', '', 'karkaan', 'karkaat', 'karkaa', 'karkaamme', 'karkaatte', 'karkaavat', 'unknown'),
+(23, 'katsella', 'view', '', 'katselen', 'katselet', 'katselee', 'katselemme', 'katselette', 'katselevat', 'unknown'),
+(24, 'katsoa', 'look/view', '', 'katson', 'katsot', 'katsoo', 'katsomme', 'katsotte', 'katsovat', 'unknown'),
+(25, 'keittää', 'boil', '', 'keitän', 'keität', 'keittää', 'keitämme', 'keitätte', 'keittävät', 'unknown'),
+(26, 'kiitää', 'thank', '', 'kiitän', 'kiität', 'kiittää', 'kiitämme', 'kiitätte', 'kiittävät', 'unknown'),
+(27, 'kirjoittaa', 'write', '', 'kirjoitan', 'kirjoitat', 'kirjoittaa', 'kirjoitamme', 'kirjoitatte', 'kirjoittavat', 'unknown'),
+(28, 'kuulla', 'hear', '', 'kuulen', 'kuulet', 'kuulee', 'kuulemme', 'kuulette', 'kuulevat', 'unknown'),
+(29, 'kuunnella', 'listen', '', 'kuuntelen', 'kuuntelet', 'kuuntelee', 'kuuntelemme', 'kuuntelette', 'kuuntelevat', 'unknown'),
+(30, 'kysyä', 'ask', '', 'kysyn', 'kysyt', 'kysyy', 'kysymme', 'kysytte', 'kysyvät', 'unknown'),
+(31, 'käydä', 'visit', '', 'käyn', 'käyt', 'käy', 'käymme', 'käytte', 'käyvät', 'unknown'),
+(32, 'lainata', 'loan', '', 'lainaan', 'lainaat', 'lainaa', 'lainaamme', 'lainaatte', 'lainaavat', 'unknown'),
+(33, 'leipoa', 'bake', '', 'leivon', 'leivot', 'leipoo', 'leivomme', 'leivotte', 'leipovat', 'unknown'),
+(34, 'lukea', 'read', '', 'luen', 'luet', 'lukee', 'luemme', 'luette', 'lukevat', 'unknown'),
+(35, 'lähteä', 'go/depart', 'To get going somewhere.', 'lähden', 'lähdet', 'lähtee', 'lähdemme', 'lähdette', 'lähtevät', 'unknown'),
+(36, 'lämmittää', 'warm', '', 'lämmitän', 'lämmittät', 'lämmittää', 'lämmitämme', 'lämmitätte', 'lämmittävät', 'unknown'),
+(37, 'löytää', 'find', '', 'löydän', 'löydät', 'löytää', 'löydämme', 'löydätte', 'löytävät', 'unknown');
 
 --
 -- Indexes for dumped tables
@@ -300,7 +336,7 @@ ALTER TABLE `quizzes`
 -- AUTO_INCREMENT for table `verbs`
 --
 ALTER TABLE `verbs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- Constraints for dumped tables
 --
@@ -317,6 +353,7 @@ ALTER TABLE `phrases`
 ALTER TABLE `quizphrases`
   ADD CONSTRAINT `phraseId restriction` FOREIGN KEY (`phraseId`) REFERENCES `phrases` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `quizId restriction` FOREIGN KEY (`quizId`) REFERENCES `quizzes` (`id`) ON DELETE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
