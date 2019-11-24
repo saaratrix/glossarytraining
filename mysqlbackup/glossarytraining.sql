@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2019 at 09:02 AM
+-- Generation Time: Nov 24, 2019 at 05:57 PM
 -- Server version: 5.7.17
 -- PHP Version: 5.6.30
 
@@ -275,7 +275,41 @@ INSERT INTO `verbs` (`id`, `finnish`, `english`, `note`, `minä`, `sinä`, `hän
 (34, 'lukea', 'read', '', 'luen', 'luet', 'lukee', 'luemme', 'luette', 'lukevat', 'unknown'),
 (35, 'lähteä', 'go/depart', 'To get going somewhere.', 'lähden', 'lähdet', 'lähtee', 'lähdemme', 'lähdette', 'lähtevät', 'unknown'),
 (36, 'lämmittää', 'warm', '', 'lämmitän', 'lämmittät', 'lämmittää', 'lämmitämme', 'lämmitätte', 'lämmittävät', 'unknown'),
-(37, 'löytää', 'find', '', 'löydän', 'löydät', 'löytää', 'löydämme', 'löydätte', 'löytävät', 'unknown');
+(37, 'löytää', 'find', '', 'löydän', 'löydät', 'löytää', 'löydämme', 'löydätte', 'löytävät', 'unknown'),
+(38, 'maksaa', 'to pay', '', 'maksan', 'maksat', 'maksaa', 'maksamme', 'maksatte', 'maksavat', 'unknown'),
+(39, 'matkustaa', 'to travel', '', 'matkustan', 'matkustat', 'matkustaa', 'matkustamme', 'matkustatte', 'matkustavat', 'unknown'),
+(40, 'mennä', 'to go', '', 'menen', 'menet', 'menee', 'menemme', 'menette', 'menevät', 'unknown'),
+(41, 'muistaa', 'to remember', '', 'muistan', 'muistat', 'muistaa', 'muistamme', 'muistatte', 'muistavat', 'unknown'),
+(42, 'neuvoa', 'to advice', '', 'neuvon', 'neuvot', 'neuvoo', 'neuvomme', 'neuvotte', 'neuvovat', 'unknown'),
+(43, 'nukkua', 'to sleep', '', 'nukun', 'nukut', 'nukkuu', 'nukumme', 'nukutte', 'nukkuvat', 'unknown'),
+(44, 'nähdä', 'to see', '', 'näen', 'näet', 'näkee', 'näemme', 'näette', 'näkevät', 'unknown'),
+(45, 'näyttää', 'to show', '', 'näytän', 'näytät', 'näyttää', 'näytämme', 'näytätte', 'näyttävät', 'unknown'),
+(46, 'odottaa', 'to wait', '', 'odotan', 'odotat', 'odottaa', 'odotamme', 'odotatte', 'odottavat', 'unknown'),
+(47, 'ohjata', 'to lead', '(to guide/steer)', 'ohjaan', 'ohjaat', 'ohjaa', 'ohjaamme', 'ohjaatte', 'ohjaavat', 'unknown'),
+(48, 'osata', 'to know', '', 'osaan', 'osaat', 'osaa', 'osaamme', 'osaatte', 'osaavat', 'unknown'),
+(49, 'ostaa', 'to buy', '', 'ostan', 'ostat', 'ostaa', 'ostamme', 'ostatte', 'ostavat', 'unknown'),
+(50, 'ottaa', 'to take', '', 'otan', 'otat', 'ottaa', 'otamme', 'otatte', 'ottavat', 'unknown'),
+(51, 'paistaa', 'to fry/to bake/to shine', 'to fry, to bake, to shine', 'paistan', 'paistat', 'paistaa', 'paistamme', 'paistatte', 'paistavat', 'unknown'),
+(52, 'puhua', 'to speak/to talk', '', 'puhun', 'puhut', 'puhuu', 'puhumme', 'puhutte', 'puhuvat', 'puhu'),
+(53, 'pyytää', 'to beg', '', 'pyydän', 'pyydät', 'pyytää', 'pyydämme', 'pyydätte', 'pyytävät', 'unknown'),
+(54, 'päästä', 'to come/to reach', '', 'pääsen', 'pääset', 'pääsee', 'pääsemme', 'pääsette', 'pääsevät', 'unknown'),
+(55, 'päättää', 'to decide', '', 'päätän', 'päätät', 'päättää', 'päätämme', 'päätätte', 'päättävät', 'unknown'),
+(56, 'rakastaa', 'to love', '', 'rakastan', 'rakastat', 'rakastaa', 'rakastamme', 'rakastatte', 'rakastavat', 'unknown'),
+(57, 'saada', 'to get', '', 'saan', 'saat', 'saa', 'saamme', 'saatte', 'saavat', 'unknown'),
+(58, 'saapua', 'to arrive', '', 'saavun', 'saavut', 'saapuu', 'saavumme', 'saavutte', 'saapuvat', 'unknown'),
+(59, 'sanoa', 'to say', '', 'sanon', 'sanot', 'sanoo', 'sanomme', 'sanotte', 'sanovat', 'unknown'),
+(60, 'selviytyä', 'to survive', 'to get by', 'selviydyn', 'selviydyt', 'selviytyy', 'selviydymme', 'selviydytte', 'selviytyvät', 'unknown'),
+(61, 'siivota', 'to clean', '', 'siivoan', 'siivoat', 'siivoaa', 'siivoamme', 'siivoatte', 'siivoavat', 'unknown'),
+(62, 'suostua', 'to agree', '', 'suostun', 'suostut', 'suostuu', 'suostumme', 'suostutte', 'suostuvat', 'unknown'),
+(63, 'sytyttää', 'to light/to ignite', '', 'sytytän', 'sytytät', 'sytyttää', 'sytytämme', 'sytytätte', 'sytyttävät', 'unknown'),
+(64, 'syödä', 'to eat', '', 'syön', 'syöt', 'syö', 'syömme', 'syötte', 'syövät', 'unknown'),
+(65, 'tavata', 'to meet', '', 'tapaan', 'tapaat', 'tapaa', 'tapaamme', 'tapaatte', 'tapaavat', 'unknown'),
+(66, 'tarvita', 'to need', '', 'tarvitsen', 'tarvitset', 'tarvitsee', 'tarvitsemme', 'tarvitsette', 'tarvitsevat', 'unknown'),
+(67, 'tehdä', 'to do', '', 'teen', 'teet', 'tekee', 'teemme', 'teette', 'tekevät', 'unknown'),
+(68, 'tietää', 'to know', '', 'tiedän', 'tiedät', 'tietää', 'tiedämme', 'tiedätte', 'tietävät', 'unknown'),
+(69, 'tulla', 'to come', 'arriving', 'tulen', 'tulet', 'tulee', 'tulemme', 'tulette', 'tulevat', 'unknown'),
+(70, 'tutkia', 'to inspect', '', 'tutkin', 'tutkit', 'tutkii', 'tutkimme', 'tutkitte', 'tutkivat', 'unknown'),
+(71, 'täyttää', 'to fill', '', 'täytän', 'täytät', 'täyttää', 'täytämme', 'täytätte', 'täyttävät', 'unknown');
 
 --
 -- Indexes for dumped tables
@@ -336,7 +370,7 @@ ALTER TABLE `quizzes`
 -- AUTO_INCREMENT for table `verbs`
 --
 ALTER TABLE `verbs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 --
 -- Constraints for dumped tables
 --
