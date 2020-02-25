@@ -15,8 +15,8 @@ export class QuizTextQuestionComponent implements OnInit {
   @Output()
   public answered: EventEmitter<TextQuestion>;
 
-  @ViewChild("questionInput")
-  private inputElement: ElementRef;
+  @ViewChild("questionInput", { static: true })
+  private inputElement!: ElementRef;
 
   public revealAnswers: boolean;
 
