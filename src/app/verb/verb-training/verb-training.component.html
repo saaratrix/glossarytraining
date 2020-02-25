@@ -9,7 +9,7 @@
       <div><strong>Me</strong></div>
       <div><strong>Te</strong></div>
       <div><strong>He</strong></div>
-      <div><strong>Ei</strong></div>
+<!--      <div><strong>Ei</strong></div>-->
     </div>
   </li>
   <li *ngFor="let item of verbItems; let i = index;" [class.passed]="isReviewed && item.isCorrect" [class.failed]="isReviewed && !item.isCorrect">
