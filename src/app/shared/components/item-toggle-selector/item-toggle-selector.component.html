@@ -5,6 +5,13 @@
   <button (click)="unselectAll()" class="unselect">
     Unselect all
   </button>
+  <p>
+    <label for="random_selection_count">Random selection:</label>
+    <br>
+    <input id="random_selection_count" type="number" [(ngModel)]="randomCount" />
+    <br>
+    <button (click)="randomizeSelection()">Randomize Selection</button>
+  </p>
 </div>
 
 <ul class="items-list">

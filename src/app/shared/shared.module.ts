@@ -6,13 +6,15 @@ import { ApiService } from "./services/api.service";
 import { QuizCreateHelperService } from "./services/quiz-create-helper.service";
 import { ItemToggleSelectorComponent } from "./components/item-toggle-selector/item-toggle-selector.component";
 import { ItemSelectorComponent } from './components/item-selector/item-selector.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    RouterModule,
-  ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        RouterModule,
+        FormsModule,
+    ],
   providers: [
     ApiService,
     QuizCreateHelperService

@@ -77,7 +77,7 @@ export class VerbTrainingComponent implements OnInit {
 
   private createVerbItem (verb: Verb, index: number): VerbItem {
 
-    const questionKeys = this.quizCreateHelperService.getQuestionKeys("finnish", "english", LanguageMode.Finnish);
+    const questionKeys = this.quizCreateHelperService.getQuestionKeys("finnish", "english", LanguageMode.Random);
     const name = verb[questionKeys.question];
     const isFinnish = questionKeys.question === "finnish";
 

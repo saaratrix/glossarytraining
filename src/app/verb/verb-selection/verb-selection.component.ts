@@ -4,11 +4,9 @@ import { ApiService } from "../../shared/services/api.service";
 import { VerbGetResponse } from "../../shared/models/httpresponses";
 import { Router } from "@angular/router";
 import { VerbService } from "../verb.service";
-import { VerbItem } from "../../shared/models/verb-item.model";
 
 import {
   ItemToggledEvent,
-  ItemToggleSelectorComponent
 } from "../../shared/components/item-toggle-selector/item-toggle-selector.component";
 
 @Component({
@@ -23,6 +21,7 @@ export class VerbSelectionComponent implements OnInit {
 
   public isFetchingItems: boolean;
   public error: string;
+  public maximumVerbs: number = 0;
 
   constructor (private verbService: VerbService, private apiService: ApiService, private router: Router) {
     this.verbs = [];
@@ -47,13 +46,8 @@ export class VerbSelectionComponent implements OnInit {
     });
   }
 
-  public selectAll () {
-    this.selectedVerbs.push(...this.verbs);
-  }
-
   public start () {
     this.verbService.verbs = this.selectedVerbs;
-
     this.router.navigate(["verb-training"]);
   }
 

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
 export interface ItemToggledEvent {
   item: any;
@@ -24,6 +25,8 @@ export class ItemToggleSelectorComponent implements OnInit {
   public startSelected: boolean;
   @Input()
   public allowOnlyOne: boolean;
+  @Input()
+  public randomCount: number = 10;
 
   @Output()
   public itemClicked: EventEmitter<ItemToggledEvent>;
@@ -90,4 +93,21 @@ export class ItemToggleSelectorComponent implements OnInit {
     });
   }
 
+  public randomizeSelection(): void {
+    this.unselectAll();
+    const items = [...this.items];
+
+    for (let i = 0; i < items.length; i++) {
+      const index = Math.floor(Math.random() * (items.length));
+      // Just a simple swap to randomize the verbs.
+      const temp = items[index];
+      items[index] = items[i];
+      items[i] = temp;
+    }
+
+    const randomVerbs = items.splice(0, this.randomCount);
+    for (const randomVerb of randomVerbs) {
+      this.onItemClicked(randomVerb);
+    }
+  }
 }
