@@ -1,13 +1,19 @@
 <div class="verb-row" [class.verb-odd]="isOdd" [class.verb-even]="!isOdd">
     <div class="verb-container">
       <strong title="{{item.isFinnish ? 'In finnish' : 'In english'}}">{{item.name}}</strong>
-      <span class="verb-note" *ngIf="item.note" [title]="item.note"> *</span>
+      <div class="verb-note">
+        <span class="asterix" *ngIf="item.note" [title]="item.note"> *</span>
+        <!--    laughing cat:   &#128569; 😹-->
+        <!--    screaming cat:  &#128576; 🙀-->
+        <span class="reveal" [title]="item.note" (click)="toggleReveal()">{{this.showAnswer ? "😹" : "🙀"}}</span>
+      </div>
     </div>
     <div *ngFor="let question of item.questions" class="verb-container">
       <input type="text" [class.question-passed]="isReviewed && question.isCorrect"
              [class.question-failed]="isReviewed && !question.isCorrect"
              [(ngModel)]="question.answer"
              [placeholder]="showAnswer ? question.getCorrectAnswer() : ''"
-             [title]="showAnswer ? question.getCorrectAnswer() : ''">
+             [title]="showAnswer ? question.getCorrectAnswer() : ''"
+      >
     </div>
 </div>

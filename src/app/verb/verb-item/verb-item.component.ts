@@ -16,6 +16,8 @@ export class VerbItemComponent implements OnInit {
   @Input()
   public isOdd: boolean;
 
+  public showAnswer: boolean = false;
+
   constructor () {
     this.item = null;
     this.isReviewed = false;
@@ -23,5 +25,9 @@ export class VerbItemComponent implements OnInit {
   }
 
   ngOnInit () {
+  }
+
+  toggleReveal() {
+    this.showAnswer = !this.showAnswer;
   }
 }

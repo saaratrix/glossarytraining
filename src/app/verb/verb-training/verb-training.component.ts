@@ -91,7 +91,7 @@ export class VerbTrainingComponent implements OnInit {
     questions.push(new VerbItemQuestion(verb.me));
     questions.push(new VerbItemQuestion(verb.te));
     questions.push(new VerbItemQuestion(verb.he));
-    questions.push(new VerbItemQuestion(verb.ei));
+    // questions.push(new VerbItemQuestion(verb.ei));
 
     const verbItem = new VerbItem(index, name, verb.note, questions, isFinnish);
     return verbItem;
