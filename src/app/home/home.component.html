@@ -28,7 +28,7 @@
         <option *ngFor="let key of QuizTypeKeys" [value]="key" >{{QuizTypes[key]}}</option>
       </select>
       <br>
-      <label for="languagemode">Select language: </label>
+      <label for="languagemode">Select question language: </label>
       <select id="languagemode" name="languagemode" [(ngModel)]="languageMode">
         <option *ngFor="let key of languageModeKeys" [value]="key">{{ languageModes[key] }}</option>
       </select>
