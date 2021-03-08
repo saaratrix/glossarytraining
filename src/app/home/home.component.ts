@@ -1,12 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { NgForm } from "@angular/forms";
 import { ApiService } from "../shared/services/api.service";
 import { Quiz } from "../shared/models/quiz.model";
 import { Category } from "../shared/models/category.model";
-import { CategoryGetResponse, PhraseGetResponse, QuizGetDetailResponse, QuizGetResponse } from "../shared/models/httpresponses";
+import {
+  CategoryGetResponse,
+  PhraseGetResponse,
+  QuizGetDetailResponse,
+  QuizGetResponse
+} from "../shared/models/httpresponses";
 import { QuizService } from "../quiz/quiz.service";
 import { Router } from "@angular/router";
 import { QuizType } from "../shared/enums/quiz-type.enum";
+import { LanguageMode } from "../shared/enums/language-mode.enum";
 
 @Component({
   selector: "app-home",
@@ -21,22 +26,32 @@ export class HomeComponent implements OnInit {
   public QuizTypeKeys: any[];
   public QuizTypes = QuizType;
 
+  public languageMode: LanguageMode;
+  public languageModeKeys: any[] = [];
+  public languageModes = LanguageMode;
+
   public selectedQuiz: Quiz;
 
   public isFetchingQuiz: boolean;
   public error: string;
 
-  constructor (private quizService: QuizService,  private apiService: ApiService, private router: Router) {
+  constructor (
+    private quizService: QuizService,
+    private apiService: ApiService,
+    private router: Router
+  ) {
     this.quizzes = [];
     this.categories = [];
     // Maintain the quizType from last quiz.
     this.quizType = this.quizService.quizType;
+    this.languageMode = this.quizService.quizLanguageMode;
 
     this.selectedQuiz = null;
     this.isFetchingQuiz = false;
     this.error = "";
 
     this.QuizTypeKeys = Object.keys(this.QuizTypes).filter(key => !isNaN(Number(key)) );
+    this.languageModeKeys = Object.keys(this.languageModes).filter(key => !isNaN(Number(key)));
   }
 
   ngOnInit () {
@@ -106,6 +121,7 @@ export class HomeComponent implements OnInit {
     this.quizService.quiz = this.selectedQuiz;
     // quizType.Text = '0' instead of 0 causing issues
     this.quizService.quizType = parseInt("" + this.quizType, 10);
+    this.quizService.quizLanguageMode = parseInt("" + this.languageMode, 10);
     this.router.navigate(["quiz"]);
   }
 

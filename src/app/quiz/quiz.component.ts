@@ -32,7 +32,11 @@ export class QuizComponent implements OnInit {
 
   private languageMode: LanguageMode;
 
-  constructor (private quizCreateHelperService: QuizCreateHelperService, private quizService: QuizService, private router: Router) {
+  constructor (
+    private quizCreateHelperService: QuizCreateHelperService,
+    private quizService: QuizService,
+    private router: Router
+  ) {
     this.quiz = null;
     this.type = QuizType.MultipleChoices;
     this. questions = [];
@@ -42,7 +46,7 @@ export class QuizComponent implements OnInit {
     this.answeredQuestionsCount = 0;
     this.answeredQuestions = [];
 
-    this.languageMode = LanguageMode.Random;
+    this.languageMode = this.quizService.quizLanguageMode;
   }
 
   ngOnInit () {
