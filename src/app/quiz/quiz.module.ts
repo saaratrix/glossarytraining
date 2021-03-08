@@ -9,7 +9,7 @@ import { QuizQuestionComponent } from "./quiz-question/quiz-question.component";
 import { QuizMultipleQuestionComponent } from "./quiz-multiple-question/quiz-multiple-question.component";
 import { QuizTextQuestionComponent } from "./quiz-text-question/quiz-text-question.component";
 
-const quizRouting: ModuleWithProviders = RouterModule.forChild([
+const quizRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
   {
     // Maybe use quiz/:id if you know the quiz id
     path: "quiz",

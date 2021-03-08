@@ -5,7 +5,7 @@ import { HomeComponent } from "./home.component";
 import { QuizModule } from "../quiz/quiz.module";
 import { FormsModule } from "@angular/forms";
 
-const homeRouting: ModuleWithProviders = RouterModule.forChild([
+const homeRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
   {
     path: "",
     component: HomeComponent
