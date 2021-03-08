@@ -13,7 +13,7 @@
     </div>
   </li>
   <li *ngFor="let item of verbItems; let i = index;" [class.passed]="isReviewed && item.isCorrect" [class.failed]="isReviewed && !item.isCorrect">
-    <app-verb-item [item]="item" [isReviewed]="isReviewed" [isOdd]="i % 2 === 0" ></app-verb-item>
+    <app-verb-item [item]="item" [isReviewed]="isReviewed" [isOdd]="i % 2 === 0" [showAnswer]="true" ></app-verb-item>
   </li>
 </ul>
 <div >

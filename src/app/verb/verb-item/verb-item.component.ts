@@ -16,6 +16,7 @@ export class VerbItemComponent implements OnInit {
   @Input()
   public isOdd: boolean;
 
+  @Input()
   public showAnswer: boolean = false;
 
   constructor () {
