@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
 import { VerbListComponent } from "./verb-list.component";
 
@@ -6,7 +6,7 @@ describe("VerbListComponent", () => {
   let component: VerbListComponent;
   let fixture: ComponentFixture<VerbListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ VerbListComponent ]
     })

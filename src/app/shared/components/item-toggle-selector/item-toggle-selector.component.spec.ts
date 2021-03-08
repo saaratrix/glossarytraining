@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
 import { ItemToggleSelectorComponent } from "./item-toggle-selector.component";
 
@@ -6,7 +6,7 @@ describe("ItemToggleSelectorComponent", () => {
   let component: ItemToggleSelectorComponent;
   let fixture: ComponentFixture<ItemToggleSelectorComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ItemToggleSelectorComponent ]
     })

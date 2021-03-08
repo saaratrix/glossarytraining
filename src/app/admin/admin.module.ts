@@ -18,7 +18,7 @@ import { VerbDetailComponent } from "./verb/verb-detail/verb-detail.component";
 import { SharedModule as SharedAdminModule } from "./shared/shared.module";
 import { SharedModule as SharedCommonModule } from "../shared/shared.module";
 
-const adminRouting: ModuleWithProviders = RouterModule.forChild([
+const adminRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
   {
     path: "admin",
     component: AdminComponent,

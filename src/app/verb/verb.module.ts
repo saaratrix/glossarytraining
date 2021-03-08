@@ -8,7 +8,7 @@ import { FormsModule } from "@angular/forms";
 import { VerbItemComponent } from "./verb-item/verb-item.component";
 import { SharedModule } from "../shared/shared.module";
 
-const verbRouting: ModuleWithProviders = RouterModule.forChild([
+const verbRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
   {
     // Maybe use quiz/:id if you know the quiz id
     path: "verb-selection",
