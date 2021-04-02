@@ -13,6 +13,6 @@
           class="reveal"
           tabindex="-1"
   >Reveal Answer</button>
-  <sub *ngIf="revealAnswers && !question.isCorrect" class="reveal"> {{ question.getCorrectAnswers().join('/') }} </sub>
+  <sub *ngIf="isReviewed && revealAnswers && !question.isCorrect" class="reveal"> {{ question.getCorrectAnswers().join('/') }} </sub>
 </div>
 

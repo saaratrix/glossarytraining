@@ -2,27 +2,36 @@ import { query, MySQLResults } from "../database/mysql-connection";
 import { BaseHandler } from "./BaseHandler";
 import { Quiz } from "../models/Quiz";
 import { PhraseHandler } from "./PhraseHandler";
+import { ImagePhraseHandler } from './ImagePhraseHandler';
 
 export class QuizHandler extends BaseHandler<Quiz>{
   private m_phraseHandler: PhraseHandler;
 
-  constructor (phraseHandler: PhraseHandler) {
+  constructor (
+    phraseHandler: PhraseHandler,
+    private imagePhraseHandler: ImagePhraseHandler,
+  ) {
     super("quizzes", " order by name");
 
     this.m_phraseHandler = phraseHandler;
+
   }
 
   /**
-   * Returns only quizzes that has an entry in the quizphrases table.
-   * Meaning they have 1 phrase attached!
+   * Returns only quizzes that has an entry in the quizphrases or quizimages table.
+   * Meaning they have at least 1 phrase attached!
    * @return {Promise<Quiz[]>}
    */
-  public async allHasPhrases (): Promise<Quiz[]> {
+  public async allHasPhrasesOrImagePhrases (): Promise<Quiz[]> {
     let result: Quiz[] = [];
     const sql = `select distinct q.id, q.name, q.description
-                from ${this.m_table} as q
-                join quizphrases as qp on qp.quizId = q.id
-                order by q.name;`;
+                  from quizzes as q
+                  join quizphrases as qp on qp.quizId = q.id
+                 union
+                 select distinct q.id, q.name, q.description
+                  from quizzes as q
+                    join quizimagephrases as qip on qip.quizId = q.id
+                    order by name;`;
 
     const sqlResult: MySQLResults = await query(sql, []);
 
@@ -34,22 +43,23 @@ export class QuizHandler extends BaseHandler<Quiz>{
   }
 
   /**
-   * Get a quiz with the phrases aswell.
+   * Get a quiz with the phrases and image phrases.
    * @param {number} id
    * @return {Promise<Quiz>}
    */
-  public async getWithPhrases (id: number): Promise<Quiz> {
+  public async getWithPhrasesAndImagePhrases (id: number): Promise<Quiz> {
     const quiz = await this.get(id);
 
     if (quiz ) {
       quiz.phrases = await this.m_phraseHandler.findPhrasesForQuiz(quiz.id);
+      quiz.imagePhrases = await this.imagePhraseHandler.findImagePhrasesForQuiz(quiz.id);
     }
 
     return quiz;
   }
 
   public async add (entity: Quiz): Promise<boolean> {
-    const sql = `insert into ${this.m_table}(name, description) 
+    const sql = `insert into quizzes(name, description)
                  values (?, ?);`;
 
     const sqlResult: MySQLResults = await query(sql, [entity.name, entity.description]);
@@ -62,7 +72,7 @@ export class QuizHandler extends BaseHandler<Quiz>{
   }
 
   public async update (entity: Quiz): Promise<boolean> {
-    const sql = `update ${this.m_table} set name = ?, description = ?
+    const sql = `update quizzes set name = ?, description = ?
                 where id = ?;`;
 
     const sqlResult: MySQLResults = await query(sql, [entity.name, entity.description, entity.id]);

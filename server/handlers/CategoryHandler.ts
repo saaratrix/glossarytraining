@@ -14,7 +14,7 @@ export class CategoryHandler extends BaseHandler<Category> {
   public async allHasPhrases (): Promise<Category[]> {
     let result: Category[] = [];
     const sql = `select distinct c.id, c.name
-                from ${this.m_table} as c
+                from categories as c
                 join phrases as p on p.categoryId = c.id
                 order by c.name;`;
 
@@ -27,7 +27,7 @@ export class CategoryHandler extends BaseHandler<Category> {
   }
 
   public async add (entity: Category): Promise<boolean> {
-    const sql = `insert into ${this.m_table}(name) 
+    const sql = `insert into categories(name)
                  values (?);`;
 
     const sqlResult: MySQLResults = await query(sql, [entity.name]);
@@ -40,7 +40,7 @@ export class CategoryHandler extends BaseHandler<Category> {
   }
 
   public async update (entity: Category): Promise<boolean> {
-    const sql = `update ${this.m_table} set name = ?
+    const sql = `update categories set name = ?
                 where id = ?;`;
 
     const sqlResult: MySQLResults = await query(sql, [entity.name, entity.id]);

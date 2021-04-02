@@ -24,9 +24,7 @@ export class QuizTextQuestionComponent implements OnInit {
     this.question = null;
     this.isReviewed = false;
     this.answered = new EventEmitter<TextQuestion>();
-    this.revealAnswers = false;
-
-
+    this.revealAnswers = true;
   }
 
   ngOnInit () {
