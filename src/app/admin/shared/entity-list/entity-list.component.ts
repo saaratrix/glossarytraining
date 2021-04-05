@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from "@angular/core";
 import { ApiService } from "../../../shared/services/api.service";
-import { DefaultSuccessResponse } from "../../../shared/models/httpresponses";
+import { DefaultSuccessResponse } from "../../../shared/models/http/httpresponses";
 import { EditField } from "../../../shared/models/edit-field";
 import { EntityUpdateErrorEvent, EntityUpdateSuccessEvent } from "../../phrases/phrases-list/phrases-list.component";
 

@@ -7,8 +7,8 @@ const app = express();
 let routes = require("./server/routes");
 
 // Parsers
-app.use(bodyParser.urlencoded({ extended: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: '17mb', extended: false}));
+app.use(bodyParser.json({ limit: '17mb' }));
 
 app.disable('x-powered-by');
 

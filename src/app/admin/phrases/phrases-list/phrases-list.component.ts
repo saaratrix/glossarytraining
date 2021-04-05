@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit } from "@angular/core";
 import { ApiService } from "../../../shared/services/api.service";
 import { Phrase } from "../../../shared/models/phrase.model";
-import { CategoryGetResponse, DefaultSuccessResponse, PhraseGetResponse } from "../../../shared/models/httpresponses";
+import { CategoryGetResponse, DefaultSuccessResponse, PhraseGetResponse } from "../../../shared/models/http/httpresponses";
 import { PhrasesByCategory } from "../../../shared/models/phrases-by-category.model";
 import { EditFieldType } from "../../../shared/enums/edit-field-type.enum";
 import { Category } from "../../../shared/models/category.model";

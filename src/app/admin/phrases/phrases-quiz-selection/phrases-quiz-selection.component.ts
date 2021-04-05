@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ApiService } from "../../../shared/services/api.service";
 import { Phrase } from "../../../shared/models/phrase.model";
 import { Input } from "@angular/core";
-import { PhraseGetResponse, DefaultSuccessResponse } from "../../../shared/models/httpresponses";
+import { PhraseGetResponse, DefaultSuccessResponse } from "../../../shared/models/http/httpresponses";
 
 import { PhrasesSelectionComponent } from "../../../phrase/phrases-selection/phrases-selection.component";
 

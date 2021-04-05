@@ -7,7 +7,7 @@ import {
   PhraseGetResponse,
   QuizGetDetailResponse,
   QuizGetResponse
-} from "../shared/models/httpresponses";
+} from "../shared/models/http/httpresponses";
 import { QuizService } from "../quiz/quiz.service";
 import { Router } from "@angular/router";
 import { QuizType } from "../shared/enums/quiz-type.enum";

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit } from "@angular/core";
 import { ApiService } from "../../../shared/services/api.service";
 import { Verb } from "../../../shared/models/verb.model";
-import { DefaultSuccessResponse, VerbGetResponse } from "../../../shared/models/httpresponses";
+import { DefaultSuccessResponse, VerbGetResponse } from "../../../shared/models/http/httpresponses";
 import { EditFieldType } from "../../../shared/enums/edit-field-type.enum";
 import { EntityEditUpdateEvent } from "../../shared/entity-edit/entity-edit.component";
 import { EntityUpdateErrorEvent, EntityUpdateSuccessEvent } from "../../phrases/phrases-list/phrases-list.component";

@@ -1,7 +1,7 @@
-import { Category } from "./category.model";
-import { Phrase } from "./phrase.model";
-import { Quiz } from "./quiz.model";
-import { Verb } from "./verb.model";
+import { Category } from "../category.model";
+import { Phrase } from "../phrase.model";
+import { Quiz } from "../quiz.model";
+import { Verb } from "../verb.model";
 
 export interface DefaultSuccessResponse {
   error: string;

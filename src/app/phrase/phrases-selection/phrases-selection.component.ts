@@ -5,7 +5,6 @@ import {
 import { Phrase } from "../../shared/models/phrase.model";
 import { PhrasesByCategory } from "../../shared/models/phrases-by-category.model";
 
-
 @Component({
   selector: "app-phrases-selection",
   templateUrl: "./phrases-selection.component.html",

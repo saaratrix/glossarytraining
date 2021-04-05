@@ -5,7 +5,7 @@ import { Quiz } from "../../../shared/models/quiz.model";
 import { NgForm } from "@angular/forms";
 
 import { ApiService } from "../../../shared/services/api.service";
-import { QuizGetDetailResponse, QuizPostCreateResponse, DefaultSuccessResponse } from "../../../shared/models/httpresponses";
+import { QuizGetDetailResponse, QuizPostCreateResponse, DefaultSuccessResponse } from "../../../shared/models/http/httpresponses";
 import { PhrasesQuizSelectionComponent } from "../../phrases/phrases-quiz-selection/phrases-quiz-selection.component";
 
 @Component({

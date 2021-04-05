@@ -22,14 +22,14 @@ export class ImagePhraseController {
   public async getOne (req: Request, res: Response): Promise<void> {
     const id = parseInt(req.params.id, 10);
 
-    let imagePhrases: ImagePhrase | null = null;
+    let imagePhrase: ImagePhrase | null = null;
 
     if (Number.isInteger(id) && id > 0) {
-      imagePhrases = await this.imagePhraseHandler.get(id);
+      imagePhrase = await this.imagePhraseHandler.get(id);
     }
 
     res.json({
-      imagePhrases,
+      imagePhrase,
     });
   }
 
