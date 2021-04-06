@@ -7,9 +7,9 @@ import {
 } from '../../../shared/models/http/httpresponses';
 import { ItemToggledEvent } from '../../../shared/components/item-toggle-selector/item-toggle-selector.component';
 import { NgForm } from '@angular/forms';
-import { ImagePhraseGetResponse } from '../../../shared/models/http/image-phrase-get-response';
 import { ImagePhrase } from '../../../shared/models/image-phrase.model';
 import { ImagePhrasePostCreateResponse } from '../../../shared/models/http/image-phrase-post-create-response';
+import { ImagePhraseDetailResponse } from '../../../shared/models/http/image-phrase-detail-response';
 
 @Component({
   selector: 'app-image-phrases-detail',
@@ -88,7 +88,7 @@ export class ImagePhrasesDetailComponent implements OnInit {
         trySetCategory();
       }
       else {
-        this.apiService.get("imagephrase/get/" + id).then((result: ImagePhraseGetResponse) => {
+        this.apiService.get("imagephrase/get/" + id).then((result: ImagePhraseDetailResponse) => {
           this.item = result.imagePhrase;
           // If invalid quiz then route back to quiz list
           if (!this.item) {

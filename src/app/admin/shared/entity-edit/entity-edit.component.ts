@@ -34,7 +34,7 @@ export class EntityEditComponent implements OnInit {
   @Output()
   public onupdate: EventEmitter<EntityEditUpdateEvent>;
 
-  public EditFieldTypes: any;
+  public EditFieldTypes: typeof EditFieldType;
 
   constructor() {
     this.entity = null;

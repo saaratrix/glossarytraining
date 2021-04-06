@@ -2,7 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from "@angu
 import { ApiService } from "../../../shared/services/api.service";
 import { DefaultSuccessResponse } from "../../../shared/models/http/httpresponses";
 import { EditField } from "../../../shared/models/edit-field";
-import { EntityUpdateErrorEvent, EntityUpdateSuccessEvent } from "../../phrases/phrases-list/phrases-list.component";
+import { EntityUpdateSuccessEvent } from '../models/events/entity-update-success.event';
+import { EntityUpdateErrorEvent } from '../models/events/entity-update-error.event';
 
 interface IKeyData {
   header: string;
@@ -199,7 +200,8 @@ export class EntityListComponent implements OnInit {
    */
   public getTitle (entity: any, key: string) {
     if (this.titles[key]) {
-      return entity[this.titles[key]];
+      const text = entity[this.titles[key]]
+      return text !== undefined ? text : this.titles[key];
     }
 
     return "";

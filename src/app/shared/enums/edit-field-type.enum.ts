@@ -1,5 +1,6 @@
 export enum EditFieldType {
   Text,
   Select,
-  ItemSelect
+  ItemSelect,
+  Image,
 }

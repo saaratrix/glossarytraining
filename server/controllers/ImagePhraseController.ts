@@ -12,6 +12,7 @@ export class ImagePhraseController {
   ) { }
 
   public async getAll (req: Request, res: Response): Promise<void> {
+    // TODO: Optimize this to not return the imageBase64 column, it's a lot of data if you have many large images!
     const imagePhrases: ImagePhrase[] = await this.imagePhraseHandler.all();
 
     res.json({

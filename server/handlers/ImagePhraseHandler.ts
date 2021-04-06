@@ -14,7 +14,7 @@ export class ImagePhraseHandler extends BaseHandler<ImagePhrase> {
   }
 
   public async all (): Promise<ImagePhrase[]> {
-    const sql = `select p.id, p.imageBase64 p.finnish, p.note, p.categoryId, c.name as categoryName
+    const sql = `select p.id, p.imageBase64, p.finnish, p.note, p.categoryId, c.name as categoryName
                 from imagephrases as p
                 join categories as c on c.id = p.categoryId
                 order by c.name, p.finnish;`;

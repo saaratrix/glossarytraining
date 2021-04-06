@@ -9,7 +9,7 @@ export class ApiService {
 
   constructor (private httpClient: HttpClient) { }
 
-  public get (url: string, parameters: HttpParams = new HttpParams()): Promise<any> {
+  public get<T = any>(url: string, parameters: HttpParams = new HttpParams()): Promise<T> {
     const apiUrl: string = environment.api_url + url;
 
     const promise = new Promise<any>(res => {
@@ -29,7 +29,7 @@ export class ApiService {
     return promise;
   }
 
-  public post (url: string, parameters: any = {}): Promise<any> {
+  public post<T = any>(url: string, parameters: Record<string, any>): Promise<T> {
     const apiUrl: string = environment.api_url + url;
 
     const promise = new Promise<any>(res => {
