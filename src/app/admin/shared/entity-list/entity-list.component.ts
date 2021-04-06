@@ -63,7 +63,7 @@ export class EntityListComponent implements OnInit {
   public errorSubscription: any;
   public startSubscription: any;
 
-  public selectedEntity: any;
+  public selectedEntity: any | null;
 
   // Event data for entity-edit component
   public error: string;
@@ -241,9 +241,15 @@ export class EntityListComponent implements OnInit {
     });
   }
 
-  public showEdit (entity: any): void {
-    if (this.selectedEntity !== entity) {
+  public showEdit (entity: any, event: MouseEvent): void {
+    if (!this.doInlineEdit) {
+      return;
+    }
 
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (this.selectedEntity !== entity) {
       this.isWaitingForServer = false;
       this.isFinished = false;
       this.error = "";
