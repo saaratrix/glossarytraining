@@ -4,7 +4,9 @@
       <h3>{{item.category.name}}</h3>
       <ul class="phrases-list">
         <li *ngFor="let phrase of item.phrases" class="phrase-item" title="{{phrase.english}}" (click)="onPhraseClicked(phrase)">
-          {{phrase.finnish}}
+          <a [routerLink]="['../../phrase', phrase.id]" >
+            <span class="phrase-item-text" (click)="onPhraseClicked(phrase, $event)">{{phrase.finnish}}</span>
+          </a>
         </li>
       </ul>
     </div>

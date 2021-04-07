@@ -96,11 +96,13 @@ export class HomeComponent implements OnInit {
     this.apiService.get("phrase/category/" + category.id).then((result: PhraseGetResponse) => {
       this.isFetchingQuiz = false;
       if (result.phrases.length > 0) {
+        // TODO: Fix me, I want to have some image phrases too!
         const quiz: Quiz = {
           id: -1,
           description: "A quiz for the category " + category.name,
           name: category.name,
-          phrases: result.phrases
+          phrases: result.phrases,
+          imagePhrases: [],
         };
 
         this.setSelectedQuiz(quiz);

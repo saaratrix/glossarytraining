@@ -61,7 +61,7 @@ export class ImagePhraseHandler extends BaseHandler<ImagePhrase> {
 
     const sql =  `select p.id, p.imageBase64, p.finnish, p.note, c.id as categoryId, c.name as categoryName
                   from quizimagephrases as qp
-                  join imagephrases as p on qp.phraseId = p.id
+                  join imagephrases as p on qp.imagephraseId = p.id
                   join categories as c on c.id = p.categoryId
                   where qp.quizId = ?
                   order by c.name, p.finnish;`;

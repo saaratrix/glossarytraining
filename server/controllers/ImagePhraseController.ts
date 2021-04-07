@@ -13,6 +13,7 @@ export class ImagePhraseController {
 
   public async getAll (req: Request, res: Response): Promise<void> {
     // TODO: Optimize this to not return the imageBase64 column, it's a lot of data if you have many large images!
+    // Ideally the files should be stored on the server so that it's just a URL to the file. Then you can get all of them!
     const imagePhrases: ImagePhrase[] = await this.imagePhraseHandler.all();
 
     res.json({

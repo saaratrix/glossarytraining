@@ -29,7 +29,7 @@
                          (itemClicked)="onItemSelectUpdate($event, field.key)" ></app-item-selector>
     </ng-container>
     <ng-container *ngSwitchCase="EditFieldTypes.Image">
-      <img src="{{ entity[field.key] }}" alt="an image!">
+      <img class="image" src="{{ entity[field.key] }}" alt="an image!">
       <input hidden="true" type="text" id="{{field.key}}" name="{{field.key}}" [(ngModel)]="entity[field.key]" [required]="field.required" readonly>
     </ng-container>
   </ng-container>

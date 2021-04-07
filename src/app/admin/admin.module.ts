@@ -76,7 +76,7 @@ const adminRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
     PhraseModule,
     SharedCommonModule,
     SharedAdminModule,
-    adminRouting
+    adminRouting,
   ],
   declarations: [
     AdminComponent,
