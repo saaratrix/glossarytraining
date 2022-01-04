@@ -1,4 +1,5 @@
 import { Question } from "./question";
+import { QuestionType } from './question-type';
 
 export interface IMultipleOption {
   value: string;
@@ -6,6 +7,8 @@ export interface IMultipleOption {
 }
 
 export class MultipleQuestion implements Question {
+  public type: QuestionType = QuestionType.MultipleChoices;
+
   public isVisible: boolean;
   public index: number;
   public question: string;

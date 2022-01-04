@@ -21,7 +21,7 @@
     <p>
       {{selectedQuiz.description}}
       <br>
-      Phrases count: <strong>{{selectedQuiz.phrases.length}}</strong>
+      Phrases count: <strong>{{selectedQuiz.phrases.length + selectedQuiz.imagePhrases.length}}</strong>
       <br>
       <label for="quiztype">Select type of quiz: </label>
       <select id="quiztype" name="quiztype" [(ngModel)]="quizType" >

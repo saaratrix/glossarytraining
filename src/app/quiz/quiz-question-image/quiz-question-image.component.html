@@ -2,8 +2,8 @@
   <input
     #questionInput
     class="answer-text-input"
+    placeholder="Käännä suomeksi"
     [(ngModel)]="question.answer"
-    [placeholder]="getPlaceholderText()"
     [tabindex]="question.isCorrect ? -1 : 0"
     [readonly]="question.isCorrect"
     (change)="questionAnswered()"
@@ -11,10 +11,9 @@
   >
   <button
     *ngIf="isReviewed && !question.isCorrect && !revealAnswers"
+    (click)="revealAnswers = true;"
     class="reveal"
     tabindex="-1"
-    (click)="revealAnswers = true;"
   >Reveal Answer</button>
   <sub *ngIf="isReviewed && revealAnswers && !question.isCorrect" class="reveal"> {{ question.getCorrectAnswers().join('/') }} </sub>
 </div>
-

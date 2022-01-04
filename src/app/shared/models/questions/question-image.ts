@@ -1,30 +1,32 @@
-import { Question } from "./question";
+import type { Question } from './question';
+import { QuestionType } from './question-type';
 
-export class TextQuestion implements Question {
-  public isVisible: boolean;
-  public index: number;
-  public question: string;
-  public note: string;
-  public answer: string;
-  public isCorrect: boolean;
-  public isFinnish: boolean;
+export class QuestionImage implements Question {
+  public type: QuestionType = QuestionType.Image;
 
-  private correctAnswers: string[];
+  index: number;
+  isCorrect: boolean;
+  isVisible: boolean;
+  note: string;
+  question: string;
+  answer: string;
 
-  constructor (index: number, question: string, note: string, correctAnswers: string[], isFinnish: boolean) {
-    this.isVisible = false;
+  private correctAnswers: string[] = [];
+
+  constructor(
+    index: number,
+    answers: string[],
+    imagebase64: string,
+    note: string
+  ) {
     this.index = index;
-    this.question = question;
+    this.question = imagebase64;
+    this.correctAnswers = answers;
     this.note = note;
-    this.isCorrect = false;
-
-    this.correctAnswers = correctAnswers;
-    this.isFinnish = isFinnish;
   }
 
   /**
    * Get the correct answers array
-   * @return {string[]}
    */
   public getCorrectAnswers (): string[] {
     return this.correctAnswers;

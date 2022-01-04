@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { MultipleQuestion } from "../../shared/models/multiple-question";
+import { MultipleQuestion } from "../../shared/models/questions/multiple-question";
 
 @Component({
   selector: "app-quiz-multiple-question",
@@ -8,10 +8,8 @@ import { MultipleQuestion } from "../../shared/models/multiple-question";
 })
 export class QuizMultipleQuestionComponent implements OnInit {
 
-  @Input()
-  public question: MultipleQuestion;
-  @Output()
-  public answered: EventEmitter<MultipleQuestion>;
+  @Input() public question: MultipleQuestion;
+  @Output() public answered: EventEmitter<MultipleQuestion>;
 
   public showNote: boolean;
 

@@ -1,42 +1,27 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
-import { TextQuestion } from "../../shared/models/questions/text-question";
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { QuestionImage } from '../../shared/models/questions/question-image';
 
 @Component({
-  selector: "app-quiz-text-question",
-  templateUrl: "./quiz-text-question.component.html",
-  styleUrls: ["./quiz-text-question.component.less"]
+  selector: 'app-quiz-question-image',
+  templateUrl: './quiz-question-image.component.html',
+  styleUrls: ['./quiz-question-image.component.less']
 })
-export class QuizTextQuestionComponent implements OnInit {
-
-  @Input() public question: TextQuestion;
-  @Input() public isReviewed: boolean;
-  @Output() public answered: EventEmitter<TextQuestion>;
+export class QuizQuestionImageComponent implements OnInit {
+  @Input() question: QuestionImage;
+  @Input() isReviewed: boolean;
+  @Output() answered: EventEmitter<QuestionImage> = new EventEmitter<QuestionImage>();
 
   @ViewChild("questionInput", { static: true }) private inputElement!: ElementRef;
 
-  public revealAnswers: boolean;
+  revealAnswers: boolean;
 
-  constructor () {
-    this.question = null;
-    this.isReviewed = false;
-    this.answered = new EventEmitter<TextQuestion>();
-    this.revealAnswers = true;
-  }
+  constructor() { }
 
-  ngOnInit () {
+  ngOnInit(): void {
   }
 
   public questionAnswered () {
     this.answered.emit(this.question);
-  }
-
-  public getPlaceholderText () {
-    if (this.question.isFinnish) {
-      return `Käännä "${this.question.question}" englanniksi`;
-    }
-    else {
-      return `Käännä "${this.question.question}" suomeksi`;
-    }
   }
 
   public tryFocusNext (event: KeyboardEvent) {

@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit {
       this.isFetchingQuiz = false;
 
       if (result.quiz) {
-        if (result.quiz.phrases.length > 0) {
+        if (result.quiz.phrases.length > 0 || result.quiz.imagePhrases.length > 0) {
           this.setSelectedQuiz(result.quiz);
         }
         else {
@@ -134,8 +134,13 @@ export class HomeComponent implements OnInit {
   }
 
   private validateQuiz (): boolean {
+    if (!this.selectedQuiz) {
+      return false;
+    }
+
+    const count = this.selectedQuiz.phrases.length + this.selectedQuiz.imagePhrases.length;
     // Make sure quiz is selected
-    if (!this.selectedQuiz || this.selectedQuiz.phrases.length <= 0) {
+    if (count <= 0) {
       return false;
     }
     // Make sure quizType is a valid type
