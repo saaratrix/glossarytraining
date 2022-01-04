@@ -1,12 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Quiz } from "../../../shared/models/quiz.model";
-
 import { NgForm } from "@angular/forms";
-
 import { ApiService } from "../../../shared/services/api.service";
-import { QuizGetDetailResponse, QuizPostCreateResponse, DefaultSuccessResponse } from "../../../shared/models/httpresponses";
-import { PhrasesQuizSelectionComponent } from "../../phrases/phrases-quiz-selection/phrases-quiz-selection.component";
+import { QuizGetDetailResponse, QuizPostCreateResponse, DefaultSuccessResponse } from "../../../shared/models/http/httpresponses";
 
 @Component({
   selector: "app-admin-quiz-detail",
@@ -37,7 +34,8 @@ export class QuizDetailComponent implements OnInit {
           id: -1,
           name: "",
           description: "",
-          phrases: []
+          imagePhrases: [],
+          phrases: [],
         };
         this.isNew = true;
       }

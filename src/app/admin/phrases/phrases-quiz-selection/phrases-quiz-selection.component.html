@@ -1,9 +1,11 @@
 <div class="selected-phrases phrases">
-  <h2>Selected Phrases for quiz:</h2>
+  <h2>Selected phrases for quiz:</h2>
   <p *ngIf="selectedError !== ''" class="form-error">
     {{selectedError}}
   </p>
   <app-phrases-selection [phrases]="selectedPhrases" [emptySelection]="'No phrases selected for quiz'" (phraseClick)="removePhraseFromQuiz($event, true)"></app-phrases-selection>
+  <h2>Selected image phrases for quiz:</h2>
+  <app-image-phrases-selection [imagePhrases]="selectedImagePhrases" [emptySelection]="'No image phrases selected for quiz'" (imagePhraseClick)="removeImagePhraseFromQuiz($event, true)"></app-image-phrases-selection>
 </div>
 <hr>
 <div class="unselected-phrases phrases">
@@ -12,6 +14,8 @@
     {{unselectedError}}
   </p>
   <app-phrases-selection [phrases]="unselectedPhrases" [emptySelection]="'No phrases left to add to quiz'" (phraseClick)="addPhraseToQuiz($event, true)"></app-phrases-selection>
+  <h2>All unselected image phrases:</h2>
+  <app-image-phrases-selection [imagePhrases]="unselectedImagePhrases" [emptySelection]="'No image phrases left to add to quiz'" (imagePhraseClick)="addImagePhraseToQuiz($event, true)"></app-image-phrases-selection>
 </div>
 
 

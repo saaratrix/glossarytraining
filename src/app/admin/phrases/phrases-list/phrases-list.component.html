@@ -2,7 +2,7 @@
 <a [routerLink]="['../phrase', -1]">Create new phrase</a>
 <ul class="item-list">
   <li *ngFor="let phrasesByCategory of phrasesByCategories; let i = index;">
-    <h2 (click)="toggleList(phrasesByCategory)" >{{phrasesByCategory.category.name}}
+    <h2 class="item-header" (click)="toggleList(phrasesByCategory)">{{phrasesByCategory.category.name}}
       <span class="toggle-visibility" [title]="getToggleTooltip(phrasesByCategory)">{{getToggleListText(phrasesByCategory.isVisible)}}</span>
     </h2>
     <app-admin-entity-list

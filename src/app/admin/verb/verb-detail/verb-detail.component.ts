@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ApiService } from "../../../shared/services/api.service";
 import {
   DefaultSuccessResponse, VerbGetDetailResponse, VerbPostCreateResponse
-} from "../../../shared/models/httpresponses";
+} from "../../../shared/models/http/httpresponses";
 import { NgForm } from "@angular/forms";
 
 @Component({

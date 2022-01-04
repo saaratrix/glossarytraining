@@ -21,7 +21,7 @@
     </div>
 
     <!-- Add phrases editing component-->
-    <app-admin-phrases-quiz-selection *ngIf="!isNew" [selectedPhrases]="quiz.phrases" [quizId]="quiz.id" ></app-admin-phrases-quiz-selection>
+    <app-admin-phrases-quiz-selection *ngIf="!isNew" [selectedPhrases]="quiz.phrases" [selectedImagePhrases]="quiz.imagePhrases" [quizId]="quiz.id" ></app-admin-phrases-quiz-selection>
   </form>
 </ng-template>
 <ng-template #loadingBlock>

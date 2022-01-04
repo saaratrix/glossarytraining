@@ -4,12 +4,13 @@ import { QuizService } from "./quiz.service";
 import { Router } from "@angular/router";
 import { QuizType } from "../shared/enums/quiz-type.enum";
 import { Phrase } from "../shared/models/phrase.model";
-import { Question } from "../shared/models/question";
-import { TextQuestion } from "../shared/models/text-question";
-import { IMultipleOption, MultipleQuestion } from "../shared/models/multiple-question";
+import { Question } from "../shared/models/questions/question";
+import { TextQuestion } from "../shared/models/questions/text-question";
+import { IMultipleOption, MultipleQuestion } from "../shared/models/questions/multiple-question";
 import { QuizCreateHelperService } from "../shared/services/quiz-create-helper.service";
 import { LanguageMode } from "../shared/enums/language-mode.enum";
-
+import { ImagePhrase } from '../shared/models/image-phrase.model';
+import { QuestionImage } from '../shared/models/questions/question-image';
 
 
 @Component({
@@ -59,15 +60,26 @@ export class QuizComponent implements OnInit {
     }
     // Copy value by value
     const phrases = this.quiz.phrases.slice();
-
-    // Shuffle phrases
+    // Shuffle array to randomize potential multiple choices answers.
     this.quizCreateHelperService.shuffleArray(phrases);
-
     // Generate questions
     for (let i = 0; i < phrases.length; ++i) {
       const question = this.createQuestion(i, phrases);
 
       this.questions.push(question);
+    }
+
+    const imagePhrases = this.quiz.imagePhrases.slice();
+    for (let i = 0; i < imagePhrases.length; i++) {
+      const question = this.createImageQuestion(i, imagePhrases);
+      this.questions.push(question);
+    }
+
+    // Shuffle the questions to mix images & phrases.
+    this.quizCreateHelperService.shuffleArray(this.questions);
+    // Need to update the index.
+    for (let i = 0; i < this.questions.length; i++) {
+      this.questions[i].index = i;
     }
 
     // First one is visible!
@@ -196,5 +208,15 @@ export class QuizComponent implements OnInit {
     }
 
     return new MultipleQuestion(index, question, correctPhrase.note, options, correctAnswer);
+  }
+
+  private createImageQuestion(index: number, imagePhrases: ImagePhrase[]): QuestionImage {
+    const imagePhrase = imagePhrases[index];
+
+    const answers = imagePhrase.finnish.split("/").map(text => {
+      return text.trim().toLowerCase();
+    });
+
+    return new QuestionImage(index, answers, imagePhrase.imageBase64, imagePhrase.note);
   }
 }

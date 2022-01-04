@@ -3,7 +3,6 @@ import { BaseHandler } from "./BaseHandler";
 import { Phrase } from "../models/Phrase";
 import { CategoryHandler } from "./CategoryHandler";
 import { Category } from "../models/Category";
-import { Request, Response } from "express";
 
 export class PhraseHandler extends BaseHandler<Phrase>{
   private m_categoryHandler: CategoryHandler;
@@ -114,7 +113,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
       return false;
     }
 
-    const sql = `insert into ${this.m_table}(finnish, english, note, categoryId) 
+    const sql = `insert into phrases(finnish, english, note, categoryId)
                  values (?, ?, ?, ?);`;
 
     const sqlResult: MySQLResults = await query(sql, [entity.finnish, entity.english, entity.note, category.id]);
@@ -134,7 +133,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
       return false;
     }
 
-    const sql = `update ${this.m_table} set finnish = ?, english = ?, note = ?, categoryId = ?
+    const sql = `update phrases set finnish = ?, english = ?, note = ?, categoryId = ?
                 where id = ?;`;
 
     const sqlResult: MySQLResults = await query(sql, [entity.finnish, entity.english, entity.note, category.id, entity.id]);

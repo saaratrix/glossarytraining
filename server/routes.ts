@@ -1,6 +1,7 @@
 import { setupCategoryRoutes } from "./controllers/CategoryController";
 import { setupPhraseRoutes } from "./controllers/PhraseController";
-import { setupQuizRoutes } from "./controllers/QuizController";
+import { setupImagePhraseRoutes } from './controllers/ImagePhraseController';
+import { setupQuizRoutes } from "./controllers/QuizControllers/QuizController";
 import { setupVerbRoutes } from "./controllers/VerbController";
 import { Application } from "express";
 
@@ -9,6 +10,7 @@ module.exports = function (app: Application) {
 
   setupCategoryRoutes(baseUrl, app);
   setupPhraseRoutes(baseUrl, app);
+  setupImagePhraseRoutes(baseUrl, app);
   setupQuizRoutes(baseUrl, app);
   setupVerbRoutes(baseUrl, app);
 }

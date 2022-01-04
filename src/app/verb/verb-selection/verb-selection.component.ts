@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Verb } from "../../shared/models/verb.model";
 import { ApiService } from "../../shared/services/api.service";
-import { VerbGetResponse } from "../../shared/models/httpresponses";
+import { VerbGetResponse } from "../../shared/models/http/httpresponses";
 import { Router } from "@angular/router";
 import { VerbService } from "../verb.service";
 

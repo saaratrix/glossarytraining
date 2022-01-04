@@ -1,26 +1,17 @@
 import { Component, EventEmitter, OnInit } from "@angular/core";
 import { ApiService } from "../../../shared/services/api.service";
 import { Phrase } from "../../../shared/models/phrase.model";
-import { CategoryGetResponse, DefaultSuccessResponse, PhraseGetResponse } from "../../../shared/models/httpresponses";
+import {
+  CategoryGetResponse,
+  DefaultSuccessResponse,
+  PhraseGetResponse
+} from "../../../shared/models/http/httpresponses";
 import { PhrasesByCategory } from "../../../shared/models/phrases-by-category.model";
 import { EditFieldType } from "../../../shared/enums/edit-field-type.enum";
 import { Category } from "../../../shared/models/category.model";
 import { EntityEditUpdateEvent } from "../../shared/entity-edit/entity-edit.component";
-import { ItemToggledEvent } from "../../../shared/components/item-toggle-selector/item-toggle-selector.component";
-
-export interface EntityUpdateStartEvent {
-  index: number;
-}
-
-export interface EntityUpdateSuccessEvent {
-  index: number;
-  entity: any;
-}
-
-export interface EntityUpdateErrorEvent {
-  index: number;
-  error: string;
-}
+import { EntityUpdateSuccessEvent } from '../../shared/models/events/entity-update-success.event';
+import { EntityUpdateErrorEvent } from '../../shared/models/events/entity-update-error.event';
 
 @Component({
   selector: "app-admin-phrases-list",
@@ -33,9 +24,7 @@ export class PhrasesListComponent implements OnInit {
 
   public categories: Category[];
 
-  public EditFieldTypes: any;
-
-  public onListUpdate: Function;
+  public EditFieldTypes: typeof EditFieldType;
 
   public onstartEvent: EventEmitter<number>;
   public onsuccessEvent: EventEmitter<EntityUpdateSuccessEvent>;
@@ -49,8 +38,6 @@ export class PhrasesListComponent implements OnInit {
     this.onstartEvent = new EventEmitter<number>();
     this.onsuccessEvent = new EventEmitter<EntityUpdateSuccessEvent>();
     this.onerrorEvent = new EventEmitter<EntityUpdateErrorEvent>();
-
-    this.onListUpdate = this.onCategoryToggled.bind(this);
   }
 
   ngOnInit () {
@@ -100,12 +87,6 @@ export class PhrasesListComponent implements OnInit {
       });
 
     });
-  }
-
-  private onCategoryToggled (itemClicked: ItemToggledEvent) {
-    let changedPhrase = itemClicked.item as Phrase;
-
-
   }
 
   public getToggleListText (isVisible: boolean): string {

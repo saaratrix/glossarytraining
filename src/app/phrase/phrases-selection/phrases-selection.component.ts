@@ -5,7 +5,6 @@ import {
 import { Phrase } from "../../shared/models/phrase.model";
 import { PhrasesByCategory } from "../../shared/models/phrases-by-category.model";
 
-
 @Component({
   selector: "app-phrases-selection",
   templateUrl: "./phrases-selection.component.html",
@@ -13,16 +12,12 @@ import { PhrasesByCategory } from "../../shared/models/phrases-by-category.model
 })
 export class PhrasesSelectionComponent implements OnInit, DoCheck {
 
-  @Input()
-  public phrases: Phrase[];
-  @Input()
-  public emptySelection: string;
+  @Input() public phrases: Phrase[];
+  @Input() public emptySelection: string;
 
+  @Output() public phraseClick: EventEmitter<Phrase>;
   // All phrases grouped by the category.
   public phrasesByCategory: PhrasesByCategory[];
-
-  @Output()
-  public phraseClick: EventEmitter<Phrase>;
 
   // An IterableDiffer that listens to the changes of the "phrases" input array.
   private m_phrasesDiffer: IterableDiffer<Phrase>;
@@ -55,7 +50,10 @@ export class PhrasesSelectionComponent implements OnInit, DoCheck {
     }
   }
 
-  public onPhraseClicked (phrase: Phrase) {
+  public onPhraseClicked (phrase: Phrase, event: MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+
     this.phraseClick.emit(phrase);
   }
 
@@ -126,7 +124,7 @@ export class PhrasesSelectionComponent implements OnInit, DoCheck {
         const bName = b.finnish.toLowerCase();
 
         if (aName < bName) { return -1; }
-        if (aName > bName) { return 1; }
+        else if (aName > bName) { return 1; }
         return 0;
       });
     });

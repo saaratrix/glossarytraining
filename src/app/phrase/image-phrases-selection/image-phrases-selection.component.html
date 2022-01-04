@@ -1,0 +1,19 @@
+<div class="phrases-by-category-list">
+  <div *ngFor="let item of imagePhrasesByCategories">
+    <div *ngIf="item.imagePhrases.length > 0" class="phrases-by-category-item">
+      <h3>{{item.category.name}}</h3>
+      <ul class="phrases-list">
+        <li *ngFor="let imagePhrase of item.imagePhrases" class="phrase-item" title="{{imagePhrase.note}}">
+          <a [routerLink]="['../../imagephrase', imagePhrase.id]" >
+            <span class="phrase-item-text" (click)="onImagePhraseClicked(imagePhrase, $event)">{{imagePhrase.finnish}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="imagePhrases.length === 0">
+    <p>
+      {{emptySelection}}
+    </p>
+  </div>
+</div>

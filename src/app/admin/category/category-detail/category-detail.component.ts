@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ApiService } from "../../../shared/services/api.service";
 import { Category } from "../../../shared/models/category.model";
-import { CategoryGetDetailResponse, CategoryPostCreateResponse, DefaultSuccessResponse } from "../../../shared/models/httpresponses";
+import { CategoryGetDetailResponse, CategoryPostCreateResponse, DefaultSuccessResponse } from "../../../shared/models/http/httpresponses";
 import { ActivatedRoute, Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 

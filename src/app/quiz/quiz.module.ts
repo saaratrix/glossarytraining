@@ -8,6 +8,7 @@ import { QuizService } from "./quiz.service";
 import { QuizQuestionComponent } from "./quiz-question/quiz-question.component";
 import { QuizMultipleQuestionComponent } from "./quiz-multiple-question/quiz-multiple-question.component";
 import { QuizTextQuestionComponent } from "./quiz-text-question/quiz-text-question.component";
+import { QuizQuestionImageComponent } from './quiz-question-image/quiz-question-image.component';
 
 const quizRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
   {
@@ -28,7 +29,8 @@ const quizRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
     QuizComponent,
     QuizQuestionComponent,
     QuizMultipleQuestionComponent,
-    QuizTextQuestionComponent
+    QuizTextQuestionComponent,
+    QuizQuestionImageComponent
   ],
   providers: [
     QuizService

@@ -1,25 +1,34 @@
 <div [ngClass]="{ 'question-passed': (isReviewed && question.isCorrect), 'question-failed': (isReviewed && !question.isCorrect), 'question-container': true }">
   <strong class="question-index">{{question.index + 1}}:</strong>
-  <strong class="question-question">{{question.question}}</strong>
+  <ng-container *ngIf="question.type !== QuestionType.Image">
+    <strong class="question-question">{{question.question}}</strong>
+  </ng-container>
+  <ng-container *ngIf="question.type === QuestionType.Image">
+    <img class="quiz-image" src="{{question.question}}" alt="{{question.note}}" />
+  </ng-container>
   <span class="question-note" *ngIf="question.note.length > 0"> - ( {{question.note}} )</span>
   <br>
   <div class="question-answers">
+    <ng-container [ngSwitch]="question.type"></ng-container>
     <app-quiz-text-question
-    *ngIf="type === QuizTypes.Text"
-    [question]="question"
-    [isReviewed]="isReviewed"
-    (answered)="questionAnswered($event)"
+      *ngIf="question.type === QuestionType.Text"
+      [question]="$any(question)"
+      [isReviewed]="isReviewed"
+      (answered)="questionAnswered($event)"
     ></app-quiz-text-question>
 
     <app-quiz-multiple-question
-      *ngIf="type === QuizTypes.MultipleChoices"
-      [question]="question"
+      *ngIf="question.type === QuestionType.MultipleChoices"
+      [question]="$any(question)"
       (answered)="questionAnswered($event)"
     ></app-quiz-multiple-question>
-
-    <p *ngIf="error.length > 0" class="form-error">
-      {{error}};
-    </p>
+    <app-quiz-question-image
+      *ngIf="question.type === QuestionType.Image"
+      [question]="$any(question)"
+      [isReviewed]="isReviewed"
+      (answered)="questionAnswered($event)"
+    >
+    </app-quiz-question-image>
   </div>
 </div>
 

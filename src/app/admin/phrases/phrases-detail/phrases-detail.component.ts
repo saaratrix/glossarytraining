@@ -6,9 +6,8 @@ import { Phrase } from "../../../shared/models/phrase.model";
 import {
   CategoryGetResponse, DefaultSuccessResponse,
   PhraseGetDetailResponse, PhrasePostCreateResponse
-} from "../../../shared/models/httpresponses";
+} from "../../../shared/models/http/httpresponses";
 import { NgForm } from "@angular/forms";
-import { ItemSelectorComponent } from "../../../shared/components/item-selector/item-selector.component";
 import { ItemToggledEvent } from "../../../shared/components/item-toggle-selector/item-toggle-selector.component";
 
 @Component({

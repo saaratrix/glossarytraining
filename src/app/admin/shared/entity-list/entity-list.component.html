@@ -19,9 +19,11 @@
           >{{entity[key]}}
         </td>
         <td class="actions">
-
-          <a [routerLink]="[editUrl, entity.id]" class="edit-btn" *ngIf="!doInlineEdit">edit</a>
-          <a (click)="showEdit(entity)" class="edit-btn" *ngIf="doInlineEdit">{{getEditText(entity)}}</a>
+          <a [routerLink]="[editUrl, entity.id]" class="edit-btn">
+            <span (click)="showEdit(entity, $event)">
+              {{getEditText(entity)}}
+            </span>
+          </a>
           <button (click)="remove(entity)">remove</button>
         </td>
       </tr>

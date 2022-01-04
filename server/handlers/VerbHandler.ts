@@ -8,13 +8,13 @@ export class VerbHandler extends BaseHandler<Verb> {
   }
 
   public async add (entity: Verb): Promise<boolean> {
-    const sql = `insert into ${this.m_table}(
-                finnish, english, note, 
+    const sql = `insert into verbs(
+                finnish, english, note,
                 minä, sinä, hän,
-                me, te, he, ei) 
+                me, te, he, ei)
                 values (
-                ?, ?, ?, 
-                ?, ?, ?, 
+                ?, ?, ?,
+                ?, ?, ?,
                 ?, ?, ?, ?);`;
 
     var values = [
@@ -33,7 +33,7 @@ export class VerbHandler extends BaseHandler<Verb> {
   }
 
   public async update (entity: Verb): Promise<boolean> {
-    const sql = `update ${this.m_table} set finnish = ?, english = ?, note = ?,
+    const sql = `update verbs set finnish = ?, english = ?, note = ?,
                 minä = ?, sinä = ?, hän = ?,
                 me = ?, te = ?, he = ?, ei = ?
                 where id = ?;`;

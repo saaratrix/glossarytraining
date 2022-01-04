@@ -1,10 +1,11 @@
 import { Component, EventEmitter, OnInit } from "@angular/core";
 import { ApiService } from "../../../shared/services/api.service";
 import { Category } from "../../../shared/models/category.model";
-import { CategoryGetResponse, DefaultSuccessResponse } from "../../../shared/models/httpresponses";
+import { CategoryGetResponse, DefaultSuccessResponse } from "../../../shared/models/http/httpresponses";
 import { EditFieldType } from "../../../shared/enums/edit-field-type.enum";
 import { EntityEditUpdateEvent } from "../../shared/entity-edit/entity-edit.component";
-import { EntityUpdateErrorEvent, EntityUpdateSuccessEvent } from "../../phrases/phrases-list/phrases-list.component";
+import { EntityUpdateSuccessEvent } from '../../shared/models/events/entity-update-success.event';
+import { EntityUpdateErrorEvent } from '../../shared/models/events/entity-update-error.event';
 
 @Component({
   selector: "app-admin-category-list",

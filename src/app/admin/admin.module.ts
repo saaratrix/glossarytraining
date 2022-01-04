@@ -17,6 +17,8 @@ import { VerbDetailComponent } from "./verb/verb-detail/verb-detail.component";
 
 import { SharedModule as SharedAdminModule } from "./shared/shared.module";
 import { SharedModule as SharedCommonModule } from "../shared/shared.module";
+import { ImagePhrasesListComponent } from './image-phrases/image-phrases-list/image-phrases-list.component';
+import { ImagePhrasesDetailComponent } from './image-phrases/image-phrases-detail/image-phrases-detail.component';
 
 const adminRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
   {
@@ -40,6 +42,14 @@ const adminRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
         component: PhrasesDetailComponent
       },
       {
+        path: "imagephrases",
+        component: ImagePhrasesListComponent,
+      },
+      {
+        path: "imagephrase/:id",
+        component: ImagePhrasesDetailComponent,
+      },
+      {
         path: "categories",
         component: CategoryListComponent
       },
@@ -59,7 +69,6 @@ const adminRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
   },
 ]);
 
-
 @NgModule({
   imports: [
     CommonModule,
@@ -67,7 +76,7 @@ const adminRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
     PhraseModule,
     SharedCommonModule,
     SharedAdminModule,
-    adminRouting
+    adminRouting,
   ],
   declarations: [
     AdminComponent,
@@ -80,6 +89,8 @@ const adminRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
     CategoryDetailComponent,
     VerbListComponent,
     VerbDetailComponent,
+    ImagePhrasesListComponent,
+    ImagePhrasesDetailComponent,
   ]
 })
 export class AdminModule { }

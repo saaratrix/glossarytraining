@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from "@angular/core";
 import { ApiService } from "../../../shared/services/api.service";
-import { DefaultSuccessResponse } from "../../../shared/models/httpresponses";
+import { DefaultSuccessResponse } from "../../../shared/models/http/httpresponses";
 import { EditField } from "../../../shared/models/edit-field";
-import { EntityUpdateErrorEvent, EntityUpdateSuccessEvent } from "../../phrases/phrases-list/phrases-list.component";
+import { EntityUpdateSuccessEvent } from '../models/events/entity-update-success.event';
+import { EntityUpdateErrorEvent } from '../models/events/entity-update-error.event';
 
 interface IKeyData {
   header: string;
@@ -62,7 +63,7 @@ export class EntityListComponent implements OnInit {
   public errorSubscription: any;
   public startSubscription: any;
 
-  public selectedEntity: any;
+  public selectedEntity: any | null;
 
   // Event data for entity-edit component
   public error: string;
@@ -199,7 +200,8 @@ export class EntityListComponent implements OnInit {
    */
   public getTitle (entity: any, key: string) {
     if (this.titles[key]) {
-      return entity[this.titles[key]];
+      const text = entity[this.titles[key]]
+      return text !== undefined ? text : this.titles[key];
     }
 
     return "";
@@ -239,9 +241,15 @@ export class EntityListComponent implements OnInit {
     });
   }
 
-  public showEdit (entity: any): void {
-    if (this.selectedEntity !== entity) {
+  public showEdit (entity: any, event: MouseEvent): void {
+    if (!this.doInlineEdit) {
+      return;
+    }
 
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (this.selectedEntity !== entity) {
       this.isWaitingForServer = false;
       this.isFinished = false;
       this.error = "";

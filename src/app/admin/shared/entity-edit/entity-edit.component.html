@@ -10,22 +10,28 @@
 </p>
 <div *ngFor="let field of fields" class="form-group">
   <label for="{{field.key}}">{{field.label}}:</label>
-  <ng-container *ngIf="field.type === EditFieldTypes.Text">
-    <input type="text" id="{{field.key}}" name="{{field.key}}" [(ngModel)]="entity[field.key]" [required]="field.required">
-  </ng-container>
-  <ng-container *ngIf="field.type === EditFieldTypes.Select">
-    <select id="{{field.key}}" name="{{field.key}}" [(ngModel)]="entity[field.key]" [required]="field.required">
-      <option *ngFor="let listItem of field.list"
-              [ngValue]="listItem"
-      >{{listItem[field.listKey]}}</option>
-    </select>
-  </ng-container>
-  <ng-container *ngIf="field.type === EditFieldTypes.ItemSelect">
-    <app-item-selector [items]="field.list"
-                       [nameKey]="field.listName"
-                       [titleKey]="field.listTitle"
-                       [initialItem]="entity[field.key]"
-                       (itemClicked)="onItemSelectUpdate($event, field.key)" ></app-item-selector>
+  <ng-container [ngSwitch]="field.type">
+    <ng-container *ngSwitchCase="EditFieldTypes.Text">
+      <input type="text" id="{{field.key}}" name="{{field.key}}" [(ngModel)]="entity[field.key]" [required]="field.required">
+    </ng-container>
+    <ng-container *ngSwitchCase="EditFieldTypes.Select">
+      <select id="{{field.key}}" name="{{field.key}}" [(ngModel)]="entity[field.key]" [required]="field.required">
+        <option *ngFor="let listItem of field.list"
+                [ngValue]="listItem"
+        >{{listItem[field.listKey]}}</option>
+      </select>
+    </ng-container>
+    <ng-container *ngSwitchCase="EditFieldTypes.ItemSelect">
+      <app-item-selector [items]="field.list"
+                         [nameKey]="field.listName"
+                         [titleKey]="field.listTitle"
+                         [initialItem]="entity[field.key]"
+                         (itemClicked)="onItemSelectUpdate($event, field.key)" ></app-item-selector>
+    </ng-container>
+    <ng-container *ngSwitchCase="EditFieldTypes.Image">
+      <img class="image" src="{{ entity[field.key] }}" alt="an image!">
+      <input hidden="true" type="text" id="{{field.key}}" name="{{field.key}}" [(ngModel)]="entity[field.key]" [required]="field.required" readonly>
+    </ng-container>
   </ng-container>
 </div>
 

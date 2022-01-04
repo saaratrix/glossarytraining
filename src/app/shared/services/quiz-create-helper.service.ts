@@ -44,9 +44,8 @@ export class QuizCreateHelperService {
 
   /**
    * A simple shuffle array where it goes through each index and randomly changes position with any other index
-   * @param {any[]} arr
    */
-  public shuffleArray (arr: any[]) {
+  public shuffleArray (arr: unknown[]) {
     for (let i = 0; i < arr.length; ++i) {
       // Get a random number between 0 and length
       const randomId: number = Math.floor(Math.random() * arr.length);

@@ -1,0 +1,59 @@
+<p>Image phrases</p>
+<a [routerLink]="['../imagephrase', -1]">Create new image phrase</a>
+<ul class="item-list">
+  <li *ngFor="let imagePhrasesByCategory of imagePhrasesByCategory; let i = index;">
+    <h2 class="item-header" (click)="toggleList(imagePhrasesByCategory)">{{imagePhrasesByCategory.category.name}}
+      <span class="toggle-visibility" [title]="getToggleTooltip(imagePhrasesByCategory)">{{getToggleListText(imagePhrasesByCategory.isVisible)}}</span>
+    </h2>
+    <app-admin-entity-list
+      [listId]="i"
+      [doInlineEdit]="true"
+      [entities]="imagePhrasesByCategory.imagePhrases"
+      [editUrl]="'../imagephrase'"
+      [updateUrl]="'imagephrase/update'"
+      [removeUrl]="'imagephrase/remove'"
+      [keys]="['finnish', 'note']"
+      [titles]="{ 'finnish': '' }"
+      [keysData]="{
+                    'finnish': { header: 'Finnish', editable: true },
+                    'note': { header: 'Note', editable: true }
+                  }"
+      [editFields]="[
+        {
+          'label': 'Finnish',
+          'key': 'finnish',
+          'required': true,
+          'type': EditFieldTypes.Text
+        },
+        {
+          'label': 'Note',
+          'key': 'note',
+          'required': true,
+          'type': EditFieldTypes.Text
+        },
+        {
+          'label': 'Image',
+          'key': 'imageBase64',
+          'required': true,
+          'type': EditFieldTypes.Image
+        },
+        {
+          'label': 'Category',
+          'key': 'category',
+          'required': true,
+          'type': EditFieldTypes.ItemSelect,
+          'list': categories,
+          'listName': 'name',
+          'listTitle': 'name'
+        }
+      ]"
+      [onstartEvent]="onstartEvent"
+      [onsuccessEvent]="onsuccessEvent"
+      [onerrorEvent]="onerrorEvent"
+      (removed)="removedImagePhrase($event)"
+      (updateItem)="updateImagePhrase($event)"
+      *ngIf="imagePhrasesByCategory.isVisible"
+    >
+    </app-admin-entity-list>
+  </li>
+</ul>
