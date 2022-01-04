@@ -117,8 +117,6 @@ export class ImagePhraseController {
 
   /**
    * Parse the request.body and return a new phrase.
-   * @param body
-   * @return {Phrase}
    */
   private getImagePhraseFromBody (body: any): ImagePhrase {
     const id = typeof body.id !== "undefined" ? parseInt(body.id, 10) : -1;

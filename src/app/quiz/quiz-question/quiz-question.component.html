@@ -4,7 +4,7 @@
     <strong class="question-question">{{question.question}}</strong>
   </ng-container>
   <ng-container *ngIf="question.type === QuestionType.Image">
-    <img src="{{question.question}}" alt="{{question.note}}" />
+    <img class="quiz-image" src="{{question.question}}" alt="{{question.note}}" />
   </ng-container>
   <span class="question-note" *ngIf="question.note.length > 0"> - ( {{question.note}} )</span>
   <br>

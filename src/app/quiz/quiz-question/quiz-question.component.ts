@@ -28,9 +28,7 @@ export class QuizQuestionComponent implements OnInit {
     this.QuestionType = QuestionType;
   }
 
-  ngOnInit () {
-    console.log(this.question);
-  }
+  ngOnInit(): void {}
 
   public questionAnswered (question: Question): void {
     this.answered.emit(question);
