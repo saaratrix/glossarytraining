@@ -54,3 +54,4 @@ Thumbs.db
 !/server/polyfill/*.js
 /server/**/*.js
 /server/**/*.js.map
+.angular/cache
