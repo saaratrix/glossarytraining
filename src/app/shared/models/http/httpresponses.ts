@@ -2,6 +2,7 @@ import { Category } from "../category.model";
 import { Phrase } from "../phrase.model";
 import { Quiz } from "../quiz.model";
 import { Verb } from "../verb.model";
+import { InflectionCategory } from '../inflection-category';
 
 export interface DefaultSuccessResponse {
   error: string;
@@ -86,3 +87,21 @@ export interface VerbPostCreateResponse {
   error: string;
 }
 
+/**
+ * Inflection Category responses
+ */
+
+export interface InflectionCategoryGetResponse {
+  inflectionCategories: InflectionCategory[];
+  error?: string;
+}
+
+export interface InflectionCategoryGetDetailResponse {
+  inflectionCategory: InflectionCategory;
+  error?: string;
+}
+
+export interface InflectionCategoryPostCreateResponse {
+  inflectionCategory: InflectionCategory;
+  error: string;
+}

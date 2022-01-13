@@ -20,7 +20,7 @@ export class CategoryController {
   }
 
   public async allHasPhrases (req: Request, res: Response): Promise<void> {
-    const categories: Category[] = await this.m_categoryHandler.allHasPhrases();
+    const categories: Category[] = await this.m_categoryHandler.allCategoriesWithPhrases();
 
     res.json({
       categories: categories

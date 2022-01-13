@@ -111,7 +111,7 @@ export class PhraseController {
     }
 
     res.json({
-      phrases: phrases
+      phrases,
     });
   }
 

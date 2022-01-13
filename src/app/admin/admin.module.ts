@@ -19,6 +19,8 @@ import { SharedModule as SharedAdminModule } from "./shared/shared.module";
 import { SharedModule as SharedCommonModule } from "../shared/shared.module";
 import { ImagePhrasesListComponent } from './image-phrases/image-phrases-list/image-phrases-list.component';
 import { ImagePhrasesDetailComponent } from './image-phrases/image-phrases-detail/image-phrases-detail.component';
+import { InflectionCategoriesListComponent } from './inflection-category/inflection-categories-list/inflection-categories-list.component';
+import { InflectionCategoryDetailComponent } from './inflection-category/inflection-category-detail/inflection-category-detail.component';
 
 const adminRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
   {
@@ -64,7 +66,15 @@ const adminRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
       {
         path: "verb/:id",
         component: VerbDetailComponent
-      }
+      },
+      {
+        path: "inflection-categories",
+        component: InflectionCategoriesListComponent,
+      },
+      {
+        path: "inflection-category/:id",
+        component: InflectionCategoryDetailComponent,
+      },
     ]
   },
 ]);
@@ -91,6 +101,8 @@ const adminRouting: ModuleWithProviders<RouterModule> = RouterModule.forChild([
     VerbDetailComponent,
     ImagePhrasesListComponent,
     ImagePhrasesDetailComponent,
+    InflectionCategoriesListComponent,
+    InflectionCategoryDetailComponent,
   ]
 })
 export class AdminModule { }

@@ -13,9 +13,8 @@ import { EntityUpdateErrorEvent } from '../../shared/models/events/entity-update
   styleUrls: ["./category-list.component.less"]
 })
 export class CategoryListComponent implements OnInit {
-
   public items: Category[];
-  public EditFieldTypes: any;
+  public EditFieldTypes: typeof EditFieldType;
 
   public onstartEvent: EventEmitter<number>;
   public onsuccessEvent: EventEmitter<EntityUpdateSuccessEvent>;
