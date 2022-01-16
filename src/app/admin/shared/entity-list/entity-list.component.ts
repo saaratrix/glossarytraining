@@ -25,62 +25,43 @@ export class EntityListComponent implements OnInit {
 
   @Input() public listId: number;
   @Input() public doInlineEdit: boolean;
-  @Input() public entities: any[];
-  @Input() public keys: string[];
-  @Input() public keysData: { [key: string]: IKeyData };
-  @Input() public editFields: EditField[];
+  @Input() public entities: any[] = [];
+  @Input() public keys: string[] = [];
+  @Input() public keysData: Record<string, IKeyData> = {};
+  @Input() public editFields: EditField[] = [];
   // The edit url for <>
-  @Input() public editUrl: string;
+  @Input() public editUrl: string = "";
   // The remove API url
-  @Input() public removeUrl: string;
+  @Input() public removeUrl: string = "";
   // The update API url
-  @Input() public updateUrl: string;
-  @Input() public titles: { [key: string]: string };
+  @Input() public updateUrl: string = "";
+  @Input() public titles: Record<string, string> = {};
 
   @Input() public onstartEvent: EventEmitter<number>;
   @Input() public onsuccessEvent: EventEmitter<EntityUpdateSuccessEvent>;
   @Input() public onerrorEvent: EventEmitter<EntityUpdateErrorEvent>;
 
-  @Output() public removed: EventEmitter<any>;
-  @Output() public updateItem: EventEmitter<any>;
+  @Output() public removed: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public updateItem: EventEmitter<any> = new EventEmitter<any>();
 
   public successSubscription: Subscription;
   public errorSubscription: Subscription;
   public startSubscription: Subscription;
 
-  public selectedEntity: unknown | null;
+  public selectedEntity: unknown | null = null;
 
   // Event data for entity-edit component
-  public error: string;
-  public isWaitingForServer: boolean;
-  public isFinished: boolean;
+  public error: string = "";
+  public isWaitingForServer: boolean = false;
+  public isFinished: boolean = false;
 
-  private isDestroyed: boolean;
+  private isDestroyed: boolean = false;
 
-  constructor (private apiService: ApiService) {
-    this.entities = [];
-    this.keys = [];
-    this.keysData = {};
-    this.editFields = [];
-    this.editUrl = "";
-    this.updateUrl = "";
-    this.removeUrl = "";
-    this.titles = {};
-
-    this.selectedEntity = null;
-
-    this.removed = new EventEmitter<any>();
-    this.updateItem = new EventEmitter<any>();
-
-    this.error = "";
-    this.isWaitingForServer = false;
-    this.isFinished = false;
-
-    this.isDestroyed = false;
-  }
+  constructor (
+    private apiService: ApiService
+  ) { }
 
   ngOnInit () {
-
     // TODO: Investigate if there is a timing issue where for example:
     // 1. Update item A
     // 2. Change to item B

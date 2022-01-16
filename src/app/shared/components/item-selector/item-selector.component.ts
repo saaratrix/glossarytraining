@@ -8,26 +8,16 @@ import { ItemToggledEvent } from "../item-toggle-selector/item-toggle-selector.c
 })
 export class ItemSelectorComponent implements OnInit {
 
-  @Input()
-  public initialItem: any;
-  @Input()
-  public items: any[];
-  @Input()
-  public titleKey: string;
-  @Input()
-  public nameKey: string;
+  @Input() public initialItem: any;
+  @Input() public items: any[] = [];
+  @Input() public titleKey: string;
+  @Input() public nameKey: string;
 
-  @Output()
-  public itemClicked: EventEmitter<ItemToggledEvent>;
+  @Output() public itemClicked: EventEmitter<ItemToggledEvent> = new EventEmitter<ItemToggledEvent>();
 
-  private selectedItem: any;
+  private selectedItem: any | null = null;
 
-  constructor() {
-    this.items = [];
-    this.selectedItem = null;
-
-    this.itemClicked = new EventEmitter<ItemToggledEvent>();
-  }
+  constructor() { }
 
   ngOnInit() {
     if (this.initialItem) {

@@ -5,6 +5,7 @@ import { setupQuizRoutes } from "./controllers/QuizControllers/QuizController";
 import { setupVerbRoutes } from "./controllers/VerbController";
 import { Application } from "express";
 import { setupInflectionCategoryRoutes } from './controllers/InflectionCategoryController';
+import { setupInflectionRoutes } from './controllers/InflectionController';
 
 module.exports = function (app: Application) {
   const baseUrl: string = "/api/";
@@ -15,4 +16,5 @@ module.exports = function (app: Application) {
   setupQuizRoutes(baseUrl, app);
   setupVerbRoutes(baseUrl, app);
   setupInflectionCategoryRoutes(baseUrl, app);
+  setupInflectionRoutes(baseUrl, app);
 }

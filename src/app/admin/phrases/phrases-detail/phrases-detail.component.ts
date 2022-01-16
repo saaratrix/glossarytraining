@@ -16,23 +16,20 @@ import { ItemToggledEvent } from "../../../shared/components/item-toggle-selecto
   styleUrls: ["./phrases-detail.component.less"]
 })
 export class PhrasesDetailComponent implements OnInit {
-  public categories: Category[];
+  public categories: Category[] = [];
 
-  public item: Phrase;
-  public isNew: boolean;
-  public isWaitingForServer: boolean;
-  public error: string;
+  public item: Phrase | null = null;
+  public isNew: boolean = false;
+  public isWaitingForServer: boolean = false;
+  public error: string | null = null;
 
-  constructor (private route: ActivatedRoute, private router: Router, private apiService: ApiService) {
-    this.item = null;
-    this.isNew = false;
-    this.categories = [];
+  constructor (
+    private route: ActivatedRoute,
+    private router: Router,
+    private apiService: ApiService,
+  ) {}
 
-    this.isWaitingForServer = false;
-    this.error = null;
-  }
-
-  ngOnInit () {
+  ngOnInit (): void {
     /**
      * Try and set the actual category reference so ngModel works properly.
      */

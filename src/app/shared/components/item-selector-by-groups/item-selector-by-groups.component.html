@@ -1,0 +1,15 @@
+<ng-container *ngIf="itemsByGroups.length > 0">
+  <ng-container *ngFor="let itemByGroup of itemsByGroups">
+    <h3>{{ itemByGroup.key }}</h3>
+    <ul  class="items-list">
+      <li *ngFor="let item of itemByGroup.items" class="item" [title]="item[titleKey]" [class.selected]="item === selectedItem" (click)="onItemClicked(item)">
+        {{ item[nameKey] }}
+      </li>
+    </ul>
+  </ng-container>
+</ng-container>
+<ul *ngIf="unknownItems.length > 0" class="items-list">
+  <li *ngFor="let item of unknownItems" class="item" [title]="item[titleKey]" [class.selected]="item === selectedItem" (click)="onItemClicked(item)">
+    {{item[nameKey]}}
+  </li>
+</ul>
