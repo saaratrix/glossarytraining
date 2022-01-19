@@ -46,6 +46,7 @@ export class InflectionDetailComponent implements OnInit {
         this.item = {
           id: -1,
           inflection: "",
+          note: "",
           phrase: undefined,
           // This category will be replaced as soon as trySetCategory() is finished
           inflectionCategory: {

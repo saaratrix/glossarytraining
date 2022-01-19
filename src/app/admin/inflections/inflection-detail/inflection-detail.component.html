@@ -6,10 +6,14 @@
       <label for="inflection">Inflection:</label>
       <input type="text" id="inflection" name="inflection" required [(ngModel)]="item.inflection">
     </div>
-<!--    <div class="form-group">-->
-<!--      <label for="note">Note:</label>-->
-<!--      <input type="text" id="note" name="note" [(ngModel)]="item.note">-->
-<!--    </div>-->
+    <div class="form-group">
+      <label for="note">Note:</label>
+      <input type="text" id="note" name="note" [(ngModel)]="item.note">
+    </div>
+    <div class="form-group">
+      <label>Inflection Category:</label>
+      <app-item-selector [items]="inflectionCategories" [nameKey]="'name'" [titleKey]="'name'" [initialItem]="item.inflectionCategory" (itemClicked)="onInflectionCategoryToggled($event)"></app-item-selector>
+    </div>
     <div class="form-group">
       <label>Phrases</label>
       <app-item-selector-by-groups
@@ -20,10 +24,6 @@
         [initialItem]="item.phrase"
         (itemClicked)="onPhraseToggled($event)"
       ></app-item-selector-by-groups>
-    </div>
-    <div class="form-group">
-      <label>Inflection Category:</label>
-      <app-item-selector [items]="inflectionCategories" [nameKey]="'name'" [titleKey]="'name'" [initialItem]="item.inflectionCategory" (itemClicked)="onInflectionCategoryToggled($event)"></app-item-selector>
     </div>
     <br>
     <input type="submit" [value]="isNew ? 'Create Inflection' : 'Update Inflection'">

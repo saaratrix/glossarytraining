@@ -17,9 +17,9 @@ export class InflectionHandler extends BaseHandler<Inflection> {
   }
 
   public async all(): Promise<Inflection[]> {
-    const sql = `select i.id, i.inflection, i.inflectioncategoryId, i.phraseId,
+    const sql = `select i.id, i.inflection, i.note, i.inflectioncategoryId, i.phraseId,
                    ic.name as icName, ic.description as icDescription,
-                   p.finnish, p.english, p.note, p.categoryId,
+                   p.finnish, p.english, p.note as pNote, p.categoryId,
                    c.name as cName
                  from inflections as i
                  join inflectioncategories as ic on ic.id = i.inflectioncategoryId
@@ -35,17 +35,17 @@ export class InflectionHandler extends BaseHandler<Inflection> {
       const row = sqlResult[i];
       const inflectionCategory = new InflectionCategory(row.inflectioncategoryId, row.icName, row.icDescription);
       const phraseCategory = new Category(row.categoryId, row.cName);
-      const phrase = new Phrase(row.phraseId, row.finnish, row.english, row.note, phraseCategory);
-      result[i] = new Inflection(row.id, row.inflection, phrase, inflectionCategory);
+      const phrase = new Phrase(row.phraseId, row.finnish, row.english, row.pNote, phraseCategory);
+      result[i] = new Inflection(row.id, row.inflection, row.note, phrase, inflectionCategory);
     }
 
     return result;
   }
 
   public async get(id: number ): Promise<Inflection | null> {
-    const sql = `select i.id, i.inflection,
-                  ic.name as icName, ic.description as icDescription p.id as phraseId,
-                  p.finnish, p.english, p.note, p.categoryId,
+    const sql = `select i.id, i.inflection, i.note, i.inflectioncategoryId, i.phraseId,
+                  ic.name as icName, ic.description as icDescription,
+                  p.finnish, p.english, p.note as pNote, p.categoryId,
                   c.name as cName
                 from inflections as i
                 join inflectioncategories as ic on ic.id = i.inflectioncategoryId
@@ -60,8 +60,8 @@ export class InflectionHandler extends BaseHandler<Inflection> {
       const row = sqlResult[0];
       const inflectionCategory = new InflectionCategory(row.inflectioncategoryId, row.icName, row.icDescription);
       const phraseCategory = new Category(row.categoryId, row.cName);
-      const phrase = new Phrase(row.phraseId, row.finnish, row.english, row.note, phraseCategory);
-      result = new Inflection(row.id, row.inflection, phrase, inflectionCategory);
+      const phrase = new Phrase(row.phraseId, row.finnish, row.english, row.pNote, phraseCategory);
+      result = new Inflection(row.id, row.inflection, row.note, phrase, inflectionCategory);
     }
 
     return result;
@@ -72,9 +72,9 @@ export class InflectionHandler extends BaseHandler<Inflection> {
    */
   public async findInflectionsForCategory (inflectionCategoryId: number): Promise<Inflection[]> {
     const result: Inflection[] = [];
-    const sql = `select i.id, i.inflection,
-                  ic.name as icName, ic.description as icDescription p.id as phraseId,
-                  p.finnish, p.english, p.note, p.categoryId,
+    const sql = `select i.id, i.inflection, i.note, i.inflectioncategoryId, i.id as phraseId,
+                  ic.name as icName, ic.description as icDescription ,
+                  p.finnish, p.english, p.note as pNote, p.categoryId,
                   c.name as cName
                 from inflections as i
                 join inflectioncategories as ic on ic.id = i.inflectioncategoryId
@@ -89,8 +89,8 @@ export class InflectionHandler extends BaseHandler<Inflection> {
         const row = sqlResult[i];
         const inflectionCategory = new InflectionCategory(row.inflectioncategoryId, row.icName, row.icDescription);
         const phraseCategory = new Category(row.categoryId, row.cName);
-        const phrase = new Phrase(row.phraseId, row.finnish, row.english, row.note, phraseCategory);
-        result.push(new Inflection(row.id, row.inflection, phrase, inflectionCategory));
+        const phrase = new Phrase(row.phraseId, row.finnish, row.english, row.pNote, phraseCategory);
+        result.push(new Inflection(row.id, row.inflection, row.note, phrase, inflectionCategory));
       }
     }
 
@@ -106,10 +106,10 @@ export class InflectionHandler extends BaseHandler<Inflection> {
       return false;
     }
 
-    const sql = `insert into inflections(inflection, phraseId, inflectioncategoryId)
-                 values (?, ?, ?);`;
+    const sql = `insert into inflections(inflection, note, phraseId, inflectioncategoryId)
+                 values (?, ?, ?, ?);`;
 
-    const sqlResult: MySQLResults = await query(sql, [entity.inflection, phrase.id, category.id]);
+    const sqlResult: MySQLResults = await query(sql, [entity.inflection, entity.note, phrase.id, category.id]);
     if (!sqlResult.error) {
       entity.id = sqlResult.insertId;
       return true;
@@ -127,10 +127,10 @@ export class InflectionHandler extends BaseHandler<Inflection> {
       return false;
     }
 
-    const sql = `update inflections set inflection = ?, phraseId = ?, inflectioncategoryId = ?
+    const sql = `update inflections set inflection = ?, note = ?, phraseId = ?, inflectioncategoryId = ?
                 where id = ?;`;
 
-    const sqlResult: MySQLResults = await query(sql, [entity.inflection, phrase.id, category.id, entity.id]);
+    const sqlResult: MySQLResults = await query(sql, [entity.inflection, entity.note, phrase.id, category.id, entity.id]);
 
     return (!sqlResult.error && sqlResult.affectedRows > 0);
   }

@@ -119,25 +119,26 @@ export class InflectionController {
    */
   private getInflectionFromBody (body: any): Inflection {
     const id = typeof body.id !== "undefined" ? parseInt(body.id, 10) : -1;
-    const inflection = body.inflection || "";
+    const inflection = body.inflection ?? "";
+    const note = body.note ?? "";
 
     const inflectionCategoryId = body.inflectionCategory?.id ? parseInt(body.inflectionCategory.id, 10) : -1;
     const inflectionCategoryName = body.inflectionCategory?.name || "";
     const inflectionCategoryDescription = body.inflectionCategory?.description || "";
 
     const phraseId = typeof body.phrase?.id !== "undefined" ? parseInt(body.phrase.id, 10) : -1;
-    const finnish = body.phrase?.finnish || "";
-    const english = body.phrase?.english || "";
-    const note = body.phrase?.note || "";
+    const finnish = body.phrase?.finnish ?? "";
+    const english = body.phrase?.english ?? "";
+    const phraseNote = body.phrase?.note ?? "";
 
     const categoryId = typeof body.phrase?.category?.id !== "undefined" ? parseInt(body.phrase.category.id, 10) : -1;
-    const categoryName = body.phrase?.category?.name || '';
+    const categoryName = body.phrase?.category?.name ?? '';
 
     const category = new Category(categoryId, categoryName);
-    const phrase = new Phrase(phraseId, finnish, english, note, category);
+    const phrase = new Phrase(phraseId, finnish, english, phraseNote, category);
     const inflectionCategory = new InflectionCategory(inflectionCategoryId, inflectionCategoryName, inflectionCategoryDescription);
 
-    return new Inflection(id, inflection, phrase, inflectionCategory);
+    return new Inflection(id, inflection, note, phrase, inflectionCategory);
   }
 }
 

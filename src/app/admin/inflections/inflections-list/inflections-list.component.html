@@ -16,9 +16,10 @@
       [editUrl]="'../inflection'"
       [updateUrl]="'inflection/update'"
       [removeUrl]="'inflection/remove'"
-      [keys]="['inflection']"
+      [keys]="['inflection', 'note']"
       [keysData]="{
-                    'inflection': { header: 'Inflection', editable: true }
+                    'inflection': { header: 'Inflection', editable: true },
+                    'note': { header: 'Note', editable: true }
                   }"
       [editFields]="[
         {
