@@ -102,8 +102,8 @@ export class ImagePhrasesDetailComponent implements OnInit {
     });
   }
 
-  onCategoryToggled (itemClicked: ItemToggledEvent) {
-    this.item.category = itemClicked.item as Category;
+  onCategoryToggled (itemClicked: ItemToggledEvent<Category>) {
+    this.item.category = itemClicked.item;
   }
 
   public createItem (): void {

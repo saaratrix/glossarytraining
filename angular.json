@@ -133,11 +133,11 @@
   "defaultProject": "glossarytraining",
   "schematics": {
     "@schematics/angular:component": {
-      "prefix": "app",
+      "prefix": "",
       "style": "less"
     },
     "@schematics/angular:directive": {
-      "prefix": "app"
+      "prefix": ""
     }
   }
 }

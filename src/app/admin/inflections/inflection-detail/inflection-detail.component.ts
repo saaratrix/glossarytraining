@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../../../shared/models/category.model';
 import { Phrase } from '../../../shared/models/phrase.model';
 import { InflectionCategory } from '../../../shared/models/inflection-category';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../shared/services/api.service';
 import { Inflection } from '../../../shared/models/inflection';
-import {
-  CategoryGetResponse, DefaultSuccessResponse,
-  InflectionCategoryGetResponse, InflectionGetDetailResponse, InflectionPostCreateResponse,
-  PhraseGetDetailResponse, PhraseGetResponse, PhrasePostCreateResponse
-} from '../../../shared/models/http/httpresponses';
+import { DefaultSuccessResponse, InflectionCategoryGetResponse, InflectionGetDetailResponse, InflectionPostCreateResponse, PhraseGetResponse } from '../../../shared/models/http/httpresponses';
 import { NgForm } from '@angular/forms';
 import { ItemToggledEvent } from '../../../shared/components/item-toggle-selector/item-toggle-selector.component';
 

@@ -11,6 +11,7 @@ import { HomeModule } from "./home/home.module";
 import { PhraseModule } from "./phrase/phrase.module";
 import { QuizModule } from "./quiz/quiz.module";
 import { VerbModule } from "./verb/verb.module";
+import { InflectionModule } from './inflection/inflection.module';
 
 const rootRouting: ModuleWithProviders<RouterModule> = RouterModule.forRoot([], { relativeLinkResolution: 'legacy' });
 
@@ -25,6 +26,7 @@ const rootRouting: ModuleWithProviders<RouterModule> = RouterModule.forRoot([], 
     HomeModule,
     PhraseModule,
     QuizModule,
+    InflectionModule,
     VerbModule,
     AdminModule,
     rootRouting

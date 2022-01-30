@@ -51,7 +51,7 @@ export class VerbSelectionComponent implements OnInit {
     this.router.navigate(["verb-training"]);
   }
 
-  public onItemToggled (event: ItemToggledEvent) {
+  public onItemToggled (event: ItemToggledEvent<Verb>) {
     if (event.selected) {
       this.selectedVerbs.push(event.item);
     }

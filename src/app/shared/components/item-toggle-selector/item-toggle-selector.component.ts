@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 
-export interface ItemToggledEvent {
-  item: any;
+export interface ItemToggledEvent<T = UnknownItem> {
+  item: T;
   selected: boolean;
+}
+
+export interface UnknownItem {
+  id: number;
 }
 
 @Component({
@@ -13,33 +16,19 @@ export interface ItemToggledEvent {
 })
 export class ItemToggleSelectorComponent implements OnInit {
 
-  @Input()
-  public initialItem: any;
-  @Input()
-  public items: any[];
-  @Input()
-  public nameKey: string;
-  @Input()
-  public titleKey: string;
-  @Input()
-  public startSelected: boolean;
-  @Input()
-  public allowOnlyOne: boolean;
-  @Input()
-  public randomCount: number = 10;
+  @Input() public initialItem: UnknownItem;
+  @Input() public items: UnknownItem[] = [];
+  @Input() public nameKey: string;
+  @Input() public titleKey: string;
+  @Input() public startSelected: boolean = true;
+  @Input() public allowOnlyOne: boolean = false;
+  @Input() public randomCount: number = 10;
 
-  @Output()
-  public itemClicked: EventEmitter<ItemToggledEvent>;
+  @Output() public itemClicked: EventEmitter<ItemToggledEvent> = new EventEmitter<ItemToggledEvent>();
 
-  private selectedItems: any;
+  private readonly selectedItems: Record<string, UnknownItem> = {};
 
-  constructor () {
-    this.items = [];
-    this.selectedItems = {};
-    this.startSelected = true;
-    this.allowOnlyOne = false;
-    this.itemClicked = new EventEmitter<ItemToggledEvent>();
-  }
+  constructor () {}
 
   ngOnInit () {
     if (this.startSelected) {
@@ -47,8 +36,7 @@ export class ItemToggleSelectorComponent implements OnInit {
         const item = this.items[i];
         this.selectedItems[item.id] = item;
       }
-    }
-    else {
+    } else {
       if (this.initialItem) {
 
       }
@@ -88,7 +76,7 @@ export class ItemToggleSelectorComponent implements OnInit {
     }
 
     this.itemClicked.emit({
-      item: item,
+      item,
       selected: isSelected
     });
   }

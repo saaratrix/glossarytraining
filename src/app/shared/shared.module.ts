@@ -10,20 +10,20 @@ import { FormsModule } from "@angular/forms";
 import { ItemSelectorByGroupsComponent } from './components/item-selector-by-groups/item-selector-by-groups.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        HttpClientModule,
-        RouterModule,
-        FormsModule,
-    ],
-  providers: [
-    ApiService,
-    QuizCreateHelperService
-  ],
   declarations: [
     ItemToggleSelectorComponent,
     ItemSelectorComponent,
     ItemSelectorByGroupsComponent
+  ],
+  providers: [
+    ApiService,
+    QuizCreateHelperService
+  ],
+  imports: [
+      CommonModule,
+      HttpClientModule,
+      RouterModule,
+      FormsModule,
   ],
   exports: [
     ItemToggleSelectorComponent,

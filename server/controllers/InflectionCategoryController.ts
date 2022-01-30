@@ -141,4 +141,8 @@ export var setupInflectionCategoryRoutes = function (baseUrl: string, expressApp
   expressApp.post(baseUrl + "inflection-category/remove", isAuthenticatedApiMiddleware, async (req, res) => {
     await inflectionCategoryController.remove(req, res);
   });
+
+  expressApp.get(baseUrl + "inflection-category/with-inflections", async (req, res) => {
+    await inflectionCategoryController.allWithInflections(req, res);
+  })
 }
