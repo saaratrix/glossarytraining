@@ -65,8 +65,7 @@ export class QuizController {
         quiz = null;
         error = "Failed to add the quiz to database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid data.";
       quiz = null;
     }
@@ -88,8 +87,7 @@ export class QuizController {
       if (!success) {
         error = "Failed to update the quiz in database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid data.";
     }
 
@@ -109,8 +107,7 @@ export class QuizController {
       if (!success) {
         error = "Failed to remove quiz from database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid quiz id.";
     }
 

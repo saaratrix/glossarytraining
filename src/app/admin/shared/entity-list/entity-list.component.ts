@@ -208,8 +208,7 @@ export class EntityListComponent implements OnInit {
       this.error = "";
 
       this.selectedEntity = entity;
-    }
-    else {
+    } else {
       this.selectedEntity = null;
     }
   }
@@ -217,8 +216,7 @@ export class EntityListComponent implements OnInit {
   public getEditText (entity: any): string {
     if (this.isEntityCurrentlyEdited(entity)) {
       return "hide";
-    }
-    else {
+    } else {
       return "edit";
     }
   }

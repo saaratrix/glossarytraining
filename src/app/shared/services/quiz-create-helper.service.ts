@@ -18,14 +18,12 @@ export class QuizCreateHelperService {
         question: finnish,
         answer: english
       };
-    }
-    else if (languages === LanguageMode.English) {
+    } else if (languages === LanguageMode.English) {
       return {
         question: english,
         answer: finnish
       };
-    }
-    else {
+    } else {
       // + 0.5 is equivalent of * 2
       if (Math.floor(Math.random() + 0.5) === 0) {
         return {

@@ -61,8 +61,7 @@ export class VerbController {
       if (!success) {
         error = "Failed to update the verb in database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid verb.";
     }
 
@@ -82,8 +81,7 @@ export class VerbController {
       if (!success) {
         error = "Failed to remove the verb from database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid verb."
     }
 

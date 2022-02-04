@@ -51,8 +51,7 @@ export class CategoryController {
         category = null;
         error = "Failed to add the category to database.";
       }
-    }
-    else {
+    } else {
       category = null;
       error = "Invalid category.";
     }
@@ -74,8 +73,7 @@ export class CategoryController {
       if (!success) {
         error = "Failed to update the category in database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid category.";
     }
 
@@ -96,8 +94,7 @@ export class CategoryController {
       if (!success) {
         error = "Failed to remove the category from database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid category.";
     }
 

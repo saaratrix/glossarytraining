@@ -49,8 +49,7 @@ export class InflectionCategoryController {
         inflectionCategory = null;
         error = "Failed to add the inflection category to database.";
       }
-    }
-    else {
+    } else {
       inflectionCategory = null;
       error = "Invalid inflection category.";
     }
@@ -72,8 +71,7 @@ export class InflectionCategoryController {
       if (!success) {
         error = "Failed to update the inflection category in database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid inflection category.";
     }
 
@@ -94,8 +92,7 @@ export class InflectionCategoryController {
       if (!success) {
         error = "Failed to remove the inflection category from database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid inflection category.";
     }
 

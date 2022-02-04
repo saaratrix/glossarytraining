@@ -89,8 +89,7 @@ export class InflectionController {
       if (!success) {
         error = "Failed to remove the inflection from database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid inflection.";
     }
 

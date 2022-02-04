@@ -21,8 +21,7 @@ export class QuizImagePhrasesController {
       if (!success) {
         error = "Failed to add image phrase to database for the quiz.";
       }
-    }
-    else {
+    } else {
       error = "Invalid quiz id or imagephrase id.";
     }
 
@@ -44,8 +43,7 @@ export class QuizImagePhrasesController {
       if (!success) {
         error = "Failed to remove image phrase in the database from the quiz.";
       }
-    }
-    else {
+    } else {
       error = "Invalid quiz id or imagephrase id.";
     }
 

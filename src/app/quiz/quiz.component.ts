@@ -131,8 +131,7 @@ export class QuizComponent implements OnInit {
   private createQuestion (index: number, phrases: Phrase[]): Question {
     if (this.type === QuizType.Text) {
       return this.createTextQuestion(index, phrases);
-    }
-    else if (this.type === QuizType.MultipleChoices) {
+    } else if (this.type === QuizType.MultipleChoices) {
       return this.createMultipleQuestion(index, phrases);
     }
 

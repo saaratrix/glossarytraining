@@ -54,8 +54,7 @@ export class VerbSelectionComponent implements OnInit {
   public onItemToggled (event: ItemToggledEvent<Verb>) {
     if (event.selected) {
       this.selectedVerbs.push(event.item);
-    }
-    else {
+    } else {
       const index = this.selectedVerbs.indexOf(event.item);
       if (index !== -1) {
         this.selectedVerbs.splice(index, 1);

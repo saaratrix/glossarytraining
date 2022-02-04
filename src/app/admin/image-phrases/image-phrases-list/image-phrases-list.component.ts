@@ -93,8 +93,7 @@ export class ImagePhrasesListComponent implements OnInit {
   public getToggleListText (isVisible: boolean): string {
     if (isVisible) {
       return "▶";
-    }
-    else {
+    } else {
       return "▼";
     }
   }
@@ -102,8 +101,7 @@ export class ImagePhrasesListComponent implements OnInit {
   public getToggleTooltip (imagePhrasesByCategory: ImagePhrasesByCategory): string {
     if (imagePhrasesByCategory.isVisible) {
       return "Click to hide " + imagePhrasesByCategory.category.name;
-    }
-    else {
+    } else {
       return "Click to show " + imagePhrasesByCategory.category.name;
     }
   }
@@ -111,8 +109,7 @@ export class ImagePhrasesListComponent implements OnInit {
   public toggleList (imagePhrasesByCategory: ImagePhrasesByCategory): void {
     if (imagePhrasesByCategory.isVisible) {
       imagePhrasesByCategory.isVisible = false;
-    }
-    else {
+    } else {
       imagePhrasesByCategory.isVisible = true;
     }
   }

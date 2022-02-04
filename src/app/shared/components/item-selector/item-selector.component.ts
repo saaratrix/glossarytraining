@@ -29,8 +29,7 @@ export class ItemSelectorComponent implements OnInit {
     let isSelected = false;
     if (this.selectedItem === item) {
       this.selectedItem = null;
-    }
-    else {
+    } else {
       this.selectedItem = item;
       isSelected = true;
     }

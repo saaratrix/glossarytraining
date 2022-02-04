@@ -69,8 +69,7 @@ export class ItemToggleSelectorComponent implements OnInit {
     let isSelected = false;
     if (this.selectedItems[item.id]) {
       delete this.selectedItems[item.id];
-    }
-    else {
+    } else {
       this.selectedItems[item.id] = item;
       isSelected = true;
     }
