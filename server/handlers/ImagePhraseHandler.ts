@@ -53,8 +53,6 @@ export class ImagePhraseHandler extends BaseHandler<ImagePhrase> {
 
   /**
    * Find all image phrases for a quiz.
-   * @param {number} id The quiz id
-   * @return {Promise<ImagePhrase[]>}
    */
   public async findImagePhrasesForQuiz (id: number): Promise<ImagePhrase[]> {
     const result: ImagePhrase[] = [];
@@ -80,9 +78,7 @@ export class ImagePhraseHandler extends BaseHandler<ImagePhrase> {
   }
 
   /**
-   * Find all image phrases for a category
-   * @param {number} categoryId
-   * @return {Promise<ImagePhrase[]>}
+   * Find all image phrases for a category.
    */
   public async findImagePhrasesForCategory (categoryId: number): Promise<ImagePhrase[]> {
     const result: ImagePhrase[] = [];

@@ -18,7 +18,6 @@ export class BaseHandler<T extends BaseEntity> implements IHandler<T> {
 
   /**
    * Get all entities.
-   * @return {Promise<T[]>}
    */
   public async all (): Promise<T[]> {
     const sql = `select * from ${this.m_table}${this.m_orderByAll};`;
@@ -34,8 +33,6 @@ export class BaseHandler<T extends BaseEntity> implements IHandler<T> {
 
   /**
    * Get one entity from id.
-   * @param {number | string} id
-   * @return {Promise<T extends BaseEntity>}
    */
   public async get (id: number | string): Promise<T> {
     const sql = `select * from ${this.m_table} where id = ?;`;
@@ -51,8 +48,6 @@ export class BaseHandler<T extends BaseEntity> implements IHandler<T> {
 
   /**
    * Remove the input entity.
-   * @param {T} entity
-   * @return {Promise<boolean>}
    */
   public async remove (entity: T): Promise<boolean> {
     const sql = `delete from ${this.m_table} where id = ?;`;

@@ -105,9 +105,7 @@ export class CategoryController {
   }
 
   /**
-   * Parse the request.body and return a new phrase.
-   * @param body
-   * @return {Category}
+   * Parse the request.body and return a new category.
    */
   private getCategoryFromBody (body: any): Category {
     const id = typeof body.id !== "undefined" ? parseInt(body.id, 10) : -1;

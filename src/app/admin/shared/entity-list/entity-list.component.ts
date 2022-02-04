@@ -162,8 +162,6 @@ export class EntityListComponent implements OnInit {
 
   /**
    * Is the column contenteditable?
-   * @param {string} key
-   * @return {boolean}
    */
   public isEditable (key: string): boolean {
     if (this.updateUrl && this.keysData[key] && this.keysData[key].editable) {

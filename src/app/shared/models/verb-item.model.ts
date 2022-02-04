@@ -29,7 +29,6 @@ export class VerbItem {
 
   /**
    * Check the VerbItem's questions if they are correct or not.
-   * @return {boolean}
    */
   public checkAnswers (): boolean {
     this.isCorrect = true;
@@ -45,7 +44,6 @@ export class VerbItem {
 
   /**
    * Check if the VerbItem's questions have answers.
-   * @return {boolean}
    */
   public hasAnswers (): boolean {
     for (let i = 0; i < this.questions.length; i++) {

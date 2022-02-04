@@ -12,7 +12,6 @@ export class VerbItemQuestion {
 
   /**
    * Get the correct answer
-   * @return {string}
    */
   public getCorrectAnswer (): string {
     return this.correctAnswer;

@@ -1,4 +1,4 @@
-import { Category } from "../../src/app/shared/models/category.model";
+import type { Category } from "../../src/app/shared/models/category.model";
 
 export class ImagePhrase {
   constructor(

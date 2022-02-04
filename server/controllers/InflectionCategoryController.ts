@@ -103,8 +103,7 @@ export class InflectionCategoryController {
   }
 
   /**
-   * Parse the request.body and return a new phrase.
-   * @return {InflectionCategory}
+   * Parse the request.body and return a new inflection category.
    */
   private getInflectionCategoryFromBody (body: any): InflectionCategory {
     const id = typeof body.id !== "undefined" ? parseInt(body.id, 10) : -1;

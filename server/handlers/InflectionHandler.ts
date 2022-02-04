@@ -98,7 +98,7 @@ export class InflectionHandler extends BaseHandler<Inflection> {
   }
 
   public async add (entity: Inflection): Promise<boolean> {
-    // First check if category exists
+    // First check if category and phrase exists
     const category = await this.inflectionCategoryHandler.get(entity.inflectionCategory.id);
     const phrase = await this.phraseHandler.get(entity.phrase.id);
 
@@ -119,7 +119,7 @@ export class InflectionHandler extends BaseHandler<Inflection> {
   }
 
   public async update (entity: Inflection): Promise<boolean> {
-    // First check if category exists
+    // First check if category and phrase exists
     const category = await this.inflectionCategoryHandler.get(entity.inflectionCategory.id);
     const phrase = await this.phraseHandler.get(entity.phrase.id);
 
@@ -154,7 +154,6 @@ export class InflectionHandler extends BaseHandler<Inflection> {
       return false;
     }
 
-    // Validate category
     if (!this.inflectionCategoryHandler.isEntityValid(entity.inflectionCategory, true)) {
       return false;
     }

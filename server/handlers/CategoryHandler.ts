@@ -9,7 +9,6 @@ export class CategoryHandler extends BaseHandler<Category> {
 
   /**
    * Returns all Categories that have at least 1 phrase
-   * @return {Promise<Category[]>}
    */
   public async allCategoriesWithPhrases (): Promise<Category[]> {
     let result: Category[] = [];

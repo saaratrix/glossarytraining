@@ -44,11 +44,11 @@ export class InflectionController {
 
       if (!success) {
         inflection = null;
-        error = "Failed to add the inflection category to database.";
+        error = "Failed to add the inflection to database.";
       }
     } else {
       inflection = null;
-      error = "Invalid inflection category.";
+      error = "Invalid inflection.";
     }
 
     res.json({
@@ -113,8 +113,7 @@ export class InflectionController {
   }
 
   /**
-   * Parse the request.body and return a new phrase.
-   * @return {InflectionCategory}
+   * Parse the request.body and return a new inflection.
    */
   private getInflectionFromBody (body: any): Inflection {
     const id = typeof body.id !== "undefined" ? parseInt(body.id, 10) : -1;
