@@ -138,7 +138,7 @@ export class InflectionDetailComponent implements OnInit {
         this.item.id = -1;
         this.item.inflection = "";
         this.item.phrase = undefined;
-        // Specifically isn't changing inflection category because it could be likely you're adding 2 inflections to the same inflection category in a row.
+        // Specifically not changing inflection category because it could be likely you're adding 2 inflections to the same inflection category in a row.
       } else {
         this.error = result.error;
       }

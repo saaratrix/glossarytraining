@@ -13,9 +13,9 @@
         <td *ngFor="let key of keys"
             [title]="getTitle(entity, key)"
             [attr.contenteditable]="isEditable(key)"
-            (keydown)="columnKeyDown($event)"
-            (keyup)="columnKeyUp($event)"
-            (blur)="columnBlurred(entity, key, $event)"
+            (keydown)="onColumnKeyDown($event)"
+            (keyup)="onColumnKeyUp($event)"
+            (blur)="onColumnBlurred(entity, key, $event)"
           >{{entity[key]}}
         </td>
         <td class="actions">

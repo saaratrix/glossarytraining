@@ -22,7 +22,7 @@ export class ItemSelectorByGroupsComponent implements OnChanges, OnInit {
 
   private selectedItem: any | undefined;
 
-  public unknownItems: any[] = [];
+  public unknownItems: unknown[] = [];
   public itemsByGroups: Group[] = [];
 
   constructor() { }
@@ -41,7 +41,7 @@ export class ItemSelectorByGroupsComponent implements OnChanges, OnInit {
     this.itemsByGroups = [];
     this.unknownItems = [];
     for (const item of this.items) {
-      const key = this.getKey(item);
+      const key = this.getProperty(item);
       if (!key) {
         this.unknownItems.push(item);
         continue;
@@ -52,7 +52,7 @@ export class ItemSelectorByGroupsComponent implements OnChanges, OnInit {
         itemByGroup = {
           key,
           items: [],
-        }
+        };
         this.itemsByGroups.push(itemByGroup);
       }
 
@@ -63,9 +63,18 @@ export class ItemSelectorByGroupsComponent implements OnChanges, OnInit {
   }
 
   // Source: https://stackoverflow.com/a/6394168
-  private getKey(item: any): string {
+  /**
+   * Get nested property like `category.name` from the groupKey.
+   * @example
+   * this.groupKey = 'category.name'
+   * item = { category: { name: 'nuu' } }
+   *
+   * // This will return 'nuu'
+   * this.getProperty(item);
+   */
+  private getProperty(item: any): string {
     const split = this.groupKey.split('.');
-    return split.reduce((o,i)=> o[i], item);
+    return split.reduce((obj,key)=> obj[key], item);
   }
 
   public onItemClicked (item: any) {

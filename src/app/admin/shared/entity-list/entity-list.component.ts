@@ -113,7 +113,7 @@ export class EntityListComponent implements OnInit {
   /**
    * When a column is blurred ( <td> )
    */
-  public columnBlurred (entity: any, key: string, event: Event): void {
+  public onColumnBlurred (entity: any, key: string, event: Event): void {
     const value: string = (event.target as HTMLElement).innerText;
 
     if (value !== entity[key]) {
@@ -129,7 +129,7 @@ export class EntityListComponent implements OnInit {
   /**
    * Stop enter from adding linebreaks
    */
-  public columnKeyDown (event: KeyboardEvent): void {
+  public onColumnKeyDown (event: KeyboardEvent): void {
     // 13 == Enter
     if (event.key === "Enter") {
       event.preventDefault();
@@ -139,7 +139,7 @@ export class EntityListComponent implements OnInit {
   /**
    * Blur element on enter!
    */
-  public columnKeyUp (event: KeyboardEvent): void {
+  public onColumnKeyUp (event: KeyboardEvent): void {
     // 13 == Enter
     if (event.key === "Enter") {
       (event.target as HTMLElement).blur();

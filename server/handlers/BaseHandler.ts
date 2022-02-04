@@ -1,5 +1,5 @@
-import {query, MySQLResults} from "../database/mysql-connection";
-import {IHandler} from "./IHandler";
+import { query } from "../database/mysql-connection";
+import { IHandler } from "./IHandler";
 
 interface BaseEntity {
   id: number | string;
