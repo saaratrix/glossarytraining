@@ -1,11 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import type { InflectionSelection } from './inflection-selection.model';
-import type { InflectionCategory } from '../../shared/models/inflection-category';
-import { InflectionCategoryApiService } from '../providers/inflection-category-api.service';
-import type { ItemToggledEvent } from '../../shared/components/item-toggle-selector/item-toggle-selector.component';
-import { InflectionApiService } from '../providers/inflection-api.service';
-import type { Inflection } from '../../shared/models/inflection';
-import type { InflectionGetResponse } from '../../shared/models/http/httpresponses';
+import type { InflectionCategory } from '../../../shared/models/inflection-category';
+import { InflectionCategoryApiService } from '../../providers/inflection-category-api.service';
+import type { ItemToggledEvent } from '../../../shared/components/item-toggle-selector/item-toggle-selector.component';
+import { InflectionApiService } from '../../providers/inflection-api.service';
+import type { Inflection } from '../../../shared/models/inflection';
+import type { InflectionGetResponse } from '../../../shared/models/http/httpresponses';
 
 @Component({
   selector: 'inflection-chooser',
@@ -13,7 +13,7 @@ import type { InflectionGetResponse } from '../../shared/models/http/httprespons
   styleUrls: ['./inflections-chooser.component.less']
 })
 export class InflectionsChooserComponent implements OnInit {
-  @Output() selected: EventEmitter<InflectionSelection> = new EventEmitter<InflectionSelection>();
+  @Output() selected: EventEmitter<InflectionSelection | undefined> = new EventEmitter<InflectionSelection | undefined>();
 
   inflectionCategories: InflectionCategory[] = [];
   error: string = '';
@@ -43,8 +43,14 @@ export class InflectionsChooserComponent implements OnInit {
   }
 
   async onItemClicked(event: ItemToggledEvent<InflectionCategory>): Promise<void> {
+    if (!event.selected) {
+      this.selectedInflectionCategory = undefined;
+      this.selected.emit(undefined);
+      return;
+    }
+
     const inflectionCategory = event.item;
-    this.selectedInflectionCategory = inflectionCategory;
+    this.selectedInflectionCategory = event.selected ? inflectionCategory : undefined;
 
     if (this.currentInflectionPromises.has(inflectionCategory)) {
       return;

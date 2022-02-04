@@ -1,0 +1,24 @@
+<td>
+  <!--    laughing cat:   &#128569; 😹-->
+  <!--    screaming cat:  &#128576; 🙀-->
+  <span class="reveal" (click)="toggleReveal()" >{{ this.showAnswer ? "😹" : "🙀" }}</span>
+</td>
+<td>
+  <span *ngIf="question.type === InflectionQuestionType.PhraseToInflection">{{ question.phrase }}</span>
+  <input
+    *ngIf="question.type === InflectionQuestionType.InflectionToPhrase"
+    [(ngModel)]="question.phrase"
+    type="text"
+    [placeholder]="showAnswer ? question.correctAnswer : ''"
+  >
+</td>
+<td class="direction">{{ direction }}</td>
+<td>
+  <span *ngIf="question.type === InflectionQuestionType.InflectionToPhrase">{{ question.inflection }}</span>
+  <input
+    *ngIf="question.type === InflectionQuestionType.PhraseToInflection"
+    [(ngModel)]="question.inflection"
+    type="text"
+    [placeholder]="showAnswer ? question.correctAnswer : ''"
+  >
+</td>

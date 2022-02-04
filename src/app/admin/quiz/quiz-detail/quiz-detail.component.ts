@@ -44,7 +44,7 @@ export class QuizDetailComponent implements OnInit {
           this.quiz = result.quiz;
           // If invalid quiz then route back to quiz list
           if (!this.quiz) {
-            this.router.navigate(["/admin/quizzes"]);
+            this.router.navigate(["/admin/quizzes"]).then();
           }
         });
       }
