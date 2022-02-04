@@ -1,7 +1,6 @@
 import { QuizHandler } from "../../handlers/QuizHandler";
 import { PhraseHandler } from "../../handlers/PhraseHandler";
 import { CategoryHandler } from "../../handlers/CategoryHandler";
-import { QuizPhrasesHandler } from "../../handlers/QuizPhrasesHandler";
 import { Quiz } from "../../models/Quiz";
 import { Application, Request, Response } from "express";
 
@@ -28,9 +27,6 @@ export class QuizController {
   /**
    * Return all quizzes that has at least one phrase.
    * This is so the list user can select a quiz from only has quizzes with phrases!
-   * @param {e.Request} req
-   * @param {e.Response} res
-   * @return {Promise<void>}
    */
   public async getAllHasPhrases (req: Request, res: Response): Promise<void> {
     const quizzes = await this.m_quizHandler.allHasPhrasesOrImagePhrases();
@@ -65,8 +61,7 @@ export class QuizController {
         quiz = null;
         error = "Failed to add the quiz to database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid data.";
       quiz = null;
     }
@@ -88,8 +83,7 @@ export class QuizController {
       if (!success) {
         error = "Failed to update the quiz in database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid data.";
     }
 
@@ -109,8 +103,7 @@ export class QuizController {
       if (!success) {
         error = "Failed to remove quiz from database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid quiz id.";
     }
 
@@ -122,8 +115,6 @@ export class QuizController {
 
   /**
    * Parse the request.body and return a new quiz.
-   * @param body
-   * @return {Quiz}
    */
   private getQuizFromBody (body: any): Quiz {
     const id = typeof body.id !== "undefined" ? parseInt(body.id, 10) : -1;

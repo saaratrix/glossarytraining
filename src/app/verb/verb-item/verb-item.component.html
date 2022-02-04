@@ -9,11 +9,13 @@
       </div>
     </div>
     <div *ngFor="let question of item.questions" class="verb-container">
-      <input type="text" [class.question-passed]="isReviewed && question.isCorrect"
-             [class.question-failed]="isReviewed && !question.isCorrect"
-             [(ngModel)]="question.answer"
-             [placeholder]="showAnswer ? question.getCorrectAnswer() : ''"
-             [title]="showAnswer ? question.getCorrectAnswer() : ''"
+      <input
+        type="text"
+        [(ngModel)]="question.answer"
+        [class.question-passed]="isReviewed && question.isCorrect"
+        [class.question-failed]="isReviewed && !question.isCorrect"
+        [placeholder]="showAnswer ? question.getCorrectAnswer() : ''"
+        [title]="showAnswer ? question.getCorrectAnswer() : ''"
       >
     </div>
 </div>

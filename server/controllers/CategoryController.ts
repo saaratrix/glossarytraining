@@ -20,7 +20,7 @@ export class CategoryController {
   }
 
   public async allHasPhrases (req: Request, res: Response): Promise<void> {
-    const categories: Category[] = await this.m_categoryHandler.allHasPhrases();
+    const categories: Category[] = await this.m_categoryHandler.allCategoriesWithPhrases();
 
     res.json({
       categories: categories
@@ -51,8 +51,7 @@ export class CategoryController {
         category = null;
         error = "Failed to add the category to database.";
       }
-    }
-    else {
+    } else {
       category = null;
       error = "Invalid category.";
     }
@@ -74,8 +73,7 @@ export class CategoryController {
       if (!success) {
         error = "Failed to update the category in database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid category.";
     }
 
@@ -96,8 +94,7 @@ export class CategoryController {
       if (!success) {
         error = "Failed to remove the category from database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid category.";
     }
 
@@ -108,9 +105,7 @@ export class CategoryController {
   }
 
   /**
-   * Parse the request.body and return a new phrase.
-   * @param body
-   * @return {Category}
+   * Parse the request.body and return a new category.
    */
   private getCategoryFromBody (body: any): Category {
     const id = typeof body.id !== "undefined" ? parseInt(body.id, 10) : -1;

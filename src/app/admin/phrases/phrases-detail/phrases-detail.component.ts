@@ -16,23 +16,20 @@ import { ItemToggledEvent } from "../../../shared/components/item-toggle-selecto
   styleUrls: ["./phrases-detail.component.less"]
 })
 export class PhrasesDetailComponent implements OnInit {
-  public categories: Category[];
+  public categories: Category[] = [];
 
-  public item: Phrase;
-  public isNew: boolean;
-  public isWaitingForServer: boolean;
-  public error: string;
+  public item: Phrase | null = null;
+  public isNew: boolean = false;
+  public isWaitingForServer: boolean = false;
+  public error: string | null = null;
 
-  constructor (private route: ActivatedRoute, private router: Router, private apiService: ApiService) {
-    this.item = null;
-    this.isNew = false;
-    this.categories = [];
+  constructor (
+    private route: ActivatedRoute,
+    private router: Router,
+    private apiService: ApiService,
+  ) {}
 
-    this.isWaitingForServer = false;
-    this.error = null;
-  }
-
-  ngOnInit () {
+  ngOnInit (): void {
     /**
      * Try and set the actual category reference so ngModel works properly.
      */
@@ -117,7 +114,7 @@ export class PhrasesDetailComponent implements OnInit {
         this.item.finnish = "";
         this.item.english = "";
         this.item.note = "";
-        // Specifically isn't changing category because it could be likely you're adding 2 phrases to the same category in a row
+        // Specifically not changing category because it could be likely you're adding 2 phrases to the same category in a row
       }
       else {
         this.error = result.error;

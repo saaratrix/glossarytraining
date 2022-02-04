@@ -1,0 +1,43 @@
+<div *ngIf="item && inflectionCategories.length > 0 && phrases.length > 0; then itemBlock else loadingBlock;"></div>
+<ng-template #itemBlock>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+    <h1>Inflection - {{item.inflection}}</h1>
+    <div class="form-group">
+      <label for="inflection">Inflection:</label>
+      <input type="text" id="inflection" name="inflection" required [(ngModel)]="item.inflection">
+    </div>
+    <div class="form-group">
+      <label for="note">Note:</label>
+      <input type="text" id="note" name="note" [(ngModel)]="item.note">
+    </div>
+    <div class="form-group">
+      <label>Inflection Category:</label>
+      <app-item-selector [items]="inflectionCategories" [nameKey]="'name'" [titleKey]="'name'" [initialItem]="item.inflectionCategory" (itemClicked)="onInflectionCategoryToggled($event)"></app-item-selector>
+    </div>
+    <div class="form-group">
+      <label>Phrases</label>
+      <app-item-selector-by-groups
+        [items]="phrases"
+        [nameKey]="'finnish'"
+        [titleKey]="'english'"
+        [groupKey]="'category.name'"
+        [initialItem]="item.phrase"
+        (itemClicked)="onPhraseToggled($event)"
+      ></app-item-selector-by-groups>
+    </div>
+    <br>
+    <input type="submit" [value]="isNew ? 'Create Inflection' : 'Update Inflection'">
+    <div *ngIf="isWaitingForServer">
+      Processing server request ...
+    </div>
+    <div *ngIf="error" class="form-error">
+      {{ error }}
+    </div>
+  </form>
+</ng-template>
+<ng-template #loadingBlock>
+  fetching inflection ...
+  <div *ngIf="error" class="form-error">
+    {{ error }}
+  </div>
+</ng-template>

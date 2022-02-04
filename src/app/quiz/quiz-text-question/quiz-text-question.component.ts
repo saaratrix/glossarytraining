@@ -33,8 +33,7 @@ export class QuizTextQuestionComponent implements OnInit {
   public getPlaceholderText () {
     if (this.question.isFinnish) {
       return `Käännä "${this.question.question}" englanniksi`;
-    }
-    else {
+    } else {
       return `Käännä "${this.question.question}" suomeksi`;
     }
   }

@@ -4,6 +4,7 @@ import { DefaultSuccessResponse } from "../../../shared/models/http/httpresponse
 import { EditField } from "../../../shared/models/edit-field";
 import { EntityUpdateSuccessEvent } from '../models/events/entity-update-success.event';
 import { EntityUpdateErrorEvent } from '../models/events/entity-update-error.event';
+import { Subscription } from 'rxjs';
 
 interface IKeyData {
   header: string;
@@ -22,80 +23,45 @@ interface IEntityUpdate {
 })
 export class EntityListComponent implements OnInit {
 
-  @Input()
-  public listId: number;
-  @Input()
-  public doInlineEdit: boolean;
-  @Input()
-  public entities: any[];
-  @Input()
-  public keys: string[];
-  @Input()
-  public keysData: { [key: string]: IKeyData };
-  @Input()
-  public editFields: EditField[];
+  @Input() public listId: number;
+  @Input() public doInlineEdit: boolean;
+  @Input() public entities: any[] = [];
+  @Input() public keys: string[] = [];
+  @Input() public keysData: Record<string, IKeyData> = {};
+  @Input() public editFields: EditField[] = [];
   // The edit url for <>
-  @Input()
-  public editUrl: string;
+  @Input() public editUrl: string = "";
   // The remove API url
-  @Input()
-  public removeUrl: string;
+  @Input() public removeUrl: string = "";
   // The update API url
-  @Input()
-  public updateUrl: string;
-  @Input()
-  public titles: { [key: string]: string };
+  @Input() public updateUrl: string = "";
+  @Input() public titles: Record<string, string> = {};
 
-  @Input()
-  public onstartEvent: EventEmitter<number>;
-  @Input()
-  public onsuccessEvent: EventEmitter<EntityUpdateSuccessEvent>;
-  @Input()
-  public onerrorEvent: EventEmitter<EntityUpdateErrorEvent>;
+  @Input() public onstartEvent: EventEmitter<number>;
+  @Input() public onsuccessEvent: EventEmitter<EntityUpdateSuccessEvent>;
+  @Input() public onerrorEvent: EventEmitter<EntityUpdateErrorEvent>;
 
+  @Output() public removed: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public updateItem: EventEmitter<any> = new EventEmitter<any>();
 
-  @Output()
-  public removed: EventEmitter<any>;
-  @Output()
-  public updateItem: EventEmitter<any>;
+  public successSubscription: Subscription;
+  public errorSubscription: Subscription;
+  public startSubscription: Subscription;
 
-  public successSubscription: any;
-  public errorSubscription: any;
-  public startSubscription: any;
-
-  public selectedEntity: any | null;
+  public selectedEntity: unknown | null = null;
 
   // Event data for entity-edit component
-  public error: string;
-  public isWaitingForServer: boolean;
-  public isFinished: boolean;
+  public error: string = "";
+  public isWaitingForServer: boolean = false;
+  public isFinished: boolean = false;
 
-  private isDestroyed: boolean;
+  private isDestroyed: boolean = false;
 
-  constructor (private apiService: ApiService) {
-    this.entities = [];
-    this.keys = [];
-    this.keysData = {};
-    this.editFields = [];
-    this.editUrl = "";
-    this.updateUrl = "";
-    this.removeUrl = "";
-    this.titles = {};
-
-    this.selectedEntity = null;
-
-    this.removed = new EventEmitter<any>();
-    this.updateItem = new EventEmitter<any>();
-
-    this.error = "";
-    this.isWaitingForServer = false;
-    this.isFinished = false;
-
-    this.isDestroyed = false;
-  }
+  constructor (
+    private apiService: ApiService
+  ) { }
 
   ngOnInit () {
-
     // TODO: Investigate if there is a timing issue where for example:
     // 1. Update item A
     // 2. Change to item B
@@ -139,23 +105,15 @@ export class EntityListComponent implements OnInit {
   ngOnDestroy () {
     this.isDestroyed = true;
 
-    if (this.startSubscription) {
-      this.startSubscription.unsubscribe();
-    }
-    if (this.successSubscription) {
-      this.successSubscription.unsubscribe();
-    }
-    if (this.errorSubscription) {
-      this.errorSubscription.unsubscribe();
-    }
+    this.startSubscription?.unsubscribe();
+    this.successSubscription?.unsubscribe();
+    this.errorSubscription?.unsubscribe();
   }
 
   /**
    * When a column is blurred ( <td> )
-   * @param entity
-   * @param {string} key
    */
-  public columnBlurred (entity: any, key: string, event: Event) {
+  public onColumnBlurred (entity: any, key: string, event: Event): void {
     const value: string = (event.target as HTMLElement).innerText;
 
     if (value !== entity[key]) {
@@ -170,9 +128,8 @@ export class EntityListComponent implements OnInit {
 
   /**
    * Stop enter from adding linebreaks
-   * @param {KeyboardEvent} event
    */
-  public columnKeyDown (event: KeyboardEvent) {
+  public onColumnKeyDown (event: KeyboardEvent): void {
     // 13 == Enter
     if (event.key === "Enter") {
       event.preventDefault();
@@ -181,9 +138,8 @@ export class EntityListComponent implements OnInit {
 
   /**
    * Blur element on enter!
-   * @param {KeyboardEvent} event
    */
-  public columnKeyUp (event: KeyboardEvent) {
+  public onColumnKeyUp (event: KeyboardEvent): void {
     // 13 == Enter
     if (event.key === "Enter") {
       (event.target as HTMLElement).blur();
@@ -194,11 +150,8 @@ export class EntityListComponent implements OnInit {
   /**
    * Get the value for element.title.
    * For example if you mouseover the finnish column the title could be english.
-   * @param entity
-   * @param {string} key
-   * @return {any}
    */
-  public getTitle (entity: any, key: string) {
+  public getTitle (entity: any, key: string): string {
     if (this.titles[key]) {
       const text = entity[this.titles[key]]
       return text !== undefined ? text : this.titles[key];
@@ -209,10 +162,8 @@ export class EntityListComponent implements OnInit {
 
   /**
    * Is the column contenteditable?
-   * @param {string} key
-   * @return {boolean}
    */
-  public isEditable (key: string) {
+  public isEditable (key: string): boolean {
     if (this.updateUrl && this.keysData[key] && this.keysData[key].editable) {
       return true;
     }
@@ -255,8 +206,7 @@ export class EntityListComponent implements OnInit {
       this.error = "";
 
       this.selectedEntity = entity;
-    }
-    else {
+    } else {
       this.selectedEntity = null;
     }
   }
@@ -264,8 +214,7 @@ export class EntityListComponent implements OnInit {
   public getEditText (entity: any): string {
     if (this.isEntityCurrentlyEdited(entity)) {
       return "hide";
-    }
-    else {
+    } else {
       return "edit";
     }
   }

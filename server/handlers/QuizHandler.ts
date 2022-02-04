@@ -20,7 +20,6 @@ export class QuizHandler extends BaseHandler<Quiz>{
   /**
    * Returns only quizzes that has an entry in the quizphrases or quizimages table.
    * Meaning they have at least 1 phrase attached!
-   * @return {Promise<Quiz[]>}
    */
   public async allHasPhrasesOrImagePhrases (): Promise<Quiz[]> {
     let result: Quiz[] = [];
@@ -44,8 +43,6 @@ export class QuizHandler extends BaseHandler<Quiz>{
 
   /**
    * Get a quiz with the phrases and image phrases.
-   * @param {number} id
-   * @return {Promise<Quiz>}
    */
   public async getWithPhrasesAndImagePhrases (id: number): Promise<Quiz> {
     const quiz = await this.get(id);

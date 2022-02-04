@@ -1,5 +1,5 @@
-import { Phrase } from "./Phrase";
-import { ImagePhrase } from './ImagePhrase';
+import type { Phrase } from "./Phrase";
+import type { ImagePhrase } from './ImagePhrase';
 
 export class Quiz {
   constructor (

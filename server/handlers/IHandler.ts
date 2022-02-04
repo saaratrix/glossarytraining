@@ -1,44 +1,34 @@
 export interface IHandler<T> {
   /**
    * Get all items from a table
-   * @return {Promise<T[]>}
    */
   all(): Promise<T[]>;
 
   /**
    * Get specific item based on id
-   * @param {number | string} id
-   * @return {Promise<T>}
    */
   get(id: number|string): Promise<T>;
 
   /**
    * Add an entity to database.
-   * This should also set the id on the entity if succesful
-   * @param {T} entity
-   * @return {Promise<boolean>}
+   * This should also set the id on the entity if successful.
    */
   add(entity: T): Promise<boolean>;
 
   /**
-   * Update an entity in the database
-   * @param {T} entity
-   * @return {Promise<boolean>}
+   * Update an entity in the database.
    */
   update(entity: T): Promise<boolean>;
 
   /**
-   * Removes an entity from the database
-   * @param {T} entity
-   * @return {Promise<boolean>}
+   * Removes an entity from the database.
    */
   remove(entity: T): Promise<boolean>;
 
   /**
-   * Validate the entity
+   * Validate the entity.
    * @param {T} entity
    * @param {boolean} validateId The id might be invalid if creating the entity so no need to always check it.
-   * @return {boolean}
    */
   isEntityValid(entity: T, validateId: boolean): boolean;
 }

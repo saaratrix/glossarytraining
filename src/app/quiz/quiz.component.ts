@@ -124,15 +124,11 @@ export class QuizComponent implements OnInit {
   /**
    * Create a question item.
    * Based on type it will either be Text or Multiple.
-   * @param {number} index
-   * @param {Phrase[]} phrases
-   * @return {Question}
    */
   private createQuestion (index: number, phrases: Phrase[]): Question {
     if (this.type === QuizType.Text) {
       return this.createTextQuestion(index, phrases);
-    }
-    else if (this.type === QuizType.MultipleChoices) {
+    } else if (this.type === QuizType.MultipleChoices) {
       return this.createMultipleQuestion(index, phrases);
     }
 
@@ -141,9 +137,6 @@ export class QuizComponent implements OnInit {
 
   /**
    * Create a TextQuestion item.
-   * @param {number} index
-   * @param {Phrase[]} phrases
-   * @return {TextQuestion}
    */
   private createTextQuestion (index: number, phrases: Phrase[]): TextQuestion {
     const phrase = phrases[index];
@@ -161,9 +154,6 @@ export class QuizComponent implements OnInit {
 
   /**
    * Create a MultipleQuestion item.
-   * @param {number} index
-   * @param {Phrase[]} phrases
-   * @return {MultipleQuestion}
    */
   private createMultipleQuestion (index: number, phrases: Phrase[]) {
     if (phrases.length < this.quizService.phrasesPerQuestion) {

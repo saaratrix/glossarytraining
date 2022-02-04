@@ -1,0 +1,18 @@
+<h1>Inflection Categories</h1>
+<a [routerLink]="['../inflection-category', -1]">Create new inflection category</a>
+
+<app-admin-entity-list
+  [listId]="0"
+  [doInlineEdit]="false"
+  [entities]="items"
+  [keys]="['name', 'description']"
+  [keysData]="{ 'name': { header: 'Inflection Name', editable: true }, 'description': { header: 'Description', editable: true } }"
+  [editUrl]="'../inflection-category'"
+  [updateUrl]="'inflection-category/update'"
+  [removeUrl]="'inflection-category/remove'"
+  [onstartEvent]="onstartEvent"
+  [onsuccessEvent]="onsuccessEvent"
+  [onerrorEvent]="onerrorEvent"
+  (removed)="removedItem($event)"
+  (updateItem)="updateItem($event)"
+><app-admin-entity-list>

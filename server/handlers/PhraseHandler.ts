@@ -53,8 +53,6 @@ export class PhraseHandler extends BaseHandler<Phrase>{
 
   /**
    * Find all phrases for a quiz.
-   * @param {number} id The quiz id
-   * @return {Promise<Phrase[]>}
    */
   public async findPhrasesForQuiz (id: number): Promise<Phrase[]> {
     const result: Phrase[] = [];
@@ -80,9 +78,7 @@ export class PhraseHandler extends BaseHandler<Phrase>{
   }
 
   /**
-   * Find all phrases for a category
-   * @param {number} categoryId
-   * @return {Promise<Phrase[]>}
+   * Find all phrases for a category.
    */
   public async findPhrasesForCategory (categoryId: number): Promise<Phrase[]> {
     const result: Phrase[] = [];

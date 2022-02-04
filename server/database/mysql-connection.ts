@@ -24,9 +24,6 @@ export interface MySQLRow {
 
 /**
  * MySQL query that returns a promise so we can await it instead of a callback.
- * @param {string} sql
- * @param {Array<any>} parameters
- * @return {Promise<MySQLResults | MySQLError>}
  */
 export const query = function (sql: string, parameters: Array<any>): Promise<MySQLResults> {
   const promise = new Promise<MySQLResults>(function (res) {

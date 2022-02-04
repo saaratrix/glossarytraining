@@ -1,5 +1,3 @@
-// import { Verb as VerbClient } from "./../../src/app/shared/models/verb.model";
-
 export class Verb {
   constructor (
     public id: number,

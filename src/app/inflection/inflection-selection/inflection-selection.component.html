@@ -1,0 +1,16 @@
+<div class="inflection-choices">
+  <inflection-chooser (selected)="onSelected($event)"></inflection-chooser>
+</div>
+<div class="inflection-selection">
+  <ng-container *ngIf="selection?.inflections.length > 0">
+    <p >
+      {{ selection.inflections.length }} inflections to be tested.
+    </p>
+    <select id="questiontype" name="questiontype" [(ngModel)]="questionType" >
+      <option *ngFor="let choice of questionTypesChoices" [value]="choice" >{{ choice[0] }}</option>
+    </select>
+    <br>
+    <br>
+    <button (click)="startTest()">Start test</button>
+  </ng-container>
+</div>

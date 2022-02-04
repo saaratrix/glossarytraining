@@ -1,0 +1,58 @@
+<h1>Inflections</h1>
+<a [routerLink]="['../inflection', -1]">Create new inflection</a>
+<ul class="item-list">
+  <li *ngFor="let inflectionByCategory of inflectionsByCategories; let i = index;">
+    <h2 class="item-header" (click)="toggleList(inflectionByCategory)">{{inflectionByCategory.inflectionCategory.name}}
+      <span
+        class="toggle-visibility"
+        [title]="getToggleTooltip(inflectionByCategory)"
+      >{{getToggleListText(inflectionByCategory.isVisible)}}</span>
+    </h2>
+    <app-admin-entity-list
+      *ngIf="inflectionByCategory.isVisible"
+      [listId]="i"
+      [doInlineEdit]="true"
+      [entities]="inflectionByCategory.inflections"
+      [editUrl]="'../inflection'"
+      [updateUrl]="'inflection/update'"
+      [removeUrl]="'inflection/remove'"
+      [keys]="['inflection', 'note']"
+      [keysData]="{
+                    'inflection': { header: 'Inflection', editable: true },
+                    'note': { header: 'Note', editable: true }
+                  }"
+      [editFields]="[
+        {
+          'label': 'Inflection',
+          'key': 'inflection',
+          'required': true,
+          'type': EditFieldTypes.Text
+        },
+        {
+          'label': 'Inflection Category',
+          'key': 'inflectionCategory',
+          'required': true,
+          'type': EditFieldTypes.ItemSelect,
+          'list': inflectionCategories,
+          'listName': 'name',
+          'listTitle': 'description'
+        },
+        {
+          'label': 'Phrase',
+          'key': 'phrase',
+          'required': true,
+          'type': EditFieldTypes.ItemSelectByGroup,
+          'list': phrases,
+          'listName': 'finnish',
+          'listTitle': 'english',
+          'listSeparatorKey': 'category.name'
+        }
+      ]"
+      [onstartEvent]="onstartEvent"
+      [onsuccessEvent]="onsuccessEvent"
+      [onerrorEvent]="onerrorEvent"
+      (removed)="removedItem($event)"
+      (updateItem)="updateItem($event)"
+    ></app-admin-entity-list>
+  </li>
+</ul>

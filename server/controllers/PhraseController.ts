@@ -45,8 +45,7 @@ export class PhraseController {
         phrase = null;
         error = "Failed to add the phrase to database.";
       }
-    }
-    else {
+    } else {
       phrase = null;
       error = "Invalid phrase.";
     }
@@ -69,8 +68,7 @@ export class PhraseController {
       if (!success) {
         error = "Failed to update the phrase in database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid phrase.";
     }
 
@@ -91,8 +89,7 @@ export class PhraseController {
       if (!success) {
         error = "Failed to remove the phrase from database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid phrase.";
     }
 
@@ -111,14 +108,12 @@ export class PhraseController {
     }
 
     res.json({
-      phrases: phrases
+      phrases,
     });
   }
 
   /**
    * Parse the request.body and return a new phrase.
-   * @param body
-   * @return {Phrase}
    */
   private getPhraseFromBody (body: any): Phrase {
     const id = typeof body.id !== "undefined" ? parseInt(body.id, 10) : -1;

@@ -92,8 +92,7 @@ export class PhrasesListComponent implements OnInit {
   public getToggleListText (isVisible: boolean): string {
     if (isVisible) {
       return "▶";
-    }
-    else {
+    } else {
       return "▼";
     }
   }
@@ -101,8 +100,7 @@ export class PhrasesListComponent implements OnInit {
   public getToggleTooltip (phrasesByCategory: PhrasesByCategory): string {
     if (phrasesByCategory.isVisible) {
       return "Click to hide " + phrasesByCategory.category.name;
-    }
-    else {
+    } else {
       return "Click to show " + phrasesByCategory.category.name;
     }
   }
@@ -110,8 +108,7 @@ export class PhrasesListComponent implements OnInit {
   public toggleList (phrasesByCategory: PhrasesByCategory): void {
     if (phrasesByCategory.isVisible) {
       phrasesByCategory.isVisible = false;
-    }
-    else {
+    } else {
       phrasesByCategory.isVisible = true;
     }
   }

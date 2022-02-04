@@ -1,0 +1,27 @@
+<ng-container *ngIf="test">
+  <h1>{{ test.title }}</h1>
+  <p>{{ test.description }}</p>
+  <table>
+    <thead>
+    <tr>
+      <td></td>
+      <td><strong>Phrase</strong></td>
+      <td></td>
+      <td><strong>Inflection</strong></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+      *ngFor="let question of test.questions; let i = index"
+      inflection-question
+      [question]="question"
+      [class.passed]="isReviewed && question.isCorrect"
+      [class.failed]="isReviewed && !question.isCorrect"
+    ></tr>
+    </tbody>
+  </table>
+  <div class="actions">
+    <button *ngIf="!isAllCorrect" [disabled]="!hasAnswers()" (click)="review()">Review</button>
+    <button *ngIf="isAllCorrect" (click)="doNewTraining()">Train more!</button>
+  </div>
+</ng-container>

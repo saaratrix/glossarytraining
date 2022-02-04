@@ -61,8 +61,7 @@ export class VerbController {
       if (!success) {
         error = "Failed to update the verb in database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid verb.";
     }
 
@@ -82,8 +81,7 @@ export class VerbController {
       if (!success) {
         error = "Failed to remove the verb from database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid verb."
     }
 
@@ -112,8 +110,6 @@ export class VerbController {
   // Could just use mina, sina, han on server too but would need to update the database!!
   /**
    * Convert a verb model to the model used on client side (without äää)
-   * @param {Verb} verb
-   * @return {VerbClient}
    */
   private getClientVerb (verb: Verb): VerbClient {
     if (!verb) {
@@ -137,8 +133,6 @@ export class VerbController {
 
   /**
    * Convert an array of verb models to the model used on client side.
-   * @param {Verb[]} verbs
-   * @return {VerbClient[]}
    */
   private getClientVerbs (verbs: Verb[]): VerbClient[] {
     const result: VerbClient[] = [];

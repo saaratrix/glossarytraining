@@ -22,11 +22,23 @@
       </select>
     </ng-container>
     <ng-container *ngSwitchCase="EditFieldTypes.ItemSelect">
-      <app-item-selector [items]="field.list"
-                         [nameKey]="field.listName"
-                         [titleKey]="field.listTitle"
-                         [initialItem]="entity[field.key]"
-                         (itemClicked)="onItemSelectUpdate($event, field.key)" ></app-item-selector>
+      <app-item-selector
+        [items]="field.list"
+        [nameKey]="field.listName"
+        [titleKey]="field.listTitle"
+        [initialItem]="entity[field.key]"
+        (itemClicked)="onItemSelectUpdate($event, field.key)"
+      ></app-item-selector>
+    </ng-container>
+    <ng-container *ngSwitchCase="EditFieldTypes.ItemSelectByGroup">
+      <app-item-selector-by-groups
+        [items]="field.list"
+        [nameKey]="field.listName"
+        [titleKey]="field.listTitle"
+        [groupKey]="field.listSeparatorKey"
+        [initialItem]="entity[field.key]"
+        (itemClicked)="onItemSelectUpdate($event, field.key)"
+      ></app-item-selector-by-groups>
     </ng-container>
     <ng-container *ngSwitchCase="EditFieldTypes.Image">
       <img class="image" src="{{ entity[field.key] }}" alt="an image!">

@@ -45,8 +45,7 @@ export class ImagePhraseController {
         imagePhrase = null;
         error = "Failed to add the image phrase to database.";
       }
-    }
-    else {
+    } else {
       imagePhrase = null;
       error = "Invalid image phrase.";
     }
@@ -69,8 +68,7 @@ export class ImagePhraseController {
       if (!success) {
         error = "Failed to update the image phrase in database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid image phrase.";
     }
 
@@ -91,8 +89,7 @@ export class ImagePhraseController {
       if (!success) {
         error = "Failed to remove the image phrase from database.";
       }
-    }
-    else {
+    } else {
       error = "Invalid image phrase.";
     }
 

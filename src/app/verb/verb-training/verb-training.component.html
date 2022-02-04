@@ -17,7 +17,7 @@
   </li>
 </ul>
 <div >
-  <button (click)="review()" [disabled]="!hasAnswers()" *ngIf="!isAllCorrect">Review verbs</button>
-  <button (click)="doNewVerbTraining()" *ngIf="isAllCorrect">Train more verbs!</button>
+  <button *ngIf="!isAllCorrect" [disabled]="!hasAnswers()" (click)="review()">Review verbs</button>
+  <button *ngIf="isAllCorrect" (click)="doNewVerbTraining()">Train more verbs!</button>
 </div>
 

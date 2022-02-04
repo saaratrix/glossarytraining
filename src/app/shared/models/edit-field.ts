@@ -5,8 +5,23 @@ export interface EditField {
   key: string;
   required: boolean;
   type: EditFieldType;
-  // A possible list, for example for a <select> type
-  list?: any[];
-  // The key to use for a list item
+  // The key to use for a dropdown list item
   listKey?: string;
+
+  // List selection keys:
+  /**
+   * A possible list, for example for a <select> type
+   */
+  list?: any[];
+  /**
+   * @example
+   * 'name'
+   */
+  listName?: string;
+  /**
+   * @example
+   * 'name'
+   */
+  listTitle?: string;
+  listSeparatorKey?: string;
 }

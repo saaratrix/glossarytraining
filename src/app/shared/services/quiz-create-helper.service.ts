@@ -10,7 +10,6 @@ export class QuizCreateHelperService {
   /**
    * Based on the quiz language return the phrase property keys.
    * For example if the quiz should randomize between finnish & english it randomizes the property keys.
-   * @return {QuestionKeys}
    */
   public getQuestionKeys (finnish: string, english: string, languages: LanguageMode = LanguageMode.Random): QuestionKeys {
     if (languages === LanguageMode.Finnish) {
@@ -18,14 +17,12 @@ export class QuizCreateHelperService {
         question: finnish,
         answer: english
       };
-    }
-    else if (languages === LanguageMode.English) {
+    } else if (languages === LanguageMode.English) {
       return {
         question: english,
         answer: finnish
       };
-    }
-    else {
+    } else {
       // + 0.5 is equivalent of * 2
       if (Math.floor(Math.random() + 0.5) === 0) {
         return {

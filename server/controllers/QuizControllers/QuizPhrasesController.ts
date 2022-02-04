@@ -21,8 +21,7 @@ export class QuizPhrasesController {
       if (!success) {
         error = "Failed to add phrase to database for the quiz.";
       }
-    }
-    else {
+    } else {
       error = "Invalid quiz id or phrase id.";
     }
 
@@ -44,8 +43,7 @@ export class QuizPhrasesController {
       if (!success) {
         error = "Failed to remove phrase in the database from the quiz.";
       }
-    }
-    else {
+    } else {
       error = "Invalid quiz id or phrase id.";
     }
 

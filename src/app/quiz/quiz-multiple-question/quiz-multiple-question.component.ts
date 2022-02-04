@@ -33,7 +33,6 @@ export class QuizMultipleQuestionComponent implements OnInit {
   /**
    * Check if the options are identical in value.
    * It splits the /
-   * @return {boolean}
    */
   private checkIdenticalOptions (): boolean {
     for (let a  = 0; a < this.question.options.length; a++) {
