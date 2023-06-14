@@ -39,7 +39,6 @@
     "@types/jasminewd2": "^2.0.8",
     "@types/mysql": "^2.15.8",
     "@types/node": "^18.16.18",
-    "codelyzer": "^6.0.2",
     "jasmine-core": "~4.0.0",
     "jasmine-spec-reporter": "~7.0.0",
     "karma": "~6.3.13",
