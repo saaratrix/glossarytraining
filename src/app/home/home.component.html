@@ -10,9 +10,6 @@
 
 <h1>Test a category</h1>
 <app-quiz-selection  [items]="categories" (selected)="categorySelected($event)"></app-quiz-selection>
-
-<h1>Select between all phrases</h1>
-<button>Click me!!, I do nothing</button>
 <hr>
 <ng-container *ngIf="selectedQuiz; then selectedBlock else needSelectionBlock;"></ng-container>
 <ng-template #selectedBlock>
