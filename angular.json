@@ -105,7 +105,6 @@
       }
     }
   },
-  "defaultProject": "glossarytraining",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "",
