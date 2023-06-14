@@ -13,7 +13,7 @@ import { QuizModule } from "./quiz/quiz.module";
 import { VerbModule } from "./verb/verb.module";
 import { InflectionModule } from './inflection/inflection.module';
 
-const rootRouting: ModuleWithProviders<RouterModule> = RouterModule.forRoot([], { relativeLinkResolution: 'legacy' });
+const rootRouting: ModuleWithProviders<RouterModule> = RouterModule.forRoot([], {});
 
 @NgModule({
   declarations: [
